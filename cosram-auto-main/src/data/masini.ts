@@ -54,6 +54,23 @@ export const masini: Masina[] = [
     ]
   },
   {
+    "_id": "aeb998d7-52e9-411b-8472-44cc16d43fb3",
+    "slug": "vw-passat-highline-2009",
+    "marca": "VW PASSAT",
+    "model": "HIGHLINE",
+    "an": 2009,
+    "pret": 4799,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "2.0 TDI",
+    "putere": 140,
+    "caroserie": "Hatchback",
+    "disponibil": "Disponibil",
+    "galerie": [
+      "/images/masini/vw-passat-highline-2010/01.jpg"
+    ]
+  },
+  {
     "_id": "d33fc642-c609-49b0-9714-7aa7010d0f66",
     "slug": "skoda-fabia-2009-portocaliu",
     "marca": "SKODA",

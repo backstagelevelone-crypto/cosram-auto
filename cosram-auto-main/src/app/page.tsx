@@ -5,6 +5,7 @@ import Parteneri from "@/components/sections/Parteneri";
 import StocSection from "@/components/sections/StocSection";
 import Footer from "@/components/sections/Footer";
 import WhatsAppFab from "@/components/WhatsAppFab";
+import SeoContent from "@/components/SeoContent";
 import FacebookScrollPrompt from "@/components/FacebookScrollPrompt";
 
 const Servicii = dynamic(() => import("@/components/sections/Servicii"));
@@ -26,6 +27,7 @@ export default function Home() {
         <Livrare />
         <RateCalculator />
         <Recenzii />
+        <SeoContent />
       </main>
       <Footer />
       <FacebookScrollPrompt />

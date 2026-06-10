@@ -47,8 +47,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   ].filter(Boolean);
 
   return {
-    title: `${title}${yearPart} | ${pricePart}Cosram Auto`,
-    description: metaParts.join(". "),
+    title: `${buildCarName(car)} ${car.year ?? ""} | Mașină în rate | Cosram Auto Buzău`,
+    description: `${buildCarName(car)} disponibil la Cosram Auto Buzău. Finanțare rapidă, garanție 12 luni și livrare la domiciliu în toată România.`,
   };
 }
 

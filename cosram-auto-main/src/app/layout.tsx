@@ -77,6 +77,24 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         {children}
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "AutoDealer",
+      name: "Cosram Auto",
+      url: "https://www.cosram.ro",
+      telephone: "+40773865488",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Buzău",
+        addressCountry: "RO",
+      },
+      areaServed: "Romania",
+    }),
+  }}
+/>
         <LegalProviders />
       </body>
     </html>

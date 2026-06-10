@@ -198,21 +198,21 @@ export default function Hero() {
             Rate auto în 15 minute · Buzău
           </p>
 
-          <h1 data-hero-item className="max-w-[640px]">
-            <span className="block font-[family-name:var(--font-playfair)] text-[clamp(2.5rem,5.8vw,4.5rem)] font-bold leading-[1.1] tracking-[-0.01em] text-white">
-              Mașini doar de la proprietari.
-            </span>
-            <span className="mt-1 block font-[family-name:var(--font-playfair)] text-[clamp(2.5rem,5.8vw,4.5rem)] font-bold leading-[1.1] tracking-[-0.01em] text-[#C8102E]">
-              Prețuri mici, fără surprize.
-            </span>
-          </h1>
+          <h1 data-hero-item className="max-w-[720px]">
+  <span className="block font-[family-name:var(--font-playfair)] text-[clamp(2.5rem,5.8vw,4.5rem)] font-bold leading-[1.1] tracking-[-0.01em] text-white">
+    Mașini în Rate și Auto Rulate
+  </span>
+
+  <span className="mt-1 block font-[family-name:var(--font-playfair)] text-[clamp(2.5rem,5.8vw,4.5rem)] font-bold leading-[1.1] tracking-[-0.01em] text-[#C8102E]">
+    Verificate în Germania • Garanție 12 Luni
+  </span>
+</h1>
 
           <p
             data-hero-item
             className="mt-6 max-w-lg font-[family-name:var(--font-outfit)] text-base font-normal leading-relaxed text-[#9A9A9A] md:text-[17px] md:leading-[1.7]"
           >
-            Mașini verificate, istoric transparent și finanțare online rapidă.
-            Calculează rata, sună-ne sau scrie pe WhatsApp — te ajutăm imediat.
+            Parc auto din Buzău cu mașini second hand verificate de mecanici auto direct în Germania. Beneficiezi de garanție 12 luni, finanțare rapidă, livrare la domiciliu și kilometri certificați.
           </p>
 
           <div
@@ -267,7 +267,7 @@ export default function Hero() {
             {[
               { icon: Clock, label: "Rate în 15 min" },
               { icon: ShieldCheck, label: "Garanție 12 luni" },
-              { icon: Gauge, label: "Km reali" },
+              { icon: Gauge, label: "Livrare la domiciliu" },
             ].map(({ icon: Icon, label }) => (
               <span
                 key={label}

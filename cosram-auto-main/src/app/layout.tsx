@@ -23,11 +23,46 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Parc Auto Rulate Buzău | Mașini Verificate - Cosram Auto",
+  metadataBase: new URL("https://www.cosram.ro"),
+
+  title: {
+    default: "Mașini în Rate și Auto Rulate Buzău | COSRAM Auto",
+    template: "%s | COSRAM Auto",
+  },
+
   description:
-    "Parc auto rulate Buzău. Mașini verificate tehnic, garanție 12 luni, finanțare rapidă. Livrare în toată România.",
-  keywords:
-    "parc auto rulate buzau, masini second hand buzau, auto rulate buzau, cosram auto",
+    "Mașini second hand import Germania, finanțare în rate, garanție și livrare în toată România. Parc auto din Buzău cu autoturisme verificate.",
+
+  keywords: [
+    "masini in rate",
+    "masini in rate buzau",
+    "parc auto buzau",
+    "auto rulate buzau",
+    "masini second hand buzau",
+    "import auto germania",
+    "finantare auto",
+    "credit auto",
+    "masini fara avans",
+  ],
+
+  openGraph: {
+    title: "COSRAM Auto - Mașini în Rate și Auto Rulate",
+    description:
+      "Parc auto din Buzău. Mașini verificate, finanțare rapidă și livrare în toată România.",
+    url: "https://www.cosram.ro",
+    siteName: "COSRAM Auto",
+    locale: "ro_RO",
+    type: "website",
+  },
+
+  alternates: {
+    canonical: "https://www.cosram.ro",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

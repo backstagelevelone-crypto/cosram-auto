@@ -18,9 +18,9 @@ const services: { icon: LucideIcon; title: string; description: string }[] =
   [
     {
       icon: Car,
-      title: "Numere Roșii Incluse",
+      title: "Posibilitate numere rosii",
       description:
-        "Primești mașina cu numere roșii incluse, gata de drum imediat.",
+        "Primești mașina cu numere roșii la cerere, gata de drum imediat.",
     },
     {
       icon: Shield,

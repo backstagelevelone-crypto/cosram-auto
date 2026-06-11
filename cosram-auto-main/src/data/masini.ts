@@ -80,7 +80,7 @@ export const masini: Masina[] = [
     "cutieViteze": "Manuala",
     "motor": "1,8",
     "putere": 140,
-    "caroserie": "VAN",
+    "caroserie": "Combi",
     "disponibil": "Disponibil",
     "galerie": [
       "/images/masini/vw-passat-highline-2010/01.jpg"

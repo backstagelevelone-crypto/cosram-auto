@@ -54,6 +54,37 @@ export const masini: Masina[] = [
     ]
   },
   {
+    "_id": "d33fc642-c609-49b0-9714-7aa7080d0f66",
+    "slug": "Opel-Zafira-7-locuri",
+    "marca": "Opel",
+    "model": "Zafira",
+    "an": 2009,
+    "kilometraj": 178000,
+    "pret": 4199,
+    "combustibil": "Benzina",
+    "cutieViteze": "Manuala",
+    "motor": "1.8HTP",
+    "putere": 140,
+    "caroserie": "VAN",
+    "culoare": "Negru",
+    "nrUsi": 5,
+    "tractiune": "FWD",
+    "inspectieTehnica": "NEINMATRICULAT",
+    "dotari": [
+      "MODEL AMBIENTE"
+    ],
+    "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
+    "disponibil": "Disponibil",
+    "galerie": [
+      "/images/masini/skoda-fabia-2009-portocaliu/01.jpg",
+      "/images/masini/skoda-fabia-2009-portocaliu/02.jpg",
+      "/images/masini/skoda-fabia-2009-portocaliu/03.jpg",
+      "/images/masini/skoda-fabia-2009-portocaliu/04.jpg",
+      "/images/masini/skoda-fabia-2009-portocaliu/05.jpg",
+      "/images/masini/skoda-fabia-2009-portocaliu/06.jpg"
+    ]
+  },
+  {
     "_id": "aeb998d7-52e9-411b-8472-44cc16d43fb3",
     "slug": "vw-passat-highline-2009",
     "marca": "VW PASSAT",

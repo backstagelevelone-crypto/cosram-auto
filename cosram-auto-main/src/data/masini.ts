@@ -83,7 +83,7 @@ export const masini: Masina[] = [
     "caroserie": "Combi",
     "disponibil": "Disponibil",
     "galerie": [
-      "/images/masini/vw-passat-highline-2010/01.jpg"
+      "/images/masini/zafira7locuri20091.8benzina.png"
     ]
   },
   {

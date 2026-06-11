@@ -55,7 +55,7 @@ export const masini: Masina[] = [
   },
   {
     "_id": "d33fc642-c609-49b0-9714-7aa7010d0f66",
-    "slug": "Opel-Zafira-7-locuri",
+    "slug": "vw-passat-highline-2009",
     "marca": "Opel",
     "model": "Zafira",
     "an": 2009,

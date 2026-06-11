@@ -81,7 +81,7 @@ export const masini: Masina[] = [
     "motor": "1,8",
     "putere": 140,
     "caroserie": "Combi",
-    "disponibil": "VANDUT",
+    "disponibil": "Vandut",
     "galerie": [
       "/images/masini/zafira7locuri20091.8benzina.png"
     ]

@@ -20,8 +20,8 @@ export const COMPANY = {
 } as const;
 
 export const AGENCY_CREDIT = {
-  name: "cosram auto ",
-  url: "https://www.cosram.ro/",
+  name: "Carpathian Marketing Agency ",
+  url: "https://www.carpathian-marketing-agency.ro/",
 } as const;
 
 export const LEGAL_LINKS = [

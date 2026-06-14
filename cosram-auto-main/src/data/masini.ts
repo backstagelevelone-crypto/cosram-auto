@@ -254,7 +254,7 @@ export const masini: Masina[] = [
     "cutieViteze": "Manuala",
     "motor": "2.0 TDI",
     "caroserie": "Sedan",
-    "disponibil": "Disponibil",
+    "disponibil": "Vandut",
     "galerie": [
       "/images/masini/vw-passat-2008/01.jpg"
     ]
@@ -304,7 +304,7 @@ export const masini: Masina[] = [
     "motor": "2.0 TDI",
     "putere": 140,
     "caroserie": "Hatchback",
-    "disponibil": "Vandut",
+    "disponibil": "Disponibil",
     "galerie": [
       "/images/masini/vw-passat-highline-2010/01.jpg"
     ]

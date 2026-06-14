@@ -167,7 +167,7 @@ export const masini: Masina[] = [
       "MODEL GOAL"
     ],
     "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
-    "disponibil": "Vandut",
+    "disponibil": "Disponibil",
     "galerie": [
       "/images/masini/vw-golf-5-2006/01.jpg",
       "/images/masini/vw-golf-5-2006/02.jpg",
@@ -254,7 +254,7 @@ export const masini: Masina[] = [
     "cutieViteze": "Manuala",
     "motor": "2.0 TDI",
     "caroserie": "Sedan",
-    "disponibil": "Vandut",
+    "disponibil": "Disponibil",
     "galerie": [
       "/images/masini/vw-passat-2008/01.jpg"
     ]

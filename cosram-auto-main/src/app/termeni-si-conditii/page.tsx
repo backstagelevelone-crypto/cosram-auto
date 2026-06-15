@@ -85,7 +85,7 @@ export default function TermeniSiConditiiPage() {
           Pentru consumatori: autovehiculele achiziționate pot fi exceptate de la
           dreptul de retragere de 14 zile în anumite condiții prevăzute de lege
           (OUG 34/2004, art. 16 lit. g — bunuri confecționate după specificații clare
-          / livrate la domiciliu). Detaliile se comunică la semnarea contractului.
+          / livrate la domiciliu). Orice retragere produce costuri aferente conform legislatiei in vigoare precum si a ordinelor interne al companiei.Detaliile se comunică la semnarea contractului.
         </p>
       </LegalSection>
 

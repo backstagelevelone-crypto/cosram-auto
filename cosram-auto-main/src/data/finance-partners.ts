@@ -99,14 +99,14 @@ export const financePartners: FinancePartner[] = [
     defaultDownPayment: 0,
     defaultDuration: 36,
     defaultPrice: 12000,
-    rateLabel: "DAE 49,05% · 3,39% / lună",
+    rateLabel: "DAE 36,18% · 2,61% / lună",
     disclaimer:
       "Calcul estimativ cu dobândă lunară de 3,39% și DAE reprezentativă de 49,05%, conform informațiilor publice Mogo. Oferta finală depinde de evaluarea dosarului.",
     calculation: {
       type: "monthly",
-      ratePercent: 3.39,
-      daePercent: 49.05,
-      rateNote: "DAE 49,05% · Dobândă lunară 3,39%",
+      ratePercent: 2.61,
+      daePercent: 36.18,
+      rateNote: "DAE 36,18% · Dobândă lunară 2,61%",
     },
   },
 ];

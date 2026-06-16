@@ -56,7 +56,7 @@ export default function MasiniLaComanda() {
 
             <p className="text-[#6B6B6B]">
               Analizăm ofertele disponibile și verificăm istoricul
-              autoturismului.
+              autoturismului.Va vom face o oferta dupa care se achita avansul de 50% iar la achizitia masinii restul de 50%
             </p>
           </div>
 

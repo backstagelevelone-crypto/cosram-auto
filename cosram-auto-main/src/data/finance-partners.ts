@@ -30,10 +30,11 @@ export const financingRequiredDocuments = {
     "Indiferent de partenerul ales (TBI Bank, Mogo sau BT Direct), dosarul de finanțare auto presupune, de regulă, aceleași categorii de acte. Te ajutăm noi la completare — multe pot fi trimise online.",
   items: [
     "Carte de identitate (original) — pentru toți aplicanții",
-    "Dovada veniturilor: fluturaș de salariu, talon de pensie, extras de cont sau alte venituri legale",
-    "Factura proformă sau contractul de vânzare-cumpărare pentru mașina aleasă",
-    "Cerere de credit și acorduri pentru verificarea la ANAF și Biroul de Credit",
-    "Permis de conducere (dacă este solicitat de instituția financiară)",
+    "Dovada veniturilor daca nu se vad la ANAF",
+    "Venituri realizate in afara tarii: contract de munca pe perioada nedeterminata tradus,extras de cont pe ultimele 3 luni",
+    "Acord cerere de credit și acorduri pentru verificarea la ANAF și Biroul de Credit",
+    "Minim 3 luni la actualul loc de munca",
+    "Maxim 75 ani la terminarea creditului auto ",
   ],
   footnote:
     "Lista este orientativă. TBI Bank, Mogo și BT Direct își rezervă dreptul de a solicita documente suplimentare, în funcție de profilul tău de venit și de evaluarea dosarului.",
@@ -63,8 +64,8 @@ export const financePartners: FinancePartner[] = [
     downPayments: [0, 10, 20, 30],
     durations: [12, 24, 36, 48, 60],
     defaultDownPayment: 0,
-    defaultDuration: 36,
-    defaultPrice: 12000,
+    defaultDuration: 60,
+    defaultPrice: 3000,
     rateLabel: "Dobândă fixă de la 4,9% / an",
     disclaimer:
       "Calcul estimativ cu dobândă fixă de 4,9% pe an, conform informațiilor publice TBI Bank. Oferta finală depinde de evaluarea dosarului.",
@@ -98,7 +99,7 @@ export const financePartners: FinancePartner[] = [
     durations: [6, 12, 24, 36, 48, 60],
     defaultDownPayment: 0,
     defaultDuration: 60,
-    defaultPrice: 12000,
+    defaultPrice: 3000,
     rateLabel: "DAE 36,18% · 2,61% / lună",
     disclaimer:
       "Calcul estimativ cu dobândă lunară de 3,39% și DAE reprezentativă de 36,18%, conform informațiilor publice Mogo. Oferta finală depinde de evaluarea dosarului.",

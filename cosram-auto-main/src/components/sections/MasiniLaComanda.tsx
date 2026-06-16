@@ -77,7 +77,9 @@ export default function MasiniLaComanda() {
 
         <div className="mt-12 flex justify-center">
           <a
-            href="#contact"
+            href="https://wa.me/40771165844?text=Bună%20ziua!%20Sunt%20interesat%20de%20o%20mașină%20la%20comandă."
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full bg-[#C8102E] px-8 py-4 text-sm font-semibold text-white transition hover:scale-105"
           >
             Solicită o ofertă

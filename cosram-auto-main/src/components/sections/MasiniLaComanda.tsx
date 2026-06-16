@@ -70,7 +70,7 @@ export default function MasiniLaComanda() {
             </h3>
 
             <p className="text-[#6B6B6B]">
-              Ne ocupăm de transport și documentele necesare până la predare.Transportam masina cu platformele noastre proprii.Nu lucram cu transportatori externi.
+              Ne ocupăm de transport și documentele necesare până la predare.Transportam masina cu platformele noastre proprii.Nu lucram cu transportatori externi.Oferim factura Fiscala si certificat fiscal.
             </p>
           </div>
         </div>

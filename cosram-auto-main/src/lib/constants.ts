@@ -27,6 +27,7 @@ export const FB_PROMPT_MIN_TIME_MS = 15_000;
 export const NAV_LINKS = [
   { href: "#servicii", label: "Servicii" },
   { href: "#stoc", label: "Stoc" },
+  { href: "#masini-la-comanda", label: "La comandă" },
   { href: "#livrare", label: "Livrare" },
   { href: "#rate", label: "Rate" },
   { href: "#recenzii", label: "Recenzii" },

@@ -88,7 +88,7 @@ export default function RootLayout({
       telephone: "+40773865488",
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Buzău",
+        addressLocality: "Bragareasa-Buzău",
         addressCountry: "RO",
       },
       areaServed: "Romania",

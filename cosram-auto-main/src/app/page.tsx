@@ -14,6 +14,9 @@ const RateCalculator = dynamic(
   () => import("@/components/sections/RateCalculator")
 );
 const Recenzii = dynamic(() => import("@/components/sections/Recenzii"));
+const MasiniLaComanda = dynamic(
+  () => import("@/components/sections/MasiniLaComanda")
+);
 
 export default function Home() {
   return (
@@ -24,6 +27,7 @@ export default function Home() {
         <Parteneri />
         <Servicii />
         <StocSection />
+        <MasiniLaComanda />
         <Livrare />
         <RateCalculator />
         <Recenzii />

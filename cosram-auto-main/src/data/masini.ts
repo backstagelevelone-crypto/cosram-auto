@@ -140,10 +140,10 @@ export const masini: Masina[] = [
     "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
     "disponibil": "Disponibil",
     "galerie": [
-      "/images/masini/bmw-520d-2005/01.jpg",
-      "/images/masini/bmw-520d-2005/02.jpg",
-      "/images/masini/bmw-520d-2005/03.jpg",
-      "/images/masini/bmw-520d-2005/04.jpg"
+      "/images/masini/bmw-520d-2005/1.jpg",
+      "/images/masini/bmw-520d-2005/2.jpg",
+      "/images/masini/bmw-520d-2005/3.jpg",
+      "/images/masini/bmw-520d-2005/4.jpg"
     ]
   },
   {

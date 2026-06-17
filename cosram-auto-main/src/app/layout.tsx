@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Syne, Outfit, Playfair_Display } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
+import { GoogleTagManager } from '@next/third-parties/google';
 import LegalProviders from "@/components/LegalProviders";
 import "./globals.css";
 
@@ -75,26 +76,27 @@ export default function RootLayout({
       lang="ro"
       className={`${syne.variable} ${outfit.variable} ${playfair.variable} ${GeistSans.variable} h-full scroll-smooth`}
     >
+      <GoogleTagManager gtmId="AW-16466740120" />
       <body className="min-h-full flex flex-col">
         {children}
         <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "AutoDealer",
-      name: "Cosram Auto",
-      url: "https://www.cosram.ro",
-      telephone: "+40773865488",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: "Bragareasa-Buzău",
-        addressCountry: "RO",
-      },
-      areaServed: "Romania",
-    }),
-  }}
-/>
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "AutoDealer",
+              name: "Cosram Auto",
+              url: "https://www.cosram.ro",
+              telephone: "+40773865488",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Bragareasa-Buzău",
+                addressCountry: "RO",
+              },
+              areaServed: "Romania",
+            }),
+          }}
+        />
         <LegalProviders />
       </body>
     </html>

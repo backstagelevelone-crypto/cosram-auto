@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Syne, Outfit, Playfair_Display } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
-import { GoogleTagManager } from '@next/third-parties/google';
+import Script from "next/script";
 import LegalProviders from "@/components/LegalProviders";
 import "./globals.css";
 
@@ -24,7 +24,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.cosram.ro"),
+  metadataBase: new URL("https://cosram.ro"),
 
   title: {
     default: "Mașini în Rate și Auto Rulate Buzău | COSRAM Auto",
@@ -50,14 +50,14 @@ export const metadata: Metadata = {
     title: "COSRAM Auto - Mașini în Rate și Auto Rulate",
     description:
       "Parc auto din Buzău. Mașini verificate, finanțare rapidă și livrare în toată România.",
-    url: "https://www.cosram.ro",
+    url: "https://cosram.ro",
     siteName: "COSRAM Auto",
     locale: "ro_RO",
     type: "website",
   },
 
   alternates: {
-    canonical: "https://www.cosram.ro",
+    canonical: "https://cosram.ro",
   },
 
   robots: {
@@ -76,8 +76,19 @@ export default function RootLayout({
       lang="ro"
       className={`${syne.variable} ${outfit.variable} ${playfair.variable} ${GeistSans.variable} h-full scroll-smooth`}
     >
-      <GoogleTagManager gtmId="AW-16466740120" />
       <body className="min-h-full flex flex-col">
+        <Script
+          src="https://googletagmanager.com"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-16466740120');
+          `}
+        </Script>
         {children}
         <script
           type="application/ld+json"
@@ -86,7 +97,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "AutoDealer",
               name: "Cosram Auto",
-              url: "https://www.cosram.ro",
+              url: "https://cosram.ro",
               telephone: "+40773865488",
               address: {
                 "@type": "PostalAddress",

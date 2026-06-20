@@ -49,6 +49,13 @@ export const DISPLAY_PARTNERS = [
     href: "https://www.mogo.ro",
   },
   {
+    name: "Garantul Tau",
+    href: "https://garantultau.ro",
+    logo: "/partners/garantultau.ro.jpeg",
+    width: 150,
+    height: 50,
+  },
+  {
     name: "BT Direct",
     logo: "/partners/bt-direct.svg",
     width: 160,

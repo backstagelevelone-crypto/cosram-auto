@@ -135,9 +135,9 @@ export const masini: Masina[] = [
     "tractiune": "RWD",
     "inspectieTehnica": "NEINMATRICULAT",
     "dotari": [
-      "Navigație,Interior piele,Faruri Xenon,PDC (senzori parcare),Dublu climatronic,Geamuri electrice,Perne de aer(spate),Oglinzi electrice,Computer de bord,Jante aliaj"
+      "Dotări: navigație, interior din piele, faruri Xenon, senzori de parcare PDC, climatizare automată pe două zone (dublu climatronic), cruise control, volan multifuncțional, computer de bord, geamuri electrice față/spate, oglinzi electrice și încălzite, închidere centralizată, cotieră față/spate, sistem audio, jante aliaj, ABS, ESP și airbag-uri."
     ],
-    "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
+    "evaluareTehnica": "BMW 520d în stare foarte bună, un sedan premium care oferă confort, siguranță și un consum redus de combustibil. Motorul diesel de 2.0 litri M47 (distributi in fata) este recunoscut pentru fiabilitate și eficiență, fiind ideal atât pentru deplasările zilnice, cât și pentru drumurile lungi.Mașina se prezintă foarte bine atât estetic, cât și tehnic, este întreținută corespunzător și nu necesită investiții. Oferă un nivel ridicat de confort, stabilitate și siguranță, fiind alegerea ideală pentru cei care caută un BMW Seria 5 bine echipat și economic.",
     "disponibil": "Disponibil",
     "galerie": [
       "/images/masini/bmw-520d-2005/1.jpg",

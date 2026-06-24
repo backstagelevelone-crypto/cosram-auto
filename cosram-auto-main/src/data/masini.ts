@@ -135,7 +135,16 @@ export const masini: Masina[] = [
     "tractiune": "RWD",
     "inspectieTehnica": "NEINMATRICULAT",
     "dotari": [
-      "NAVI XENON PDC PIELE"
+      "✅ Navigație
+       ✅ Interior piele
+       ✅ Faruri Xenon
+       ✅ PDC (senzori parcare)
+       ✅ Dublu climatronic
+       ✅ Geamuri electrice
+       ✅ Perne de aer(spate)
+       ✅ Oglinzi electrice
+       ✅ Computer de bord
+       ✅ Jante aliaj"
     ],
     "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
     "disponibil": "Disponibil",

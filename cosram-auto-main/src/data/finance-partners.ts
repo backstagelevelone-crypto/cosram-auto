@@ -26,7 +26,7 @@ export interface FinancePartner {
 
 export const financingRequiredDocuments = {
   intro:
-    "Indiferent de partenerul ales (TBI Bank, Mogo sau BT Direct), dosarul de finanțare auto presupune, de regulă, aceleași categorii de acte. Te ajutăm noi la completare — multe pot fi trimise online.",
+    "Indiferent de partenerul ales (TBI Bank, Mogo sau BT Direct), dosarul de finanțare auto presupune, de regulă, aceleași categorii de acte.",
   items: [
     "Carte de identitate (original) — pentru toți aplicanții",
     "Dovada veniturilor daca nu se vad la ANAF",
@@ -48,13 +48,13 @@ export const financePartners: FinancePartner[] = [
     benefits: ["Dobândă fixă de la 4,9% pe an", "Fără avans și fără CASCO"],
     minPrice: 10000,
     maxPrice: 250000,
-    downPayments: [0, 10, 20, 30],
-    durations: [12, 24, 36, 48, 60],
+    downPayments:,
+    durations:,
     defaultDownPayment: 0,
     defaultDuration: 60,
     defaultPrice: 50000,
     rateLabel: "Dobândă fixă de la 4,9% / an",
-    disclaimer: "Calcul estimativ cu dobândă fixă.",
+    disclaimer: "Calcul estimativ.",
     calculation: { type: "annual", ratePercent: 4.9, rateNote: "Dobândă fixă" },
   },
   {
@@ -69,8 +69,8 @@ export const financePartners: FinancePartner[] = [
     benefits: ["Dobândă lunară 2,61%", "Avans 0%"],
     minPrice: 10000,
     maxPrice: 250000,
-    downPayments: [0, 10, 20, 30],
-    durations: [6, 12, 24, 36, 48, 60],
+    downPayments:,
+    durations:,
     defaultDownPayment: 0,
     defaultDuration: 60,
     defaultPrice: 50000,

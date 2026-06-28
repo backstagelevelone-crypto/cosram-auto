@@ -24,20 +24,15 @@ export interface FinancePartner {
     | { type: "monthly"; ratePercent: number; daePercent: number; rateNote: string };
 }
 
-/** Listă generală — valabilă pentru TBI Bank, Mogo și BT Direct */
 export const financingRequiredDocuments = {
   intro:
-    "Indiferent de partenerul ales (TBI Bank, Mogo sau BT Direct), dosarul de finanțare auto presupune, de regulă, aceleași categorii de acte. Te ajutăm noi la completare — multe pot fi trimise online.",
+    "Indiferent de partenerul ales (TBI Bank, Mogo sau BT Direct), dosarul de finanțare auto presupune, de regulă, aceleași categorii de acte.",
   items: [
     "Carte de identitate (original) — pentru toți aplicanții",
     "Dovada veniturilor daca nu se vad la ANAF",
-    "Venituri realizate in afara tarii: contract de munca pe perioada nedeterminata tradus,extras de cont pe ultimele 3 luni",
-    "Acord cerere de credit și acorduri pentru verificarea la ANAF și Biroul de Credit",
     "Minim 3 luni la actualul loc de munca",
-    "Maxim 75 ani la terminarea creditului auto ",
   ],
-  footnote:
-    "Lista este orientativă. TBI Bank, Mogo și BT Direct își rezervă dreptul de a solicita documente suplimentare, în funcție de profilul tău de venit și de evaluarea dosarului.",
+  footnote: "Lista este orientativă.",
 } as const;
 
 export const financePartners: FinancePartner[] = [
@@ -48,17 +43,9 @@ export const financePartners: FinancePartner[] = [
     logoWidth: 140,
     logoHeight: 48,
     href: "https://tbibank.ro",
-    tagline:
-      "Dobândă fixă de la doar 4,9% pe an, fără avans și fără CASCO. Îți iei mașina pe loc din showroom-urile auto partenere.",
+    tagline: "Dobândă fixă de la doar 4,9% pe an, fără avans și fără CASCO.",
     badge: "4,9% / an fix",
-    benefits: [
-      "Dobândă fixă de la 4,9% pe an",
-      "Fără avans și fără CASCO",
-      "0% avans și fără garanții",
-      "Obții până la 100% din valoarea vehiculului",
-      "Sumă pre-aprobată valabilă 30 de zile",
-      "Flux online, fără drumuri la bancă",
-    ],
+    benefits: ["Dobândă fixă de la 4,9% pe an", "Fără avans și fără CASCO"],
     minPrice: 10000,
     maxPrice: 250000,
     downPayments:,
@@ -67,13 +54,8 @@ export const financePartners: FinancePartner[] = [
     defaultDuration: 60,
     defaultPrice: 50000,
     rateLabel: "Dobândă fixă de la 4,9% / an",
-    disclaimer:
-      "Calcul estimativ cu dobândă fixă de 4,9% pe an, conform informațiilor publice TBI Bank. Oferta finală depinde de evaluarea dosarului.",
-    calculation: {
-      type: "annual",
-      ratePercent: 4.9,
-      rateNote: "Dobândă fixă de la 4,9% pe an (estimativ)",
-    },
+    disclaimer: "Calcul estimativ.",
+    calculation: { type: "annual", ratePercent: 4.9, rateNote: "Dobândă fixă" },
   },
   {
     id: "mogo",
@@ -82,17 +64,9 @@ export const financePartners: FinancePartner[] = [
     logoWidth: 130,
     logoHeight: 48,
     href: "https://mogo.ro",
-    tagline:
-      "DAE 36,18% · Dobândă lunară 2,61%. Credit auto 100% online, avans 0%, fără CASCO obligatoriu.",
+    tagline: "DAE 36,18% · Credit auto 100% online, avans 0%.",
     badge: "DAE 36,18%",
-    benefits: [
-      "Dobândă lunară 2,61%",
-      "DAE reprezentativă 36,18%",
-      "Avans 0%",
-      "Perioadă de creditare de la 6 luni la 5 ani",
-      "Ești proprietarul mașinii din prima zi",
-      "Polița CASCO nu este obligatorie",
-    ],
+    benefits: ["Dobândă lunară 2,61%", "Avans 0%"],
     minPrice: 10000,
     maxPrice: 250000,
     downPayments:,
@@ -100,18 +74,12 @@ export const financePartners: FinancePartner[] = [
     defaultDownPayment: 0,
     defaultDuration: 60,
     defaultPrice: 50000,
-    rateLabel: "DAE 36,18% · 2,61% / lună",
-    disclaimer:
-      "Calcul estimativ cu dobândă lunară de 3,39% și DAE reprezentativă de 36,18%, conform informațiilor publice Mogo. Oferta finală depinde de evaluarea dosarului.",
-    calculation: {
-      type: "monthly",
-      ratePercent: 2.61,
-      daePercent: 36.18,
-      rateNote: "DAE 36,18% · Dobândă lunară 2,61%",
-    },
+    rateLabel: "DAE 36,18%",
+    disclaimer: "Calcul estimativ.",
+    calculation: { type: "monthly", ratePercent: 2.61, daePercent: 36.18, rateNote: "Mogo" },
   },
 ];
 
 export function getFinancePartner(id: FinancePartnerId): FinancePartner {
-  return financePartners.find((p) => p.id === id) ?? financePartners[0];
+  return financePartners.find((p) => p.id === id) || financePartners[0];
 }

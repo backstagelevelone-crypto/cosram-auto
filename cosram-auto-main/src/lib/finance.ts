@@ -71,6 +71,10 @@ export function calculateLoan(params: {
   };
 }
 
-export function formatEuro(value: number): string {
-  return `${Math.round(value).toLocaleString("ro-RO")}€`;
+/** Formatează suma în formatul românesc cu sufixul "lei" */
+export function formatRON(value: number): string {
+  return `${Math.round(value).toLocaleString("ro-RO")} lei`;
 }
+
+/** Alias pentru a preveni erori în restul proiectului unde se importă formatEuro */
+export const formatEuro = formatRON;

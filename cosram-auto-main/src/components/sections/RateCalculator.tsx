@@ -10,6 +10,7 @@ import {
   Clock,
   ExternalLink,
   FileText,
+  Percent,
   Shield,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -215,39 +216,234 @@ export default function RateCalculator() {
               {[
                 { icon: Clock, label: "Aprobare rapidă" },
                 { icon: Shield, label: "Fără CASCO obligatoriu" },
-                { icon: FileText, label: "Doar cu buletinul" },
-              ].map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div key={idx} className="flex flex-col items-center justify-center rounded-xl bg-white p-3 text-center border border-[rgba(0,0,0,0.05)] shadow-sm">
-                    <Icon className="h-5 w-5 text-[#C8102E] mb-1.5" />
-                    <span className="font-[family-name:var(--font-outfit)] text-[11px] font-medium text-[#111111] leading-tight">{item.label}</span>
-                  </div>
-                );
-              })}
+                { icon: Percent, label: "Rate fixe / clare" },
+              ].map(({ icon: Icon, label }) => (
+                <div
+                  key={label}
+                  className="rounded-xl border border-[rgba(0,0,0,0.06)] bg-white/70 px-3 py-4 text-center"
+                >
+                  <Icon className="mx-auto h-4 w-4 text-[#C8102E]" />
+                  <p className="mt-2 font-[family-name:var(--font-outfit)] text-[11px] leading-snug text-[#6B6B6B]">
+                    {label}
+                  </p>
+                </div>
+              ))}
             </div>
-            
-            <button 
-              type="button" 
-              onClick={() => setDocsOpen(true)}
-              className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-[#C8102E]/40 bg-[#C8102E]/5 p-3 font-[family-name:var(--font-outfit)] text-xs font-medium text-[#C8102E] hover:bg-[#C8102E]/10 transition-colors"
-            >
-              <FileText className="h-4 w-4" />
-              Vezi acte necesare dosar finanțare
-            </button>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="rounded-3xl border border-[rgba(0,0,0,0.08)] bg-white p-6 shadow-sm md:p-8"
+            className="rounded-3xl border border-[rgba(0,0,0,0.08)] bg-white p-6 shadow-[0_20px_60px_rgba(0,0,0,0.06)] md:p-8"
           >
-            <p className="font-[family-name:var(--font-outfit)] text-xs font-bold uppercase tracking-wider text-[#6B6B6B]">
-              CALCULATOR RATĂ
-            </p>
-            <h3 className="mt-1 font-[family-name:var(--font-syne)] text-2xl font-bold text-[#111111]">
-              {partner.name}
-            </h3>
+            <div className="mb-6 flex items-center justify-between gap-4 border-b border-[rgba(0,0,0,0.06)] pb-5">
+              <div>
+                <p className="font-[family-name:var(--font-outfit)] text-xs font-semibold uppercase tracking-[0.16em] text-[#6B6B6B]">
+                  Calculator rată
+                </p>
+                <p className="mt-1 font-[family-name:var(--font-syne)] text-lg font-bold text-[#111111]">
+                  {partner.name}
+                </p>
+              </div>
+              <span className="rounded-full bg-[#C8102E]/8 px-3 py-1 font-[family-name:var(--font-outfit)] text-xs font-medium text-[#C8102E]">
+                {partner.rateLabel}
+              </span>
+            </div>
 
-            <div className="mt-8 space-y-6">
+            <div className="space-y-8">
+              <div>
+                <div className="mb-3 flex items-center justify-between">
+                  <label
+                    htmlFor="price-range"
+                    className="font-[family-name:var(--font-outfit)] text-sm font-medium text-[#111111]"
+                  >
+                    Preț mașină
+                  </label>
+                  <span className="font-[family-name:var(--font-syne)] text-lg font-bold text-[#C8102E]">
+                    {price.toLocaleString("ro-RO")}€
+                  </span>
+                </div>
+                <input
+                  id="price-range"
+                  type="range"
+                  min={partner.minPrice}
+                  max={partner.maxPrice}
+                  step={500}
+                  value={price}
+                  onChange={(e) => setPrice(Number(e.target.value))}
+                  className="h-2 w-full cursor-pointer appearance-none rounded-full bg-[#EFEFEF] accent-[#C8102E] [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#C8102E] [&::-webkit-slider-thumb]:shadow-[0_2px_8px_rgba(200,16,46,0.35)]"
+                />
+                <div className="mt-1 flex justify-between font-[family-name:var(--font-outfit)] text-xs text-[#6B6B6B]">
+                  <span>{partner.minPrice.toLocaleString("ro-RO")}€</span>
+                  <span>{partner.maxPrice.toLocaleString("ro-RO")}€</span>
+                </div>
+              </div>
+
+              <div>
+                <p className="mb-3 font-[family-name:var(--font-outfit)] text-sm font-medium text-[#111111]">
+                  Avans
+                </p>
+                <div className="flex gap-2">
+                  {partner.downPayments.map((dp) => (
+                    <button
+                      key={dp}
+                      type="button"
+                      onClick={() => setDownPercent(dp)}
+                      className={cn(
+                        "flex-1 rounded-full py-2.5 font-[family-name:var(--font-outfit)] text-sm font-medium transition-all duration-300",
+                        downPercent === dp
+                          ? "bg-[#C8102E] text-white shadow-[0_4px_16px_rgba(200,16,46,0.25)]"
+                          : "bg-[#F7F7F7] text-[#6B6B6B] hover:bg-[#EFEFEF]"
+                      )}
+                    >
+                      {dp}%
+                    </button>
+                  ))}
+                </div>
+                <p className="mt-2 font-[family-name:var(--font-outfit)] text-xs text-[#6B6B6B]">
+                  Avans estimativ: {formatEuro(loan.downPayment)}
+                </p>
+              </div>
+
+              <div>
+                <p className="mb-3 font-[family-name:var(--font-outfit)] text-sm font-medium text-[#111111]">
+                  Durată
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {partner.durations.map((d) => (
+                    <button
+                      key={d}
+                      type="button"
+                      onClick={() => setMonths(d)}
+                      className={cn(
+                        "rounded-full px-4 py-2.5 font-[family-name:var(--font-outfit)] text-sm font-medium transition-all duration-300",
+                        months === d
+                          ? "bg-[#C8102E] text-white shadow-[0_4px_16px_rgba(200,16,46,0.25)]"
+                          : "bg-[#F7F7F7] text-[#6B6B6B] hover:bg-[#EFEFEF]"
+                      )}
+                    >
+                      {d} luni
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="overflow-hidden rounded-2xl bg-[#111111] p-6 text-white">
+                <p className="font-[family-name:var(--font-outfit)] text-sm text-white/60">
+                  Rată lunară estimată
+                </p>
+                <p className="mt-1 font-[family-name:var(--font-syne)] text-4xl font-bold md:text-5xl">
+                  <AnimatedNumber value={loan.monthlyPayment} />€
+                  <span className="text-lg font-medium text-white/50"> / lună</span>
+                </p>
+                <p className="mt-2 font-[family-name:var(--font-outfit)] text-xs text-white/45">
+                  {partner.calculation.rateNote}
+                </p>
+
+                <button
+                  type="button"
+                  onClick={() => setShowBreakdown((v) => !v)}
+                  className="mt-4 inline-flex items-center gap-1.5 font-[family-name:var(--font-outfit)] text-xs font-medium text-white/70 transition-colors hover:text-white"
+                >
+                  Detalii calcul
+                  <ChevronDown
+                    className={cn(
+                      "h-4 w-4 transition-transform duration-300",
+                      showBreakdown && "rotate-180"
+                    )}
+                  />
+                </button>
+
+                {showBreakdown && (
+                  <div className="mt-4 space-y-2 border-t border-white/10 pt-4 font-[family-name:var(--font-outfit)] text-sm">
+                    <div className="flex justify-between gap-4">
+                      <span className="text-white/55">Sumă finanțată</span>
+                      <span>{formatEuro(loan.financedAmount)}</span>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <span className="text-white/55">Avans</span>
+                      <span>{formatEuro(loan.downPayment)}</span>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <span className="text-white/55">Cost dobândă estimat</span>
+                      <span>{formatEuro(loan.totalInterest)}</span>
+                    </div>
+                    <div className="flex justify-between gap-4 font-medium">
+                      <span className="text-white/55">Total de plată</span>
+                      <span>{formatEuro(loan.totalPayable)}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <p className="font-[family-name:var(--font-outfit)] text-xs leading-relaxed text-[#6B6B6B]">
+                {partner.disclaimer}
+              </p>
+
+              <a
+                href={buildWhatsAppLink(
+                  partner.name,
+                  price,
+                  downPercent,
+                  months,
+                  loan.monthlyPayment
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-[#C8102E] py-4 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white transition-all duration-300 hover:bg-[#A50E26] hover:shadow-[0_8px_24px_rgba(200,16,46,0.35)]"
+              >
+                Aplică pentru finanțare
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+
+              <button
+                type="button"
+                onClick={() => setDocsOpen(true)}
+                className="mx-auto flex items-center justify-center gap-2 rounded-full border border-[rgba(0,0,0,0.1)] bg-[#F7F7F7] px-5 py-2.5 font-[family-name:var(--font-outfit)] text-xs font-medium text-[#6B6B6B] transition-colors hover:border-[#C8102E]/25 hover:bg-white hover:text-[#111111]"
+              >
+                <FileText className="h-3.5 w-3.5 shrink-0 text-[#C8102E]" />
+                De ce acte am nevoie?
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      <Dialog open={docsOpen} onOpenChange={setDocsOpen}>
+        <DialogContent className="gap-0 border-[rgba(0,0,0,0.08)] bg-white p-0 sm:max-w-md">
+          <DialogHeader className="border-b border-[rgba(0,0,0,0.06)] px-6 py-5 pr-12">
+            <DialogTitle className="font-[family-name:var(--font-syne)] text-lg font-bold text-[#111111]">
+              De ce acte am nevoie?
+            </DialogTitle>
+            <DialogDescription className="font-[family-name:var(--font-outfit)] text-sm leading-relaxed text-[#6B6B6B]">
+              TBI Bank, Mogo, BT Direct · listă orientativă
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="px-6 py-5">
+            <p className="font-[family-name:var(--font-outfit)] text-sm leading-relaxed text-[#111111]">
+              {financingRequiredDocuments.intro}
+            </p>
+
+            <ul className="mt-4 space-y-3">
+              {financingRequiredDocuments.items.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-2.5 font-[family-name:var(--font-outfit)] text-sm text-[#111111]"
+                >
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#C8102E]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-5 rounded-xl bg-[#F7F7F7] px-4 py-3 font-[family-name:var(--font-outfit)] text-xs leading-relaxed text-[#6B6B6B]">
+              {financingRequiredDocuments.footnote}
+            </p>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </section>
+  );
+}

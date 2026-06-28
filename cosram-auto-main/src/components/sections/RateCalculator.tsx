@@ -269,7 +269,7 @@ export default function RateCalculator() {
                   type="range"
                   min={partner.minPrice}
                   max={partner.maxPrice}
-                  step={10}
+                  step={1}
                   value={price}
                   onChange={(e) => setPrice(Number(e.target.value))}
                   className="h-2 w-full cursor-pointer appearance-none rounded-full bg-[#EFEFEF] accent-[#C8102E] [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#C8102E] [&::-webkit-slider-thumb]:shadow-[0_2px_8px_rgba(200,16,46,0.35)]"

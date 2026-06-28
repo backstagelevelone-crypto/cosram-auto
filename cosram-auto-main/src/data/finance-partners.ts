@@ -64,7 +64,7 @@ export const financePartners: FinancePartner[] = [
     logoWidth: 130,
     logoHeight: 48,
     href: "https://mogo.ro",
-    tagline: "DAE 36,18% · Credit auto 100% online, avans 0%.",
+    tagline: "DAE 36,18% · Credit auto 100% online, avans 0.",
     badge: "DAE 36,18%",
     benefits: ["Dobândă lunară 2,61%", "Avans 0%"],
     minPrice: 10000,

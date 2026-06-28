@@ -59,13 +59,13 @@ export const financePartners: FinancePartner[] = [
       "Sumă pre-aprobată valabilă 30 de zile",
       "Flux online, fără drumuri la bancă",
     ],
-    minPrice: 10000,      // Minim 10.000 lei
-    maxPrice: 250000,     // Maxim 250.000 lei
-    downPayments: [0, 10, 20, 30],
-    durations: [12, 24, 36, 48, 60],
+    minPrice: 10000,      // Schimbat în RON (Minim 10.000 lei)
+    maxPrice: 250000,     // Schimbat în RON (Maxim 250.000 lei)
+    downPayments:,
+    durations:,
     defaultDownPayment: 0,
     defaultDuration: 60,
-    defaultPrice: 50000,  // Preț inițial de pornire în LEI
+    defaultPrice: 50000,  // Preț de pornire (50.000 lei)
     rateLabel: "Dobândă fixă de la 4,9% / an",
     disclaimer:
       "Calcul estimativ cu dobândă fixă de 4,9% pe an, conform informațiilor publice TBI Bank. Oferta finală depinde de evaluarea dosarului.",
@@ -93,13 +93,13 @@ export const financePartners: FinancePartner[] = [
       "Ești proprietarul mașinii din prima zi",
       "Polița CASCO nu este obligatorie",
     ],
-    minPrice: 10000,      // Minim 10.000 lei
-    maxPrice: 250000,     // Maxim 250.000 lei
-    downPayments: [0, 10, 20, 30],
-    durations: [6, 12, 24, 36, 48, 60],
+    minPrice: 10000,      // Schimbat în RON (Minim 10.000 lei)
+    maxPrice: 250000,     // Schimbat în RON (Maxim 250.000 lei)
+    downPayments:,
+    durations:,
     defaultDownPayment: 0,
     defaultDuration: 60,
-    defaultPrice: 50000,  // Preț inițial de pornire în LEI
+    defaultPrice: 50000,  // Preț de pornire (50.000 lei)
     rateLabel: "DAE 36,18% · 2,61% / lună",
     disclaimer:
       "Calcul estimativ cu dobândă lunară de 3,39% și DAE reprezentativă de 36,18%, conform informațiilor publice Mogo. Oferta finală depinde de evaluarea dosarului.",

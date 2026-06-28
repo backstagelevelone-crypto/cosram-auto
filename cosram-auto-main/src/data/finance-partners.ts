@@ -65,7 +65,7 @@ export const financePartners: FinancePartner[] = [
     durations: [12, 24, 36, 48, 60],
     defaultDownPayment: 0,
     defaultDuration: 60,
-    defaultPrice: 50000,  // Începe implicit de la 50.000 lei
+    defaultPrice: 50000,  // Preț inițial de pornire în LEI
     rateLabel: "Dobândă fixă de la 4,9% / an",
     disclaimer:
       "Calcul estimativ cu dobândă fixă de 4,9% pe an, conform informațiilor publice TBI Bank. Oferta finală depinde de evaluarea dosarului.",
@@ -81,7 +81,7 @@ export const financePartners: FinancePartner[] = [
     logo: "/partners/mogo.svg",
     logoWidth: 130,
     logoHeight: 48,
-    href: "https://www.mogo.ro",
+    href: "https://mogo.ro",
     tagline:
       "DAE 36,18% · Dobândă lunară 2,61%. Credit auto 100% online, avans 0%, fără CASCO obligatoriu.",
     badge: "DAE 36,18%",
@@ -99,7 +99,7 @@ export const financePartners: FinancePartner[] = [
     durations: [6, 12, 24, 36, 48, 60],
     defaultDownPayment: 0,
     defaultDuration: 60,
-    defaultPrice: 50000,  // Începe implicit de la 50.000 lei
+    defaultPrice: 50000,  // Preț inițial de pornire în LEI
     rateLabel: "DAE 36,18% · 2,61% / lună",
     disclaimer:
       "Calcul estimativ cu dobândă lunară de 3,39% și DAE reprezentativă de 36,18%, conform informațiilor publice Mogo. Oferta finală depinde de evaluarea dosarului.",

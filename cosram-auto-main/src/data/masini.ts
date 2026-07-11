@@ -66,7 +66,11 @@ export const masini: Masina[] = [
     "caroserie": "Hatchback",
     "disponibil": "Vandut",
     "galerie": [
-      "/images/masini/bmw-320d-mpacket-2006/01.jpg"
+      "/images/masini/bmw-320d-mpacket-2006/01.jpg",
+      "/images/masini/bmw-320d-mpacket-2006/02.jpg",
+      "/images/masini/bmw-320d-mpacket-2006/03.jpg",
+      "/images/masini/bmw-320d-mpacket-2006/04.jpg",
+      "/images/masini/bmw-320d-mpacket-2006/06.jpg",
     ]
   },
   {

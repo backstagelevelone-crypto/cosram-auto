@@ -232,7 +232,7 @@ export const masini: Masina[] = [
     "cutieViteze": "Manuala",
     "motor": "2.0 ",
     "putere": 140,
-    "caroserie": "Avant",
+    "caroserie": "Combi",
     "culoare": "Negru",
     "nrUsi": 5,
     "tractiune": "FWD",

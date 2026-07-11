@@ -75,7 +75,7 @@ export const masini: Masina[] = [
   },
   {
     "_id": "aeb998d7-52e9-411b-8472-44cc16d43fb3",
-    "slug": "Audi A4 B7 Avant",
+    "slug": "Audi-A4-B7-Avant",
     "marca": "Audi",
     "model": "A4",
     "an": 2006,
@@ -88,6 +88,10 @@ export const masini: Masina[] = [
     "disponibil": "Disponibil",
     "galerie": [
       "/images/masini/audia4b7/a41.jpeg"
+      "/images/masini/audia4b7/a42.jpeg"
+      "/images/masini/audia4b7/a43.jpeg"
+      "/images/masini/audia4b7/a44.jpeg"
+      "/images/masini/audia4b7/a46.jpeg"
     ]
   },
   {

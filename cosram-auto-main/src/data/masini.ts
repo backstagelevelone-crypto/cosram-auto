@@ -75,7 +75,7 @@ export const masini: Masina[] = [
   },
   {
     "_id": "aeb998d7-52e9-411b-8472-44cc16d43fb3",
-    "slug": "Audi-A4-B7-Avant",
+    "slug": "Audi A4 B7 Avant",
     "marca": "Audi",
     "model": "A4",
     "an": 2006,

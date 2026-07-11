@@ -235,19 +235,4 @@ export const masini: Masina[] = [
       "/images/masini/opel-astra-2012/01.jpg"
     ]
   },
-  {
-    "_id": "f4c248f4-8aae-47ea-9492-b984c05bfcc9",
-    "slug": "skoda-fabia-2009-x2",
-    "marca": "SKODA ",
-    "model": "FABIA",
-    "an": 2009,
-    "pret": 2699,
-    "combustibil": "Benzina",
-    "cutieViteze": "Manuala",
-    "motor": "1.2",
-    "putere": 60,
-    "caroserie": "Hatchback",
-    "disponibil": "Disponibil",
-    "galerie": []
-  }
-];
+  ];

@@ -221,6 +221,36 @@ export const masini: Masina[] = [
     ]
   },
   {
+    "_id": "4ede9d12-f048-4919-8f46-2923f7abb084",
+    "slug": "vw-passat-highline",
+    "marca": "VW",
+    "model": "Passat Highline",
+    "an": 2007,
+    "kilometraj": 324000,
+    "pret": 4799,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "2.0 ",
+    "putere": 140,
+    "caroserie": "Avant",
+    "culoare": "Negru",
+    "nrUsi": 5,
+    "tractiune": "FWD",
+    "inspectieTehnica": "NEINMATRICULAT",
+    "dotari": [
+      "MODEL Highline"
+    ],
+    "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
+    "disponibil": "Vandut",
+    "galerie": [
+      "/images/masini/vw-passat-highline/01.jpg",
+      "/images/masini/vw-passat-highline/02.jpg",
+      "/images/masini/vw-passat-highline/03.jpg",
+      "/images/masini/vw-passat-highline/04.jpg",
+      "/images/masini/vw-passat-highline/05.jpg"
+    ]
+  },
+  {
     "_id": "3a0b82e7-6389-40ae-b8f7-fd4a7a1c8dd6",
     "slug": "opel-astra-2012",
     "marca": "OPEL ",

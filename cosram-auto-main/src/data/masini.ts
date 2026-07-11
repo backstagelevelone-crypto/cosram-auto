@@ -71,6 +71,39 @@ export const masini: Masina[] = [
   },
   {
     "_id": "aeb998d7-52e9-411b-8472-44cc16d43fb3",
+    "slug": "Audi A4 B7 Avant",
+    "marca": "Audi",
+    "model": "A4",
+    "an": 2006,
+    "pret": 4499,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "2,0",
+    "putere": 140,
+    "caroserie": "Combi",
+    "disponibil": "Disponibil",
+    "galerie": [
+      "/images/masini/audia4b7/a41.jpeg"
+    ]
+  },
+  {
+    "_id": "fe57e922-c8d8-4657-8f1f-4b4ab98861c6",
+    "slug": "bmw-320d-mpacket-2006",
+    "marca": "BMW 320D",
+    "model": "MPACKET",
+    "an": 2006,
+    "pret": 5399,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "2.0 TDI",
+    "caroserie": "Hatchback",
+    "disponibil": "Vandut",
+    "galerie": [
+      "/images/masini/bmw-320d-mpacket-2006/01.jpg"
+    ]
+  },
+  {
+    "_id": "aeb998d7-52e9-411b-8472-44cc16d43fb3",
     "slug": "vw-passat-highline-2009",
     "marca": "Opel",
     "model": "Zafira",

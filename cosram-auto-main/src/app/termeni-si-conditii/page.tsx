@@ -74,8 +74,41 @@ export default function TermeniSiConditiiPage() {
 
       <LegalSection title="6. Garanție și conformitate">
         <p>
-          [COMPLETARE: descrie garanția legală/comercială oferită — ex. 12 luni,
-          ce acoperă, exclusii, procedura de reclamație. Consultă avocat/ANPC pentru
+          Descrierea Garanției
+Autovehiculul beneficiază de garanție, pe o perioadă de 12 luni fără limită de kilometri de la momentul
+achiziției pentru persoanele fizice și de 12 luni sau 15.000 kilometri pentru persoanele juridice. Limită
+despăgubire per eveniment 5.000lei.
+Prezenta garanție se referă la capacitatea funcțională a următoarelor elemente, în conformitate cu următoarele
+condiții:
+1. Motor - bloc motor, pistoane, cămăși, segmenți, bielă, cuzineți, arbore cu came, arbore cotit, chiulasă,
+garnitură de chiulasă.
+2. Cutie de viteze - toate componentele interne ale acesteia.
+Nu sunt cuprinse în garanție elementele de legătură dintre motor și cutia de viteze (rulment presiune, placă
+presiune, disc ambreiaj, etc).
+Reparațiile aferente pentru orice alte piese/elemente care nu sunt prevăzute mai sus, nu sunt acoperite de
+prezenta garanție.
+Garanția nu acoperă:
+1. Anexele motorului:
+- Elemente ale sistemului de injecție (pompă de injecție, injectoare, pompă de combustibil, senzori, regulatori)
+- Turbina, intercooler, sistemul de evacuare al gazelor (eșapament, filtru de particule)
+- Garnituri, simeringuri, furtune
+- Bujii, filtre, lichide, lubrifianți
+2. Componente ale sistemelor de suspensie, direcție, frânare, electric.
+3. Alte elemente de uzură și consumabile.
+4. Toate defecțiunile cauzate de ruperea curelei sau a lanțului de distribuție din cauza nerespectării
+intervalului de înlocuire recomandat de producător, incluzând și componentele din motor prevăzute la punctul 1.
+De asemenea, garanția nu acoperă defecțiunile următoare:
+a. rezultate din circularea cu autovehiculul fără ulei de motor sau lichid de răcire.
+b. rezultate din accidente, adică defecțiuni cauzate prin forță mecanică.
+c. datorate incendiului și exploziei, furtului, utilizării neautorizate, utilizării necorespunzătoare, tâlhăriei
+sau sustragerii, prin efectul direct al factorilor meteorologici.
+d. apărute ca urmare a faptului că autovehiculul este supus unor sarcini de remorcare mai ridicate decât cele
+stabilite ca admisibile de către producător.
+e. care apar ca urmare a alimentării cu combustibil greșit.
+f. dacă la nivelul autovehiculului au fost efectuate lucrări de reparație, iar acestea nu au fost realizate în
+cadrul unui Service autorizat RAR.
+În cazul autoturismelor cu motoare hibride sau electrice, nu se acordă garanție pentru motorul electric și nici
+pentru bateria motorului electric. Consultă avocat/ANPC pentru
           formulare exactă.]
         </p>
       </LegalSection>

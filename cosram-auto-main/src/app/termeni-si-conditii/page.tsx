@@ -47,7 +47,7 @@ export default function TermeniSiConditiiPage() {
           items={[
             "Prezentarea stocului de autovehicule rulate disponibile spre vânzare.",
             "Furnizarea de informații tehnice și comerciale la solicitare.",
-            "Asistență pentru finanțare auto prin parteneri (TBI Bank, Mogo etc.) — contractul de credit se încheie direct cu instituția financiară.",
+            "Asistență pentru finanțare auto prin parteneri (TBI Bank, Mogo IFN si BT Direct SA etc.) — contractul de credit se încheie direct cu instituția financiară.",
             "Contact prin telefon, WhatsApp, email sau la showroom.",
           ]}
         />
@@ -126,7 +126,7 @@ pentru bateria motorului electric. Consultă avocat/ANPC pentru
         <p>
           Conținutul site-ului (texte, imagini, logo, design) aparține{" "}
           {COMPANY.legalName} sau licențiatorilor. Reproducerea fără acord scris este
-          interzisă.
+          strict interzisă.
         </p>
       </LegalSection>
 
@@ -176,7 +176,7 @@ pentru bateria motorului electric. Consultă avocat/ANPC pentru
 
       <LegalSection title="13. Modificări">
         <p>
-          Ne rezervăm dreptul de a modifica termenii. Versiunea aplicabilă este cea
+          Ne rezervăm dreptul de a modifica termenii. Omisiunile si continutul sunt strict rezervate , poate fi deferit.  Versiunea aplicabilă este cea
           publicată online la data accesării. Ultima actualizare:{" "}
           {COMPANY.legalLastUpdated}.
         </p>

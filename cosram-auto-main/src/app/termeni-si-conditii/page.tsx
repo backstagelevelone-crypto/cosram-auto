@@ -17,7 +17,7 @@ export default function TermeniSiConditiiPage() {
   return (
     <LegalPageShell
       title="Termeni și condiții"
-      description="Regulile de utilizare a site-ului și condițiile generale aplicabile serviciilor oferite de parcul auto Cosram Auto."
+      description="Regulile de utilizare a site-ului și condițiile generale aplicabile serviciilor oferite de parcul auto Cosram Auto S.R.L."
     >
       <LegalSection title="1. Informații despre comerciant (OUG 34/2004)">
         <LegalList

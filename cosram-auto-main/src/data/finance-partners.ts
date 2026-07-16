@@ -1,4 +1,4 @@
-export type FinancePartnerId = "tbi" | "mogo";
+export type FinancePartnerId = "tbi" | "mogo" | "btdirect";
 
 export interface FinancePartner {
   id: FinancePartnerId;
@@ -40,6 +40,37 @@ export const financingRequiredDocuments = {
 } as const;
 
 export const financePartners: FinancePartner[] = [
+  {
+  id: "btdirect",
+  name: "BT Direct",
+  logo: "/partners/btdirect.svg",
+  logoWidth: 140,
+  logoHeight: 48,
+  href: "https://www.btdirect.ro",
+  tagline: "Credit auto rapid cu aprobare în câteva minute.",
+  badge: "DAE 22,79%",
+  benefits: [
+    "Avans de la 0%",
+    "Aprobare rapidă",
+    "Perioadă până la 60 luni",
+    "Fără CASCO obligatoriu"
+  ],
+  minPrice: 2000,
+  maxPrice: 50000,
+  downPayments: [0, 10, 20, 30],
+  durations: [12, 24, 36, 48, 60],
+  defaultDownPayment: 0,
+  defaultDuration: 60,
+  defaultPrice: 20000,
+  rateLabel: "DAE 22,79%",
+  disclaimer:
+    "Calcul estimativ. Oferta finală este stabilită de BT Direct.",
+  calculation: {
+    type: "annual",
+    ratePercent: 19.8,
+    rateNote: "DAE 22,79%"
+  }
+},
   {
     id: "tbi",
     name: "TBI Bank",

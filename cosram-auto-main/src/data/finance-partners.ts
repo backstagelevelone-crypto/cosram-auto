@@ -43,7 +43,7 @@ export const financePartners: FinancePartner[] = [
   {
   id: "btdirect",
   name: "BT Direct",
-  logo: "/partners/btdirect.svg",
+  logo: "/partners/bt-direct.svg",
   logoWidth: 140,
   logoHeight: 48,
   href: "https://www.btdirect.ro",

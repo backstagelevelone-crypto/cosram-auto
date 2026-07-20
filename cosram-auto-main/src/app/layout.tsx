@@ -92,9 +92,9 @@ export default function RootLayout({
         </Script>
 
         {/* Noul Meta Pixel Oficial Curat Cosram.ronew */}
-        <Script id="fb-pixel" strategy="afterInteractive">
-          {`
-            if (typeof window !== 'undefined') {
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -105,9 +105,9 @@ export default function RootLayout({
               'https://facebook.net');
               fbq('init', '1582059960261179');
               fbq('track', 'PageView');
-            }
-          `}
-        </Script>
+            `,
+          }}
+        />
 
         {children}
         

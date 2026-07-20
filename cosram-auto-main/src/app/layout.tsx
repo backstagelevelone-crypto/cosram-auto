@@ -77,6 +77,7 @@ export default function RootLayout({
       className={`${syne.variable} ${outfit.variable} ${playfair.variable} ${GeistSans.variable} h-full scroll-smooth`}
     >
       <body className="min-h-full flex flex-col">
+        {/* Google Tag Manager / Analytics */}
         <Script
           src="https://googletagmanager.com"
           strategy="afterInteractive"
@@ -90,23 +91,26 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Meta Pixel Cosram Auto */}
+        {/* Noul Meta Pixel Oficial Curat Cosram.ronew */}
         <Script id="fb-pixel" strategy="afterInteractive">
           {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e);
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://facebook.net');
-            fbq('init', '1620663109141493');
-            fbq('track', 'PageView');
+            if (typeof window !== 'undefined') {
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e);
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://facebook.net');
+              fbq('init', '1582059960261179');
+              fbq('track', 'PageView');
+            }
           `}
         </Script>
 
         {children}
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

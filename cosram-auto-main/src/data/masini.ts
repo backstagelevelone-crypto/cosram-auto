@@ -25,6 +25,35 @@ export interface Masina {
 export const masini: Masina[] = [
   {
     "_id": "0165820a-0ea1-4442-a4e8-483e6af91ee7",
+    "slug": "Renaultmegane2012",
+    "marca": "Renault ",
+    "model": "Megane",
+    "an": 2012,
+    "kilometraj": 268000,
+    "pret": 5499,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "1.5",
+    "putere": 116,
+    "caroserie": "Combi",
+    "culoare": "Alb",
+    "nrUsi": 5,
+    "tractiune": "FWD",
+    "inspectieTehnica": "NEINMATRICULAT",
+    "dotari": [
+      "MODEL Bose"
+    ],
+    "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
+    "disponibil": "Disponibil",
+    "galerie": [
+      "/images/masini/Renaultmegane2012/1.jpg",
+      "/images/masini/Renaultmegane2012/2.jpg",
+      "/images/masini/Renaultmegane2012/3.jpg",
+      "/images/masini/Renaultmegane2012/4.jpg",
+      "/images/masini/Renaultmegane2012/5.jpg",
+    ]
+  },
+    "_id": "0165820a-0ea1-4442-a4e8-483e6af91ee7",
     "slug": "ford-focus-2012",
     "marca": "FORD ",
     "model": "FOCUS",

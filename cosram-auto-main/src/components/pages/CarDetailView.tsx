@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -91,7 +90,6 @@ export default function CarDetailView({
   car: Car;
   similarCars: Car[];
 }) {
-  const [activeImage, setActiveImage] = useState(0);
   const images = normalizeCarImages(car.images);
   const displayName = buildCarName(car);
   const title = buildCarTitle(car);
@@ -120,6 +118,7 @@ export default function CarDetailView({
         <Link
           href="/#stoc"
           className="mb-6 inline-flex items-center gap-2 font-[family-name:var(--font-outfit)] text-sm font-medium text-[#6B6B6B] transition-colors hover:text-[#111111]"
+          prefetch={false}
         >
           <ArrowLeft className="h-4 w-4" strokeWidth={1.75} />
           Înapoi la stoc
@@ -131,8 +130,6 @@ export default function CarDetailView({
               variant="page"
               images={images}
               carName={displayName}
-              activeImage={activeImage}
-              setActiveImage={setActiveImage}
             />
           </div>
           <div className="lg:col-span-5">

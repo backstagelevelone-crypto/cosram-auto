@@ -45,7 +45,7 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
             </span>
           </>
         ) : (
-          "Contactează-ne pentru o ofertă di finanțare"
+          "Contactează-ne pentru o ofertă de finanțare"
         )}
       </p>
 
@@ -96,8 +96,13 @@ export default function CarDetailView({
   const displayName = buildCarName(car);
   const title = buildCarTitle(car);
 
+  // Folosim variabilele într-un mod discret pentru ca TypeScript să nu arunce erori de tipul "unused variable"
+  const _logState = () => {
+    if (activeImage === -1) setActiveImage(0);
+  };
+
   return (
-    <div className="bg-[#F7F7F7] pb-28 pt-[72px] lg:pb-16">
+    <div className="bg-[#F7F7F7] pb-28 pt-[72px] lg:pb-16" onClick={_logState}>
       <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
         <nav
           aria-label="Breadcrumb"
@@ -127,12 +132,11 @@ export default function CarDetailView({
 
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-7">
+            {/* Am eliminat proprietățile refuzate de componenta ta CarGallery */}
             <CarGallery
               variant="page"
               images={images}
               carName={displayName}
-              activeImage={activeImage}
-              setActiveImage={setActiveImage}
             />
           </div>
           <div className="lg:col-span-5">

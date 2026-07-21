@@ -82,5 +82,6 @@ export function getWhatsAppCarMessage(car: WhatsAppCarInquiry | string): string 
 }
 
 export function whatsappCarLink(car: WhatsAppCarInquiry | string): string {
-  return `${SITE.whatsapp}?text=${encodeURIComponent(getWhatsAppCarMessage(car))}`;
+  const message = encodeURIComponent(getWhatsAppCarMessage(car));
+  return `https://whatsapp.com{message}`;
 }

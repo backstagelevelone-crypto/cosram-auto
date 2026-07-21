@@ -6,11 +6,11 @@ export const SITE = {
   phone: "+40 773 865 488",
   phoneRaw: "40773865488",
   email: "vanzari@cosram.ro",
-  whatsapp: "https://wa.me/40773865488",
+  whatsapp: "whatsapp://send?phone=40773865488",
   /** Pagina Facebook — actualizează cu URL-ul real al paginii */
-  facebook: "https://www.facebook.com/share/18TNFQUTJx/?mibextid=wwXIfr",
+  facebook: "https://facebook.com",
   mapsEmbed:
-    "https://maps.google.com/maps?q=Str.+Toamnei+36,+Bragareasa,+Buz%C4%83u&output=embed",
+    "https://google.com",
   hours: [
     "Zilnic: 08:00 – 22:00",
     "Sâmbătă: 08:00 – 22:00",
@@ -46,7 +46,7 @@ export const DISPLAY_PARTNERS = [
     logo: "/partners/mogo.svg",
     width: 130,
     height: 48,
-    href: "https://www.mogo.ro",
+    href: "https://mogo.ro",
   },
   {
     name: "Garantul Tau",
@@ -60,7 +60,7 @@ export const DISPLAY_PARTNERS = [
     logo: "/partners/bt-direct.svg",
     width: 160,
     height: 35,
-    href: "https://www.btdirect.ro",
+    href: "https://btdirect.ro",
   },
 ] as const;
 
@@ -82,5 +82,5 @@ export function getWhatsAppCarMessage(car: WhatsAppCarInquiry | string): string 
 }
 
 export function whatsappCarLink(car: WhatsAppCarInquiry | string): string {
-  return `${SITE.whatsapp}?text=${encodeURIComponent(getWhatsAppCarMessage(car))}`;
+  return `${SITE.whatsapp}&text=${encodeURIComponent(getWhatsAppCarMessage(car))}`;
 }

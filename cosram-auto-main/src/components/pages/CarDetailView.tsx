@@ -91,18 +91,13 @@ export default function CarDetailView({
   car: Car;
   similarCars: Car[];
 }) {
-  const [activeImage, setActiveImage] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
   const images = normalizeCarImages(car.images);
   const displayName = buildCarName(car);
   const title = buildCarTitle(car);
 
-  // Folosim variabilele într-un mod discret pentru ca TypeScript să nu arunce erori de tipul "unused variable"
-  const _logState = () => {
-    if (activeImage === -1) setActiveImage(0);
-  };
-
   return (
-    <div className="bg-[#F7F7F7] pb-28 pt-[72px] lg:pb-16" onClick={_logState}>
+    <div className="bg-[#F7F7F7] pb-28 pt-[72px] lg:pb-16">
       <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
         <nav
           aria-label="Breadcrumb"
@@ -132,11 +127,13 @@ export default function CarDetailView({
 
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-7">
-            {/* Am eliminat proprietățile refuzate de componenta ta CarGallery */}
+            {/* Am pus denumirile corecte de proprietăți cerute de TypeScript */}
             <CarGallery
               variant="page"
               images={images}
               carName={displayName}
+              activeIndex={activeIndex}
+              onIndexChange={setActiveIndex}
             />
           </div>
           <div className="lg:col-span-5">

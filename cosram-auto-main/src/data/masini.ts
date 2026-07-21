@@ -55,6 +55,36 @@ export const masini: Masina[] = [
   },
   {
     "_id": "0165820a-0ea1-4442-a4e8-483e6af91ee7",
+    "slug": "passatb72.0tdi2013",
+    "marca": "Volkswagen ",
+    "model": "Passat",
+    "an": 2013,
+    "kilometraj": 227000,
+    "pret": 6999,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "2.0 ",
+    "putere": 140,
+    "caroserie": "Combi",
+    "culoare": "GRI",
+    "nrUsi": 5,
+    "tractiune": "FWD",
+    "inspectieTehnica": "NEINMATRICULAT",
+    "dotari": [
+      "MODEL Highline"
+    ],
+    "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
+    "disponibil": "Disponibil",
+    "galerie": [
+      "/images/masini/passatb72.0tdi2013/01.jpg",
+      "/images/masini/passatb72.0tdi2013/02.jpg",
+      "/images/masini/passatb72.0tdi2013/03.jpg",
+      "/images/masini/passatb72.0tdi2013/04.jpg",
+      "/images/masini/passatb72.0tdi2013/05.jpg"
+    ]
+  },
+  {
+    "_id": "0165820a-0ea1-4442-a4e8-483e6af91ee7",
     "slug": "ford-focus-2012",
     "marca": "FORD ",
     "model": "FOCUS",

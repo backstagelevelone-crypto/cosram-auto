@@ -82,6 +82,5 @@ export function getWhatsAppCarMessage(car: WhatsAppCarInquiry | string): string 
 }
 
 export function whatsappCarLink(car: WhatsAppCarInquiry | string): string {
-  const originalLink = `${SITE.whatsapp}?text=${encodeURIComponent(getWhatsAppCarMessage(car))}`;
-  return `https://linklyhq.com{encodeURIComponent(originalLink)}`;
+  return `${SITE.whatsapp}?text=${encodeURIComponent(getWhatsAppCarMessage(car))}`;
 }

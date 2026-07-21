@@ -24,7 +24,7 @@ export interface Masina {
 
 export const masini: Masina[] = [
   {
-    "_id": "0165820a-0ea1-4442-a4e8-483e6af91ee7",
+    "_id": "0165820a-0ea1-4442-a4e8-483e6af91e17",
     "slug": "Renaultmegane2012",
     "marca": "Renault ",
     "model": "Megane",
@@ -54,7 +54,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "0165820a-0ea1-4442-a4e8-483e6af91ee1",
+    "_id": "0165820a-0ea1-4442-a4e8-483e6af91e21",
     "slug": "passatb72.0tdi2013",
     "marca": "Volkswagen ",
     "model": "Passat",
@@ -80,7 +80,6 @@ export const masini: Masina[] = [
       "/images/masini/passatb72.0tdi2013/02.jpg",
       "/images/masini/passatb72.0tdi2013/03.jpg",
       "/images/masini/passatb72.0tdi2013/04.jpg",
-      "/images/masini/passatb72.0tdi2013/05.jpg",
     ]
   },
   {
@@ -156,7 +155,7 @@ export const masini: Masina[] = [
   },
   {
     "_id": "aeb998d7-52e9-411b-8472-44cc16d43fc4",
-    "slug": "vw-passat-highline-2009",
+    "slug": "opel-zafira-2009",
     "marca": "Opel",
     "model": "Zafira",
     "an": 2009,

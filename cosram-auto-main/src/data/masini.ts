@@ -53,6 +53,7 @@ export const masini: Masina[] = [
       "/images/masini/Renaultmegane2012/5.jpg",
     ]
   },
+  {
     "_id": "0165820a-0ea1-4442-a4e8-483e6af91ee7",
     "slug": "ford-focus-2012",
     "marca": "FORD ",

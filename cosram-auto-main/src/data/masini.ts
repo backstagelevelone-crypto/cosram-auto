@@ -80,7 +80,7 @@ export const masini: Masina[] = [
       "/images/masini/passatb72.0tdi2013/02.jpg",
       "/images/masini/passatb72.0tdi2013/03.jpg",
       "/images/masini/passatb72.0tdi2013/04.jpg",
-      "/images/masini/passatb72.0tdi2013/05.jpg"
+      "/images/masini/passatb72.0tdi2013/05.jpg",
     ]
   },
   {

@@ -78,10 +78,10 @@ export function getWhatsAppCarMessage(car: WhatsAppCarInquiry | string): string 
       ? car
       : car.name || [car.make, car.model, car.year].filter(Boolean).join(" ");
 
-  return `Bună ziua! Mă interesează acest model: ${label}. Aș dori mai multe detalii despre achiziție.`;
+  return `Buna ziua! Ma intereseaza acest model: ${label}. As dori mai multe detalii despre achizitie.`;
 }
 
 export function whatsappCarLink(car: WhatsAppCarInquiry | string): string {
-  const message = encodeURIComponent(getWhatsAppCarMessage(car));
-  return `https://whatsapp.com{message}`;
+  const text = encodeURIComponent(getWhatsAppCarMessage(car));
+  return `https://whatsapp.com{text}`;
 }

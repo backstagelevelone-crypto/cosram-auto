@@ -76,10 +76,10 @@ export const masini: Masina[] = [
     "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
     "disponibil": "Disponibil",
     "galerie": [
-      "/images/masini/passatb72.0tdi2013/01.jpg",
-      "/images/masini/passatb72.0tdi2013/02.jpg",
-      "/images/masini/passatb72.0tdi2013/03.jpg",
-      "/images/masini/passatb72.0tdi2013/04.jpg",
+      "/images/masini/passatb72.0tdi2013/1.jpg",
+      "/images/masini/passatb72.0tdi2013/2.jpg",
+      "/images/masini/passatb72.0tdi2013/3.jpg",
+      "/images/masini/passatb72.0tdi2013/4.jpg",
     ]
   },
   {

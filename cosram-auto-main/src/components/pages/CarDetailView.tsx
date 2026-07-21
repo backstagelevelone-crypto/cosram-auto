@@ -5,75 +5,20 @@ import Link from "next/link";
 import {
   ArrowLeft,
   ArrowUpRight,
-  BadgeCheck,
-  CalendarDays,
-  CarFront,
   ChevronRight,
-  CircleGauge,
-  Cog,
-  DoorOpen,
-  Fuel,
   Mail,
   Phone,
-  Palette,
-  Settings2,
-  ShieldCheck,
-  Zap,
-  type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SITE, whatsappCarLink } from "@/lib/constants";
 import { normalizeCarImages } from "@/lib/car-images";
 import {
   buildCarName,
-  buildCarSubtitle,
   buildCarTitle,
-  formatLocaleNumber,
   formatPrice,
-  hasValue,
 } from "@/lib/car-display";
 import type { Car } from "@/types/car";
 import CarGallery from "@/components/ui/CarGallery";
-import CarCard from "@/components/ui/CarCard";
-
-const iconProps = {
-  strokeWidth: 1.75,
-  className: "h-[22px] w-[22px] text-[#C8102E]",
-} as const;
-
-function SpecCell({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: LucideIcon;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="flex items-center gap-3.5 border-b border-[rgba(0,0,0,0.06)] py-4">
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-[#F2F2F7]">
-        <Icon {...iconProps} />
-      </div>
-      <div className="min-w-0 flex-1">
-        <p className="font-[family-name:var(--font-outfit)] text-[11px] font-medium uppercase tracking-wide text-[#6B6B6B]">
-          {label}
-        </p>
-        <p className="mt-0.5 font-[family-name:var(--font-outfit)] text-[15px] font-semibold text-[#111111]">
-          {value}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h2 className="border-b-2 border-[#111111] pb-2 font-[family-name:var(--font-syne)] text-sm font-bold uppercase tracking-wide text-[#111111]">
-      {children}
-    </h2>
-  );
-}
 
 function PricePanel({ car, className }: { car: Car; className?: string }) {
   const displayName = buildCarName(car);
@@ -125,7 +70,7 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
           href="/#rate"
           className="flex w-full items-center justify-center gap-2 rounded-full bg-[#F2F2F7] py-3.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-[#111111] transition-colors hover:bg-[#E8E8ED]"
         >
-          RATE {/* <--- TEXTUL A FOST MODIFICAT AICI CU LITERE MARI */}
+          RATE
           <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
         </Link>
         <a
@@ -140,84 +85,16 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
   );
 }
 
-function buildSpecs(car: Car): { icon: LucideIcon; label: string; value: string }[] {
-  const makeModel = [car.make, car.model].filter(Boolean).join(" ");
-  const candidates: {
-    icon: LucideIcon;
-    label: string;
-    value: string | undefined;
-  }[] = [
-    {
-      icon: CarFront,
-      label: "Marcă / Model",
-      value: makeModel || undefined,
-    },
-    {
-      icon: CalendarDays,
-      label: "An fabricație",
-      value: car.year != null ? String(car.year) : undefined,
-    },
-    {
-      icon: CircleGauge,
-      label: "Kilometraj",
-      value: car.km != null ? `${formatLocaleNumber(car.km)} km` : undefined,
-    },
-    { icon: Fuel, label: "Combustibil", value: car.fuel },
-    { icon: Settings2, label: "Cutie viteze", value: car.transmission },
-    { icon: Cog, label: "Motor", value: car.engine },
-    {
-      icon: Zap,
-      label: "Putere",
-      value: car.power != null ? `${car.power} CP` : undefined,
-    },
-    { icon: CarFront, label: "Caroserie", value: car.category },
-    { icon: Palette, label: "Culoare", value: car.color },
-    {
-      icon: DoorOpen,
-      label: "Nr. uși",
-      value: car.doors != null ? String(car.doors) : undefined,
-    },
-    { icon: CarFront, label: "Tracțiune", value: car.drive },
-    { icon: ShieldCheck, label: "Inspecție tehnică", value: car.itp },
-  ];
-
-  return candidates
-    .filter((item) => hasValue(item.value))
-    .map((item) => ({
-      icon: item.icon,
-      label: item.label,
-      value: item.value as string,
-    }));
-}
-
-function statusLabel(status: Car["status"]): string {
-  switch (status) {
-    case "disponibil":
-      return "Disponibil";
-    case "rezervat":
-      return "Rezervat";
-    case "vandut":
-      return "Vândut";
-    default:
-      return "Disponibil";
-  }
-}
-
 export default function CarDetailView({
   car,
-  similarCars,
 }: {
   car: Car;
   similarCars: Car[];
 }) {
   const [activeImage, setActiveImage] = useState(0);
   const images = normalizeCarImages(car.images);
-  const specs = buildSpecs(car);
   const displayName = buildCarName(car);
   const title = buildCarTitle(car);
-  const subtitle = buildCarSubtitle(car);
-  const features = car.features ?? [];
-  const similar = similarCars ?? [];
 
   return (
     <div className="bg-[#F7F7F7] pb-28 pt-[72px] lg:pb-16">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -60,7 +60,7 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
             </span>
           </>
         ) : (
-          "Contactează-ne pentru o ofertă de finanțare"
+          "Contactează-ne pentru o ofertă di finanțare"
         )}
       </p>
 
@@ -122,6 +122,21 @@ export default function CarDetailView({
   const images = normalizeCarImages(car.images);
   const displayName = buildCarName(car);
   const title = buildCarTitle(car);
+
+  // Declanșare eveniment ViewContent pentru Catalog Meta Ads
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const fbq = (window as any).fbq;
+      if (typeof fbq === "function" && car) {
+        fbq("track", "ViewContent", {
+          content_ids: [car.slug || ""], // Trimite textul scurt (ex: passatb72.0tdi2013)
+          content_type: "product",
+          value: car.price || 0,         // Trimite prețul din interfața ta TypeScript
+          currency: "EUR",
+        });
+      }
+    }
+  }, [car]);
 
   return (
     <div className="bg-[#F7F7F7] pb-28 pt-[72px] lg:pb-16">

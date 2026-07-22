@@ -3,7 +3,7 @@
 import { MessageCircle, FileText } from "lucide-react";
 
 export default function WhatsAppFab() {
-  const numarTelefon = "40773865488"; 
+  const numarTelefon = "+40773865488"; 
 
   const rawText = `Bună ziua! Doresc să aplic pentru finanțare."use client";
 

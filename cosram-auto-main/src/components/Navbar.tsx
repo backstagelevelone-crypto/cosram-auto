@@ -147,54 +147,16 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Linia secundară: Parteneri sub butoane (BT Direct mărit acum la w-40 h-9) */}
+          {/* Linia secundară pentru Desktop: Rămâne neschimbată */}
           <div className="mt-3 hidden w-full justify-end items-center gap-6 pr-2 md:flex">
-            {/* 1. BT Direct */}
-            <a 
-              href="https://btdirect.ro" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="relative h-9 w-40 block opacity-95 transition-opacity hover:opacity-100"
-            >
-              <Image 
-                src="/partners/bt-direct.svg" 
-                alt="Partener BT Direct" 
-                fill
-                priority
-                className="object-contain object-right" 
-              />
+            <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="relative h-9 w-40 block opacity-95 transition-opacity hover:opacity-100">
+              <Image src="/partners/bt-direct.svg" alt="Partener BT Direct" fill priority className="object-contain object-right" />
             </a>
-
-            {/* 2. TBI Bank */}
-            <a 
-              href="https://tbibank.ro" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="relative h-8 w-20 block opacity-95 transition-opacity hover:opacity-100"
-            >
-              <Image 
-                src="/partners/tbi-bank.svg" 
-                alt="Partener TBI Bank" 
-                fill
-                priority
-                className="object-contain object-right" 
-              />
+            <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="relative h-8 w-20 block opacity-95 transition-opacity hover:opacity-100">
+              <Image src="/partners/tbi-bank.svg" alt="Partener TBI Bank" fill priority className="object-contain object-right" />
             </a>
-
-            {/* 3. Mogo */}
-            <a 
-              href="https://mogo.ro" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="relative h-8 w-16 block opacity-95 transition-opacity hover:opacity-100"
-            >
-              <Image 
-                src="/partners/mogo.svg" 
-                alt="Partener Mogo" 
-                fill
-                priority
-                className="object-contain object-right" 
-              />
+            <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="relative h-8 w-16 block opacity-95 transition-opacity hover:opacity-100">
+              <Image src="/partners/mogo.svg" alt="Partener Mogo" fill priority className="object-contain object-right" />
             </a>
           </div>
         </div>
@@ -253,29 +215,24 @@ export default function Navbar() {
                 })}
               </nav>
 
-              <div className="mt-auto space-y-4">
-                <a
-                  href={`tel:${SITE.phoneRaw}`}
-                  className="flex items-center gap-2 font-medium text-[#111111]"
-                >
-                  <Phone className="h-5 w-5 text-[#C8102E]" />
-                  {SITE.phone}
-                </a>
-                <a
-                  href={SITE.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex w-full items-center justify-center gap-2 rounded-full bg-[#C8102E] py-4 font-medium text-white"
-                >
-                  Contactează-ne
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
-}
+              {/* Zona de jos din meniul de Mobil: Contact + Logo-uri Parteneri noi */}
+              <div className="mt-auto space-y-6">
+                <div className="space-y-4">
+                  <a href={`tel:${SITE.phoneRaw}`} className="flex items-center gap-2 font-medium text-[#111111]">
+                    <Phone className="h-5 w-5 text-[#C8102E]" />
+                    {SITE.phone}
+                  </a>
+                  <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="flex w-full items-center justify-center gap-2 rounded-full bg-[#C8102E] py-4 font-medium text-white">
+                    Contactează-ne
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                </div>
+
+                {/* Secțiune nouă dedicată partenerilor pe mobil */}
+                <div className="pt-4 border-t border-neutral-200">
+                  <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-3">Opțiuni Finanțare</p>
+                  <div className="flex items-center gap-5 flex-wrap">
+                    <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="relative h-7 w-28 block">
+                      <Image src="/partners/bt-direct.svg" alt="BT Direct" fill className="object-contain object-left" />
+                    </a>
+                    <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="relative h-6 w-16 block">

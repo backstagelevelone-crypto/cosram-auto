@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -14,32 +14,31 @@ import {
   DoorOpen,
   Fuel,
   Mail,
-  Phone,
   Palette,
+  Phone,
   Settings2,
   ShieldCheck,
   Zap,
 } from "lucide-react";
+
 import type { LucideIcon } from "lucide-react";
+
 import { cn } from "@/lib/utils";
 import { SITE, whatsappCarLink } from "@/lib/constants";
-import { normalizeCarImages } from "@/lib/car-images";
-import {
-  buildCarName,
-  buildCarSubtitle,
-  buildCarTitle,
-  formatLocaleNumber,
-  formatPrice,
-  hasValue,
-} from "@/lib/car-display";
-import type { Car } from "@/types/car";
+import { formatLocaleNumber, formatPrice } from "@/lib/car-display";
+
 import CarGallery from "@/components/ui/CarGallery";
 import CarCard from "@/components/ui/CarCard";
+
+import type { Masina } from "@/types/car";
+
 
 const iconProps = {
   strokeWidth: 1.75,
   className: "h-[22px] w-[22px] text-[#C8102E]",
 } as const;
+
+
 
 function SpecCell({
   icon: Icon,
@@ -51,300 +50,1010 @@ function SpecCell({
   value: string;
 }) {
   return (
-    <div className="flex items-center gap-3.5 border-b border-[rgba(0,0,0,0.06)] py-4">
-      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-[#F2F2F7]">
-        <Icon {...iconProps} />
+    <div className="flex items-center gap-3.5 border-b border-black/5 py-4">
+
+      <div className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#F2F2F7]">
+        <Icon {...iconProps}/>
       </div>
-      <div className="min-w-0 flex-1">
-        <p className="font-[family-name:var(--font-outfit)] text-[11px] font-medium uppercase tracking-wide text-[#6B6B6B]">
+
+
+      <div>
+        <p className="font-[family-name:var(--font-outfit)] text-[11px] uppercase tracking-wide text-[#6B6B6B]">
           {label}
         </p>
-        <p className="mt-0.5 font-[family-name:var(--font-outfit)] text-[15px] font-semibold text-[#111111]">
+
+        <p className="font-[family-name:var(--font-outfit)] text-[15px] font-semibold text-[#111]">
           {value}
         </p>
+
       </div>
+
     </div>
   );
 }
 
-function SectionTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h2 className="border-b-2 border-[#111111] pb-2 font-[family-name:var(--font-syne)] text-sm font-bold uppercase tracking-wide text-[#111111]">
-      {children}
-    </h2>
-  );
+
+
+function SectionTitle({
+  children
+}:{
+  children:React.ReactNode
+}){
+
+return (
+
+<h2 className="
+border-b-2
+border-[#111]
+pb-2
+font-[family-name:var(--font-syne)]
+text-sm
+font-bold
+uppercase
+tracking-wide
+">
+{children}
+</h2>
+
+)
+
 }
 
-function PricePanel({ car, className }: { car: Car; className?: string }) {
-  const displayName = buildCarName(car);
 
-  const trackContactClick = (tipContact: string) => {
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("track", "Contact", {
-        content_name: displayName,
-        content_category: (car as any).category || (car as any).caroserie || "Auto",
-        value: car.price ?? (car as any).pret ?? 0,
-        currency: "EUR",
-        contact_type: tipContact,
-      });
-    }
-  };
 
-  return (
-    <div className={cn("rounded-2xl border border-[rgba(0,0,0,0.08)] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.06)]", className)}>
-      <p className="font-[family-name:var(--font-outfit)] text-xs font-medium uppercase tracking-wide text-[#6B6B6B]">
-        Preț
-      </p>
-      <p className="mt-1 font-[family-name:var(--font-syne)] text-4xl font-bold text-[#C8102E]">
-        {car.price != null ? formatPrice(car.price, { spaced: true }) : (car as any).pret != null ? formatPrice((car as any).pret, { spaced: true }) : "-"}
-      </p>
-      <p className="mt-3 font-[family-name:var(--font-outfit)] text-sm text-[#6B6B6B]">
-        {car.monthlyPrice != null || (car as any).rataLunara != null ? (
-          <>
-            Rată de la <span className="font-semibold text-[#111111]">{car.monthlyPrice || (car as any).rataLunara}€/lună</span>
-          </>
-        ) : (
-          "Contactează-ne pentru o ofertă de finanțare"
-        )}
-      </p>
+function statusText(status?:Masina["disponibil"]){
 
-      {/* Parteneri Creditare */}
-      <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-b border-[rgba(0,0,0,0.06)] py-3">
-        <span className="text-[10px] font-medium uppercase tracking-wider text-[#6B6B6B]">Parteneri:</span>
-        <div className="flex flex-wrap gap-2 text-[11px] font-bold text-[#111111]">
-          <span className="rounded bg-[#F2F2F7] px-2 py-0.5 text-[#1a5632]">BT Direct</span>
-          <span className="rounded bg-[#F2F2F7] px-2 py-0.5 text-[#FF5A00]">tbi bank</span>
-          <span className="rounded bg-[#F2F2F7] px-2 py-0.5 text-[#4A90E2]">mogo</span>
-        </div>
-      </div>
+switch(status){
 
-      <div className="mt-5 space-y-3">
-        <a
-          href={whatsappCarLink(car)}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackContactClick("WhatsApp")}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-[#C8102E] py-3.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white transition-all hover:bg-[#A50E26] hover:shadow-[0_8px_24px_rgba(200,16,46,0.35)]"
-        >
-          <Phone className="h-4 w-4" strokeWidth={2} />
-          Cere detalii pe WhatsApp
-        </a>
-        <a
-          href={`tel:${SITE.phoneRaw}`}
-          onClick={() => trackContactClick("Telefon")}
-          className="flex w-full items-center justify-center gap-2 rounded-full border-2 border-[#111111] py-3.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-[#111111] transition-all hover:bg-[#111111] hover:text-white"
-        >
-          <Phone className="h-4 w-4" strokeWidth={2} />
-          Sună acum
-        </a>
-        <Link
-          href="/#rate"
-          onClick={() => trackContactClick("Rate_Button")}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-[#F2F2F7] py-3.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-[#111111] transition-colors hover:bg-[#E8E8ED]"
-        >
-          Calculează rata
-          <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
-        </Link>
-        <a
-          href={`mailto:${SITE.email}?subject=Interesat de ${encodeURIComponent(displayName)}`}
-          onClick={() => trackContactClick("Email")}
-          className="flex w-full items-center justify-center gap-2 py-2 font-[family-name:var(--font-outfit)] text-sm font-medium text-[#6B6B6B] transition-colors hover:text-[#C8102E]"
-        >
-          <Mail className="h-4 w-4" strokeWidth={1.75} />
-          Trimite email
-        </a>
-      </div>
-    </div>
-  );
-}
-function buildSpecs(car: Car): { icon: LucideIcon; label: string; value: string }[] {
-  const c = car as any;
-  const brand = c.marca || car.make || "";
-  const modelStr = c.model || car.model || "";
-  const makeModel = [brand, modelStr].filter(Boolean).join(" ");
-  const anulFab = c.an != null ? String(c.an) : car.year != null ? String(car.year) : undefined;
-  const kmRulaj = c.kilometraj != null ? `${formatLocaleNumber(c.kilometraj)} km` : car.km != null ? `${formatLocaleNumber(car.km)} km` : undefined;
-  const putereCp = c.putere != null ? `${c.putere} CP` : car.power != null ? `${car.power} CP` : undefined;
-  const nrUsi = c.nrUsi != null ? String(c.nrUsi) : car.doors != null ? String(car.doors) : undefined;
+case "Disponibil":
+return "Disponibil";
 
-  const candidates: { icon: LucideIcon; label: string; value: string | undefined }[] = [
-    { icon: CarFront, label: "Marcă / Model", value: makeModel || undefined },
-    { icon: CalendarDays, label: "An fabricație", value: anulFab },
-    { icon: CircleGauge, label: "Kilometraj", value: kmRulaj },
-    { icon: Fuel, label: "Combustibil", value: c.combustibil || car.fuel },
-    { icon: Settings2, label: "Cutie viteze", value: c.cutieViteze || car.transmission },
-    { icon: Cog, label: "Motor", value: c.motor || car.engine },
-    { icon: Zap, label: "Putere", value: putereCp },
-    { icon: CarFront, label: "Caroserie", value: c.caroserie || car.category },
-    { icon: Palette, label: "Culoare", value: c.culoare || car.color },
-    { icon: DoorOpen, label: "Nr. uși", value: nrUsi },
-    { icon: CarFront, label: "Tracțiune", value: c.tractiune || car.drive },
-    { icon: ShieldCheck, label: "Inspecție tehnică", value: c.inspectieTehnica || car.itp },
-  ];
+case "Rezervat":
+return "Rezervat";
 
-  return candidates
-    .filter((item) => hasValue(item.value))
-    .map((item) => ({
-      icon: item.icon,
-      label: item.label,
-      value: item.value as string,
-    }));
+case "Vandut":
+return "Vândut";
+
+default:
+return "Disponibil";
+
 }
 
-function statusLabel(status: Car["status"]): string {
-  switch (status) {
-    case "disponibil": return "Disponibil";
-    case "rezervat": return "Rezervat";
-    case "vandut": return "Vândut";
-    default: return "Disponibil";
-  }
 }
 
-export default function CarDetailView({ car, similarCars }: { car: Car; similarCars: Car[]; }) {
-  const [activeImage, setActiveImage] = useState(0);
-  const images = normalizeCarImages(car.images || (car as any).galerie);
-  const specs = buildSpecs(car);
-  const displayName = buildCarName(car);
-  const title = buildCarTitle(car);
-  const subtitle = buildCarSubtitle(car);
-  const features = car.features ?? (car as any).dotari ?? [];
-  const similar = similarCars ?? [];
-  const c = car as any;
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const fbq = (window as any).fbq;
-      if (typeof fbq === "function" && car) {
-        fbq("track", "ViewContent", {
-          content_ids: [car.slug || ""],
-          content_type: "product",
-          value: car.price || (car as any).pret || 0,
-          currency: "EUR",
-        });
-      }
-    }
-  }, [car]);
 
-  const trackMobileWhatsapp = () => {
-    if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("track", "Contact", {
-        content_name: displayName,
-        contact_type: "WhatsApp_Mobile_Bottom"
-      });
-    }
-  };
 
-  return (
-    <>
-      <div className="bg-[#F7F7F7] pb-28 pt-[72px] lg:pb-16">
-        <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
-          <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-2 font-[family-name:var(--font-outfit)] text-sm text-[#6B6B6B]">
-            <Link href="/" className="transition-colors hover:text-[#111111]">Acasă</Link>
-            <ChevronRight className="h-4 w-4" strokeWidth={1.75} />
-            <Link href="/#stoc" className="transition-colors hover:text-[#111111]">Stoc</Link>
-            <ChevronRight className="h-4 w-4" strokeWidth={1.75} />
-            <span className="font-medium text-[#111111]">{title}</span>
-          </nav>
+function buildSpecs(car:Masina){
 
-          <Link href="/#stoc" className="mb-6 inline-flex items-center gap-2 font-[family-name:var(--font-outfit)] text-sm font-medium text-[#6B6B6B] transition-colors hover:text-[#111111]">
-            <ArrowLeft className="h-4 w-4" strokeWidth={1.75} /> Înapoi la stoc
-          </Link>
 
-          <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
-            <div className="lg:col-span-7">
-              <CarGallery variant="page" images={images} carName={displayName} activeIndex={activeImage} onIndexChange={setActiveImage} priority />
-            </div>
+const specs=[
+{
+icon:CarFront,
+label:"Marcă / Model",
+value:`${car.marca || ""} ${car.model || ""}`
+},
 
-            <div className="lg:col-span-5">
-              <div className="lg:sticky lg:top-24">
-                <div className="mb-5 flex flex-wrap items-center gap-2">
-                  <span className={cn(
-                    "rounded-full px-3 py-1 font-[family-name:var(--font-outfit)] text-[11px] font-semibold uppercase tracking-wide",
-                    car.status === "disponibil" || c.disponibil === "Disponibil" ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200" : "bg-amber-50 text-amber-700 ring-1 ring-amber-200"
-                  )}>
-                    {statusLabel(car.status || c.disponibil?.toLowerCase())}
-                  </span>
-                </div>
-                <h1 className="font-[family-name:var(--font-syne)] text-3xl font-bold leading-tight text-[#111111] lg:text-4xl">{title}</h1>
-                {subtitle !== "-" && <p className="mt-2 font-[family-name:var(--font-outfit)] text-base text-[#6B6B6B]">{subtitle}</p>}
-                <PricePanel car={car} className="mt-6 hidden lg:block" />
-              </div>
-            </div>
-          </div>
+{
+icon:CalendarDays,
+label:"An fabricație",
+value:car.an ? String(car.an):""
+},
 
-          <div className="mt-12 space-y-12 lg:mt-16">
-            {specs.length > 0 && (
-              <section>
-                <SectionTitle>Specificații generale</SectionTitle>
-                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-y-1">
-                  {specs.map((spec) => (
-                    <SpecCell key={spec.label} icon={spec.icon} label={spec.label} value={spec.value} />
-                  ))}
-                </div>
-              </section>
-            )}
 
-            {features.length > 0 && (
-              <section>
-                <SectionTitle>Dotări &amp; echipamente</SectionTitle>
-                <ul className="mt-6 grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                  {features.map((feature: string) => (
-                    <li key={feature} className="flex items-start gap-2.5 font-[family-name:var(--font-outfit)] text-[15px] leading-snug text-[#111111]">
-                      <BadgeCheck className="mt-0.5 h-5 w-5 shrink-0 text-[#C8102E]" strokeWidth={1.75} />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
+{
+icon:CircleGauge,
+label:"Kilometraj",
+value:car.kilometraj
+? `${formatLocaleNumber(car.kilometraj)} km`
+:""
+},
 
-            {(car.description || c.evaluareTehnica) && (
-              <section>
-                <SectionTitle>Evaluare tehnică &amp; recomandare</SectionTitle>
-                <div className="mt-6 space-y-4 rounded-2xl bg-white p-6 font-[family-name:var(--font-outfit)] text-[15px] leading-[1.8] text-[#2A2A2A] ring-1 ring-[rgba(0,0,0,0.06)] md:p-8">
-                  {(car.description || c.evaluareTehnica).split(/\n\n+/).map((paragraph: string, i: number) => (
-                    <p key={i}>{paragraph}</p>
-                  ))}
-                </div>
-              </section>
-            )}
-          </div>
 
-          {similar.length > 0 && (
-            <section className="mt-16 border-t border-[rgba(0,0,0,0.08)] pt-16">
-              <SectionTitle>Mașini similare</SectionTitle>
-              <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {similar.map((item, i) => (
-                  <CarCard key={item.id || (item as any)._id} car={item} index={i} />
-                ))}
-              </div>
-            </section>
-          )}
-        </div>
-      </div>
+{
+icon:Fuel,
+label:"Combustibil",
+value:car.combustibil || ""
+},
 
-      {/* Mobil Footer Bar */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[rgba(0,0,0,0.08)] bg-white/95 px-4 py-3 pb-safe backdrop-blur-md lg:hidden">
-        <div className="flex items-center gap-3">
-          <div className="min-w-0 flex-1">
-            <p className="truncate font-[family-name:var(--font-syne)] text-lg font-bold text-[#C8102E]">
-              {car.price != null ? formatPrice(car.price, { spaced: true }) : c.pret != null ? formatPrice(c.pret, { spaced: true }) : "-"}
-            </p>
-            <p className="font-[family-name:var(--font-outfit)] text-xs text-[#6B6B6B]">
-              {car.monthlyPrice != null || c.rataLunara != null ? `de la ${car.monthlyPrice || c.rataLunara}€/lună` : "Finanțare disponibilă"}
-            </p>
-          </div>
-          <a
-            href={whatsappCarLink(car)}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={trackMobileWhatsapp}
-            className="flex shrink-0 items-center gap-2 rounded-full bg-[#C8102E] px-5 py-3 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white"
-          >
-            <Phone className="h-4 w-4" strokeWidth={2} /> WhatsApp
-          </a>
-        </div>
-      </div>
-    </>
-  );
+
+{
+icon:Settings2,
+label:"Cutie viteze",
+value:car.cutieViteze || ""
+},
+
+
+{
+icon:Cog,
+label:"Motor",
+value:car.motor || ""
+},
+
+
+{
+icon:Zap,
+label:"Putere",
+value:car.putere
+? `${car.putere} CP`
+:""
+},
+
+
+{
+icon:CarFront,
+label:"Caroserie",
+value:car.caroserie || ""
+},
+
+
+{
+icon:Palette,
+label:"Culoare",
+value:car.culoare || ""
+},
+
+
+{
+icon:DoorOpen,
+label:"Nr. uși",
+value:car.nrUsi
+? String(car.nrUsi)
+:""
+},
+
+
+{
+icon:CarFront,
+label:"Tracțiune",
+value:car.tractiune || ""
+},
+
+
+{
+icon:ShieldCheck,
+label:"Inspecție",
+value:car.inspectieTehnica || ""
+}
+
+];
+
+
+return specs.filter(
+item=>item.value
+);
+  function PricePanel({
+  car,
+}:{
+  car:Masina
+}){
+
+
+const nume = `${car.marca} ${car.model}`;
+
+
+const trackContact = (type:string)=>{
+
+if(
+typeof window !== "undefined" &&
+(window as any).fbq
+){
+
+(window as any).fbq(
+"track",
+"Contact",
+{
+content_name:nume,
+value:car.pret || 0,
+currency:"EUR",
+contact_type:type
+}
+);
+
+}
+
+};
+
+
+
+return (
+
+<div className="
+rounded-2xl
+border
+border-black/10
+bg-white
+p-6
+shadow-[0_8px_30px_rgba(0,0,0,0.06)]
+">
+
+
+<p className="
+font-[family-name:var(--font-outfit)]
+text-xs
+uppercase
+text-[#6B6B6B]
+">
+Preț
+</p>
+
+
+
+<p className="
+mt-1
+font-[family-name:var(--font-syne)]
+text-4xl
+font-bold
+text-[#C8102E]
+">
+
+{car.pret
+?
+formatPrice(car.pret,{spaced:true})
+:"-"
+}
+
+</p>
+
+
+
+<p className="
+mt-3
+text-sm
+text-[#6B6B6B]
+">
+
+Finanțare disponibilă
+
+</p>
+
+
+
+<div className="
+mt-5
+space-y-3
+">
+
+
+<a
+
+href={whatsappCarLink(car as any)}
+
+target="_blank"
+
+rel="noopener noreferrer"
+
+onClick={()=>trackContact("WhatsApp")}
+
+className="
+flex
+w-full
+items-center
+justify-center
+gap-2
+rounded-full
+bg-[#C8102E]
+py-3.5
+font-semibold
+text-white
+hover:bg-[#A50E26]
+"
+
+>
+
+<Phone size={18}/>
+
+Cere detalii pe WhatsApp
+
+</a>
+
+
+
+
+<a
+
+href={`tel:${SITE.phoneRaw}`}
+
+onClick={()=>trackContact("Telefon")}
+
+className="
+flex
+w-full
+items-center
+justify-center
+gap-2
+rounded-full
+border-2
+border-[#111]
+py-3.5
+font-semibold
+"
+
+>
+
+<Phone size={18}/>
+
+Sună acum
+
+</a>
+
+
+
+
+<Link
+
+href="/#rate"
+
+className="
+flex
+w-full
+items-center
+justify-center
+gap-2
+rounded-full
+bg-[#F2F2F7]
+py-3.5
+font-semibold
+"
+
+>
+
+Calculează rata
+
+<ArrowUpRight size={18}/>
+
+</Link>
+
+
+
+
+<a
+
+href={`mailto:${SITE.email}?subject=Interesat de ${encodeURIComponent(nume)}`}
+
+className="
+flex
+justify-center
+gap-2
+py-2
+text-sm
+text-[#6B6B6B]
+"
+
+>
+
+<Mail size={18}/>
+
+Trimite email
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+)
+
+}
+
+
+
+
+export default function CarDetailView({
+
+car,
+
+similarCars=[]
+
+}:{
+
+car:Masina;
+
+similarCars?:Masina[];
+
+}){
+
+
+const [activeImage,setActiveImage]=useState(0);
+
+
+
+const images =
+car.galerie || [];
+
+
+
+const specs =
+buildSpecs(car);
+
+
+
+const title =
+`${car.marca || ""} ${car.model || ""}`;
+
+
+
+useEffect(()=>{
+
+
+if(
+typeof window !== "undefined" &&
+(window as any).fbq
+){
+
+(window as any).fbq(
+"track",
+"ViewContent",
+{
+
+content_ids:[
+car.slug || car._id
+],
+
+value:
+car.pret || 0,
+
+currency:"EUR"
+
+}
+
+)
+
+}
+
+
+},[car]);
+
+
+
+const trackMobileWhatsapp=()=>{
+
+if(
+typeof window !== "undefined" &&
+(window as any).fbq
+){
+
+(window as any).fbq(
+"track",
+"Contact",
+{
+contact_type:"WhatsApp_Mobile"
+}
+)
+
+}
+
+};
+
+
+
+return (
+
+<>
+  <div className="
+bg-[#F7F7F7]
+pb-28
+pt-[72px]
+lg:pb-16
+">
+
+
+<div className="
+mx-auto
+max-w-7xl
+px-6
+md:px-12
+lg:px-16
+">
+
+
+<nav className="
+mb-6
+flex
+items-center
+gap-2
+text-sm
+text-[#6B6B6B]
+">
+
+<Link href="/">
+Acasă
+</Link>
+
+<ChevronRight size={16}/>
+
+<Link href="/#stoc">
+Stoc
+</Link>
+
+<ChevronRight size={16}/>
+
+<span className="font-medium text-black">
+{title}
+</span>
+
+
+</nav>
+
+
+
+<Link
+
+href="/#stoc"
+
+className="
+mb-6
+inline-flex
+items-center
+gap-2
+text-sm
+text-[#6B6B6B]
+"
+
+>
+
+<ArrowLeft size={16}/>
+
+Înapoi la stoc
+
+</Link>
+
+
+
+
+<div className="
+grid
+gap-8
+lg:grid-cols-12
+">
+
+
+<div className="
+lg:col-span-7
+">
+
+
+<CarGallery
+
+variant="page"
+
+images={images}
+
+carName={title}
+
+activeIndex={activeImage}
+
+onIndexChange={setActiveImage}
+
+priority
+
+/>
+
+
+</div>
+
+
+
+
+<div className="
+lg:col-span-5
+">
+
+
+<div className="
+lg:sticky
+lg:top-24
+">
+
+
+<div className="mb-5">
+
+
+<span
+
+className={cn(
+
+"rounded-full px-3 py-1 text-xs font-semibold",
+
+car.disponibil==="Disponibil"
+
+?
+"bg-emerald-50 text-emerald-700"
+
+:
+
+"bg-amber-50 text-amber-700"
+
+)}
+
+>
+
+{statusText(car.disponibil)}
+
+</span>
+
+
+</div>
+
+
+
+
+<h1 className="
+font-[family-name:var(--font-syne)]
+text-3xl
+font-bold
+text-[#111]
+lg:text-4xl
+">
+
+{title}
+
+</h1>
+
+
+
+
+<p className="
+mt-2
+text-[#6B6B6B]
+">
+
+{car.motor}
+
+</p>
+
+
+
+<div className="
+mt-6
+hidden
+lg:block
+">
+
+<PricePanel car={car}/>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div className="
+mt-12
+space-y-12
+">
+
+
+<section>
+
+<SectionTitle>
+Specificații generale
+</SectionTitle>
+
+
+
+<div className="
+mt-6
+grid
+grid-cols-1
+gap-x-6
+sm:grid-cols-2
+lg:grid-cols-4
+">
+
+
+{specs.map((item)=>(
+
+
+<SpecCell
+
+key={item.label}
+
+icon={item.icon}
+
+label={item.label}
+
+value={item.value}
+
+/>
+
+
+))}
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+{
+car.dotari &&
+car.dotari.length>0 &&
+
+
+<section>
+
+
+<SectionTitle>
+Dotări & echipamente
+</SectionTitle>
+
+
+
+<ul className="
+mt-6
+grid
+gap-3
+sm:grid-cols-2
+lg:grid-cols-3
+">
+
+
+{
+car.dotari.map((item)=>(
+
+
+<li
+
+key={item}
+
+className="
+flex
+gap-2
+text-[15px]
+"
+
+>
+
+<BadgeCheck
+
+className="text-[#C8102E]"
+
+size={20}
+
+/>
+
+{item}
+
+
+</li>
+
+
+))
+
+}
+
+
+</ul>
+
+
+
+</section>
+
+}
+
+
+
+
+
+
+
+{
+car.evaluareTehnica &&
+
+
+<section>
+
+
+<SectionTitle>
+Evaluare tehnică & recomandare
+</SectionTitle>
+
+
+
+<div className="
+mt-6
+rounded-2xl
+bg-white
+p-6
+leading-7
+shadow-sm
+">
+
+
+<p>
+
+{car.evaluareTehnica}
+
+</p>
+
+
+</div>
+
+
+</section>
+
+
+}
+
+
+
+
+{
+similarCars.length>0 &&
+
+
+<section>
+
+
+<SectionTitle>
+Mașini similare
+</SectionTitle>
+
+
+
+<div className="
+mt-8
+grid
+gap-6
+sm:grid-cols-2
+lg:grid-cols-3
+">
+
+
+{
+similarCars.map((item,index)=>(
+
+<CarCard
+
+key={item._id}
+
+car={item as any}
+
+index={index}
+
+/>
+
+
+))
+
+}
+
+
+</div>
+
+
+</section>
+
+
+}
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+{/* MOBILE CONTACT BAR */}
+
+
+<div className="
+fixed
+bottom-0
+left-0
+right-0
+z-40
+border-t
+bg-white/95
+px-4
+py-3
+backdrop-blur
+lg:hidden
+">
+
+
+<div className="
+flex
+items-center
+gap-3
+">
+
+
+<div className="flex-1">
+
+
+<p className="
+font-bold
+text-xl
+text-[#C8102E]
+">
+
+{car.pret
+?
+formatPrice(car.pret,{spaced:true})
+:
+"-"
+}
+
+
+</p>
+
+
+</div>
+
+
+
+
+<a
+
+href={whatsappCarLink(car as any)}
+
+target="_blank"
+
+rel="noopener noreferrer"
+
+onClick={trackMobileWhatsapp}
+
+className="
+flex
+items-center
+gap-2
+rounded-full
+bg-[#C8102E]
+px-5
+py-3
+font-semibold
+text-white
+"
+
+>
+
+<Phone size={18}/>
+
+WhatsApp
+
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+</>
+
+)
+
+}
+
+
 }

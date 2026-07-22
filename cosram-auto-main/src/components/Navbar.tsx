@@ -18,7 +18,7 @@ function LogoBadge({
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center justify-center rounded-xl bg-white p-1 shadow-[0_2px_14px_rgba(0,0,0,0.1)] ring-1 ring-black/[0.06]",
+        "flex shrink-0 items-center justify-center rounded-xl bg-white p-1 shadow-[0_2px:14px_rgba(0,0,0,0.1)] ring-1 ring-black/[0.06]",
         className
       )}
     >
@@ -43,13 +43,16 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
+
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
+
     return () => {
       document.body.style.overflow = "";
     };
@@ -75,8 +78,7 @@ export default function Navbar() {
       >
         <div className="relative mx-auto flex max-w-7xl flex-col px-6 py-3 md:px-12 lg:px-16">
           <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center">
-            
-            {/* Zona din stânga: Logo Cosram + Finanțatori dedesubt pentru mobil */}
+
             <div className="flex flex-col gap-1 justify-self-start">
               <Link
                 href="/"
@@ -84,20 +86,22 @@ export default function Navbar() {
                 aria-label="Cosram Auto — Acasă"
               >
                 <LogoBadge priority />
+
                 <BrandWordmark
                   variant={navTone === "dark" ? "on-light" : "on-dark"}
                   size="sm"
                 />
               </Link>
 
-              {/* Logo-uri Parteneri: Apar MEREU pe mobil, aliniate direct SUB logo-ul tău principal */}
               <div className="flex items-center gap-2.5 md:hidden mt-1 px-1">
                 <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block">
                   <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-4.5 w-auto object-contain" />
                 </a>
+
                 <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="block">
                   <img src="/partners/tbi-bank.svg" alt="TBI Bank" className="h-3.5 w-auto object-contain" />
                 </a>
+
                 <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="block">
                   <img src="/partners/mogo.svg" alt="Mogo" className="h-3.5 w-auto object-contain" />
                 </a>
@@ -105,23 +109,26 @@ export default function Navbar() {
             </div>
 
             <nav className="hidden items-center gap-8 justify-self-center lg:flex">
-              {NAV_LINKS.map((link) => {
-                return (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    className={cn(
-                      "text-sm font-medium transition-colors duration-300",
-                      textClass
-                    )}
-                  >
-                    {link.label}
-                  </a>
-                );
-              })}
-            </nav>
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "relative text-sm font-medium transition-colors duration-300",
+                    textClass
+                  )}
+                >
+                  {link.label}
 
-            <div className="flex items-center gap-3 justify-self-end">
+                  {link.label === "Stoc" && (
+                    <span className="absolute -top-3 -right-6 rounded-full bg-[#C8102E] px-2 py-0.5 text-[10px] font-bold uppercase leading-none text-white shadow-sm">
+                      Nou
+                    </span>
+                  )}
+                </a>
+              ))}
+            </nav>
+                        <div className="flex items-center gap-3 justify-self-end">
               <a
                 href={`tel:${SITE.phoneRaw}`}
                 className={cn(
@@ -132,6 +139,7 @@ export default function Navbar() {
                 <Phone className="h-4 w-4 text-[#C8102E]" />
                 {SITE.phone}
               </a>
+
               <a
                 href={SITE.whatsapp}
                 target="_blank"
@@ -141,6 +149,7 @@ export default function Navbar() {
                 Contactează-ne
                 <ArrowUpRight className="h-4 w-4" />
               </a>
+
               <button
                 type="button"
                 aria-label="Deschide meniul"
@@ -155,20 +164,22 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Linia secundară de parteneri: Doar pentru Desktop */}
           <div className="mt-3 hidden w-full justify-end items-center gap-6 pr-2 md:flex">
             <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="relative h-9 w-40 block opacity-95 transition-opacity hover:opacity-100">
               <img src="/partners/bt-direct.svg" alt="Partener BT Direct" className="h-9 w-auto object-contain" />
             </a>
+
             <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="relative h-8 w-20 block opacity-95 transition-opacity hover:opacity-100">
               <img src="/partners/tbi-bank.svg" alt="Partener TBI Bank" className="h-8 w-auto object-contain" />
             </a>
+
             <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="relative h-8 w-16 block opacity-95 transition-opacity hover:opacity-100">
               <img src="/partners/mogo.svg" alt="Partener Mogo" className="h-8 w-auto object-contain" />
             </a>
           </div>
         </div>
       </motion.header>
+
 
       <AnimatePresence>
         {mobileOpen && (
@@ -190,6 +201,7 @@ export default function Navbar() {
                   <LogoBadge />
                   <BrandWordmark variant="on-light" size="sm" />
                 </div>
+
                 <button
                   type="button"
                   aria-label="Închide meniul"
@@ -200,36 +212,53 @@ export default function Navbar() {
                 </button>
               </div>
 
+
               <nav className="mt-16 flex flex-col gap-6">
-                {NAV_LINKS.map((link, i) => {
-                  return (
-                    <motion.a
-                      key={link.href}
-                      href={link.href}
-                      initial={{ opacity: 0, x: 40 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.08 }}
-                      onClick={() => setMobileOpen(false)}
-                      className="font-[family-name:var(--font-syne)] text-3xl font-bold text-[#111111]"
-                    >
-                      {link.label}
-                    </motion.a>
-                  );
-                })}
+                {NAV_LINKS.map((link, i) => (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.08 }}
+                    onClick={() => setMobileOpen(false)}
+                    className="font-[family-name:var(--font-syne)] text-3xl font-bold text-[#111111]"
+                  >
+                    {link.label}
+
+                    {link.label === "Stoc" && (
+                      <span className="ml-3 inline-flex rounded-full bg-[#C8102E] px-2 py-1 align-middle text-[10px] font-bold uppercase text-white">
+                        Nou
+                      </span>
+                    )}
+                  </motion.a>
+                ))}
               </nav>
+
 
               <div className="mt-auto space-y-6">
                 <div className="space-y-4">
-                  <a href={`tel:${SITE.phoneRaw}`} className="flex items-center gap-2 font-medium text-[#111111]">
+                  <a
+                    href={`tel:${SITE.phoneRaw}`}
+                    className="flex items-center gap-2 font-medium text-[#111111]"
+                  >
                     <Phone className="h-5 w-5 text-[#C8102E]" />
                     {SITE.phone}
                   </a>
-                  <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="flex w-full items-center justify-center gap-2 rounded-full bg-[#C8102E] py-4 font-medium text-white">
+
+                  <a
+                    href={SITE.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex w-full items-center justify-center gap-2 rounded-full bg-[#C8102E] py-4 font-medium text-white"
+                  >
                     Contactează-ne
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
                 </div>
               </div>
+
             </motion.div>
           </motion.div>
         )}

@@ -147,40 +147,55 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Linia secundară: Parteneri sub butoane */}
+          {/* Linia secundară: Parteneri cu link-uri active sub butoane */}
           <div className="mt-3 hidden w-full justify-end items-center gap-6 pr-2 md:flex">
             {/* 1. BT Direct */}
-            <div className="relative h-8 w-24">
+            <a 
+              href="https://btdirect.ro" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="relative h-8 w-24 block opacity-95 transition-opacity hover:opacity-100"
+            >
               <Image 
                 src="/partners/bt-direct.svg" 
                 alt="Partener BT Direct" 
                 fill
                 priority
-                className="object-contain object-right opacity-95 transition-opacity hover:opacity-100" 
+                className="object-contain object-right" 
               />
-            </div>
+            </a>
 
             {/* 2. TBI Bank */}
-            <div className="relative h-8 w-20">
+            <a 
+              href="https://tbibank.ro" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="relative h-8 w-20 block opacity-95 transition-opacity hover:opacity-100"
+            >
               <Image 
                 src="/partners/tbi-bank.svg" 
                 alt="Partener TBI Bank" 
                 fill
                 priority
-                className="object-contain object-right opacity-95 transition-opacity hover:opacity-100" 
+                className="object-contain object-right" 
               />
-            </div>
+            </a>
 
             {/* 3. Mogo */}
-            <div className="relative h-8 w-16">
+            <a 
+              href="https://mogo.ro" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="relative h-8 w-16 block opacity-95 transition-opacity hover:opacity-100"
+            >
               <Image 
                 src="/partners/mogo.svg" 
                 alt="Partener Mogo" 
                 fill
                 priority
-                className="object-contain object-right opacity-95 transition-opacity hover:opacity-100" 
+                className="object-contain object-right" 
               />
-            </div>
+            </a>
           </div>
         </div>
       </motion.header>

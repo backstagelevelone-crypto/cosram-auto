@@ -60,11 +60,32 @@ export default async function MasinaPage({ params }: PageProps) {
 
   const similar = await getSimilarCars(car);
 
+  // Verificăm ce proprietate conține ID-ul mașinii (id, slug sau parametrul URL-ului)
+  // pentru a se potrivi cu ID-ul setat în Catalogul Meta Ads
+  const trackingId = car.id || car.slug || slug;
+  const trackingPrice = car.price || 0;
+
   return (
     <>
       <Navbar />
       <main>
         <CarDetailView car={car} similarCars={similar} />
+        
+        {/* Injectare script Meta Pixel pentru evenimentul ViewContent (Catalog Ads) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined' && typeof fbq === 'function') {
+                fbq('track', 'ViewContent', {
+                  content_ids: ['${trackingId}'],
+                  content_type: 'product',
+                  value: ${trackingPrice},
+                  currency: 'EUR'
+                });
+              }
+            `,
+          }}
+        />
       </main>
       <Footer />
     </>

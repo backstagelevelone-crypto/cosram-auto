@@ -7,7 +7,6 @@ import { Menu, X, Phone, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS, SITE } from "@/lib/constants";
 import { BrandWordmark } from "@/components/BrandWordmark";
-import { NavStockBadge } from "@/components/ui/stock-urgency-badge";
 
 function LogoBadge({
   className,
@@ -102,48 +101,61 @@ export default function Navbar() {
                     )}
                   >
                     {link.label}
-                    {isStoc && (
-                      <NavStockBadge tone={navTone === "dark" ? "dark" : "light"} />
-                    )}
                   </a>
                 );
               })}
             </nav>
 
-            <div className="flex items-center gap-3 justify-self-end">
-              <a
-                href={`tel:${SITE.phoneRaw}`}
-                className={cn(
-                  "hidden items-center gap-2 text-sm font-medium transition-colors duration-300 xl:flex",
-                  textClass
-                )}
-              >
-                <Phone className="h-4 w-4 text-[#C8102E]" />
-                {SITE.phone}
-              </a>
-              <a
-                href={SITE.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden items-center gap-2 rounded-full bg-[#C8102E] px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-[#A50E26] hover:shadow-[0_6px_20px_rgba(200,16,46,0.3)] sm:inline-flex"
-              >
-                Contactează-ne
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
-              <button
-                type="button"
-                aria-label="Deschide meniul"
-                onClick={() => setMobileOpen(true)}
-                className={cn(
-                  "rounded-lg p-2 transition-colors duration-300 lg:hidden",
-                  navTone === "dark" ? "text-[#111111]" : "text-white"
-                )}
-              >
-                <Menu className="h-6 w-6" />
-              </button>
+            <div className="flex flex-col items-end gap-1 justify-self-end">
+              {/* Logo-uri Parteneri vizibile MEREU pe mobil (Deasupra butonului rosu) */}
+              <div className="flex items-center gap-2.5 md:hidden mb-1 px-1">
+                <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block">
+                  <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-5 w-auto object-contain" />
+                </a>
+                <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="block">
+                  <img src="/partners/tbi-bank.svg" alt="TBI Bank" className="h-4 w-auto object-contain" />
+                </a>
+                <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="block">
+                  <img src="/partners/mogo.svg" alt="Mogo" className="h-4 w-auto object-contain" />
+                </a>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <a
+                  href={`tel:${SITE.phoneRaw}`}
+                  className={cn(
+                    "hidden items-center gap-2 text-sm font-medium transition-colors duration-300 xl:flex",
+                    textClass
+                  )}
+                >
+                  <Phone className="h-4 w-4 text-[#C8102E]" />
+                  {SITE.phone}
+                </a>
+                <a
+                  href={SITE.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden items-center gap-2 rounded-full bg-[#C8102E] px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-[#A50E26] hover:shadow-[0_6px_20px_rgba(200,16,46,0.3)] sm:inline-flex"
+                >
+                  Contactează-ne
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+                <button
+                  type="button"
+                  aria-label="Deschide meniul"
+                  onClick={() => setMobileOpen(true)}
+                  className={cn(
+                    "rounded-lg p-2 transition-colors duration-300 lg:hidden",
+                    navTone === "dark" ? "text-[#111111]" : "text-white"
+                  )}
+                >
+                  <Menu className="h-6 w-6" />
+                </button>
+              </div>
             </div>
           </div>
 
+          {/* Linia secundara doar pentru Desktop */}
           <div className="mt-3 hidden w-full justify-end items-center gap-6 pr-2 md:flex">
             <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block opacity-95 transition-opacity hover:opacity-100">
               <img src="/partners/bt-direct.svg" alt="Partener BT Direct" className="h-9 w-auto object-contain" />
@@ -190,7 +202,6 @@ export default function Navbar() {
 
               <nav className="mt-16 flex flex-col gap-6">
                 {NAV_LINKS.map((link, i) => {
-                  const isStoc = link.href === "#stoc";
                   return (
                     <motion.a
                       key={link.href}
@@ -199,13 +210,9 @@ export default function Navbar() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.08 }}
                       onClick={() => setMobileOpen(false)}
-                      className={cn(
-                        "font-[family-name:var(--font-syne)] text-3xl font-bold text-[#111111]",
-                        isStoc && "group/stoc inline-flex w-fit items-center gap-3"
-                      )}
+                      className="font-[family-name:var(--font-syne)] text-3xl font-bold text-[#111111]"
                     >
                       {link.label}
-                      {isStoc && <NavStockBadge tone="dark" className="text-[10px]" />}
                     </motion.a>
                   );
                 })}
@@ -221,21 +228,6 @@ export default function Navbar() {
                     Contactează-ne
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
-                </div>
-
-                <div className="pt-4 border-t border-neutral-200">
-                  <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-3">Opțiuni Finanțare</p>
-                  <div className="flex items-center gap-5 flex-wrap">
-                    <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block">
-                      <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-7 w-auto object-contain" />
-                    </a>
-                    <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="block">
-                      <img src="/partners/tbi-bank.svg" alt="TBI Bank" className="h-6 w-auto object-contain" />
-                    </a>
-                    <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="block">
-                      <img src="/partners/mogo.svg" alt="Mogo" className="h-6 w-auto object-contain" />
-                    </a>
-                  </div>
                 </div>
               </div>
             </motion.div>

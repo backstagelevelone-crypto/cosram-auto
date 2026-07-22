@@ -23,7 +23,6 @@ import CarGallery from "@/components/ui/CarGallery";
 function PricePanel({ car, className }: { car: Car; className?: string }) {
   const displayName = buildCarName(car);
 
-  // Trimite evenimentul de contact către Facebook doar pentru acțiuni reale de contact
   const trackContactClick = (tipContact: string) => {
     if (typeof window !== "undefined" && (window as any).fbq) {
       (window as any).fbq("track", "Contact", {
@@ -60,13 +59,11 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
             </span>
           </>
         ) : (
-          "Contactează-ne pentru o ofertă di finanțare"
+          "Contactează-ne pentru o ofertă de finanțare"
         )}
       </p>
 
       <div className="mt-6 space-y-3">
-
-        {/* WhatsApp - rămâne Contact */}
         <a
           href={whatsappCarLink(car)}
           target="_blank"
@@ -78,7 +75,6 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
           Cere detalii pe WhatsApp
         </a>
 
-        {/* Telefon - rămâne Contact */}
         <a
           href={`tel:${SITE.phoneRaw}`}
           onClick={() => trackContactClick("Telefon")}
@@ -88,7 +84,6 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
           Sună acum
         </a>
 
-        {/* RATE - fără eveniment Contact */}
         <Link
           href="/#rate"
           className="flex w-full items-center justify-center gap-2 rounded-full bg-[#F2F2F7] py-3.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-[#111111] transition-colors hover:bg-[#E8E8ED]"
@@ -97,7 +92,6 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
           <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
         </Link>
 
-        {/* Email - rămâne Contact */}
         <a
           href={`mailto:${SITE.email}?subject=Interesat de ${encodeURIComponent(displayName)}`}
           onClick={() => trackContactClick("Email")}
@@ -113,6 +107,7 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
 
 export default function CarDetailView({
   car,
+  similarCars,
 }: {
   car: Car;
   similarCars: Car[];
@@ -123,25 +118,26 @@ export default function CarDetailView({
   const displayName = buildCarName(car);
   const title = buildCarTitle(car);
 
-  // Declanșare eveniment ViewContent pentru Catalog Meta Ads
   useEffect(() => {
     if (typeof window !== "undefined") {
       const fbq = (window as any).fbq;
       if (typeof fbq === "function" && car) {
         fbq("track", "ViewContent", {
-          content_ids: [car.slug || ""], // Trimite textul scurt (ex: passatb72.0tdi2013)
+          content_ids: [car.slug || ""],
           content_type: "product",
-          value: car.price || 0,         // Trimite prețul din interfața ta TypeScript
+          value: car.price || 0,
           currency: "EUR",
         });
       }
     }
   }, [car]);
 
+  // Conversie securizată pentru a citi caracteristicile dinamice în română sau engleză
+  const c = car as any;
+
   return (
     <div className="bg-[#F7F7F7] pb-28 pt-[72px] lg:pb-16">
       <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
-
         <nav
           aria-label="Breadcrumb"
           className="mb-6 flex flex-wrap items-center gap-2 font-[family-name:var(--font-outfit)] text-sm text-[#6B6B6B]"
@@ -149,23 +145,13 @@ export default function CarDetailView({
           <Link href="/" className="transition-colors hover:text-[#111111]">
             Acasă
           </Link>
-
           <ChevronRight className="h-4 w-4" strokeWidth={1.75} />
-
-          <Link
-            href="/#stoc"
-            className="transition-colors hover:text-[#111111]"
-          >
+          <Link href="/#stoc" className="transition-colors hover:text-[#111111]">
             Stoc
           </Link>
-
           <ChevronRight className="h-4 w-4" strokeWidth={1.75} />
-
-          <span className="font-medium text-[#111111]">
-            {title}
-          </span>
+          <span className="font-medium text-[#111111]">{title}</span>
         </nav>
-
 
         <Link
           href="/#stoc"
@@ -175,9 +161,7 @@ export default function CarDetailView({
           Înapoi la stoc
         </Link>
 
-
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
-
           <div className="lg:col-span-7">
             <CarGallery
               variant="page"
@@ -188,12 +172,77 @@ export default function CarDetailView({
             />
           </div>
 
-
           <div className="lg:col-span-5">
             <PricePanel car={car} />
           </div>
-
         </div>
+
+        {/* Zona Restaurată: Detaliile Tehnice Completesub Galerie */}
+        <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:gap-10 border-t border-[rgba(0,0,0,0.06)] pt-10">
+          <div className="lg:col-span-7 space-y-8">
+            <div>
+              <h2 className="font-[family-name:var(--font-syne)] text-2xl font-bold text-[#111111]">
+                Specificații Tehnice
+              </h2>
+              <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 font-[family-name:var(--font-outfit)] text-sm">
+                <div className="rounded-xl bg-white p-4 border border-[rgba(0,0,0,0.04)]">
+                  <p className="text-[#6B6B6B]">An fabricație</p>
+                  <p className="mt-0.5 font-semibold text-[#111111]">{c.an || c.year || "-"}</p>
+                </div>
+                <div className="rounded-xl bg-white p-4 border border-[rgba(0,0,0,0.04)]">
+                  <p className="text-[#6B6B6B]">Kilometraj</p>
+                  <p className="mt-0.5 font-semibold text-[#111111]">
+                    {c.kilometraj != null ? `${c.kilometraj.toLocaleString()} km` : c.km != null ? `${c.km.toLocaleString()} km` : "-"}
+                  </p>
+                </div>
+                <div className="rounded-xl bg-white p-4 border border-[rgba(0,0,0,0.04)]">
+                  <p className="text-[#6B6B6B]">Combustibil</p>
+                  <p className="mt-0.5 font-semibold text-[#111111]">{c.combustibil || c.fuel || "-"}</p>
+                </div>
+                <div className="rounded-xl bg-white p-4 border border-[rgba(0,0,0,0.04)]">
+                  <p className="text-[#6B6B6B]">Transmisie</p>
+                  <p className="mt-0.5 font-semibold text-[#111111]">{c.cutieViteze || c.transmission || "-"}</p>
+                </div>
+                <div className="rounded-xl bg-white p-4 border border-[rgba(0,0,0,0.04)]">
+                  <p className="text-[#6B6B6B]">Motor</p>
+                  <p className="mt-0.5 font-semibold text-[#111111]">{c.motor || "-"}</p>
+                </div>
+                <div className="rounded-xl bg-white p-4 border border-[rgba(0,0,0,0.04)]">
+                  <p className="text-[#6B6B6B]">Putere</p>
+                  <p className="mt-0.5 font-semibold text-[#111111]">{c.putere ? `${c.putere} CP` : c.hp ? `${c.hp} CP` : "-"}</p>
+                </div>
+              </div>
+            </div>
+
+            {(c.evaluareTehnica || c.description) && (
+              <div>
+                <h3 className="font-[family-name:var(--font-syne)] text-xl font-bold text-[#111111]">
+                  Descriere și Evaluare
+                </h3>
+                <p className="mt-3 font-[family-name:var(--font-outfit)] text-sm leading-relaxed text-[#555555] bg-white p-5 rounded-2xl border border-[rgba(0,0,0,0.04)]">
+                  {c.evaluareTehnica || c.description}
+                </p>
+              </div>
+            )}
+
+            {c.dotari && c.dotari.length > 0 && (
+              <div>
+                <h3 className="font-[family-name:var(--font-syne)] text-xl font-bold text-[#111111]">
+                  Dotări și Echipamente
+                </h3>
+                <ul className="mt-3 grid gap-2 sm:grid-cols-2 font-[family-name:var(--font-outfit)] text-sm text-[#555555]">
+                  {c.dotari.map((dotare: string, idx: number) => (
+                    <li key={idx} className="flex items-center gap-2 bg-white px-4 py-2.5 rounded-xl border border-[rgba(0,0,0,0.03)]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#C8102E]" />
+                      {dotare}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+
       </div>
     </div>
   );

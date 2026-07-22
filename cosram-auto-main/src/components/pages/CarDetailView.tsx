@@ -29,6 +29,7 @@ import {
   buildCarTitle,
   formatPrice,
   formatLocaleNumber,
+  hasValue,
 } from "@/lib/car-display";
 import type { Car } from "@/types/car";
 import CarGallery from "@/components/ui/CarGallery";

@@ -5,10 +5,22 @@ import Link from "next/link";
 import {
   ArrowLeft,
   ArrowUpRight,
+  BadgeCheck,
+  CalendarDays,
+  CarFront,
   ChevronRight,
+  CircleGauge,
+  Cog,
+  DoorOpen,
+  Fuel,
   Mail,
   Phone,
+  Palette,
+  Settings2,
+  ShieldCheck,
+  Zap,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SITE, whatsappCarLink } from "@/lib/constants";
 import { normalizeCarImages } from "@/lib/car-images";

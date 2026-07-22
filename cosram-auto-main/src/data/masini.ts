@@ -244,11 +244,11 @@ export const masini: Masina[] = [
     "caroserie": "Hatchback",
     "disponibil": "Disponibil",
     "galerie": [
-      "/images/masini/vw-golf-5-2006/1.jpg",
-      "/images/masini/vw-golf-5-2006/2.jpg",
-      "/images/masini/vw-golf-5-2006/3.jpg",
-      "/images/masini/vw-golf-5-2006/4.jpg",
-      "/images/masini/vw-golf-5-2006/5.jpg"
+      "/images/masini/vw-golf-5-2006/01.jpg",
+      "/images/masini/vw-golf-5-2006/02.jpg",
+      "/images/masini/vw-golf-5-2006/03.jpg",
+      "/images/masini/vw-golf-5-2006/04.jpg",
+      "/images/masini/vw-golf-5-2006/05.jpg"
     ]
   }
 ];

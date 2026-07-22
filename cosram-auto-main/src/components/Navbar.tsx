@@ -75,28 +75,43 @@ export default function Navbar() {
       >
         <div className="relative mx-auto flex max-w-7xl flex-col px-6 py-3 md:px-12 lg:px-16">
           <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center">
-            <Link
-              href="/"
-              className="flex items-center gap-2.5 justify-self-start sm:gap-3"
-              aria-label="Cosram Auto — Acasă"
-            >
-              <LogoBadge priority />
-              <BrandWordmark
-                variant={navTone === "dark" ? "on-light" : "on-dark"}
-                size="sm"
-              />
-            </Link>
+            
+            {/* Zona din stânga: Logo Cosram + Finanțatori dedesubt pentru mobil */}
+            <div className="flex flex-col gap-1 justify-self-start">
+              <Link
+                href="/"
+                className="flex items-center gap-2.5 sm:gap-3"
+                aria-label="Cosram Auto — Acasă"
+              >
+                <LogoBadge priority />
+                <BrandWordmark
+                  variant={navTone === "dark" ? "on-light" : "on-dark"}
+                  size="sm"
+                />
+              </Link>
+
+              {/* Logo-uri Parteneri: Apar MEREU pe mobil, aliniate direct SUB logo-ul tău principal */}
+              <div className="flex items-center gap-2.5 md:hidden mt-1 px-1">
+                <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block">
+                  <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-4.5 w-auto object-contain" />
+                </a>
+                <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="block">
+                  <img src="/partners/tbi-bank.svg" alt="TBI Bank" className="h-3.5 w-auto object-contain" />
+                </a>
+                <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="block">
+                  <img src="/partners/mogo.svg" alt="Mogo" className="h-3.5 w-auto object-contain" />
+                </a>
+              </div>
+            </div>
 
             <nav className="hidden items-center gap-8 justify-self-center lg:flex">
               {NAV_LINKS.map((link) => {
-                const isStoc = link.href === "#stoc";
                 return (
                   <a
                     key={link.href}
                     href={link.href}
                     className={cn(
                       "text-sm font-medium transition-colors duration-300",
-                      isStoc && "group/stoc inline-flex items-center gap-1.5",
                       textClass
                     )}
                   >
@@ -106,64 +121,49 @@ export default function Navbar() {
               })}
             </nav>
 
-            <div className="flex flex-col items-end gap-1 justify-self-end">
-              {/* Logo-uri Parteneri vizibile MEREU pe mobil (Deasupra butonului rosu) */}
-              <div className="flex items-center gap-2.5 md:hidden mb-1 px-1">
-                <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block">
-                  <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-5 w-auto object-contain" />
-                </a>
-                <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="block">
-                  <img src="/partners/tbi-bank.svg" alt="TBI Bank" className="h-4 w-auto object-contain" />
-                </a>
-                <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="block">
-                  <img src="/partners/mogo.svg" alt="Mogo" className="h-4 w-auto object-contain" />
-                </a>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <a
-                  href={`tel:${SITE.phoneRaw}`}
-                  className={cn(
-                    "hidden items-center gap-2 text-sm font-medium transition-colors duration-300 xl:flex",
-                    textClass
-                  )}
-                >
-                  <Phone className="h-4 w-4 text-[#C8102E]" />
-                  {SITE.phone}
-                </a>
-                <a
-                  href={SITE.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden items-center gap-2 rounded-full bg-[#C8102E] px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-[#A50E26] hover:shadow-[0_6px_20px_rgba(200,16,46,0.3)] sm:inline-flex"
-                >
-                  Contactează-ne
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-                <button
-                  type="button"
-                  aria-label="Deschide meniul"
-                  onClick={() => setMobileOpen(true)}
-                  className={cn(
-                    "rounded-lg p-2 transition-colors duration-300 lg:hidden",
-                    navTone === "dark" ? "text-[#111111]" : "text-white"
-                  )}
-                >
-                  <Menu className="h-6 w-6" />
-                </button>
-              </div>
+            <div className="flex items-center gap-3 justify-self-end">
+              <a
+                href={`tel:${SITE.phoneRaw}`}
+                className={cn(
+                  "hidden items-center gap-2 text-sm font-medium transition-colors duration-300 xl:flex",
+                  textClass
+                )}
+              >
+                <Phone className="h-4 w-4 text-[#C8102E]" />
+                {SITE.phone}
+              </a>
+              <a
+                href={SITE.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden items-center gap-2 rounded-full bg-[#C8102E] px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-[#A50E26] hover:shadow-[0_6px_20px_rgba(200,16,46,0.3)] sm:inline-flex"
+              >
+                Contactează-ne
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <button
+                type="button"
+                aria-label="Deschide meniul"
+                onClick={() => setMobileOpen(true)}
+                className={cn(
+                  "rounded-lg p-2 transition-colors duration-300 lg:hidden",
+                  navTone === "dark" ? "text-[#111111]" : "text-white"
+                )}
+              >
+                <Menu className="h-6 w-6" />
+              </button>
             </div>
           </div>
 
-          {/* Linia secundara doar pentru Desktop */}
+          {/* Linia secundară de parteneri: Doar pentru Desktop */}
           <div className="mt-3 hidden w-full justify-end items-center gap-6 pr-2 md:flex">
-            <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block opacity-95 transition-opacity hover:opacity-100">
+            <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="relative h-9 w-40 block opacity-95 transition-opacity hover:opacity-100">
               <img src="/partners/bt-direct.svg" alt="Partener BT Direct" className="h-9 w-auto object-contain" />
             </a>
-            <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="block opacity-95 transition-opacity hover:opacity-100">
+            <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="relative h-8 w-20 block opacity-95 transition-opacity hover:opacity-100">
               <img src="/partners/tbi-bank.svg" alt="Partener TBI Bank" className="h-8 w-auto object-contain" />
             </a>
-            <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="block opacity-95 transition-opacity hover:opacity-100">
+            <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="relative h-8 w-16 block opacity-95 transition-opacity hover:opacity-100">
               <img src="/partners/mogo.svg" alt="Partener Mogo" className="h-8 w-auto object-contain" />
             </a>
           </div>

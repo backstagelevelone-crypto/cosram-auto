@@ -15,20 +15,25 @@ ${masiniDisponibile
   <vehicle>
     <id>${masina._id}</id>
 
-    <title>
-      ${masina.marca ?? ""} ${masina.model ?? ""} ${masina.an ?? ""}
-    </title>
+    <title>${`${masina.marca ?? ""} ${masina.model ?? ""} ${masina.an ?? ""}`.trim()}</title>
+
+    <brand>${masina.marca?.trim() ?? ""}</brand>
+
+    <model>${masina.model?.trim() ?? ""}</model>
+
+    <year>${masina.an ?? ""}</year>
 
     <price>${masina.pret ?? ""} EUR</price>
 
-    <image_link>
-      ${baseUrl}${masina.galerie?.[0] ?? ""}
-    </image_link>
+    <mileage>${masina.kilometraj ?? ""}</mileage>
 
-    <url>
-      ${baseUrl}/masini/${masina.slug}
-    </url>
+    <fuel_type>${masina.combustibil ?? ""}</fuel_type>
 
+    <transmission>${masina.cutieViteze ?? ""}</transmission>
+
+    <image_link>${baseUrl}${masina.galerie?.[0] ?? ""}</image_link>
+
+    <url>${baseUrl}/masini/${masina.slug}</url>
   </vehicle>
 `
   )

@@ -147,14 +147,14 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Linia secundară: Parteneri cu link-uri active sub butoane */}
+          {/* Linia secundară: Parteneri sub butoane (BT Direct mărit la w-32) */}
           <div className="mt-3 hidden w-full justify-end items-center gap-6 pr-2 md:flex">
-            {/* 1. BT Direct */}
+            {/* 1. BT Direct (Mărit de la w-24 la w-32) */}
             <a 
               href="https://btdirect.ro" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="relative h-8 w-24 block opacity-95 transition-opacity hover:opacity-100"
+              className="relative h-8 w-32 block opacity-95 transition-opacity hover:opacity-100"
             >
               <Image 
                 src="/partners/bt-direct.svg" 

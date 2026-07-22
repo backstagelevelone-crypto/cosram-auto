@@ -237,12 +237,18 @@ export const masini: Masina[] = [
     "marca": "Volkswagen",
     "model": "Golf 5",
     "an": 2006,
-    "pret": 3500,
-    "combustibil": "Benzina",
+    "pret": 2999,
+    "combustibil": "Diesel",
     "cutieViteze": "Manuala",
-    "motor": "1.4",
+    "motor": "1.9",
     "caroserie": "Hatchback",
-    "disponibil": "Vandut",
-    "galerie": []
+    "disponibil": "Disponibil",
+    "galerie": [
+      "/images/masini/vw-golf-5-2006/1.jpg",
+      "/images/masini/vw-golf-5-2006/2.jpg",
+      "/images/masini/vw-golf-5-2006/3.jpg",
+      "/images/masini/vw-golf-5-2006/4.jpg",
+      "/images/masini/vw-golf-5-2006/5.jpg"
+    ]
   }
 ];

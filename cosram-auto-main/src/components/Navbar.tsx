@@ -147,15 +147,15 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Zona secundară dedicată siglei BT Direct — Calea a fost corectată către /partners/ */}
-          <div className="mt-2 hidden w-full justify-end pr-2 md:flex">
-            <div className="relative h-7 w-24">
+          {/* Zona secundară dedicată siglei BT Direct — Mărită la lățimea butonului roșu */}
+          <div className="mt-3 hidden w-full justify-end md:flex">
+            <div className="relative h-10 w-40">
               <Image 
                 src="/partners/bt-direct.svg" 
                 alt="Partener BT Direct" 
                 fill
                 priority
-                className="object-contain object-right opacity-90 transition-opacity hover:opacity-100" 
+                className="object-contain object-right opacity-95 transition-opacity hover:opacity-100" 
               />
             </div>
           </div>

@@ -147,7 +147,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Linia secundară: Ordinea corectată BT Direct, TBI Bank, Mogo în linie sub butoane */}
+          {/* Linia secundară: Parteneri sub butoane */}
           <div className="mt-3 hidden w-full justify-end items-center gap-6 pr-2 md:flex">
             {/* 1. BT Direct */}
             <div className="relative h-8 w-24">
@@ -160,7 +160,7 @@ export default function Navbar() {
               />
             </div>
 
-            {/* 2. TBI Bank (Cale actualizată conform imaginii tale) */}
+            {/* 2. TBI Bank */}
             <div className="relative h-8 w-20">
               <Image 
                 src="/partners/tbi-bank.svg" 
@@ -191,7 +191,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="nav-glass fixed inset-0 z- lg:hidden"
+            className="nav-glass fixed inset-0 z-50 lg:hidden"
           >
             <motion.div
               initial={{ x: "100%" }}
@@ -255,7 +255,7 @@ export default function Navbar() {
                 >
                   Contactează-ne
                   <ArrowUpRight className="h-4 w-4" />
-                </ul>
+                </a>
               </div>
             </motion.div>
           </motion.div>

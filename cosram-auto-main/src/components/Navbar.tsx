@@ -147,15 +147,15 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Zona secundară dedicată siglei BT Direct — Poziționată exact sub butoane */}
+          {/* Zona secundară dedicată siglei BT Direct — Calea a fost corectată către /partners/ */}
           <div className="mt-2 hidden w-full justify-end pr-2 md:flex">
             <div className="relative h-7 w-24">
               <Image 
-                src="/bt-direct.svg" 
+                src="/partners/bt-direct.svg" 
                 alt="Partener BT Direct" 
                 fill
                 priority
-                className="object-contain object-right opacity-90 transition-opacity hover:opacity-100 invert dark:invert-0" 
+                className="object-contain object-right opacity-90 transition-opacity hover:opacity-100" 
               />
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="nav-glass fixed inset-0 z-[60] lg:hidden"
+            className="nav-glass fixed inset-0 z- lg:hidden"
           >
             <motion.div
               initial={{ x: "100%" }}

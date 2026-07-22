@@ -7,8 +7,8 @@ export default function WhatsAppFab() {
 
   const rawText = "Bună ziua! Doresc să aplic pentru finanțare.\n\n✍️ *FORMULAR SOLICITARE*:\n• Nume și Prenume: \n• Telefon: \n• Venit lunar net: \n• Marcă / Model mașină dorită: \n• Mai aveți și alte rate active? (Da/Nu): \n• Sunteți înscris în Biroul de Credit? (Da/Nu): ";
 
-  const whatsappFormLink = "https://whatsapp.com" + numarTelefon + "&text=" + encodeURIComponent(rawText);
-  const whatsappRateLink = "https://whatsapp.com" + numarTelefon;
+  const whatsappFormLink = "https://wa.me" + numarTelefon + "?text=" + encodeURIComponent(rawText);
+  const whatsappRateLink = "https://wa.me" + numarTelefon;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">

@@ -36,8 +36,7 @@ export default function WhatsAppFab() {
         </span>
       </a>
 
-
-      {/* Butonul ROȘU: RATE - fără Contact */}
+      {/* Butonul ROȘU: Discută cu noi */}
       <a
         href={whatsappRateLink}
         target="_blank"
@@ -47,7 +46,7 @@ export default function WhatsAppFab() {
         <MessageCircle className="h-5 w-5" />
 
         <span className="font-[family-name:var(--font-syne)] text-sm font-bold tracking-wider">
-          RATE
+          DISCUTĂ CU NOI
         </span>
       </a>
 

@@ -147,12 +147,35 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Zona secundară dedicată siglei BT Direct — Mărită la lățimea butonului roșu */}
-          <div className="mt-3 hidden w-full justify-end md:flex">
-            <div className="relative h-10 w-40">
+          {/* Linia secundară: Ordinea corectată BT Direct, TBI Bank, Mogo în linie sub butoane */}
+          <div className="mt-3 hidden w-full justify-end items-center gap-6 pr-2 md:flex">
+            {/* 1. BT Direct */}
+            <div className="relative h-8 w-24">
               <Image 
                 src="/partners/bt-direct.svg" 
                 alt="Partener BT Direct" 
+                fill
+                priority
+                className="object-contain object-right opacity-95 transition-opacity hover:opacity-100" 
+              />
+            </div>
+
+            {/* 2. TBI Bank (Cale actualizată conform imaginii tale) */}
+            <div className="relative h-8 w-20">
+              <Image 
+                src="/partners/tbi-bank.svg" 
+                alt="Partener TBI Bank" 
+                fill
+                priority
+                className="object-contain object-right opacity-95 transition-opacity hover:opacity-100" 
+              />
+            </div>
+
+            {/* 3. Mogo */}
+            <div className="relative h-8 w-16">
+              <Image 
+                src="/partners/mogo.svg" 
+                alt="Partener Mogo" 
                 fill
                 priority
                 className="object-contain object-right opacity-95 transition-opacity hover:opacity-100" 
@@ -232,7 +255,7 @@ export default function Navbar() {
                 >
                   Contactează-ne
                   <ArrowUpRight className="h-4 w-4" />
-                </a>
+                </ul>
               </div>
             </motion.div>
           </motion.div>

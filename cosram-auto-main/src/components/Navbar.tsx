@@ -147,7 +147,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Linia secundară pentru Desktop: Rămâne neschimbată */}
+          {/* Linia secundară pentru Desktop */}
           <div className="mt-3 hidden w-full justify-end items-center gap-6 pr-2 md:flex">
             <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="relative h-9 w-40 block opacity-95 transition-opacity hover:opacity-100">
               <Image src="/partners/bt-direct.svg" alt="Partener BT Direct" fill priority className="object-contain object-right" />
@@ -215,7 +215,7 @@ export default function Navbar() {
                 })}
               </nav>
 
-              {/* Zona de jos din meniul de Mobil: Contact + Logo-uri Parteneri noi */}
+              {/* Zona de jos din meniul de Mobil: Contact + Parteneri */}
               <div className="mt-auto space-y-6">
                 <div className="space-y-4">
                   <a href={`tel:${SITE.phoneRaw}`} className="flex items-center gap-2 font-medium text-[#111111]">
@@ -228,7 +228,7 @@ export default function Navbar() {
                   </a>
                 </div>
 
-                {/* Secțiune nouă dedicată partenerilor pe mobil */}
+                {/* Secțiune parteneri pe mobil */}
                 <div className="pt-4 border-t border-neutral-200">
                   <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-3">Opțiuni Finanțare</p>
                   <div className="flex items-center gap-5 flex-wrap">
@@ -236,3 +236,4 @@ export default function Navbar() {
                       <Image src="/partners/bt-direct.svg" alt="BT Direct" fill className="object-contain object-left" />
                     </a>
                     <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="relative h-6 w-16 block">
+                      <Image src="/partners/tbi-bank.svg" alt="TBI Bank" fill className="object-contain object-left" />

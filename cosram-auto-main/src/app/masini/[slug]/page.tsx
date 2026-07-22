@@ -3,13 +3,8 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/sections/Footer";
 import CarDetailView from "@/components/pages/CarDetailView";
-import {
-  buildCarName,
-} from "@/lib/car-display";
-import {
-  getCarBySlug,
-  getSimilarCars,
-} from "@/lib/cars";
+import { buildCarName } from "@/lib/car-display";
+import { getCarBySlug, getSimilarCars } from "@/lib/cars";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -17,13 +12,13 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const car = await getCarBySlug(slug);
+  // Căutăm mașina încercând și varianta cu litere mici
+  const car = await getCarBySlug(slug) || await getCarBySlug(slug.toLowerCase());
 
   if (!car) {
     return { title: "Mașină negăsită | Cosram Auto" };
   }
 
-  // Folosim o conversie sigură (any) pentru a preveni blocarea TypeScript pe proprietăți
   const carData = car as any;
   const anulMasinii = carData.an || carData.year || "";
 
@@ -35,15 +30,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function MasinaPage({ params }: PageProps) {
   const { slug } = await params;
-  const car = await getCarBySlug(slug);
+  // Căutăm mașina în ambele variante de scriere pentru siguranță
+  const car = await getCarBySlug(slug) || await getCarBySlug(slug.toLowerCase());
 
   if (!car) notFound();
 
   const similar = await getSimilarCars(car);
-
-  // Conversie sigură pentru a citi prețul și slug-ul indiferent de limba proprietății
   const carData = car as any;
-  const trackingId = slug; 
+
+  // Trimitem ID-ul în formatul exact pe care îl folosește Catalogul Meta Ads
+  const trackingId = carData.slug || slug;
   const trackingPrice = carData.pret || carData.price || 0;
 
   return (
@@ -52,7 +48,7 @@ export default async function MasinaPage({ params }: PageProps) {
       <main>
         <CarDetailView car={car} similarCars={similar} />
         
-        {/* Script Meta Pixel fixat pentru corelarea corectă a catalogului */}
+        {/* Script Meta Pixel securizat pentru litere mari/mici */}
         <script
           dangerouslySetInnerHTML={{
             __html: `

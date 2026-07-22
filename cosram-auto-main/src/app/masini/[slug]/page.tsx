@@ -32,22 +32,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Mașină negăsită | Cosram Auto" };
   }
 
-  const title = buildCarTitle(car);
-  const pricePart =
-    car.price != null ? `${formatPrice(car.price)} — ` : "";
-  const yearPart = car.year != null ? ` ${car.year}` : "";
-  const kmPart =
-    car.km != null ? `${formatLocaleNumber(car.km)} km` : null;
-  const metaParts = [
-    buildCarName(car),
-    kmPart,
-    car.fuel,
-    car.transmission,
-    car.description,
-  ].filter(Boolean);
-
   return {
-    title: `${buildCarName(car)} ${car.year ?? ""} | Mașină în rate | Cosram Auto Buzău`,
+    title: `${buildCarName(car)} ${car.an ?? ""} | Mașină în rate | Cosram Auto Buzău`,
     description: `${buildCarName(car)} disponibil la Cosram Auto Buzău. Finanțare rapidă, garanție 12 luni și livrare la domiciliu în toată România.`,
   };
 }
@@ -60,10 +46,10 @@ export default async function MasinaPage({ params }: PageProps) {
 
   const similar = await getSimilarCars(car);
 
-  // Verificăm ce proprietate conține ID-ul mașinii (id, slug sau parametrul URL-ului)
-  // pentru a se potrivi cu ID-ul setat în Catalogul Meta Ads
-  const trackingId = car.id || car.slug || slug;
-  const trackingPrice = car.price || 0;
+  // Folosește direct parametrul "slug" din URL (ex: 'Renaultmegane2012')
+  // Se va potrivi 100% cu ID-ul pe care l-ai setat în Catalogul Meta Ads
+  const trackingId = slug;
+  const trackingPrice = car.pret || 0;
 
   return (
     <>
@@ -71,7 +57,7 @@ export default async function MasinaPage({ params }: PageProps) {
       <main>
         <CarDetailView car={car} similarCars={similar} />
         
-        {/* Injectare script Meta Pixel pentru evenimentul ViewContent (Catalog Ads) */}
+        {/* Script Meta Pixel fixat pentru corelarea corectă a catalogului */}
         <script
           dangerouslySetInnerHTML={{
             __html: `

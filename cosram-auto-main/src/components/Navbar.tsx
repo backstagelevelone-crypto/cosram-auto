@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -25,13 +24,12 @@ function LogoBadge({
       )}
     >
       <div className="relative h-8 w-9 overflow-hidden md:h-9 md:w-10">
-        <Image
+        <img
           src="/logo.png"
           alt=""
           aria-hidden
           width={160}
           height={64}
-          priority={priority}
           className="h-full w-auto max-w-none object-contain object-left"
         />
       </div>
@@ -147,14 +145,14 @@ export default function Navbar() {
           </div>
 
           <div className="mt-3 hidden w-full justify-end items-center gap-6 pr-2 md:flex">
-            <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="relative h-9 w-40 block opacity-95 transition-opacity hover:opacity-100">
-              <Image src="/partners/bt-direct.svg" alt="Partener BT Direct" fill priority className="object-contain object-right" />
+            <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block opacity-95 transition-opacity hover:opacity-100">
+              <img src="/partners/bt-direct.svg" alt="Partener BT Direct" className="h-9 w-auto object-contain" />
             </a>
-            <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="relative h-8 w-20 block opacity-95 transition-opacity hover:opacity-100">
-              <Image src="/partners/tbi-bank.svg" alt="Partener TBI Bank" fill priority className="object-contain object-right" />
+            <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="block opacity-95 transition-opacity hover:opacity-100">
+              <img src="/partners/tbi-bank.svg" alt="Partener TBI Bank" className="h-8 w-auto object-contain" />
             </a>
-            <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="relative h-8 w-16 block opacity-95 transition-opacity hover:opacity-100">
-              <Image src="/partners/mogo.svg" alt="Partener Mogo" fill priority className="object-contain object-right" />
+            <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="block opacity-95 transition-opacity hover:opacity-100">
+              <img src="/partners/mogo.svg" alt="Partener Mogo" className="h-8 w-auto object-contain" />
             </a>
           </div>
         </div>
@@ -228,10 +226,22 @@ export default function Navbar() {
                 <div className="pt-4 border-t border-neutral-200">
                   <p className="text-xs font-semibold text-neutral-400 uppercase tracking-wider mb-3">Opțiuni Finanțare</p>
                   <div className="flex items-center gap-5 flex-wrap">
-                    <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="relative h-7 w-28 block">
-                      <Image src="/partners/bt-direct.svg" alt="BT Direct" fill className="object-contain object-left" />
+                    <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block">
+                      <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-7 w-auto object-contain" />
                     </a>
-                    <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="relative h-6 w-16 block">
-                      <Image src="/partners/tbi-bank.svg" alt="TBI Bank" fill className="object-contain object-left" />
+                    <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="block">
+                      <img src="/partners/tbi-bank.svg" alt="TBI Bank" className="h-6 w-auto object-contain" />
                     </a>
-                    <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="relative h-6 w-14 block">
+                    <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="block">
+                      <img src="/partners/mogo.svg" alt="Mogo" className="h-6 w-auto object-contain" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}

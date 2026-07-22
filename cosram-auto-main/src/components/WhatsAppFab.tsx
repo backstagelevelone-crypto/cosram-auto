@@ -1,17 +1,18 @@
 "use client";
 
 import { MessageCircle, FileText } from "lucide-react";
+import { SITE } from "@/lib/constants";
 
 export default function WhatsAppFab() {
-  const numarTelefon = "40773865488"; 
-
   const rawText = "Bună ziua! Doresc să aplic pentru finanțare.\n\n✍️ *FORMULAR SOLICITARE*:\n• Nume și Prenume: \n• Telefon: \n• Venit lunar net: \n• Marcă / Model mașină dorită: \n• Mai aveți și alte rate active? (Da/Nu): \n• Sunteți înscris în Biroul de Credit? (Da/Nu): ";
 
-  const whatsappFormLink = "https://wa.me" + numarTelefon + "?text=" + encodeURIComponent(rawText);
-  const whatsappRateLink = "https://wa.me" + numarTelefon;
+  // Folosește constanta reparată central și adaugă textul curat codat
+  const whatsappFormLink = SITE.whatsapp + "?text=" + encodeURIComponent(rawText);
+  const whatsappRateLink = SITE.whatsapp;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+      {/* Butonul ALB: Formular pe WhatsApp */}
       <a
         href={whatsappFormLink}
         target="_blank"
@@ -24,6 +25,7 @@ export default function WhatsAppFab() {
         </span>
       </a>
 
+      {/* Butonul ROȘU: RATE */}
       <a
         href={whatsappRateLink}
         target="_blank"

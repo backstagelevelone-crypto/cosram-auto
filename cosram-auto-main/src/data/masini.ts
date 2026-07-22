@@ -242,7 +242,7 @@ export const masini: Masina[] = [
     "cutieViteze": "Manuala",
     "motor": "1.4",
     "caroserie": "Hatchback",
-    "disponibil": "Disponibil",
+    "disponibil": "Vandut",
     "galerie": []
   }
 ];

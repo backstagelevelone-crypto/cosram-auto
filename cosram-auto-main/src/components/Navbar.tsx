@@ -111,7 +111,8 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="flex items-center gap-3 justify-self-end">
+          {/* Zona din dreapta: Telefon + BT Direct (.svg) + Buton Contact */}
+          <div className="flex items-center gap-4 justify-self-end">
             <a
               href={`tel:${SITE.phoneRaw}`}
               className={cn(
@@ -122,6 +123,18 @@ export default function Navbar() {
               <Phone className="h-4 w-4 text-[#C8102E]" />
               {SITE.phone}
             </a>
+
+            {/* S-a schimbat src-ul către formatul .svg primit de la tine */}
+            <div className="hidden items-center md:flex mr-1">
+              <Image 
+                src="/bt-direct.svg" 
+                alt="Partener BT Direct" 
+                width={75} 
+                height={30} 
+                className="object-contain opacity-90 transition-opacity hover:opacity-100" 
+              />
+            </div>
+
             <a
               href={SITE.whatsapp}
               target="_blank"
@@ -152,7 +165,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="nav-glass fixed inset-0 z-[60] lg:hidden"
+            className="nav-glass fixed inset-0 z- lg:hidden"
           >
             <motion.div
               initial={{ x: "100%" }}

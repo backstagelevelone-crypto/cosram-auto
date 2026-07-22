@@ -23,7 +23,7 @@ import CarGallery from "@/components/ui/CarGallery";
 function PricePanel({ car, className }: { car: Car; className?: string }) {
   const displayName = buildCarName(car);
 
-  // Trimite evenimentul de contact către Facebook când se apasă pe butoane
+  // Trimite evenimentul de contact către Facebook doar pentru acțiuni reale de contact
   const trackContactClick = (tipContact: string) => {
     if (typeof window !== "undefined" && (window as any).fbq) {
       (window as any).fbq("track", "Contact", {
@@ -46,9 +46,11 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
       <p className="font-[family-name:var(--font-outfit)] text-xs font-medium uppercase tracking-wide text-[#6B6B6B]">
         Preț
       </p>
+
       <p className="mt-1 font-[family-name:var(--font-syne)] text-4xl font-bold text-[#C8102E]">
         {car.price != null ? formatPrice(car.price, { spaced: true }) : "-"}
       </p>
+
       <p className="mt-3 font-[family-name:var(--font-outfit)] text-sm text-[#6B6B6B]">
         {car.monthlyPrice != null ? (
           <>
@@ -63,6 +65,8 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
       </p>
 
       <div className="mt-6 space-y-3">
+
+        {/* WhatsApp - rămâne Contact */}
         <a
           href={whatsappCarLink(car)}
           target="_blank"
@@ -73,6 +77,8 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
           <Phone className="h-4 w-4" strokeWidth={2} />
           Cere detalii pe WhatsApp
         </a>
+
+        {/* Telefon - rămâne Contact */}
         <a
           href={`tel:${SITE.phoneRaw}`}
           onClick={() => trackContactClick("Telefon")}
@@ -81,14 +87,17 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
           <Phone className="h-4 w-4" strokeWidth={2} />
           Sună acum
         </a>
+
+        {/* RATE - fără eveniment Contact */}
         <Link
           href="/#rate"
-          onClick={() => trackContactClick("Simulare_Rate")}
           className="flex w-full items-center justify-center gap-2 rounded-full bg-[#F2F2F7] py-3.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-[#111111] transition-colors hover:bg-[#E8E8ED]"
         >
           RATE
           <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
         </Link>
+
+        {/* Email - rămâne Contact */}
         <a
           href={`mailto:${SITE.email}?subject=Interesat de ${encodeURIComponent(displayName)}`}
           onClick={() => trackContactClick("Email")}
@@ -109,6 +118,7 @@ export default function CarDetailView({
   similarCars: Car[];
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
+
   const images = normalizeCarImages(car.images);
   const displayName = buildCarName(car);
   const title = buildCarTitle(car);
@@ -116,6 +126,7 @@ export default function CarDetailView({
   return (
     <div className="bg-[#F7F7F7] pb-28 pt-[72px] lg:pb-16">
       <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
+
         <nav
           aria-label="Breadcrumb"
           className="mb-6 flex flex-wrap items-center gap-2 font-[family-name:var(--font-outfit)] text-sm text-[#6B6B6B]"
@@ -123,16 +134,23 @@ export default function CarDetailView({
           <Link href="/" className="transition-colors hover:text-[#111111]">
             Acasă
           </Link>
+
           <ChevronRight className="h-4 w-4" strokeWidth={1.75} />
+
           <Link
             href="/#stoc"
             className="transition-colors hover:text-[#111111]"
           >
             Stoc
           </Link>
+
           <ChevronRight className="h-4 w-4" strokeWidth={1.75} />
-          <span className="font-medium text-[#111111]">{title}</span>
+
+          <span className="font-medium text-[#111111]">
+            {title}
+          </span>
         </nav>
+
 
         <Link
           href="/#stoc"
@@ -142,7 +160,9 @@ export default function CarDetailView({
           Înapoi la stoc
         </Link>
 
+
         <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
+
           <div className="lg:col-span-7">
             <CarGallery
               variant="page"
@@ -152,9 +172,12 @@ export default function CarDetailView({
               onIndexChange={setActiveIndex}
             />
           </div>
+
+
           <div className="lg:col-span-5">
             <PricePanel car={car} />
           </div>
+
         </div>
       </div>
     </div>

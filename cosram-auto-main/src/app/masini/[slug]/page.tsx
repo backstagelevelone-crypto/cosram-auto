@@ -5,12 +5,8 @@ import Footer from "@/components/sections/Footer";
 import CarDetailView from "@/components/pages/CarDetailView";
 import {
   buildCarName,
-  buildCarTitle,
-  formatLocaleNumber,
-  formatPrice,
 } from "@/lib/car-display";
 import {
-  getAllCarSlugs,
   getCarBySlug,
   getSimilarCars,
 } from "@/lib/cars";
@@ -18,11 +14,6 @@ import {
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
-
-export async function generateStaticParams() {
-  const slugs = await getAllCarSlugs();
-  return slugs.map((slug) => ({ slug }));
-}
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
@@ -32,8 +23,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Mașină negăsită | Cosram Auto" };
   }
 
+  // Folosim o conversie sigură (any) pentru a preveni blocarea TypeScript pe proprietăți
+  const carData = car as any;
+  const anulMasinii = carData.an || carData.year || "";
+
   return {
-    title: `${buildCarName(car)} ${car.an ?? ""} | Mașină în rate | Cosram Auto Buzău`,
+    title: `${buildCarName(car)} ${anulMasinii} | Mașină în rate | Cosram Auto Buzău`,
     description: `${buildCarName(car)} disponibil la Cosram Auto Buzău. Finanțare rapidă, garanție 12 luni și livrare la domiciliu în toată România.`,
   };
 }
@@ -46,10 +41,10 @@ export default async function MasinaPage({ params }: PageProps) {
 
   const similar = await getSimilarCars(car);
 
-  // Folosește direct parametrul "slug" din URL (ex: 'Renaultmegane2012')
-  // Se va potrivi 100% cu ID-ul pe care l-ai setat în Catalogul Meta Ads
-  const trackingId = slug;
-  const trackingPrice = car.pret || 0;
+  // Conversie sigură pentru a citi prețul și slug-ul indiferent de limba proprietății
+  const carData = car as any;
+  const trackingId = slug; 
+  const trackingPrice = carData.pret || carData.price || 0;
 
   return (
     <>

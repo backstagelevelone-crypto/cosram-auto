@@ -1,228 +1,4 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import {
-  ArrowLeft,
-  ArrowUpRight,
-  BadgeCheck,
-  CalendarDays,
-  CarFront,
-  ChevronRight,
-  CircleGauge,
-  Cog,
-  DoorOpen,
-  Fuel,
-  Mail,
-  Palette,
-  Phone,
-  Settings2,
-  ShieldCheck,
-  Zap,
-} from "lucide-react";
-
-import type { LucideIcon } from "lucide-react";
-
-import { cn } from "@/lib/utils";
-import { SITE, whatsappCarLink } from "@/lib/constants";
-import { formatLocaleNumber, formatPrice } from "@/lib/car-display";
-
-import CarGallery from "@/components/ui/CarGallery";
-import CarCard from "@/components/ui/CarCard";
-
-import type { Masina } from "@/types/car";
-
-
-const iconProps = {
-  strokeWidth: 1.75,
-  className: "h-[22px] w-[22px] text-[#C8102E]",
-} as const;
-
-
-
-function SpecCell({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: LucideIcon;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="flex items-center gap-3.5 border-b border-black/5 py-4">
-
-      <div className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#F2F2F7]">
-        <Icon {...iconProps}/>
-      </div>
-
-
-      <div>
-        <p className="font-[family-name:var(--font-outfit)] text-[11px] uppercase tracking-wide text-[#6B6B6B]">
-          {label}
-        </p>
-
-        <p className="font-[family-name:var(--font-outfit)] text-[15px] font-semibold text-[#111]">
-          {value}
-        </p>
-
-      </div>
-
-    </div>
-  );
-}
-
-
-
-function SectionTitle({
-  children
-}:{
-  children:React.ReactNode
-}){
-
-return (
-
-<h2 className="
-border-b-2
-border-[#111]
-pb-2
-font-[family-name:var(--font-syne)]
-text-sm
-font-bold
-uppercase
-tracking-wide
-">
-{children}
-</h2>
-
-)
-
-}
-
-
-
-function statusText(status?:Masina["disponibil"]){
-
-switch(status){
-
-case "Disponibil":
-return "Disponibil";
-
-case "Rezervat":
-return "Rezervat";
-
-case "Vandut":
-return "Vândut";
-
-default:
-return "Disponibil";
-
-}
-
-}
-
-
-
-
-function buildSpecs(car:Masina){
-
-
-const specs=[
-{
-icon:CarFront,
-label:"Marcă / Model",
-value:`${car.marca || ""} ${car.model || ""}`
-},
-
-{
-icon:CalendarDays,
-label:"An fabricație",
-value:car.an ? String(car.an):""
-},
-
-
-{
-icon:CircleGauge,
-label:"Kilometraj",
-value:car.kilometraj
-? `${formatLocaleNumber(car.kilometraj)} km`
-:""
-},
-
-
-{
-icon:Fuel,
-label:"Combustibil",
-value:car.combustibil || ""
-},
-
-
-{
-icon:Settings2,
-label:"Cutie viteze",
-value:car.cutieViteze || ""
-},
-
-
-{
-icon:Cog,
-label:"Motor",
-value:car.motor || ""
-},
-
-
-{
-icon:Zap,
-label:"Putere",
-value:car.putere
-? `${car.putere} CP`
-:""
-},
-
-
-{
-icon:CarFront,
-label:"Caroserie",
-value:car.caroserie || ""
-},
-
-
-{
-icon:Palette,
-label:"Culoare",
-value:car.culoare || ""
-},
-
-
-{
-icon:DoorOpen,
-label:"Nr. uși",
-value:car.nrUsi
-? String(car.nrUsi)
-:""
-},
-
-
-{
-icon:CarFront,
-label:"Tracțiune",
-value:car.tractiune || ""
-},
-
-
-{
-icon:ShieldCheck,
-label:"Inspecție",
-value:car.inspectieTehnica || ""
-}
-
-];
-
-
-return specs.filter(
-item=>item.value
-);
-  function PricePanel({
+function PricePanel({
   car,
 }:{
   car:Masina
@@ -533,7 +309,318 @@ contact_type:"WhatsApp_Mobile"
 return (
 
 <>
-  <div className="
+function PricePanel({
+  car,
+}:{
+  car:Masina
+}){
+
+
+const nume = `${car.marca} ${car.model}`;
+
+
+const trackContact = (type:string)=>{
+
+if(
+typeof window !== "undefined" &&
+(window as any).fbq
+){
+
+(window as any).fbq(
+"track",
+"Contact",
+{
+content_name:nume,
+value:car.pret || 0,
+currency:"EUR",
+contact_type:type
+}
+);
+
+}
+
+};
+
+
+
+return (
+
+<div className="
+rounded-2xl
+border
+border-black/10
+bg-white
+p-6
+shadow-[0_8px_30px_rgba(0,0,0,0.06)]
+">
+
+
+<p className="
+font-[family-name:var(--font-outfit)]
+text-xs
+uppercase
+text-[#6B6B6B]
+">
+Preț
+</p>
+
+
+
+<p className="
+mt-1
+font-[family-name:var(--font-syne)]
+text-4xl
+font-bold
+text-[#C8102E]
+">
+
+{car.pret
+?
+formatPrice(car.pret,{spaced:true})
+:"-"
+}
+
+</p>
+
+
+
+<p className="
+mt-3
+text-sm
+text-[#6B6B6B]
+">
+
+Finanțare disponibilă
+
+</p>
+
+
+
+<div className="
+mt-5
+space-y-3
+">
+
+
+<a
+
+href={whatsappCarLink(car as any)}
+
+target="_blank"
+
+rel="noopener noreferrer"
+
+onClick={()=>trackContact("WhatsApp")}
+
+className="
+flex
+w-full
+items-center
+justify-center
+gap-2
+rounded-full
+bg-[#C8102E]
+py-3.5
+font-semibold
+text-white
+hover:bg-[#A50E26]
+"
+
+>
+
+<Phone size={18}/>
+
+Cere detalii pe WhatsApp
+
+</a>
+
+
+
+
+<a
+
+href={`tel:${SITE.phoneRaw}`}
+
+onClick={()=>trackContact("Telefon")}
+
+className="
+flex
+w-full
+items-center
+justify-center
+gap-2
+rounded-full
+border-2
+border-[#111]
+py-3.5
+font-semibold
+"
+
+>
+
+<Phone size={18}/>
+
+Sună acum
+
+</a>
+
+
+
+
+<Link
+
+href="/#rate"
+
+className="
+flex
+w-full
+items-center
+justify-center
+gap-2
+rounded-full
+bg-[#F2F2F7]
+py-3.5
+font-semibold
+"
+
+>
+
+Calculează rata
+
+<ArrowUpRight size={18}/>
+
+</Link>
+
+
+
+
+<a
+
+href={`mailto:${SITE.email}?subject=Interesat de ${encodeURIComponent(nume)}`}
+
+className="
+flex
+justify-center
+gap-2
+py-2
+text-sm
+text-[#6B6B6B]
+"
+
+>
+
+<Mail size={18}/>
+
+Trimite email
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+)
+
+}
+
+
+
+
+export default function CarDetailView({
+
+car,
+
+similarCars=[]
+
+}:{
+
+car:Masina;
+
+similarCars?:Masina[];
+
+}){
+
+
+const [activeImage,setActiveImage]=useState(0);
+
+
+
+const images =
+car.galerie || [];
+
+
+
+const specs =
+buildSpecs(car);
+
+
+
+const title =
+`${car.marca || ""} ${car.model || ""}`;
+
+
+
+useEffect(()=>{
+
+
+if(
+typeof window !== "undefined" &&
+(window as any).fbq
+){
+
+(window as any).fbq(
+"track",
+"ViewContent",
+{
+
+content_ids:[
+car.slug || car._id
+],
+
+value:
+car.pret || 0,
+
+currency:"EUR"
+
+}
+
+)
+
+}
+
+
+},[car]);
+
+
+
+const trackMobileWhatsapp=()=>{
+
+if(
+typeof window !== "undefined" &&
+(window as any).fbq
+){
+
+(window as any).fbq(
+"track",
+"Contact",
+{
+contact_type:"WhatsApp_Mobile"
+}
+)
+
+}
+
+};
+
+
+
+return (
+
+<>
+<div className="
 bg-[#F7F7F7]
 pb-28
 pt-[72px]
@@ -1052,8 +1139,5 @@ WhatsApp
 </>
 
 )
-
-}
-
 
 }

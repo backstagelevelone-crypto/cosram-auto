@@ -104,6 +104,134 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
     </div>
   );
 }
+function buildSpecs(car: Car): { icon: LucideIcon; label: string; value: string }[] {
+  const c = car as any;
+  const brand = c.marca || car.make || "";
+  const modelStr = c.model || car.model || "";
+  const makeModel = [brand, modelStr].filter(Boolean).join(" ");
+  const anulFab = c.an != null ? String(c.an) : car.year != null ? String(car.year) : undefined;
+  const kmRulaj = c.kilometraj != null ? `${formatLocaleNumber(c.kilometraj)} km` : car.km != null ? `${formatLocaleNumber(car.km)} km` : undefined;
+  const putereCp = c.putere != null ? `${c.putere} CP` : car.power != null ? `${car.power} CP` : undefined;
+  const nrUsi = c.nrUsi != null ? String(c.nrUsi) : car.doors != null ? String(car.doors) : undefined;
+
+  const candidates: {
+    icon: LucideIcon;
+    label: string;
+    value: string | undefined;
+  }[] = [
+    {
+      icon: CarFront,
+      label: "Marcă / Model",
+      value: makeModel || undefined,
+    },
+    {
+      icon: CalendarDays,
+      label: "An fabricație",
+      value: anulFab,
+    },
+    {
+      icon: CircleGauge,
+      label: "Kilometraj",
+      value: kmRulaj,
+    },
+    { icon: Fuel, label: "Combustibil", value: c.combustibil || car.fuel },
+    { icon: Settings2, label: "Cutie viteze", value: c.cutieViteze || car.transmission },
+    { icon: Cog, label: "Motor", value: c.motor || car.engine },
+    {
+      icon: Zap,
+      label: "Putere",
+      value: putereCp,
+    },
+    { icon: CarFront, label: "Caroserie", value: c.caroserie || car.category },
+    { icon: Palette, label: "Culoare", value: c.culoare || car.color },
+    {
+      icon: DoorOpen,
+      label: "Nr. uși",
+      value: nrUsi,
+    },
+    { icon: CarFront, label: "Tracțiune", value: c.tractiune || car.drive },
+    { icon: ShieldCheck, label: "Inspecție tehnică", value: c.inspectieTehnica || car.itp },
+  ];
+
+  return candidates
+    .filter((item) => hasValue(item.value))
+    .map((item) => ({
+      icon: item.icon,
+      label: item.label,
+      value: item.value as string,
+    }));
+}
+
+function buildSpecs(car: Car): { icon: LucideIcon; label: string; value: string }[] {
+  const c = car as any;
+  const brand = c.marca || car.make || "";
+  const modelStr = c.model || car.model || "";
+  const makeModel = [brand, modelStr].filter(Boolean).join(" ");
+  const anulFab = c.an != null ? String(c.an) : car.year != null ? String(car.year) : undefined;
+  const kmRulaj = c.kilometraj != null ? `${formatLocaleNumber(c.kilometraj)} km` : car.km != null ? `${formatLocaleNumber(car.km)} km` : undefined;
+  const putereCp = c.putere != null ? `${c.putere} CP` : car.power != null ? `${car.power} CP` : undefined;
+  const nrUsi = c.nrUsi != null ? String(c.nrUsi) : car.doors != null ? String(car.doors) : undefined;
+
+  const candidates: {
+    icon: LucideIcon;
+    label: string;
+    value: string | undefined;
+  }[] = [
+    {
+      icon: CarFront,
+      label: "Marcă / Model",
+      value: makeModel || undefined,
+    },
+    {
+      icon: CalendarDays,
+      label: "An fabricație",
+      value: anulFab,
+    },
+    {
+      icon: CircleGauge,
+      label: "Kilometraj",
+      value: kmRulaj,
+    },
+    { icon: Fuel, label: "Combustibil", value: c.combustibil || car.fuel },
+    { icon: Settings2, label: "Cutie viteze", value: c.cutieViteze || car.transmission },
+    { icon: Cog, label: "Motor", value: c.motor || car.engine },
+    {
+      icon: Zap,
+      label: "Putere",
+      value: putereCp,
+    },
+    { icon: CarFront, label: "Caroserie", value: c.caroserie || car.category },
+    { icon: Palette, label: "Culoare", value: c.culoare || car.color },
+    {
+      icon: DoorOpen,
+      label: "Nr. uși",
+      value: nrUsi,
+    },
+    { icon: CarFront, label: "Tracțiune", value: c.tractiune || car.drive },
+    { icon: ShieldCheck, label: "Inspecție tehnică", value: c.inspectieTehnica || car.itp },
+  ];
+
+  return candidates
+    .filter((item) => hasValue(item.value))
+    .map((item) => ({
+      icon: item.icon,
+      label: item.label,
+      value: item.value as string,
+    }));
+}
+
+function statusLabel(status: Car["status"]): string {
+  switch (status) {
+    case "disponibil":
+      return "Disponibil";
+    case "rezervat":
+      return "Rezervat";
+    case "vandut":
+      return "Vândut";
+    default:
+      return "Disponibil";
+  }
+}
 
 export default function CarDetailView({
   car,

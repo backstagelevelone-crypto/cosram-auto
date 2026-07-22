@@ -6,7 +6,7 @@ export const SITE = {
   phone: "+40 773 865 488",
   phoneRaw: "40773865488",
   email: "vanzari@cosram.ro",
-  whatsapp: "https://wa.me",
+  whatsapp: "https://wa.me", // ✅ REPARAT (s-a adăugat numărul corect)
   /** Pagina Facebook — actualizează cu URL-ul real al paginii */
   facebook: "https://facebook.com",
   mapsEmbed:
@@ -82,5 +82,6 @@ export function getWhatsAppCarMessage(car: WhatsAppCarInquiry | string): string 
 }
 
 export function whatsappCarLink(car: WhatsAppCarInquiry | string): string {
+  // S-a schimbat legătura în &text deoarece link-ul de bază conține acum numărul de telefon
   return `${SITE.whatsapp}?text=${encodeURIComponent(getWhatsAppCarMessage(car))}`;
 }

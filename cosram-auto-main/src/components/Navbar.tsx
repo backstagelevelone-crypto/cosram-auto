@@ -76,85 +76,88 @@ export default function Navbar() {
             : "border-transparent bg-transparent"
         )}
       >
-        <div className="relative mx-auto grid max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-6 py-3 md:px-12 lg:px-16">
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 justify-self-start sm:gap-3"
-            aria-label="Cosram Auto — Acasă"
-          >
-            <LogoBadge priority />
-            <BrandWordmark
-              variant={navTone === "dark" ? "on-light" : "on-dark"}
-              size="sm"
-            />
-          </Link>
-
-          <nav className="hidden items-center gap-8 justify-self-center lg:flex">
-            {NAV_LINKS.map((link) => {
-              const isStoc = link.href === "#stoc";
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "text-sm font-medium transition-colors duration-300",
-                    isStoc && "group/stoc inline-flex items-center gap-1.5",
-                    textClass
-                  )}
-                >
-                  {link.label}
-                  {isStoc && (
-                    <NavStockBadge tone={navTone === "dark" ? "dark" : "light"} />
-                  )}
-                </a>
-              );
-            })}
-          </nav>
-
-          {/* Zona din dreapta: Telefon + BT Direct (.svg) + Buton Contact */}
-          <div className="flex items-center gap-4 justify-self-end">
-            <a
-              href={`tel:${SITE.phoneRaw}`}
-              className={cn(
-                "hidden items-center gap-2 text-sm font-medium transition-colors duration-300 xl:flex",
-                textClass
-              )}
+        <div className="relative mx-auto flex max-w-7xl flex-col px-6 py-3 md:px-12 lg:px-16">
+          {/* Linia principală a meniului */}
+          <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center">
+            <Link
+              href="/"
+              className="flex items-center gap-2.5 justify-self-start sm:gap-3"
+              aria-label="Cosram Auto — Acasă"
             >
-              <Phone className="h-4 w-4 text-[#C8102E]" />
-              {SITE.phone}
-            </a>
+              <LogoBadge priority />
+              <BrandWordmark
+                variant={navTone === "dark" ? "on-light" : "on-dark"}
+                size="sm"
+              />
+            </Link>
 
-            {/* S-a schimbat src-ul către formatul .svg primit de la tine */}
-            <div className="hidden items-center md:flex mr-1">
+            <nav className="hidden items-center gap-8 justify-self-center lg:flex">
+              {NAV_LINKS.map((link) => {
+                const isStoc = link.href === "#stoc";
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "text-sm font-medium transition-colors duration-300",
+                      isStoc && "group/stoc inline-flex items-center gap-1.5",
+                      textClass
+                    )}
+                  >
+                    {link.label}
+                    {isStoc && (
+                      <NavStockBadge tone={navTone === "dark" ? "dark" : "light"} />
+                    )}
+                  </a>
+                );
+              })}
+            </nav>
+
+            <div className="flex items-center gap-3 justify-self-end">
+              <a
+                href={`tel:${SITE.phoneRaw}`}
+                className={cn(
+                  "hidden items-center gap-2 text-sm font-medium transition-colors duration-300 xl:flex",
+                  textClass
+                )}
+              >
+                <Phone className="h-4 w-4 text-[#C8102E]" />
+                {SITE.phone}
+              </a>
+              <a
+                href={SITE.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden items-center gap-2 rounded-full bg-[#C8102E] px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-[#A50E26] hover:shadow-[0_6px_20px_rgba(200,16,46,0.3)] sm:inline-flex"
+              >
+                Contactează-ne
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+              <button
+                type="button"
+                aria-label="Deschide meniul"
+                onClick={() => setMobileOpen(true)}
+                className={cn(
+                  "rounded-lg p-2 transition-colors duration-300 lg:hidden",
+                  navTone === "dark" ? "text-[#111111]" : "text-white"
+                )}
+              >
+                <Menu className="h-6 w-6" />
+              </button>
+            </div>
+          </div>
+
+          {/* Zona secundară dedicată siglei BT Direct — Poziționată exact sub butoane */}
+          <div className="mt-2 hidden w-full justify-end pr-2 md:flex">
+            <div className="relative h-7 w-24">
               <Image 
                 src="/bt-direct.svg" 
                 alt="Partener BT Direct" 
-                width={75} 
-                height={30} 
-                className="object-contain opacity-90 transition-opacity hover:opacity-100" 
+                fill
+                priority
+                className="object-contain object-right opacity-90 transition-opacity hover:opacity-100 invert dark:invert-0" 
               />
             </div>
-
-            <a
-              href={SITE.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden items-center gap-2 rounded-full bg-[#C8102E] px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:bg-[#A50E26] hover:shadow-[0_6px_20px_rgba(200,16,46,0.3)] sm:inline-flex"
-            >
-              Contactează-ne
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-            <button
-              type="button"
-              aria-label="Deschide meniul"
-              onClick={() => setMobileOpen(true)}
-              className={cn(
-                "rounded-lg p-2 transition-colors duration-300 lg:hidden",
-                navTone === "dark" ? "text-[#111111]" : "text-white"
-              )}
-            >
-              <Menu className="h-6 w-6" />
-            </button>
           </div>
         </div>
       </motion.header>
@@ -165,7 +168,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="nav-glass fixed inset-0 z- lg:hidden"
+            className="nav-glass fixed inset-0 z-[60] lg:hidden"
           >
             <motion.div
               initial={{ x: "100%" }}

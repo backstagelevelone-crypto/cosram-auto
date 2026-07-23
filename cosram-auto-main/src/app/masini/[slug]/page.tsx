@@ -184,7 +184,7 @@ export default async function MasinaPage({
 
 
   const trackingId =
-    carData.slug || slug;
+    carData._id || carData.id || carData.slug || slug;
 
 
   const trackingPrice =

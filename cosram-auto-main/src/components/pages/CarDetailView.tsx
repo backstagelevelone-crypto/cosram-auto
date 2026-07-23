@@ -243,14 +243,36 @@ export default function CarDetailView({ car, similarCars }: { car: Car; similarC
 
             <div className="lg:col-span-5">
               <div className="lg:sticky lg:top-24">
-                <div className="mb-5 flex flex-wrap items-center gap-2">
-                  <span className={cn(
-                    "rounded-full px-3 py-1 font-[family-name:var(--font-outfit)] text-[11px] font-semibold uppercase tracking-wide",
-                    car.status === "disponibil" || c.disponibil === "Disponibil" ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200" : "bg-amber-50 text-amber-700 ring-1 ring-amber-200"
-                  )}>
-                    {statusLabel(car.status || c.disponibil?.toLowerCase())}
-                  </span>
-                </div>
+               <div className="mb-5 flex flex-wrap items-center gap-2">
+
+  {(() => {
+    const currentStatus =
+      c.disponibil?.toString().toLowerCase().trim() ||
+      car.status?.toString().toLowerCase().trim();
+
+
+    return (
+      <span
+        className={cn(
+          "rounded-full px-3 py-1 font-[family-name:var(--font-outfit)] text-[11px] font-semibold uppercase tracking-wide",
+
+          currentStatus === "disponibil" &&
+            "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
+
+          currentStatus === "rezervat" &&
+            "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
+
+          currentStatus === "vandut" &&
+            "bg-red-50 text-red-700 ring-1 ring-red-200"
+        )}
+      >
+        {statusLabel(currentStatus as Car["status"])}
+      </span>
+    );
+
+  })()}
+
+</div>
                 <h1 className="font-[family-name:var(--font-syne)] text-3xl font-bold leading-tight text-[#111111] lg:text-4xl">{title}</h1>
                 {subtitle !== "-" && <p className="mt-2 font-[family-name:var(--font-outfit)] text-base text-[#6B6B6B]">{subtitle}</p>}
                 <PricePanel car={car} className="mt-6 hidden lg:block" />

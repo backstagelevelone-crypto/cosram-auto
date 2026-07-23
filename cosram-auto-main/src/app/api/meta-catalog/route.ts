@@ -22,11 +22,31 @@ function escapeCsv(value: unknown): string {
   return text;
 }
 
-function getAvailability(status?: string) {
-  return status === "Disponibil"
-    ? "AVAILABLE"
-    : "UNAVAILABLE";
+
+function getAvailability() {
+  return "AVAILABLE";
 }
+
+
+function getFuelType(fuel?: string) {
+  switch (fuel) {
+    case "Benzina":
+      return "GASOLINE";
+
+    case "Diesel":
+      return "DIESEL";
+
+    case "Electric":
+      return "ELECTRIC";
+
+    case "Hibrid":
+      return "HYBRID";
+
+    default:
+      return "";
+  }
+}
+
 
 function getBodyStyle(caroserie?: string) {
   switch (caroserie) {
@@ -49,6 +69,18 @@ function getBodyStyle(caroserie?: string) {
   }
 }
 
+
+function getEngineSize(engine?: string) {
+  if (!engine) return "";
+
+  const match = engine
+    .replace(",", ".")
+    .match(/\d+(\.\d+)?/);
+
+  return match ? match[0] : "";
+}
+
+
 function getImage(galerie?: string[]) {
   if (!galerie || galerie.length === 0) {
     return "";
@@ -57,8 +89,11 @@ function getImage(galerie?: string[]) {
   return `${SITE_URL}${galerie[0]}`;
 }
 
+
 export async function GET() {
+
   const headers = [
+
     "vehicle_id",
     "title",
     "description",
@@ -74,12 +109,14 @@ export async function GET() {
 
     "address.addr1",
     "address.city",
+    "address.region",
     "address.country",
 
     "transmission",
+
     "body_style",
+
     "fuel_type",
-    "vehicle_type",
 
     "make",
     "model",
@@ -95,117 +132,125 @@ export async function GET() {
 
     "engine_size",
     "horse_power",
+
   ];
 
 
-  const rows = masini.map((masina) => {
+  const rows = masini
 
-    return [
-
-      // ID unic
-      masina._id,
-
-
-      // Titlu
-      `${masina.marca ?? ""} ${masina.model ?? ""}`.trim(),
+    // scoatem mașinile vândute din feed
+    .filter(
+      (masina) =>
+        masina.disponibil !== "Vandut"
+    )
 
 
-      // Descriere
-      masina.evaluareTehnica ??
-        `${masina.marca ?? ""} ${masina.model ?? ""}`,
+    .map((masina) => {
+
+      return [
+
+        // ID unic
+        masina._id,
 
 
-      // Disponibilitate Meta
-      getAvailability(masina.disponibil),
+        // Titlu
+        `${masina.marca ?? ""} ${masina.model ?? ""}`
+          .trim(),
 
 
-      // Conditie
-      "USED",
+        // Descriere
+        masina.evaluareTehnica ??
+          `${masina.marca ?? ""} ${masina.model ?? ""}`,
 
 
-      // Pret ISO currency
-      masina.pret
-        ? `${masina.pret} EUR`
-        : "",
+        // Meta availability
+        getAvailability(),
 
 
-      // Imagine principala
-      getImage(masina.galerie),
+        // Meta condition
+        "USED_VEHICLE",
 
 
-      // URL masina
-      `${SITE_URL}/masini/${masina.slug}`,
+        // Preț
+        masina.pret
+          ? `${masina.pret} EUR`
+          : "",
 
 
-      // Adresa dealer
-      "Str. Toamnei 36",
-
-      "Buzău",
-
-      "RO",
+        // Imagine
+        getImage(masina.galerie),
 
 
-      // Cutie viteze
-      masina.cutieViteze === "Automata"
-        ? "AUTOMATIC"
-        : "MANUAL",
+        // URL
+        `${SITE_URL}/masini/${masina.slug}`,
 
 
-      // Caroserie Meta
-      getBodyStyle(masina.caroserie),
+        // Adresă
+        "Str. Toamnei 36",
+
+        "Buzău",
+
+        "Buzău",
+
+        "RO",
 
 
-      // Combustibil
-      masina.combustibil
-        ? masina.combustibil.toUpperCase()
-        : "",
+        // Cutie
+        masina.cutieViteze === "Automata"
+          ? "AUTOMATIC"
+          : "MANUAL",
 
 
-      // Tip vehicul
-      "CAR",
+        // Caroserie
+        getBodyStyle(masina.caroserie),
 
 
-      // Marca
-      masina.marca?.trim() ?? "",
+        // Combustibil
+        getFuelType(masina.combustibil),
 
 
-      // Model
-      masina.model ?? "",
+        // Marca
+        masina.marca?.trim() ?? "",
 
 
-      // An
-      masina.an ?? "",
+        // Model
+        masina.model ?? "",
 
 
-      // Stare vehicul
-      "USED",
+        // An
+        masina.an ?? "",
 
 
-      // Dealer ID
-      "cosram",
+        // Stare
+        "USED",
 
 
-      // Dealer name
-      "COSRAM",
+        // Dealer
+        "cosram",
+
+        "COSRAM",
 
 
-      // Kilometri
-      "KM",
+        // Kilometri
+        "KM",
 
-      masina.kilometraj ?? "",
-
-
-      // Motor
-      masina.motor ?? "",
+        masina.kilometraj ?? 1,
 
 
-      // Cai putere
-      masina.putere ?? "",
-    ];
-  });
+        // Motor numeric
+        getEngineSize(masina.motor),
+
+
+        // Cai putere
+        masina.putere ?? "",
+
+      ];
+
+    });
 
 
   const csv = [
+
     headers.join(","),
 
     ...rows.map((row) =>
@@ -215,6 +260,7 @@ export async function GET() {
   ].join("\n");
 
 
+
   return new NextResponse(csv, {
 
     headers: {
@@ -222,13 +268,16 @@ export async function GET() {
       "Content-Type":
         "text/csv; charset=utf-8",
 
+
       "Content-Disposition":
         'inline; filename="cosram-meta-vehicles.csv"',
 
 
       "Cache-Control":
         "no-store",
+
     },
 
   });
+
 }

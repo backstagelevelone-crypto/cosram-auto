@@ -22,3 +22,41 @@ export interface Car {
   description?: string;
   category?: "SUV" | "Sedan" | "Hatchback" | "Break" | "Touring" | "Combi";
 }
+
+
+export interface Masina {
+  _id: string;
+  slug?: string;
+
+  marca?: string;
+  model?: string;
+
+  an?: number;
+  kilometraj?: number;
+
+  pret?: number;
+  rataLunara?: number;
+
+  combustibil?: "Benzina" | "Diesel" | "Electric" | "Hibrid";
+  cutieViteze?: "Manuala" | "Automata";
+
+  motor?: string;
+  putere?: number;
+
+  caroserie?: "SUV" | "Sedan" | "Hatchback" | "Break" | "Touring" | "Combi";
+
+  culoare?: string;
+  nrUsi?: number;
+
+  tractiune?: "FWD" | "RWD" | "AWD";
+
+  inspectieTehnica?: string;
+
+  dotari?: string[];
+
+  evaluareTehnica?: string;
+
+  disponibil?: "Disponibil" | "Rezervat" | "Vandut";
+
+  galerie?: string[];
+}

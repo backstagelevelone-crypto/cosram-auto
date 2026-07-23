@@ -8,10 +8,13 @@ import CarDetailView from "@/components/pages/CarDetailView";
 import { buildCarName } from "@/lib/car-display";
 import { getCarBySlug, getSimilarCars } from "@/lib/cars";
 
+import type { Car } from "@/types/car";
+
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
+
 
 
 export async function generateMetadata({
@@ -34,6 +37,7 @@ export async function generateMetadata({
 
   const carData = car as any;
 
+
   const anulMasinii =
     carData.an ||
     carData.year ||
@@ -48,6 +52,8 @@ export async function generateMetadata({
       `${buildCarName(car)} disponibil la Cosram Auto Buzău. Finanțare rapidă, garanție 12 luni și livrare la domiciliu în toată România.`,
   };
 }
+
+
 
 
 
@@ -76,7 +82,7 @@ export default async function MasinaPage({
 
 
 
-  const carForView = {
+  const carForView: Car = {
 
     id:
       carData._id ||
@@ -149,14 +155,11 @@ export default async function MasinaPage({
 
 
     status:
-
       carData.disponibil === "Disponibil"
         ? "disponibil"
-        :
-      carData.disponibil === "Rezervat"
-        ? "rezervat"
-        :
-        "vandut",
+        : carData.disponibil === "Rezervat"
+          ? "rezervat"
+          : "vandut",
 
 
     images:
@@ -178,6 +181,8 @@ export default async function MasinaPage({
 
 
 
+
+
   const trackingId =
     carData.slug || slug;
 
@@ -186,6 +191,65 @@ export default async function MasinaPage({
     carData.pret ||
     carData.price ||
     0;
+
+
+
+
+
+  const similarCars: Car[] = similarRaw.map((item:any): Car => ({
+
+    id:
+      item._id ||
+      item.id ||
+      "",
+
+
+    slug:
+      item.slug,
+
+
+    name:
+      `${item.marca || item.make || ""} ${item.model || ""}`.trim(),
+
+
+    make:
+      item.marca || item.make,
+
+
+    model:
+      item.model,
+
+
+    year:
+      item.an || item.year,
+
+
+    price:
+      item.pret ?? item.price,
+
+
+    images:
+      item.galerie ||
+      item.images ||
+      [],
+
+
+    features:
+      item.dotari ||
+      item.features ||
+      [],
+
+
+    status:
+      item.disponibil === "Disponibil"
+        ? "disponibil"
+        : item.disponibil === "Rezervat"
+          ? "rezervat"
+          : "vandut",
+
+  }));
+
+
 
 
 
@@ -203,54 +267,7 @@ export default async function MasinaPage({
 
           car={carForView}
 
-          similarCars={similarRaw.map((item:any)=>({
-
-            id:
-              item._id || item.id,
-
-
-            slug:
-              item.slug,
-
-
-            name:
-              `${item.marca || ""} ${item.model || ""}`.trim(),
-
-
-            make:
-              item.marca,
-
-
-            model:
-              item.model,
-
-
-            year:
-              item.an,
-
-
-            price:
-              item.pret,
-
-
-            images:
-              item.galerie || [],
-
-
-            features:
-              item.dotari || [],
-
-
-            status:
-              item.disponibil === "Disponibil"
-                ? "disponibil"
-                :
-              item.disponibil === "Rezervat"
-                ? "rezervat"
-                :
-                "vandut",
-
-          }))}
+          similarCars={similarCars}
 
         />
 
@@ -292,7 +309,6 @@ export default async function MasinaPage({
 
 
       <Footer />
-
 
     </>
 

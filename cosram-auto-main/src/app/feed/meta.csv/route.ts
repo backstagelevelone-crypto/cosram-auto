@@ -8,7 +8,7 @@ export async function GET() {
   );
 
   const header =
-    "id,title,description,url,image_link,price,brand,model,year,mileage,condition";
+    "vehicle_offer_id,title,description,url,image_url,price,make,model,year,mileage,condition";
 
   const rows = masiniDisponibile.map((masina) => {
     const title =
@@ -17,14 +17,14 @@ export async function GET() {
     const description =
       `${masina.marca ?? ""} ${masina.model ?? ""} - ${masina.combustibil ?? ""} - ${masina.cutieViteze ?? ""} - ${masina.kilometraj ?? 0} km`.trim();
 
+    const url =
+      `${baseUrl}/masini/${masina.slug}`.trim();
+
     const image = (
       masina.galerie?.[0]?.startsWith("http")
         ? masina.galerie[0]
         : `${baseUrl}${masina.galerie?.[0] ?? ""}`
     ).trim();
-
-    const url =
-      `${baseUrl}/masini/${masina.slug}`.trim();
 
     return [
       masina._id,
@@ -50,7 +50,7 @@ export async function GET() {
   return new Response(csv, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": "inline; filename=meta.csv",
+      "Content-Disposition": "inline; filename=vehicles.csv",
     },
   });
 }

@@ -1,56 +1,88 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-export const dynamic = 'force-dynamic'; 
+// Înlocuiește cu sursa ta de date
+async function getVehicles() {
+  return [
+    {
+      id: "12345",
+      title: "BMW X5 xDrive30d",
+      description: "BMW X5 xDrive30d, istoric complet, stare excelentă.",
+      slug: "bmw-x5-xdrive30d-12345",
+      image: "https://example.com/images/bmw-x5.jpg",
+      make: "BMW",
+      model: "X5",
+      year: 2021,
+      mileage: 54000,
+      price: 46990,
+      availability: "in stock",
+      condition: "used",
+      bodyStyle: "SUV",
+      dealerId: "dealer_001",
+    },
+  ];
+}
+
+function escapeCsv(value: unknown): string {
+  if (value === null || value === undefined) return "";
+
+  const str = String(value);
+
+  if (str.includes(",") || str.includes('"') || str.includes("\n")) {
+    return `"${str.replace(/"/g, '""')}"`;
+  }
+
+  return str;
+}
 
 export async function GET() {
-  try {
-    // Coloanele universale pe care validatorul de vehicule le aprobă direct
-    const headers = [
-      'vehicle_id',
-      'title',
-      'description',
-      'url',
-      'image_link',
-      'make',
-      'model',
-      'year',
-      'mileage_value',
-      'mileage_unit',
-      'price',
-      'availability',
-      'state_of_vehicle',
-      'body_style',
-      'dealer_id'
-    ].join(',');
+  const vehicles = await getVehicles();
 
-    // Datele reale ale mașinii Audi A4 de pe cosram.ro, aliniate la fix
-    const row = [
-      'cosram_audi_a4_2006',
-      '"Audi A4 2006"',
-      '"Audi A4 2.0 Diesel din 2006 disponibil la parcul auto COSRAM Auto Buzău."',
-      'https://cosram.ro',
-      'https://cosram.ro',
-      '"Audi"',
-      '"A4"',
-      '2006',
-      '250000',
-      'KM',
-      '4499 EUR',
-      'active',
-      'USED',
-      'WAGON',
-      'cosram_buzau' // ID de dealer ca să nu mai ceară adresa text rigidă din panou
-    ].join(',');
+  const headers = [
+    "vehicle_id",
+    "title",
+    "description",
+    "url",
+    "image_link",
+    "make",
+    "model",
+    "year",
+    "mileage_value",
+    "mileage_unit",
+    "price",
+    "availability",
+    "state_of_vehicle",
+    "body_style",
+    "dealer_id",
+  ];
 
-    const csvContent = `${headers}\n${row}`;
+  const rows = vehicles.map((vehicle) => [
+    vehicle.id,
+    vehicle.title,
+    vehicle.description,
+    `https://example.com/masina/${vehicle.slug}`,
+    vehicle.image,
+    vehicle.make,
+    vehicle.model,
+    vehicle.year,
+    vehicle.mileage,
+    "KM", // Meta acceptă KM sau MI
+    `${vehicle.price} RON`,
+    vehicle.availability, // "in stock"
+    vehicle.condition, // "used", "new", "cpo"
+    vehicle.bodyStyle, // SUV, Sedan, Hatchback etc.
+    vehicle.dealerId,
+  ]);
 
-    return new NextResponse(csvContent, {
-      headers: {
-        'Content-Type': 'text/csv; charset=utf-8',
-        'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-      },
-    });
-  } catch (error) {
-    return NextResponse.json({ error: 'Eroare la generare' }, { status: 500 });
-  }
+  const csv = [
+    headers.join(","),
+    ...rows.map((row) => row.map(escapeCsv).join(",")),
+  ].join("\n");
+
+  return new NextResponse(csv, {
+    headers: {
+      "Content-Type": "text/csv; charset=utf-8",
+      "Content-Disposition": 'inline; filename="meta-vehicles-feed.csv"',
+      "Cache-Control": "public, max-age=300",
+    },
+  });
 }

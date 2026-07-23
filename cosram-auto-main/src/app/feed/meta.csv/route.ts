@@ -1,7 +1,7 @@
 export const dynamic = "force-static";
 
 export async function GET() {
-  const csv = `vehicle_id,title,description,url,image,price,currency,make,model,year,mileage.value,mileage.unit,state_of_vehicle,body_style,fuel_type,transmission,availability
+  const csv = `vehicle_id,title,description,url,image,price,currency,make,model,year,mileage_value,mileage_unit,state_of_vehicle,body_style,fuel_type,transmission,availability
 0165820a-0ea1-4442-a4e8-483e6af91e17,Renault Megane 2012,Renault Megane Diesel Manuala,https://cosram.ro
 0165820a-0ea1-4442-a4e8-483e6af91e21,Volkswagen Passat 2013,Volkswagen Passat Diesel Manuala,https://cosram.ro
 0165820a-0ea1-4442-a4e8-483e6af91ee7,Ford Focus 2012,Ford Focus Benzina Manuala,https://cosram.ro

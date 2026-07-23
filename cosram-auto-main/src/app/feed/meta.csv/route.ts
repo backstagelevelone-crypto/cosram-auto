@@ -8,7 +8,7 @@ export async function GET() {
   );
 
   const header =
-    "id,title,description,url,image,price,brand,model,year,mileage,condition";
+    "id,title,description,url,image_link,price,brand,model,year,mileage,condition";
 
   const rows = masiniDisponibile.map((masina) => {
     const title =
@@ -33,8 +33,8 @@ export async function GET() {
       url,
       image,
       `${Number(masina.pret ?? 0).toFixed(2)} EUR`,
-      masina.marca ?? "",
-      masina.model ?? "",
+      (masina.marca ?? "").trim(),
+      (masina.model ?? "").trim(),
       masina.an ?? "",
       masina.kilometraj ?? 0,
       "used",

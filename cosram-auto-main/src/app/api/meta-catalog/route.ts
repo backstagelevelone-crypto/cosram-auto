@@ -4,43 +4,61 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-  <channel>
-    <title>Catalog Auto COSRAM</title>
-    <link>https://cosram.ro</link>
-    <description>Stoc masini rulate Cosram Auto</description>
-    <item>
-      <vehicle_id>cosram_audi_a4_2006</vehicle_id>
-      <id>cosram_audi_a4_2006</id>
-      <title><![CDATA[Audi A4 2006]]></title>
-      <description><![CDATA[Audi A4 2.0 Diesel din 2006 disponibil la parcul auto COSRAM Auto Buzău.]]></description>
-      <link>https://cosram.ro</link>
-      <image_link>https://cosram.ro</image_link>
-      <brand><![CDATA[Audi]]></brand>
-      <make><![CDATA[Audi]]></make>
-      <model><![CDATA[A4]]></model>
-      <year>2006</year>
-      <mileage>
-        <value>250000</value>
-        <unit>KM</unit>
-      </mileage>
-      <price>4499 EUR</price>
-      <availability>in stock</availability>
-      <condition>used</condition>
-      <state_of_vehicle>Used</state_of_vehicle>
-      <body_style>WAGON</body_style>
-    </item>
-  </channel>
-</rss>`;
+    // 1. Definim antetul tabelului (header-ul) cu parametrii stricți ceruți de Meta Auto
+    const headers = [
+      'vehicle_id',
+      'title',
+      'description',
+      'url',
+      'image[0].url',
+      'make',
+      'model',
+      'year',
+      'mileage.value',
+      'mileage.unit',
+      'price',
+      'availability',
+      'state_of_vehicle',
+      'body_style',
+      'street_address',
+      'city',
+      'region',
+      'country'
+    ].join(',');
 
-    return new NextResponse(xml, {
+    // 2. Adăugăm rândul cu datele reale ale mașinii Audi A4 de pe cosram.ro
+    const row = [
+      'cosram_audi_a4_2006',
+      '"Audi A4 2006"',
+      '"Audi A4 2.0 Diesel din 2006 disponibil la parcul auto COSRAM Auto Buzău."',
+      'https://cosram.ro',
+      'https://cosram.ro',
+      '"Audi"',
+      '"A4"',
+      '2006',
+      '250000',
+      'KM',
+      '4499 EUR',
+      'for_sale',
+      'USED',
+      'WAGON',
+      '"Strada Toamnei 36"',
+      '"Bragareasa"',
+      '"Buzau"',
+      '"Romania"'
+    ].join(',');
+
+    // Unim capul de tabel cu datele
+    const csvContent = `${headers}\n${row}`;
+
+    // Returnăm tabelul CSV direct către Meta
+    return new NextResponse(csvContent, {
       headers: {
-        'Content-Type': 'application/xml',
+        'Content-Type': 'text/csv; charset=utf-8',
         'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
       },
     });
   } catch (error) {
-    return NextResponse.json({ error: 'Eroare la generare XML' }, { status: 500 });
+    return NextResponse.json({ error: 'Eroare la generare CSV' }, { status: 500 });
   }
 }

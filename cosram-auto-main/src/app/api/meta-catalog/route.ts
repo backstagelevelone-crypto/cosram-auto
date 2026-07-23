@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    // Formatul final curățat de erori și aliniat la cerințele Meta Automotive
+    // Structura finală ajustată pentru validarea exactă a adresei și disponibilității în Meta
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <listings>
   <title>Catalog Auto COSRAM</title>
@@ -25,13 +25,15 @@ export async function GET() {
       <unit>KM</unit>
     </mileage>
     <price>19500 EUR</price>
-    <availability>active</availability>
+    <availability>for_sale</availability>
     <state_of_vehicle>Used</state_of_vehicle>
     <body_style>SEDAN</body_style>
-    <street_address><![CDATA[Soseaua Bucuresti]]></street_address>
-    <city><![CDATA[Bucuresti]]></city>
-    <region><![CDATA[Bucuresti]]></region>
-    <country><![CDATA[Romania]]></country>
+    <address format="simple">
+      <street_address><![CDATA[Soseaua Bucuresti]]></street_address>
+      <city><![CDATA[Bucuresti]]></city>
+      <region><![CDATA[Bucuresti]]></region>
+      <country><![CDATA[Romania]]></country>
+    </address>
   </listing>
 </listings>`;
 
@@ -42,6 +44,6 @@ export async function GET() {
       },
     });
   } catch (error) {
-    return NextResponse.json({ error: 'Eroare la generare' }, { status: 500 });
+    return NextResponse.json({ error: 'Eroare la generare XML' }, { status: 500 });
   }
 }

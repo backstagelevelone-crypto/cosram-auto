@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const csv = `vehicle_id,title,description,url,image,price,make,model,year,mileage,state_of_vehicle,body_style
+  const csv = `vehicle_id,title,description,url,image:url,price,make,model,year,mileage,state_of_vehicle,body_style
 "0165820a-0ea1-4442-a4e8-483e6af91e17","Renault Megane 2012","Renault Megane Diesel Manuala 268000 km","https://cosram.ro/masini/Renaultmegane2012","https://cosram.ro/images/masini/Renaultmegane2012/1.jpg","5499.00 EUR","Renault","Megane","2012","268000","USED","HATCHBACK"
 "0165820a-0ea1-4442-a4e8-483e6af91e21","Volkswagen Passat 2013","Volkswagen Passat Diesel Manuala 227000 km","https://cosram.ro/masini/passatb72.0tdi2013","https://cosram.ro/images/masini/passatb72.0tdi2013/1.jpg","6999.00 EUR","Volkswagen","Passat","2013","227000","USED","SEDAN"
 "0165820a-0ea1-4442-a4e8-483e6af91ee7","Ford Focus 2012","Ford Focus Benzina Manuala 210000 km","https://cosram.ro/masini/ford-focus-2012","https://cosram.ro/images/masini/ford-focus-2012/01.jpg","3999.00 EUR","Ford","Focus","2012","210000","USED","HATCHBACK"

@@ -28,7 +28,7 @@ ${`${masina.marca ?? ""} ${masina.model ?? ""} ${masina.an ?? ""}`.trim()}
 ]]></title>
 
 <description><![CDATA[
-${`${masina.marca ?? ""} ${masina.model ?? ""} - ${masina.combustibil ?? ""} - ${masina.cutieViteze ?? ""} - ${masina.kilometraj ?? ""} km`}
+${`${masina.marca ?? ""} ${masina.model ?? ""} - ${masina.combustibil ?? ""} - ${masina.cutieViteze ?? ""} - ${masina.kilometraj ?? 0} km`}
 ]]></description>
 
 <link>
@@ -56,7 +56,7 @@ ${masina.an ?? ""}
 </year>
 
 <mileage>
-${masina.kilometraj ?? "0"}
+${masina.kilometraj ?? 0}
 </mileage>
 
 <fuel_type>
@@ -86,7 +86,7 @@ in stock
 
   return new Response(xml, {
     headers: {
-      "Content-Type": "application/rss+xml",
+      "Content-Type": "application/xml; charset=utf-8",
     },
   });
 }

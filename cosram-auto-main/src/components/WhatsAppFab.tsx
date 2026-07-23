@@ -36,11 +36,13 @@ export default function WhatsAppFab() {
         </span>
       </a>
 
+
       {/* Butonul ROȘU: Discută cu noi */}
       <a
         href={whatsappRateLink}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackContactClick("WhatsApp_Discuta")}
         className="flex h-14 items-center justify-center gap-2 rounded-full bg-[#C8102E] px-5 text-white shadow-[0_4px_12px_rgba(200,16,46,0.3)] transition-transform duration-300 hover:scale-105"
       >
         <MessageCircle className="h-5 w-5" />

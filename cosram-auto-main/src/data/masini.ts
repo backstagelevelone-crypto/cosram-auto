@@ -123,7 +123,7 @@ export const masini: Masina[] = [
     "cutieViteze": "Manuala",
     "motor": "2.0 TDI",
     "caroserie": "Hatchback",
-    "disponibil": "Vandut",
+    "disponibil": "Disponibil",
     "galerie": [
       "/images/masini/bmw-320d-mpacket-2006/01.jpg",
       "/images/masini/bmw-320d-mpacket-2006/02.jpg",

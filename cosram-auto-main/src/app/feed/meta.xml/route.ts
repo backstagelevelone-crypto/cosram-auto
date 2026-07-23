@@ -1,5 +1,8 @@
 import { masini } from "@/data/masini";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   const baseUrl = "https://cosram.ro";
 
@@ -27,7 +30,7 @@ export async function GET() {
 <listings>
 ${masiniDisponibile
   .map((masina) => {
-    // Ne asigurăm că URL-ul imaginii începe obligatoriu cu https://
+    // Extragem prima imagine din galerie securizat
     const rawImage = masina.galerie?.[0] ?? "";
     const imageLink = rawImage.startsWith("http") ? rawImage : `${baseUrl}${rawImage}`;
 
@@ -49,8 +52,8 @@ ${masiniDisponibile
       <unit>KM</unit>
     </mileage>
     <condition>USED</condition>
-    <fuel_type>${getFuelType(masina.combustibil)}</fuel_type>
-    <transmission>${getTransmission(masina.cutieViteze)}</transmission>
+    <fuel_type>${getFuelType(masina.combustibil ?? "")}</fuel_type>
+    <transmission>${getTransmission(masina.cutieViteze ?? "")}</transmission>
     <availability>AVAILABLE</availability>
   </listing>`;
   })

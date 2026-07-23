@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    // XML 100% conform cu specificațiile stricte impuse de Meta Automotive
+    // Formatul final curățat de erori și aliniat la cerințele Meta Automotive
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <listings>
   <title>Catalog Auto COSRAM</title>
@@ -25,13 +25,13 @@ export async function GET() {
       <unit>KM</unit>
     </mileage>
     <price>19500 EUR</price>
-    <availability>in stock</availability>
+    <availability>active</availability>
     <state_of_vehicle>Used</state_of_vehicle>
     <body_style>SEDAN</body_style>
-    <address format="simple">
-      <component name="city">Bucuresti</component>
-      <component name="country">Romania</component>
-    </address>
+    <street_address><![CDATA[Soseaua Bucuresti]]></street_address>
+    <city><![CDATA[Bucuresti]]></city>
+    <region><![CDATA[Bucuresti]]></region>
+    <country><![CDATA[Romania]]></country>
   </listing>
 </listings>`;
 

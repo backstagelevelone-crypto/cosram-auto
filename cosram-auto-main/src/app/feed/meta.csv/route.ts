@@ -1,4 +1,5 @@
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function GET() {
   const csv = `vehicle_id,title,description,url,image,price,currency,make,model,year,mileage_value,mileage_unit,state_of_vehicle,body_style,fuel_type,transmission,availability,condition,interior_color
@@ -14,8 +15,8 @@ d33fc642-c609-49b0-9714-7aa7010d0f66,Skoda Fabia 2009,Skoda Fabia Benzina Manual
   return new Response(csv, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": "inline; filename=meta_vehicule.csv",
-      "Cache-Control": "no-cache",
+      "Content-Disposition": "attachment; filename=meta_vehicule_nou.csv",
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
     },
   });
 }

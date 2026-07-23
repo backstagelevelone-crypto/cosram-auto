@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { masini } from "@/data/masini";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const SITE_URL = "https://www.cosram.ro";
 
 const DEALER_ADDRESS =
@@ -23,18 +26,31 @@ function escapeCsv(value: unknown): string {
 }
 
 function getAvailability(status?: string) {
-  switch (status) {
-    case "Disponibil":
-      return "available";
+  if (status === "Disponibil") {
+    return "AVAILABLE";
+  }
 
-    case "Vandut":
-      return "sold";
+  return "UNAVAILABLE";
+}
 
-    case "Rezervat":
-      return "sold";
+function getBodyStyle(caroserie?: string) {
+  switch (caroserie) {
+    case "SUV":
+      return "SUV";
+
+    case "Sedan":
+      return "SEDAN";
+
+    case "Hatchback":
+      return "HATCHBACK";
+
+    case "Break":
+    case "Combi":
+    case "Touring":
+      return "WAGON";
 
     default:
-      return "available";
+      return "";
   }
 }
 
@@ -67,39 +83,54 @@ export async function GET() {
 
   const rows = masini.map((masina) => {
     return [
+      // ID unic vehicul
       masina._id,
 
+      // Titlu
       `${masina.marca ?? ""} ${masina.model ?? ""}`.trim(),
 
+      // Descriere
       masina.evaluareTehnica ??
-        `${masina.marca ?? ""} ${masina.model ?? ""} - ${masina.an ?? ""}`,
+        `${masina.marca ?? ""} ${masina.model ?? ""} ${masina.an ?? ""}`,
 
+      // URL masina
       `${SITE_URL}/masini/${masina.slug}`,
 
+      // Imagine principala
       getImage(masina.galerie),
 
+      // Adresa dealer
       DEALER_ADDRESS,
 
+      // Marca
       masina.marca?.trim() ?? "",
 
+      // Model
       masina.model ?? "",
 
+      // An
       masina.an ?? "",
 
+      // Kilometraj
       masina.kilometraj
         ? `${masina.kilometraj} KM`
-        : "0 KM",
+        : "",
 
+      // Pret
       masina.pret
         ? `${masina.pret} EUR`
         : "",
 
+      // Disponibilitate
       getAvailability(masina.disponibil),
 
-      "used",
+      // Toate sunt second hand
+      "USED",
 
-      masina.caroserie ?? "",
+      // Caroserie compatibila Meta
+      getBodyStyle(masina.caroserie),
 
+      // Dealer ID
       "cosram",
     ];
   });
@@ -114,14 +145,13 @@ export async function GET() {
 
   return new NextResponse(csv, {
     headers: {
-      "Content-Type":
-        "text/csv; charset=utf-8",
+      "Content-Type": "text/csv; charset=utf-8",
 
       "Content-Disposition":
-        'inline; filename="meta-vehicles-feed.csv"',
+        'inline; filename="cosram-vehicles-feed.csv"',
 
       "Cache-Control":
-        "public, max-age=300",
+        "no-store",
     },
   });
 }

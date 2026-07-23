@@ -8,48 +8,69 @@ export async function GET() {
   );
 
   const header =
-    "vehicle_offer_id,title,description,url,image,price,make,model,year,mileage,condition";
+    "vehicle_id,title,description,url,image,price,make,model,year,mileage,state_of_vehicle,body_style\n";
 
-  const rows = masiniDisponibile.map((masina) => {
-    const title =
-      `${masina.marca ?? ""} ${masina.model ?? ""} ${masina.an ?? ""}`.trim();
+  const rows = masiniDisponibile
+    .map((masina) => {
+      const title = `${masina.marca ?? ""} ${
+        masina.model ?? ""
+      } ${masina.an ?? ""}`.trim();
 
-    const description =
-      `${masina.marca ?? ""} ${masina.model ?? ""} - ${masina.combustibil ?? ""} - ${masina.cutieViteze ?? ""} - ${masina.kilometraj ?? 0} km`.trim();
+      const description = `${masina.marca ?? ""} ${
+        masina.model ?? ""
+      } - ${masina.combustibil ?? ""} - ${
+        masina.cutieViteze ?? ""
+      } - ${masina.kilometraj ?? 0} km`;
 
-    const url =
-      `${baseUrl}/masini/${masina.slug}`;
+      const url = `${baseUrl}/masini/${masina.slug}`;
 
-    const image =
-      `${baseUrl}${masina.galerie?.[0] ?? ""}`
-        .replace(/([^:]\/)\/+/g, "$1")
-        .trim();
+      const image = masina.galerie?.[0]
+        ? `${baseUrl}${masina.galerie[0]}`
+        : "";
 
-    return [
-      masina._id,
-      title,
-      description,
-      url,
-      image,
-      `${Number(masina.pret ?? 0).toFixed(2)} EUR`,
-      (masina.marca ?? "").trim(),
-      (masina.model ?? "").trim(),
-      masina.an ?? "",
-      masina.kilometraj ?? 0,
-      "used",
-    ]
-      .map((value) =>
-        `"${String(value).replace(/"/g, '""')}"`
-      )
-      .join(",");
-  });
+      const price = `${masina.pret ?? 0} EUR`;
 
-  const csv = [header, ...rows].join("\n");
+      const make = masina.marca ?? "";
+      const model = masina.model ?? "";
+      const year = masina.an ?? "";
+      const mileage = masina.kilometraj ?? 0;
+
+      let bodyStyle = "HATCHBACK";
+
+      const masinaText = `${make} ${model}`.toLowerCase();
+
+      if (
+        masinaText.includes("a4") ||
+        masinaText.includes("passat") ||
+        masinaText.includes("520")
+      ) {
+        bodyStyle = "SEDAN";
+      }
+
+      return [
+        masina._id,
+        title,
+        description,
+        url,
+        image,
+        price,
+        make,
+        model,
+        year,
+        mileage,
+        "USED",
+        bodyStyle,
+      ]
+        .map((x) => `"${String(x).replace(/"/g, '""')}"`)
+        .join(",");
+    })
+    .join("\n");
+
+  const csv = header + rows;
 
   return new Response(csv, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": "inline; filename=meta.csv",
     },
   });
 }

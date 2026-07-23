@@ -1,58 +1,34 @@
 import { NextResponse } from 'next/server';
 
-// Îi spune platformei Vercel să genereze XML-ul live la fiecare accesare, fără cache
 export const dynamic = 'force-dynamic'; 
 
 export async function GET() {
   try {
-    // ⚠️ NOTĂ: Aceasta este o listă cu o mașină de test pentru ca Meta să îți aprobe structura.
-    // După ce Meta validează link-ul, vom înlocui această listă cu apelul tău real către baza de date.
-    const masiniDinBazaDeDate = [
-      {
-        id: 'cosram_audi_a4_01', // ID unic
-        marca: 'Audi',
-        model: 'A4',
-        an: 2021,
-        km: 125000,
-        pret: '19500 EUR', // Prețul trebuie să conțină neapărat valoarea și moneda
-        imagine: 'https://cosram.ro', // URL complet către imagine, nu cale relativă
-        descriere: 'Audi A4 în stare tehnică excelentă, import recent, revizie la zi.',
-        slug: 'audi-a4-2021' // Slug-ul folosit pentru link-ul mașinii pe site
-      }
-    ];
-
-    // Începutul structurii XML obligatorii pentru Meta Automotive Catalog
-    let xml = `<?xml version="1.0" encoding="UTF-8"?>
+    // Generăm codul XML cu date complet fixe și link-uri reale pentru testul Meta
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <listings>
   <title>Catalog Auto COSRAM</title>
   <link>https://cosram.ro</link>
-`;
-
-    // Maparea fiecărei mașini în formatul standard Meta Vehicles
-    masiniDinBazaDeDate.forEach((car) => {
-      xml += `  <vehicle>
-    <vehicle_id>${car.id}</vehicle_id>
-    <title><![CDATA[${car.marca} ${car.model} ${car.an}]]></title>
-    <description><![CDATA[${car.descriere}]]></description>
-    <url>https://cosram.ro{car.slug}</url>
+  <vehicle>
+    <vehicle_id>cosram_test_audi_2021</vehicle_id>
+    <title><![CDATA[Audi A4 2021]]></title>
+    <description><![CDATA[Audi A4 în stare tehnică excelentă, import recent, revizie la zi.]]></description>
+    <url>https://cosram.ro</url>
     <image>
-      <url>${car.imagine}</url>
+      <url>https://cosram.ro</url>
     </image>
-    <make><![CDATA[${car.marca}]]></make>
-    <model><![CDATA[${car.model}]]></model>
-    <year>${car.an}</year>
+    <make><![CDATA[Audi]]></make>
+    <model><![CDATA[A4]]></model>
+    <year>2021</year>
     <mileage>
-      <value>${car.km}</value>
+      <value>125000</value>
       <unit>KM</unit>
     </mileage>
-    <price>${car.pret}</price>
+    <price>19500 EUR</price>
     <availability>in stock</availability>
-  </vehicle>\n`;
-    });
+  </vehicle>
+</listings>`;
 
-    xml += `</listings>`;
-
-    // Returnarea feed-ului XML cu header-ele corecte de conținut și protecție cache
     return new NextResponse(xml, {
       headers: {
         'Content-Type': 'application/xml',
@@ -60,6 +36,6 @@ export async function GET() {
       },
     });
   } catch (error) {
-    return NextResponse.json({ error: 'Eroare la generarea catalogului COSRAM' }, { status: 500 });
+    return NextResponse.json({ error: 'Eroare la generare' }, { status: 500 });
   }
 }

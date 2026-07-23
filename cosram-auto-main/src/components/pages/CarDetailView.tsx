@@ -210,6 +210,7 @@ export default function CarDetailView({ car, similarCars }: { car: Car; similarC
   const features = car.features ?? (car as any).dotari ?? [];
   const similar = similarCars ?? [];
   const c = car as any;
+  console.log("STATUS:", c.disponibil, car.status);
 
   const trackMobileWhatsapp = () => {
     if (typeof window !== "undefined" && (window as any).fbq) {

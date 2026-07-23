@@ -163,19 +163,25 @@ export default async function MasinaPage({
 
 
     images:
-      carData.galerie || carData.images || [],
+      carData.galerie ||
+      carData.images ||
+      [],
 
 
     features:
-      carData.dotari || carData.features || [],
+      carData.dotari ||
+      carData.features ||
+      [],
 
 
     description:
-      carData.evaluareTehnica || carData.description,
+      carData.evaluareTehnica ||
+      carData.description,
 
 
     category:
-      carData.caroserie || carData.category,
+      carData.caroserie ||
+      carData.category,
 
   };
 
@@ -183,8 +189,14 @@ export default async function MasinaPage({
 
 
 
+  // ID IDENTIC cu vehicle_id din catalog Meta
+
   const trackingId =
-    carData._id || carData.id || carData.slug || slug;
+    carData._id ||
+    carData.id ||
+    carData.slug ||
+    slug;
+
 
 
   const trackingPrice =
@@ -196,58 +208,64 @@ export default async function MasinaPage({
 
 
 
-  const similarCars: Car[] = similarRaw.map((item:any): Car => ({
-
-    id:
-      item._id ||
-      item.id ||
-      "",
+  const similarCars: Car[] =
+    similarRaw.map((item:any): Car => ({
 
 
-    slug:
-      item.slug,
+      id:
+        item._id ||
+        item.id ||
+        "",
 
 
-    name:
-      `${item.marca || item.make || ""} ${item.model || ""}`.trim(),
+      slug:
+        item.slug,
 
 
-    make:
-      item.marca || item.make,
+      name:
+        `${item.marca || item.make || ""} ${item.model || ""}`.trim(),
 
 
-    model:
-      item.model,
+      make:
+        item.marca ||
+        item.make,
 
 
-    year:
-      item.an || item.year,
+      model:
+        item.model,
 
 
-    price:
-      item.pret ?? item.price,
+      year:
+        item.an ||
+        item.year,
 
 
-    images:
-      item.galerie ||
-      item.images ||
-      [],
+      price:
+        item.pret ??
+        item.price,
 
 
-    features:
-      item.dotari ||
-      item.features ||
-      [],
+      images:
+        item.galerie ||
+        item.images ||
+        [],
 
 
-    status:
-      item.disponibil === "Disponibil"
-        ? "disponibil"
-        : item.disponibil === "Rezervat"
-          ? "rezervat"
-          : "vandut",
+      features:
+        item.dotari ||
+        item.features ||
+        [],
 
-  }));
+
+      status:
+        item.disponibil === "Disponibil"
+          ? "disponibil"
+          : item.disponibil === "Rezervat"
+            ? "rezervat"
+            : "vandut",
+
+
+    }));
 
 
 
@@ -256,6 +274,7 @@ export default async function MasinaPage({
   return (
 
     <>
+
 
       <Navbar />
 
@@ -273,6 +292,8 @@ export default async function MasinaPage({
 
 
 
+        {/* META PIXEL AUTOMOTIVE */}
+
         <script
 
           dangerouslySetInnerHTML={{
@@ -280,23 +301,38 @@ export default async function MasinaPage({
             __html: `
 
               if (
+
                 typeof window !== 'undefined' &&
+
                 typeof fbq === 'function'
+
               ) {
 
-                fbq('track','ViewContent',{
 
-                  content_ids:['${trackingId}'],
+                fbq('track', 'ViewContent', {
 
-                  content_type:'product',
 
-                  value:${trackingPrice},
+                  content_ids: [
 
-                  currency:'EUR'
+                    '${trackingId}'
+
+                  ],
+
+
+                  content_type: 'vehicle',
+
+
+                  value: ${trackingPrice},
+
+
+                  currency: 'EUR'
+
 
                 });
 
+
               }
+
 
             `,
 
@@ -305,10 +341,12 @@ export default async function MasinaPage({
         />
 
 
+
       </main>
 
 
       <Footer />
+
 
     </>
 

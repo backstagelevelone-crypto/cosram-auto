@@ -4,13 +4,13 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    // 1. Spargem adresa în coloane separate cerute de sistemul lor și punem statusul exact
+    // Coloanele exacte și simple pe care validatorul Meta le vrea în format CSV
     const headers = [
       'vehicle_id',
       'title',
       'description',
       'url',
-      'image.url',
+      'image',
       'make',
       'model',
       'year',
@@ -20,13 +20,10 @@ export async function GET() {
       'availability',
       'state_of_vehicle',
       'body_style',
-      'street_address',
-      'city',
-      'region',
-      'country'
+      'address'
     ].join(',');
 
-    // 2. Datele aliniate perfect la capul de tabel
+    // Datele perfect aliniate la coloane
     const row = [
       'cosram_audi_a4_2006',
       '"Audi A4 2006"',
@@ -39,13 +36,10 @@ export async function GET() {
       '250000',
       'KM',
       '4499 EUR',
-      'AVAILABLE',        // Asta este singura valoare acceptată din documentație!
+      'in_stock',
       'USED',
       'WAGON',
-      '"Strada Toamnei nr. 36"',
-      '"Bragareasa"',
-      '"Buzau"',
-      '"Romania"'
+      '"Strada Toamnei nr. 36, Scutelnici, Bragareasa, jud. Buzau"'
     ].join(',');
 
     const csvContent = `${headers}\n${row}`;

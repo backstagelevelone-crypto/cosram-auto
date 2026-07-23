@@ -8,10 +8,11 @@ export async function GET() {
   );
 
   const header =
-    "id,title,description,link,image_link,price,brand,model,year,mileage,fuel_type,transmission,condition,availability";
+    "id,title,description,url,image,price,brand,model,year,mileage,condition";
 
   const rows = masiniDisponibile.map((masina) => {
-    const title = `${masina.marca ?? ""} ${masina.model ?? ""} ${masina.an ?? ""}`.trim();
+    const title =
+      `${masina.marca ?? ""} ${masina.model ?? ""} ${masina.an ?? ""}`.trim();
 
     const description =
       `${masina.marca ?? ""} ${masina.model ?? ""} - ${masina.combustibil ?? ""} - ${masina.cutieViteze ?? ""} - ${masina.kilometraj ?? 0} km`;
@@ -30,10 +31,7 @@ export async function GET() {
       masina.model ?? "",
       masina.an ?? "",
       masina.kilometraj ?? 0,
-      masina.combustibil ?? "",
-      masina.cutieViteze ?? "",
       "used",
-      "in stock",
     ]
       .map((value) =>
         `"${String(value).replace(/"/g, '""')}"`

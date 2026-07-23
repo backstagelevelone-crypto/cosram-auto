@@ -4,26 +4,26 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    // Coloanele exacte și simple pe care validatorul Meta le vrea în format CSV
+    // Coloanele universale pe care validatorul de vehicule le aprobă direct
     const headers = [
       'vehicle_id',
       'title',
       'description',
       'url',
-      'image',
+      'image_link',
       'make',
       'model',
       'year',
-      'mileage.value',
-      'mileage.unit',
+      'mileage_value',
+      'mileage_unit',
       'price',
       'availability',
       'state_of_vehicle',
       'body_style',
-      'address'
+      'dealer_id'
     ].join(',');
 
-    // Datele perfect aliniate la coloane
+    // Datele reale ale mașinii Audi A4 de pe cosram.ro, aliniate la fix
     const row = [
       'cosram_audi_a4_2006',
       '"Audi A4 2006"',
@@ -36,10 +36,10 @@ export async function GET() {
       '250000',
       'KM',
       '4499 EUR',
-      'in_stock',
+      'active',
       'USED',
       'WAGON',
-      '"Strada Toamnei nr. 36, Scutelnici, Bragareasa, jud. Buzau"'
+      'cosram_buzau' // ID de dealer ca să nu mai ceară adresa text rigidă din panou
     ].join(',');
 
     const csvContent = `${headers}\n${row}`;
@@ -51,6 +51,6 @@ export async function GET() {
       },
     });
   } catch (error) {
-    return NextResponse.json({ error: 'Eroare la generare CSV' }, { status: 500 });
+    return NextResponse.json({ error: 'Eroare la generare' }, { status: 500 });
   }
 }

@@ -12,18 +12,20 @@ export async function GET() {
 xmlns:g="http://base.google.com/ns/1.0">
 
 <channel>
-<title>COSRAM AUTO - Stoc Vehicule</title>
-<link>${baseUrl}</link>
-<description>Mașini disponibile COSRAM AUTO</description>
 
-${masiniDisponibile
-  .map(
-    (masina) => `
+<title>COSRAM AUTO - Vehicule</title>
+<link>${baseUrl}</link>
+<description>Vehicule second hand COSRAM AUTO</description>
+
+${masiniDisponibile.map((masina) => `
+
 <item>
 
 <g:id>${masina._id}</g:id>
 
-<g:title>${`${masina.marca ?? ""} ${masina.model ?? ""} ${masina.an ?? ""}`.trim()}</g:title>
+<g:title>
+${`${masina.marca ?? ""} ${masina.model ?? ""} ${masina.an ?? ""}`.trim()}
+</g:title>
 
 <g:description>
 ${`${masina.marca ?? ""} ${masina.model ?? ""} - ${masina.combustibil ?? ""} - ${masina.cutieViteze ?? ""} - ${masina.kilometraj ?? ""} km`}
@@ -31,24 +33,37 @@ ${`${masina.marca ?? ""} ${masina.model ?? ""} - ${masina.combustibil ?? ""} - $
 
 <g:link>${baseUrl}/masini/${masina.slug}</g:link>
 
-<g:image_link>${baseUrl}${masina.galerie?.[0] ?? ""}</g:image_link>
+<g:image_link>
+${baseUrl}${masina.galerie?.[0] ?? ""}
+</g:image_link>
 
 <g:price>${masina.pret ?? ""} EUR</g:price>
 
-<g:brand>${masina.marca?.trim() ?? ""}</g:brand>
+<g:brand>${masina.marca ?? ""}</g:brand>
+
+<g:model>${masina.model ?? ""}</g:model>
+
+<g:year>${masina.an ?? ""}</g:year>
+
+<g:mileage>
+${masina.kilometraj ?? ""}
+</g:mileage>
+
+<g:fuel_type>
+${masina.combustibil ?? ""}
+</g:fuel_type>
+
+<g:transmission>
+${masina.cutieViteze ?? ""}
+</g:transmission>
 
 <g:condition>used</g:condition>
 
 <g:availability>in stock</g:availability>
 
-<g:custom_label_0>${masina.combustibil ?? ""}</g:custom_label_0>
-
-<g:custom_label_1>${masina.cutieViteze ?? ""}</g:custom_label_1>
-
 </item>
-`
-  )
-  .join("")}
+
+`).join("")}
 
 </channel>
 

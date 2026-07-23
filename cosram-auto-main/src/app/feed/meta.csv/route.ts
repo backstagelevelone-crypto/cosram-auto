@@ -18,13 +18,12 @@ export async function GET() {
       `${masina.marca ?? ""} ${masina.model ?? ""} - ${masina.combustibil ?? ""} - ${masina.cutieViteze ?? ""} - ${masina.kilometraj ?? 0} km`.trim();
 
     const url =
-      `${baseUrl}/masini/${masina.slug}`.trim();
+      `${baseUrl}/masini/${masina.slug}`;
 
-    const image = (
-      masina.galerie?.[0]?.startsWith("http")
-        ? masina.galerie[0]
-        : `${baseUrl}${masina.galerie?.[0] ?? ""}`
-    ).trim();
+    const image =
+      `${baseUrl}${masina.galerie?.[0] ?? ""}`
+        .replace(/([^:]\/)\/+/g, "$1")
+        .trim();
 
     return [
       masina._id,
@@ -50,7 +49,7 @@ export async function GET() {
   return new Response(csv, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": "inline; filename=vehicles.csv",
+      "Content-Disposition": "inline; filename=meta.csv",
     },
   });
 }

@@ -211,20 +211,6 @@ export default function CarDetailView({ car, similarCars }: { car: Car; similarC
   const similar = similarCars ?? [];
   const c = car as any;
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const fbq = (window as any).fbq;
-      if (typeof fbq === "function" && car) {
-        fbq("track", "ViewContent", {
-          content_ids: [car.slug || ""],
-          content_type: "product",
-          value: car.price || (car as any).pret || 0,
-          currency: "EUR",
-        });
-      }
-    }
-  }, [car]);
-
   const trackMobileWhatsapp = () => {
     if (typeof window !== "undefined" && (window as any).fbq) {
       (window as any).fbq("track", "Contact", {

@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    // 1. Definim antetul tabelului (header-ul) cu parametrii stricți ceruți de Meta Auto
+    // 1. Antetul tabelului CSV cu denumirile stricte și corecte cerute de Meta Automotive
     const headers = [
       'vehicle_id',
       'title',
@@ -20,13 +20,10 @@ export async function GET() {
       'availability',
       'state_of_vehicle',
       'body_style',
-      'street_address',
-      'city',
-      'region',
-      'country'
+      'address'
     ].join(',');
 
-    // 2. Adăugăm rândul cu datele reale ale mașinii Audi A4 de pe cosram.ro
+    // 2. Datele reale ale mașinii Audi A4 de pe cosram.ro, aliniate la coloane
     const row = [
       'cosram_audi_a4_2006',
       '"Audi A4 2006"',
@@ -39,19 +36,14 @@ export async function GET() {
       '250000',
       'KM',
       '4499 EUR',
-      'for_sale',
+      'active',             // Schimbat din for_sale în active (valoarea corectă în CSV)
       'USED',
       'WAGON',
-      '"Strada Toamnei 36"',
-      '"Bragareasa"',
-      '"Buzau"',
-      '"Romania"'
+      '"Strada Toamnei nr. 36, Scutelnici, Bragareasa, jud. Buzau"' // Adresa directă, completă într-o singură coloană
     ].join(',');
 
-    // Unim capul de tabel cu datele
     const csvContent = `${headers}\n${row}`;
 
-    // Returnăm tabelul CSV direct către Meta
     return new NextResponse(csvContent, {
       headers: {
         'Content-Type': 'text/csv; charset=utf-8',

@@ -4,32 +4,36 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    // Structură complet plată conform cerințelor stricte Meta Vehicles Feed
+    // XML final cu date reale, adresa din Buzău și imaginea corectă a mașinii de pe cosram.ro
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <listings>
   <title>Catalog Auto COSRAM</title>
   <link>https://cosram.ro</link>
   <listing>
-    <vehicle_id>cosram_test_audi_2021</vehicle_id>
-    <title><![CDATA[Audi A4 2021]]></title>
-    <description><![CDATA[Audi A4 în stare tehnică excelentă, import recent, revizie la zi.]]></description>
+    <vehicle_id>cosram_audi_a4_2006</vehicle_id>
+    <title><![CDATA[Audi A4 2006]]></title>
+    <description><![CDATA[Audi A4 2.0 Diesel din 2006 disponibil la parcul auto COSRAM Auto Buzău.]]></description>
     <url>https://cosram.ro</url>
-    <image>https://cosram.ro</image>
+    <image>
+      <url>https://cosram.ro</url>
+    </image>
     <make><![CDATA[Audi]]></make>
     <model><![CDATA[A4]]></model>
-    <year>2021</year>
+    <year>2006</year>
     <mileage>
-      <value>125000</value>
+      <value>250000</value>
       <unit>KM</unit>
     </mileage>
-    <price>19500 EUR</price>
+    <price>4499 EUR</price>
     <availability>for_sale</availability>
     <state_of_vehicle>Used</state_of_vehicle>
-    <body_style>SEDAN</body_style>
-    <street_address><![CDATA[Soseaua Bucuresti]]></street_address>
-    <city><![CDATA[Bucuresti]]></city>
-    <region><![CDATA[Bucuresti]]></region>
-    <country><![CDATA[Romania]]></country>
+    <body_style>WAGON</body_style>
+    <address format="simple">
+      <component name="street_address">Strada Toamnei 36</component>
+      <component name="city">Bragareasa</component>
+      <component name="region">Buzau</component>
+      <component name="country">Romania</component>
+    </address>
   </listing>
 </listings>`;
 

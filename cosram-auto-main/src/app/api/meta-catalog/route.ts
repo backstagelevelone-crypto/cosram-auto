@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    // XML final cu date reale, adresa din Buzău și imaginea corectă a mașinii de pe cosram.ro
+    // XML optimizat cu atribute complet plate pentru eliminarea erorilor Meta
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <listings>
   <title>Catalog Auto COSRAM</title>
@@ -25,15 +25,10 @@ export async function GET() {
       <unit>KM</unit>
     </mileage>
     <price>4499 EUR</price>
-    <availability>for_sale</availability>
+    <availability>in_stock</availability>
     <state_of_vehicle>Used</state_of_vehicle>
     <body_style>WAGON</body_style>
-    <address format="simple">
-      <component name="street_address">Strada Toamnei 36</component>
-      <component name="city">Bragareasa</component>
-      <component name="region">Buzau</component>
-      <component name="country">Romania</component>
-    </address>
+    <street_address><![CDATA[Strada Toamnei 36, Bragareasa, Buzau]]></street_address>
   </listing>
 </listings>`;
 

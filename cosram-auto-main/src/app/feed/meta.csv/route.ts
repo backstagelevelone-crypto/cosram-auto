@@ -15,18 +15,24 @@ export async function GET() {
       `${masina.marca ?? ""} ${masina.model ?? ""} ${masina.an ?? ""}`.trim();
 
     const description =
-      `${masina.marca ?? ""} ${masina.model ?? ""} - ${masina.combustibil ?? ""} - ${masina.cutieViteze ?? ""} - ${masina.kilometraj ?? 0} km`;
+      `${masina.marca ?? ""} ${masina.model ?? ""} - ${masina.combustibil ?? ""} - ${masina.cutieViteze ?? ""} - ${masina.kilometraj ?? 0} km`.trim();
 
-    const image =
-      `${baseUrl}${masina.galerie?.[0] ?? ""}`;
+    const image = (
+      masina.galerie?.[0]?.startsWith("http")
+        ? masina.galerie[0]
+        : `${baseUrl}${masina.galerie?.[0] ?? ""}`
+    ).trim();
+
+    const url =
+      `${baseUrl}/masini/${masina.slug}`.trim();
 
     return [
       masina._id,
       title,
       description,
-      `${baseUrl}/masini/${masina.slug}`,
+      url,
       image,
-      `${masina.pret ?? ""} EUR`,
+      `${Number(masina.pret ?? 0).toFixed(2)} EUR`,
       masina.marca ?? "",
       masina.model ?? "",
       masina.an ?? "",

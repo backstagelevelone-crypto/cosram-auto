@@ -1,4 +1,25 @@
-@@ -26,13 +26,54 @@ import { SITE, whatsappCarLink } from "@/lib/constants";
+@@ -5,34 +5,75 @@
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  BadgeCheck,
+  CalendarDays,
+  CarFront,
+  ChevronRight,
+  CircleGauge,
+  Cog,
+  DoorOpen,
+  Fuel,
+  Mail,
+  Phone,
+  Palette,
+  Settings2,
+  ShieldCheck,
+  Zap,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { SITE, whatsappCarLink } from "@/lib/constants";
 import { normalizeCarImages } from "@/lib/car-images";
 import {
   buildCarName,
@@ -54,7 +75,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 function PricePanel({ car, className }: { car: Car; className?: string }) {
   const displayName = buildCarName(car);
-@@ -41,43 +82,43 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
+@@ -41,43 +82,43 @@
     if (typeof window !== "undefined" && (window as any).fbq) {
       (window as any).fbq("track", "Contact", {
         content_name: displayName,
@@ -115,7 +136,7 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
         <a
           href={whatsappCarLink(car)}
           target="_blank"
-@@ -88,7 +129,6 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
+@@ -88,7 +129,6 @@
           <Phone className="h-4 w-4" strokeWidth={2} />
           Cere detalii pe WhatsApp
         </a>
@@ -123,7 +144,7 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
         <a
           href={`tel:${SITE.phoneRaw}`}
           onClick={() => trackContactClick("Telefon")}
-@@ -97,15 +137,14 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
+@@ -97,15 +137,14 @@
           <Phone className="h-4 w-4" strokeWidth={2} />
           Sună acum
         </a>
@@ -141,7 +162,7 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
         <a
           href={`mailto:${SITE.email}?subject=Interesat de ${encodeURIComponent(displayName)}`}
           onClick={() => trackContactClick("Email")}
-@@ -118,7 +157,6 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
+@@ -118,7 +157,6 @@
     </div>
   );
 }
@@ -149,7 +170,7 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
 function buildSpecs(car: Car): { icon: LucideIcon; label: string; value: string }[] {
   const c = car as any;
   const brand = c.marca || car.make || "";
-@@ -129,41 +167,17 @@ function buildSpecs(car: Car): { icon: LucideIcon; label: string; value: string
+@@ -129,41 +167,17 @@
   const putereCp = c.putere != null ? `${c.putere} CP` : car.power != null ? `${car.power} CP` : undefined;
   const nrUsi = c.nrUsi != null ? String(c.nrUsi) : car.doors != null ? String(car.doors) : undefined;
 
@@ -197,7 +218,7 @@ function buildSpecs(car: Car): { icon: LucideIcon; label: string; value: string 
     { icon: CarFront, label: "Tracțiune", value: c.tractiune || car.drive },
     { icon: ShieldCheck, label: "Inspecție tehnică", value: c.inspectieTehnica || car.itp },
   ];
-@@ -179,29 +193,23 @@ function buildSpecs(car: Car): { icon: LucideIcon; label: string; value: string
+@@ -179,29 +193,23 @@
 
 function statusLabel(status: Car["status"]): string {
   switch (status) {
@@ -239,7 +260,7 @@ export default function CarDetailView({ car, similarCars }: { car: Car; similarC
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-@@ -210,125 +218,133 @@ export default function CarDetailView({
+@@ -210,125 +218,133 @@
         fbq("track", "ViewContent", {
           content_ids: [car.slug || ""],
           content_type: "product",

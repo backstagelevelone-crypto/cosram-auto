@@ -8,8 +8,7 @@ export async function GET() {
   );
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"
-xmlns:g="http://base.google.com/ns/1.0">
+<rss version="2.0">
 
 <channel>
 
@@ -17,53 +16,69 @@ xmlns:g="http://base.google.com/ns/1.0">
 <link>${baseUrl}</link>
 <description>Vehicule second hand COSRAM AUTO</description>
 
-${masiniDisponibile.map((masina) => `
-
+${masiniDisponibile
+  .map(
+    (masina) => `
 <item>
 
-<g:id>${masina._id}</g:id>
+<id>${masina._id}</id>
 
-<g:title>
+<title><![CDATA[
 ${`${masina.marca ?? ""} ${masina.model ?? ""} ${masina.an ?? ""}`.trim()}
-</g:title>
+]]></title>
 
-<g:description>
+<description><![CDATA[
 ${`${masina.marca ?? ""} ${masina.model ?? ""} - ${masina.combustibil ?? ""} - ${masina.cutieViteze ?? ""} - ${masina.kilometraj ?? ""} km`}
-</g:description>
+]]></description>
 
-<g:link>${baseUrl}/masini/${masina.slug}</g:link>
+<link>
+${baseUrl}/masini/${masina.slug}
+</link>
 
-<g:image_link>
+<image_link>
 ${baseUrl}${masina.galerie?.[0] ?? ""}
-</g:image_link>
+</image_link>
 
-<g:price>${masina.pret ?? ""} EUR</g:price>
+<price>
+${masina.pret ?? ""} EUR
+</price>
 
-<g:brand>${masina.marca ?? ""}</g:brand>
+<brand>
+${masina.marca ?? ""}
+</brand>
 
-<g:model>${masina.model ?? ""}</g:model>
+<model>
+${masina.model ?? ""}
+</model>
 
-<g:year>${masina.an ?? ""}</g:year>
+<year>
+${masina.an ?? ""}
+</year>
 
-<g:mileage>
-${masina.kilometraj ?? ""}
-</g:mileage>
+<mileage>
+${masina.kilometraj ?? "0"}
+</mileage>
 
-<g:fuel_type>
+<fuel_type>
 ${masina.combustibil ?? ""}
-</g:fuel_type>
+</fuel_type>
 
-<g:transmission>
+<transmission>
 ${masina.cutieViteze ?? ""}
-</g:transmission>
+</transmission>
 
-<g:condition>used</g:condition>
+<condition>
+used
+</condition>
 
-<g:availability>in stock</g:availability>
+<availability>
+in stock
+</availability>
 
 </item>
-
-`).join("")}
+`
+  )
+  .join("")}
 
 </channel>
 
@@ -71,7 +86,7 @@ ${masina.cutieViteze ?? ""}
 
   return new Response(xml, {
     headers: {
-      "Content-Type": "application/xml",
+      "Content-Type": "application/rss+xml",
     },
   });
 }

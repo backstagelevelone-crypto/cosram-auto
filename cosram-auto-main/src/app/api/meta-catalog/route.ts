@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    // Structura finală ajustată pentru validarea exactă a adresei și disponibilității în Meta
+    // Structură complet plată conform cerințelor stricte Meta Vehicles Feed
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <listings>
   <title>Catalog Auto COSRAM</title>
@@ -14,9 +14,7 @@ export async function GET() {
     <title><![CDATA[Audi A4 2021]]></title>
     <description><![CDATA[Audi A4 în stare tehnică excelentă, import recent, revizie la zi.]]></description>
     <url>https://cosram.ro</url>
-    <image>
-      <url>https://cosram.ro</url>
-    </image>
+    <image>https://cosram.ro</image>
     <make><![CDATA[Audi]]></make>
     <model><![CDATA[A4]]></model>
     <year>2021</year>
@@ -28,12 +26,10 @@ export async function GET() {
     <availability>for_sale</availability>
     <state_of_vehicle>Used</state_of_vehicle>
     <body_style>SEDAN</body_style>
-    <address format="simple">
-      <street_address><![CDATA[Soseaua Bucuresti]]></street_address>
-      <city><![CDATA[Bucuresti]]></city>
-      <region><![CDATA[Bucuresti]]></region>
-      <country><![CDATA[Romania]]></country>
-    </address>
+    <street_address><![CDATA[Soseaua Bucuresti]]></street_address>
+    <city><![CDATA[Bucuresti]]></city>
+    <region><![CDATA[Bucuresti]]></region>
+    <country><![CDATA[Romania]]></country>
   </listing>
 </listings>`;
 

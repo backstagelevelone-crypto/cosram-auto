@@ -6,9 +6,6 @@ export const revalidate = 0;
 
 const SITE_URL = "https://www.cosram.ro";
 
-const DEALER_ADDRESS =
-  "Brăgăreasa, Str. Toamnei 36, Buzău, România";
-
 function escapeCsv(value: unknown): string {
   if (value === null || value === undefined) return "";
 
@@ -26,11 +23,9 @@ function escapeCsv(value: unknown): string {
 }
 
 function getAvailability(status?: string) {
-  if (status === "Disponibil") {
-    return "AVAILABLE";
-  }
-
-  return "UNAVAILABLE";
+  return status === "Disponibil"
+    ? "AVAILABLE"
+    : "UNAVAILABLE";
 }
 
 function getBodyStyle(caroserie?: string) {
@@ -67,91 +62,173 @@ export async function GET() {
     "vehicle_id",
     "title",
     "description",
+
+    "availability",
+    "condition",
+
+    "price",
+
+    "image[0].url",
+
     "url",
-    "image",
-    "address",
+
+    "address.addr1",
+    "address.city",
+    "address.country",
+
+    "transmission",
+    "body_style",
+    "fuel_type",
+    "vehicle_type",
+
     "make",
     "model",
     "year",
-    "mileage",
-    "price",
-    "availability",
+
     "state_of_vehicle",
-    "body_style",
+
     "dealer_id",
+    "dealer_name",
+
+    "mileage.unit",
+    "mileage.value",
+
+    "engine_size",
+    "horse_power",
   ];
 
+
   const rows = masini.map((masina) => {
+
     return [
-      // ID unic vehicul
+
+      // ID unic
       masina._id,
+
 
       // Titlu
       `${masina.marca ?? ""} ${masina.model ?? ""}`.trim(),
 
+
       // Descriere
       masina.evaluareTehnica ??
-        `${masina.marca ?? ""} ${masina.model ?? ""} ${masina.an ?? ""}`,
+        `${masina.marca ?? ""} ${masina.model ?? ""}`,
 
-      // URL masina
-      `${SITE_URL}/masini/${masina.slug}`,
 
-      // Imagine principala
-      getImage(masina.galerie),
+      // Disponibilitate Meta
+      getAvailability(masina.disponibil),
 
-      // Adresa dealer
-      DEALER_ADDRESS,
 
-      // Marca
-      masina.marca?.trim() ?? "",
+      // Conditie
+      "USED",
 
-      // Model
-      masina.model ?? "",
 
-      // An
-      masina.an ?? "",
-
-      // Kilometraj
-      masina.kilometraj
-        ? `${masina.kilometraj} KM`
-        : "",
-
-      // Pret
+      // Pret ISO currency
       masina.pret
         ? `${masina.pret} EUR`
         : "",
 
-      // Disponibilitate
-      getAvailability(masina.disponibil),
 
-      // Toate sunt second hand
+      // Imagine principala
+      getImage(masina.galerie),
+
+
+      // URL masina
+      `${SITE_URL}/masini/${masina.slug}`,
+
+
+      // Adresa dealer
+      "Str. Toamnei 36",
+
+      "Buzău",
+
+      "RO",
+
+
+      // Cutie viteze
+      masina.cutieViteze === "Automata"
+        ? "AUTOMATIC"
+        : "MANUAL",
+
+
+      // Caroserie Meta
+      getBodyStyle(masina.caroserie),
+
+
+      // Combustibil
+      masina.combustibil
+        ? masina.combustibil.toUpperCase()
+        : "",
+
+
+      // Tip vehicul
+      "CAR",
+
+
+      // Marca
+      masina.marca?.trim() ?? "",
+
+
+      // Model
+      masina.model ?? "",
+
+
+      // An
+      masina.an ?? "",
+
+
+      // Stare vehicul
       "USED",
 
-      // Caroserie compatibila Meta
-      getBodyStyle(masina.caroserie),
 
       // Dealer ID
       "cosram",
+
+
+      // Dealer name
+      "COSRAM",
+
+
+      // Kilometri
+      "KM",
+
+      masina.kilometraj ?? "",
+
+
+      // Motor
+      masina.motor ?? "",
+
+
+      // Cai putere
+      masina.putere ?? "",
     ];
   });
 
+
   const csv = [
     headers.join(","),
+
     ...rows.map((row) =>
       row.map(escapeCsv).join(",")
     ),
+
   ].join("\n");
 
 
   return new NextResponse(csv, {
+
     headers: {
-      "Content-Type": "text/csv; charset=utf-8",
+
+      "Content-Type":
+        "text/csv; charset=utf-8",
 
       "Content-Disposition":
-        'inline; filename="cosram-vehicles-feed.csv"',
+        'inline; filename="cosram-meta-vehicles.csv"',
+
 
       "Cache-Control":
         "no-store",
     },
+
   });
 }

@@ -8,7 +8,7 @@ export async function GET() {
   );
 
   const header =
-    "vehicle_offer_id,title,description,url,image_url,price,make,model,year,mileage,condition";
+    "vehicle_offer_id,title,description,url,image,price,make,model,year,mileage,condition";
 
   const rows = masiniDisponibile.map((masina) => {
     const title =

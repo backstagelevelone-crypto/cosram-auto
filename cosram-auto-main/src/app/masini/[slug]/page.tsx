@@ -154,12 +154,23 @@ export default async function MasinaPage({
       carData.inspectieTehnica || carData.itp,
 
 
-    status:
-      carData.disponibil === "Disponibil"
-        ? "disponibil"
-        : carData.disponibil === "Rezervat"
-          ? "rezervat"
-          : "vandut",
+   status:
+  carData.disponibil
+    ?.toString()
+    .trim()
+    .toLowerCase() === "disponibil"
+      ? "disponibil"
+      : carData.disponibil
+          ?.toString()
+          .trim()
+          .toLowerCase() === "rezervat"
+        ? "rezervat"
+        : carData.disponibil
+            ?.toString()
+            .trim()
+            .toLowerCase() === "vandut"
+          ? "vandut"
+          : "disponibil",
 
 
     images:
@@ -258,11 +269,22 @@ export default async function MasinaPage({
 
 
       status:
-        item.disponibil === "Disponibil"
-          ? "disponibil"
-          : item.disponibil === "Rezervat"
-            ? "rezervat"
-            : "vandut",
+  item.disponibil
+    ?.toString()
+    .trim()
+    .toLowerCase() === "disponibil"
+      ? "disponibil"
+      : item.disponibil
+          ?.toString()
+          .trim()
+          .toLowerCase() === "rezervat"
+        ? "rezervat"
+        : item.disponibil
+            ?.toString()
+            .trim()
+            .toLowerCase() === "vandut"
+          ? "vandut"
+          : "disponibil",
 
 
     }));

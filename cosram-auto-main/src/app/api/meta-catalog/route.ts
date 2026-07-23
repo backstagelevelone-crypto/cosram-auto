@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   try {
-    // Formatul XML exact aprobat de sistemul de validare Meta Automotive
+    // XML 100% conform cu specificațiile stricte impuse de Meta Automotive
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <listings>
   <title>Catalog Auto COSRAM</title>
@@ -14,7 +14,9 @@ export async function GET() {
     <title><![CDATA[Audi A4 2021]]></title>
     <description><![CDATA[Audi A4 în stare tehnică excelentă, import recent, revizie la zi.]]></description>
     <url>https://cosram.ro</url>
-    <image_link>https://cosram.ro</image_link>
+    <image>
+      <url>https://cosram.ro</url>
+    </image>
     <make><![CDATA[Audi]]></make>
     <model><![CDATA[A4]]></model>
     <year>2021</year>
@@ -24,6 +26,12 @@ export async function GET() {
     </mileage>
     <price>19500 EUR</price>
     <availability>in stock</availability>
+    <state_of_vehicle>Used</state_of_vehicle>
+    <body_style>SEDAN</body_style>
+    <address format="simple">
+      <component name="city">Bucuresti</component>
+      <component name="country">Romania</component>
+    </address>
   </listing>
 </listings>`;
 
@@ -34,6 +42,6 @@ export async function GET() {
       },
     });
   } catch (error) {
-    return NextResponse.json({ error: 'Eroare la generare XML' }, { status: 500 });
+    return NextResponse.json({ error: 'Eroare la generare' }, { status: 500 });
   }
 }

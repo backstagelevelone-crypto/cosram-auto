@@ -244,7 +244,7 @@ export const masini: Masina[] = [
     "caroserie": "Hatchback",
     "disponibil": "Disponibil",
     "galerie": [
-      "/images/masini/vw-golf-5-2006/01.jpg",
+      "/images/masini/vw-golf-5-2006/1.png",
       "/images/masini/vw-golf-5-2006/02.jpg",
       "/images/masini/vw-golf-5-2006/03.jpg",
       "/images/masini/vw-golf-5-2006/04.jpg",

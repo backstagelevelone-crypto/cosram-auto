@@ -46,7 +46,7 @@ export const masini: Masina[] = [
     "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
     "disponibil": "Disponibil",
     "galerie": [
-      "/images/masini/Renaultmegane2012/1.jpg",
+      "/images/masini/Renaultmegane2012/1.png",
       "/images/masini/Renaultmegane2012/2.jpg",
       "/images/masini/Renaultmegane2012/3.jpg",
       "/images/masini/Renaultmegane2012/4.jpg",

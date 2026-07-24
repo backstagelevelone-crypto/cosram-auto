@@ -193,7 +193,7 @@ export const masini: Masina[] = [
     "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
     "disponibil": "Disponibil",
     "galerie": [
-      "/images/masini/skoda-fabia-2009-portocaliu/01.jpg",
+      "/images/masini/skoda-fabia-2009-portocaliu/1.png",
       "/images/masini/skoda-fabia-2009-portocaliu/02.jpg",
       "/images/masini/skoda-fabia-2009-portocaliu/03.jpg",
       "/images/masini/skoda-fabia-2009-portocaliu/04.jpg",

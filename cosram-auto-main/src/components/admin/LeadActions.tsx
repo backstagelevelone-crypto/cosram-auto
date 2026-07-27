@@ -1,9 +1,11 @@
+import { Phone, MessageCircle, Eye } from "lucide-react";
+
 type Props = {
   phone: string;
 };
 
 export default function LeadActions({ phone }: Props) {
-  const cleanPhone = phone?.replace(/\s+/g, "") ?? "";
+  const cleanPhone = (phone ?? "").replace(/\s+/g, "");
 
   return (
     <div
@@ -14,35 +16,58 @@ export default function LeadActions({ phone }: Props) {
     >
       <a
         href={`tel:${cleanPhone}`}
+        title="Sună"
         style={{
-          padding: "8px 12px",
-          background: "#dc2626",
+          width: 38,
+          height: 38,
+          borderRadius: 10,
+          background: "#2563eb",
           color: "#fff",
-          borderRadius: 8,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           textDecoration: "none",
-          fontSize: 13,
-          fontWeight: 600,
         }}
       >
-        📞 Sună
+        <Phone size={18} />
       </a>
 
       <a
         href={`https://wa.me/${cleanPhone}`}
         target="_blank"
         rel="noreferrer"
+        title="WhatsApp"
         style={{
-          padding: "8px 12px",
+          width: 38,
+          height: 38,
+          borderRadius: 10,
           background: "#16a34a",
           color: "#fff",
-          borderRadius: 8,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           textDecoration: "none",
-          fontSize: 13,
-          fontWeight: 600,
         }}
       >
-        💬 WhatsApp
+        <MessageCircle size={18} />
       </a>
+
+      <button
+        title="Detalii"
+        style={{
+          width: 38,
+          height: 38,
+          borderRadius: 10,
+          border: "none",
+          cursor: "pointer",
+          background: "#f3f4f6",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Eye size={18} />
+      </button>
     </div>
   );
 }

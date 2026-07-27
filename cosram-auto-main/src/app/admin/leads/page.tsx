@@ -2,6 +2,7 @@ import Sidebar from "../Sidebar";
 import TopBar from "@/components/admin/TopBar";
 import DashboardCards from "@/components/admin/DashboardCards";
 import StatusBadge from "@/components/admin/StatusBadge";
+import LeadActions from "@/components/admin/LeadActions";
 import { supabase } from "@/lib/supabase";
 
 export default async function LeadsPage() {
@@ -59,12 +60,7 @@ export default async function LeadsPage() {
             boxShadow: "0 10px 30px rgba(0,0,0,.05)",
           }}
         >
-          <h2
-            style={{
-              marginBottom: 20,
-              color: "#111827",
-            }}
-          >
+          <h2 style={{ marginBottom: 20 }}>
             Lead-uri
           </h2>
 
@@ -86,6 +82,7 @@ export default async function LeadsPage() {
                 <th align="left" style={{ padding: 12 }}>Telefon</th>
                 <th align="left" style={{ padding: 12 }}>Mașină</th>
                 <th align="left" style={{ padding: 12 }}>Status</th>
+                <th align="left" style={{ padding: 12 }}>Acțiuni</th>
               </tr>
             </thead>
 
@@ -102,6 +99,9 @@ export default async function LeadsPage() {
                   <td style={{ padding: 12 }}>{lead.car}</td>
                   <td style={{ padding: 12 }}>
                     <StatusBadge status={lead.status} />
+                  </td>
+                  <td style={{ padding: 12 }}>
+                    <LeadActions phone={lead.phone} />
                   </td>
                 </tr>
               ))}

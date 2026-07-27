@@ -2,7 +2,7 @@ export default function TopBar() {
   return (
     <div
       style={{
-        height: 70,
+        height: 80,
         background: "#ffffff",
         borderRadius: 16,
         padding: "0 24px",
@@ -13,14 +13,27 @@ export default function TopBar() {
         boxShadow: "0 4px 20px rgba(0,0,0,.05)",
       }}
     >
-      <div
-        style={{
-          fontSize: 24,
-          fontWeight: 700,
-          color: "#111827",
-        }}
-      >
-        Dashboard
+      <div>
+        <h1
+          style={{
+            margin: 0,
+            fontSize: 30,
+            fontWeight: 700,
+            color: "#111827",
+          }}
+        >
+          Lead-uri
+        </h1>
+
+        <p
+          style={{
+            margin: "4px 0 0",
+            color: "#6b7280",
+            fontSize: 14,
+          }}
+        >
+          Gestionează toate lead-urile din CRM.
+        </p>
       </div>
 
       <div
@@ -42,6 +55,20 @@ export default function TopBar() {
             fontSize: 14,
           }}
         />
+
+        <button
+          style={{
+            background: "#dc2626",
+            color: "#fff",
+            border: "none",
+            borderRadius: 12,
+            padding: "12px 20px",
+            fontWeight: 700,
+            cursor: "pointer",
+          }}
+        >
+          + Adaugă Lead
+        </button>
 
         <div
           style={{

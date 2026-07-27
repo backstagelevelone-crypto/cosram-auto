@@ -1,3 +1,4 @@
+import Sidebar from "@/components/admin/Sidebar";
 import DashboardCards from "@/components/admin/DashboardCards";
 import { supabase } from "@/lib/supabase";
 
@@ -9,16 +10,17 @@ export default async function LeadsPage() {
 
   const total = leads?.length ?? 0;
 
-  const today = leads?.filter((lead) => {
-    const d = new Date(lead.created_at);
-    const now = new Date();
+  const today =
+    leads?.filter((lead) => {
+      const d = new Date(lead.created_at);
+      const now = new Date();
 
-    return (
-      d.getDate() === now.getDate() &&
-      d.getMonth() === now.getMonth() &&
-      d.getFullYear() === now.getFullYear()
-    );
-  }).length ?? 0;
+      return (
+        d.getDate() === now.getDate() &&
+        d.getMonth() === now.getMonth() &&
+        d.getFullYear() === now.getFullYear()
+      );
+    }).length ?? 0;
 
   const qualified =
     leads?.filter((lead) => lead.status === "calificat").length ?? 0;
@@ -27,72 +29,107 @@ export default async function LeadsPage() {
     leads?.filter((lead) => lead.status === "vandut").length ?? 0;
 
   return (
-    <main
-      style={{
-        padding: 40,
-        background: "#f4f6f9",
-        minHeight: "100vh",
-      }}
-    >
-      <h1
+    <>
+      <Sidebar />
+
+      <main
         style={{
-          fontSize: 34,
-          fontWeight: 700,
-          marginBottom: 30,
+          marginLeft: 260,
+          padding: 40,
+          background: "#f8fafc",
+          minHeight: "100vh",
         }}
       >
-        🚗 Cosram CRM
-      </h1>
-
-      <DashboardCards
-        total={total}
-        today={today}
-        qualified={qualified}
-        sold={sold}
-      />
-
-      <div
-        style={{
-          background: "#fff",
-          borderRadius: 14,
-          padding: 20,
-          boxShadow: "0 2px 10px rgba(0,0,0,.08)",
-        }}
-      >
-        <h2>Lead-uri</h2>
-
-        {error && (
-          <p style={{ color: "red" }}>{error.message}</p>
-        )}
-
-        <table
+        <h1
           style={{
-            width: "100%",
-            marginTop: 20,
-            borderCollapse: "collapse",
+            fontSize: 34,
+            fontWeight: 700,
+            marginBottom: 30,
+            color: "#111827",
           }}
         >
-          <thead>
-            <tr>
-              <th align="left">Nume</th>
-              <th align="left">Telefon</th>
-              <th align="left">Mașină</th>
-              <th align="left">Status</th>
-            </tr>
-          </thead>
+          Dashboard Lead-uri
+        </h1>
 
-          <tbody>
-            {leads?.map((lead) => (
-              <tr key={lead.id}>
-                <td>{lead.full_name}</td>
-                <td>{lead.phone}</td>
-                <td>{lead.car}</td>
-                <td>{lead.status}</td>
+        <DashboardCards
+          total={total}
+          today={today}
+          qualified={qualified}
+          sold={sold}
+        />
+
+        <div
+          style={{
+            background: "#fff",
+            borderRadius: 16,
+            padding: 24,
+            boxShadow: "0 10px 30px rgba(0,0,0,.05)",
+          }}
+        >
+          <h2
+            style={{
+              marginBottom: 20,
+              fontSize: 22,
+            }}
+          >
+            Lead-uri
+          </h2>
+
+          {error && (
+            <p style={{ color: "#dc2626" }}>
+              {error.message}
+            </p>
+          )}
+
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+            }}
+          >
+            <thead>
+              <tr
+                style={{
+                  borderBottom: "1px solid #e5e7eb",
+                }}
+              >
+                <th align="left">Nume</th>
+                <th align="left">Telefon</th>
+                <th align="left">Mașină</th>
+                <th align="left">Status</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </main>
+            </thead>
+
+            <tbody>
+              {leads?.map((lead) => (
+                <tr
+                  key={lead.id}
+                  style={{
+                    borderBottom: "1px solid #f1f5f9",
+                  }}
+                >
+                  <td style={{ padding: 16 }}>{lead.full_name}</td>
+                  <td>{lead.phone}</td>
+                  <td>{lead.car}</td>
+                  <td>
+                    <span
+                      style={{
+                        background: "#dc2626",
+                        color: "#fff",
+                        padding: "6px 12px",
+                        borderRadius: 20,
+                        fontSize: 13,
+                      }}
+                    >
+                      {lead.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </>
   );
 }

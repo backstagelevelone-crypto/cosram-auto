@@ -1,4 +1,4 @@
-import Sidebar from "@/components/admin/Sidebar";
+import Sidebar from "../Sidebar";
 import DashboardCards from "@/components/admin/DashboardCards";
 import { supabase } from "@/lib/supabase";
 
@@ -66,17 +66,10 @@ export default async function LeadsPage() {
             boxShadow: "0 10px 30px rgba(0,0,0,.05)",
           }}
         >
-          <h2
-            style={{
-              marginBottom: 20,
-              fontSize: 22,
-            }}
-          >
-            Lead-uri
-          </h2>
+          <h2>Lead-uri</h2>
 
           {error && (
-            <p style={{ color: "#dc2626" }}>
+            <p style={{ color: "red" }}>
               {error.message}
             </p>
           )}
@@ -88,11 +81,7 @@ export default async function LeadsPage() {
             }}
           >
             <thead>
-              <tr
-                style={{
-                  borderBottom: "1px solid #e5e7eb",
-                }}
-              >
+              <tr>
                 <th align="left">Nume</th>
                 <th align="left">Telefon</th>
                 <th align="left">Mașină</th>
@@ -102,28 +91,11 @@ export default async function LeadsPage() {
 
             <tbody>
               {leads?.map((lead) => (
-                <tr
-                  key={lead.id}
-                  style={{
-                    borderBottom: "1px solid #f1f5f9",
-                  }}
-                >
-                  <td style={{ padding: 16 }}>{lead.full_name}</td>
+                <tr key={lead.id}>
+                  <td>{lead.full_name}</td>
                   <td>{lead.phone}</td>
                   <td>{lead.car}</td>
-                  <td>
-                    <span
-                      style={{
-                        background: "#dc2626",
-                        color: "#fff",
-                        padding: "6px 12px",
-                        borderRadius: 20,
-                        fontSize: 13,
-                      }}
-                    >
-                      {lead.status}
-                    </span>
-                  </td>
+                  <td>{lead.status}</td>
                 </tr>
               ))}
             </tbody>

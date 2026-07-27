@@ -1,4 +1,5 @@
 import Sidebar from "../Sidebar";
+import TopBar from "@/components/admin/TopBar";
 import DashboardCards from "@/components/admin/DashboardCards";
 import { supabase } from "@/lib/supabase";
 
@@ -40,16 +41,7 @@ export default async function LeadsPage() {
           minHeight: "100vh",
         }}
       >
-        <h1
-          style={{
-            fontSize: 34,
-            fontWeight: 700,
-            marginBottom: 30,
-            color: "#111827",
-          }}
-        >
-          Dashboard Lead-uri
-        </h1>
+        <TopBar />
 
         <DashboardCards
           total={total}
@@ -66,7 +58,14 @@ export default async function LeadsPage() {
             boxShadow: "0 10px 30px rgba(0,0,0,.05)",
           }}
         >
-          <h2>Lead-uri</h2>
+          <h2
+            style={{
+              marginBottom: 20,
+              color: "#111827",
+            }}
+          >
+            Lead-uri
+          </h2>
 
           {error && (
             <p style={{ color: "red" }}>
@@ -81,21 +80,30 @@ export default async function LeadsPage() {
             }}
           >
             <thead>
-              <tr>
-                <th align="left">Nume</th>
-                <th align="left">Telefon</th>
-                <th align="left">Mașină</th>
-                <th align="left">Status</th>
+              <tr
+                style={{
+                  borderBottom: "2px solid #e5e7eb",
+                }}
+              >
+                <th align="left" style={{ padding: 12 }}>Nume</th>
+                <th align="left" style={{ padding: 12 }}>Telefon</th>
+                <th align="left" style={{ padding: 12 }}>Mașină</th>
+                <th align="left" style={{ padding: 12 }}>Status</th>
               </tr>
             </thead>
 
             <tbody>
               {leads?.map((lead) => (
-                <tr key={lead.id}>
-                  <td>{lead.full_name}</td>
-                  <td>{lead.phone}</td>
-                  <td>{lead.car}</td>
-                  <td>{lead.status}</td>
+                <tr
+                  key={lead.id}
+                  style={{
+                    borderBottom: "1px solid #f1f5f9",
+                  }}
+                >
+                  <td style={{ padding: 12 }}>{lead.full_name}</td>
+                  <td style={{ padding: 12 }}>{lead.phone}</td>
+                  <td style={{ padding: 12 }}>{lead.car}</td>
+                  <td style={{ padding: 12 }}>{lead.status}</td>
                 </tr>
               ))}
             </tbody>

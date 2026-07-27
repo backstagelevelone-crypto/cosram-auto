@@ -1,7 +1,6 @@
-import Sidebar from "../Sidebar";
 import TopBar from "@/components/admin/TopBar";
 import DashboardCards from "@/components/admin/DashboardCards";
-import StatusBadge from "@/components/admin/StatusBadge";
+import StatusSelect from "@/components/admin/StatusSelect";
 import LeadActions from "@/components/admin/LeadActions";
 import { supabase } from "@/lib/supabase";
 
@@ -33,82 +32,80 @@ export default async function LeadsPage() {
 
   return (
     <>
-      <Sidebar />
+      <TopBar />
 
-      <main
+      <DashboardCards
+        total={total}
+        today={today}
+        qualified={qualified}
+        sold={sold}
+      />
+
+      <div
         style={{
-          marginLeft: 260,
-          padding: 40,
-          background: "#f8fafc",
-          minHeight: "100vh",
+          background: "#fff",
+          borderRadius: 16,
+          padding: 24,
+          boxShadow: "0 10px 30px rgba(0,0,0,.05)",
         }}
       >
-        <TopBar />
+        <h2 style={{ marginBottom: 20 }}>Lead-uri</h2>
 
-        <DashboardCards
-          total={total}
-          today={today}
-          qualified={qualified}
-          sold={sold}
-        />
+        {error && <p style={{ color: "red" }}>{error.message}</p>}
 
-        <div
+        <table
           style={{
-            background: "#fff",
-            borderRadius: 16,
-            padding: 24,
-            boxShadow: "0 10px 30px rgba(0,0,0,.05)",
+            width: "100%",
+            borderCollapse: "collapse",
           }}
         >
-          <h2 style={{ marginBottom: 20 }}>
-            Lead-uri
-          </h2>
+          <thead>
+            <tr style={{ borderBottom: "2px solid #e5e7eb" }}>
+              <th align="left" style={{ padding: 12 }}>
+                Nume
+              </th>
+              <th align="left" style={{ padding: 12 }}>
+                Telefon
+              </th>
+              <th align="left" style={{ padding: 12 }}>
+                Mașină
+              </th>
+              <th align="left" style={{ padding: 12 }}>
+                Status
+              </th>
+              <th align="left" style={{ padding: 12 }}>
+                Acțiuni
+              </th>
+            </tr>
+          </thead>
 
-          {error && (
-            <p style={{ color: "red" }}>
-              {error.message}
-            </p>
-          )}
+          <tbody>
+            {leads?.map((lead) => (
+              <tr
+                key={lead.id}
+                style={{
+                  borderBottom: "1px solid #f1f5f9",
+                }}
+              >
+                <td style={{ padding: 12 }}>{lead.full_name}</td>
+                <td style={{ padding: 12 }}>{lead.phone}</td>
+                <td style={{ padding: 12 }}>{lead.car}</td>
 
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-            }}
-          >
-            <thead>
-              <tr style={{ borderBottom: "2px solid #e5e7eb" }}>
-                <th align="left" style={{ padding: 12 }}>Nume</th>
-                <th align="left" style={{ padding: 12 }}>Telefon</th>
-                <th align="left" style={{ padding: 12 }}>Mașină</th>
-                <th align="left" style={{ padding: 12 }}>Status</th>
-                <th align="left" style={{ padding: 12 }}>Acțiuni</th>
+                <td style={{ padding: 12 }}>
+                  <StatusSelect
+                    id={lead.id}
+                    status={lead.status}
+                  />
+                </td>
+
+                <td style={{ padding: 12 }}>
+                  <LeadActions phone={lead.phone} />
+                </td>
               </tr>
-            </thead>
-
-            <tbody>
-              {leads?.map((lead) => (
-                <tr
-                  key={lead.id}
-                  style={{
-                    borderBottom: "1px solid #f1f5f9",
-                  }}
-                >
-                  <td style={{ padding: 12 }}>{lead.full_name}</td>
-                  <td style={{ padding: 12 }}>{lead.phone}</td>
-                  <td style={{ padding: 12 }}>{lead.car}</td>
-                  <td style={{ padding: 12 }}>
-                    <StatusBadge status={lead.status} />
-                  </td>
-                  <td style={{ padding: 12 }}>
-                    <LeadActions phone={lead.phone} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </main>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

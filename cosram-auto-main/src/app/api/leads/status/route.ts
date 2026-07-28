@@ -1,46 +1,97 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
+
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
 
+
 async function sendMetaConversion(
   phone?: string,
   email?: string
 ) {
+
   try {
-    await fetch(
+
+    console.log("APELEZ META QUALIFIED API", {
+      phone,
+      email,
+    });
+
+
+    const response = await fetch(
       `${process.env.NEXT_PUBLIC_SITE_URL}/api/meta/qualified`,
       {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify({
           phone,
           email,
         }),
       }
     );
+
+
+    console.log(
+      "META API STATUS:",
+      response.status
+    );
+
+
+    const result = await response.json();
+
+
+    console.log(
+      "META API RESPONSE:",
+      result
+    );
+
+
   } catch (error) {
-    console.log("META ERROR:", error);
+
+    console.log(
+      "META ERROR:",
+      error
+    );
+
   }
+
 }
 
 
+
 export async function PATCH(req: Request) {
+
   try {
+
+
     const body = await req.json();
 
-    const { id, status } = body;
 
-    console.log("UPDATE STATUS:", id, status);
+    const {
+      id,
+      status,
+    } = body;
+
+
+
+    console.log(
+      "UPDATE STATUS:",
+      id,
+      status
+    );
+
 
 
     if (!id || !status) {
+
       return NextResponse.json(
         {
           error: "Lipsesc datele necesare.",
@@ -49,17 +100,39 @@ export async function PATCH(req: Request) {
           status: 400,
         }
       );
+
     }
 
 
-    const { data: lead, error: findError } = await supabase
+
+    const {
+      data: lead,
+      error: findError,
+    } = await supabase
+
       .from("leads")
-      .select("phone,email")
-      .eq("id", id)
+
+      .select(
+        "phone,email"
+      )
+
+      .eq(
+        "id",
+        id
+      )
+
       .single();
 
 
+
     if (findError) {
+
+      console.log(
+        "FIND LEAD ERROR:",
+        findError
+      );
+
+
       return NextResponse.json(
         {
           error: findError.message,
@@ -68,20 +141,38 @@ export async function PATCH(req: Request) {
           status: 500,
         }
       );
+
     }
 
 
-    const { data, error } = await supabase
+
+    const {
+      data,
+      error,
+    } = await supabase
+
       .from("leads")
+
       .update({
         status,
       })
-      .eq("id", id)
+
+      .eq(
+        "id",
+        id
+      )
+
       .select();
 
 
+
     if (error) {
-      console.log("SUPABASE ERROR:", error);
+
+      console.log(
+        "SUPABASE ERROR:",
+        error
+      );
+
 
       return NextResponse.json(
         {
@@ -91,30 +182,62 @@ export async function PATCH(req: Request) {
           status: 500,
         }
       );
+
     }
 
 
-    console.log("UPDATED:", data);
+
+    console.log(
+      "UPDATED:",
+      data
+    );
 
 
-    // trimitem conversia la Meta doar când devine calificat
+
     if (status === "calificat") {
+
+
+      console.log(
+        "STATUS ESTE CALIFICAT - TRIMIT META"
+      );
+
+
       await sendMetaConversion(
         lead?.phone,
         lead?.email
       );
+
+
+    } else {
+
+
+      console.log(
+        "STATUS NU ESTE CALIFICAT:",
+        status
+      );
+
+
     }
 
 
-    return NextResponse.json({
-      success: true,
-      lead: data,
-    });
+
+    return NextResponse.json(
+      {
+        success: true,
+        lead: data,
+      }
+    );
+
 
 
   } catch (error) {
 
-    console.log("API ERROR:", error);
+
+    console.log(
+      "API ERROR:",
+      error
+    );
+
 
     return NextResponse.json(
       {
@@ -124,5 +247,8 @@ export async function PATCH(req: Request) {
         status: 400,
       }
     );
+
+
   }
+
 }

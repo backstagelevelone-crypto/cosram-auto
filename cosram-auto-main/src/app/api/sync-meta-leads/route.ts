@@ -43,7 +43,13 @@ export async function GET() {
       );
     }
 
-    const response = await fetch(sheetURL);
+    // fortam citirea live din Google Sheet
+    const response = await fetch(
+      sheetURL + "&t=" + Date.now(),
+      {
+        cache: "no-store",
+      }
+    );
 
     const csv = await response.text();
 
@@ -52,6 +58,7 @@ export async function GET() {
     let imported = 0;
 
     for (const lead of leads) {
+
       const phone = lead.phone_number || "";
       const email = lead.email || "";
 

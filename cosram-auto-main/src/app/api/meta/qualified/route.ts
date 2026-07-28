@@ -10,27 +10,53 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
+
     const email = body.email || "";
     const phone = body.phone || "";
+
+    const fbp = body.fbp || undefined;
+    const fbc = body.fbc || undefined;
+
+    const userAgent = body.user_agent || "";
+    const eventSourceUrl = body.event_source_url || "";
+
 
 
     console.log("DATE PRIMITE META:", {
       hasEmail: !!email,
       hasPhone: !!phone,
+      hasFbp: !!fbp,
+      hasFbc: !!fbc,
     });
 
 
-    const userData: Record<string, string[]> = {};
+
+    const userData: Record<string, any> = {};
 
 
     if (email) {
-      userData.em = [sha256(email)];
+      userData.em = [
+        sha256(email)
+      ];
     }
 
 
     if (phone) {
-      userData.ph = [sha256(phone)];
+      userData.ph = [
+        sha256(phone)
+      ];
     }
+
+
+    if (fbp) {
+      userData.fbp = fbp;
+    }
+
+
+    if (fbc) {
+      userData.fbc = fbc;
+    }
+
 
 
     const payload = {
@@ -38,27 +64,36 @@ export async function POST(req: Request) {
         {
           event_name: "Lead",
 
-          event_time: Math.floor(Date.now() / 1000),
+          event_time: Math.floor(
+            Date.now() / 1000
+          ),
 
-          action_source: "system_generated",
+          action_source: "website",
+
+
+          event_source_url: eventSourceUrl,
+
 
           user_data: userData,
+
 
           custom_data: {
             lead_status: "qualified",
           },
 
-          // TEST META EVENTS MANAGER
+
           test_event_code: "TEST94947",
         },
       ],
     };
 
 
+
     console.log(
       "META FULL PAYLOAD:",
       JSON.stringify(payload, null, 2)
     );
+
 
 
     const response = await fetch(
@@ -75,7 +110,9 @@ export async function POST(req: Request) {
     );
 
 
+
     const result = await response.json();
+
 
 
     console.log(
@@ -84,10 +121,12 @@ export async function POST(req: Request) {
     );
 
 
+
     return Response.json(result);
 
 
   } catch (error) {
+
 
     console.log(
       "META ERROR:",
@@ -103,5 +142,6 @@ export async function POST(req: Request) {
         status: 500,
       }
     );
+
   }
 }

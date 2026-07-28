@@ -232,7 +232,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "aeb998d7-52e9-411b-8472-44cc16d43fb3",
+    "_id": "aeb998d7-52e9-411b-8477-44cc16d43fb3",
     "slug": "opel-astra-h-2006",
     "marca": "Opel",
     "model": "Astra",
@@ -242,7 +242,7 @@ export const masini: Masina[] = [
     "cutieViteze": "Manuala",
     "motor": "1,6",
     "putere": 116,
-    "caroserie": "Berlina",
+    "caroserie": "Hatchback",
     "disponibil": "Vandut",
     "galerie": [
       "/images/masini/opel-astra-h-2006/01.jpeg",

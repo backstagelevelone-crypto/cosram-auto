@@ -1,7 +1,9 @@
 import { redirect } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+import { supabaseServer } from "@/lib/supabase-server";
 
 export default async function LeadsPage() {
+  const supabase = await supabaseServer();
+
   const {
     data: { user },
   } = await supabase.auth.getUser();

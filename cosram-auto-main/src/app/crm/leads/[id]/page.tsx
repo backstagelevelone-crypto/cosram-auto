@@ -4,19 +4,19 @@ import { supabaseServer } from "@/lib/supabase-server";
 export default async function LeadDetailsPage({
   params,
 }: {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
+
   const supabase = await supabaseServer();
 
-  const { data: lead } = await supabase
+  const { data: lead, error } = await supabase
     .from("leads")
     .select("*")
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
-  if (!lead) {
+  if (error || !lead) {
     notFound();
   }
 
@@ -55,7 +55,9 @@ export default async function LeadDetailsPage({
             <div>
               <b>📅 Creat:</b>
               <p>
-                {new Date(lead.created_at).toLocaleDateString("ro-RO")}
+                {lead.created_at
+                  ? new Date(lead.created_at).toLocaleDateString("ro-RO")
+                  : "-"}
               </p>
             </div>
 

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { supabaseServer } from "@/lib/supabase-server";
 
 export default async function DashboardPage() {
@@ -40,31 +41,37 @@ export default async function DashboardPage() {
       title: "Total Lead-uri",
       value: total,
       icon: "👥",
+      href: "/crm/leads",
     },
     {
       title: "Noi",
       value: noi,
       icon: "🟡",
+      href: "/crm/leads?status=nou",
     },
     {
       title: "Contactați",
       value: contactati,
       icon: "🔵",
+      href: "/crm/leads?status=contactat",
     },
     {
       title: "Calificați",
       value: calificati,
       icon: "🟢",
+      href: "/crm/leads?status=calificat",
     },
     {
       title: "Vânduți",
       value: vanduti,
       icon: "🚗",
+      href: "/crm/leads?status=vandut",
     },
     {
       title: "Pierduți",
       value: pierduti,
       icon: "🔴",
+      href: "/crm/leads?status=pierdut",
     },
   ];
 
@@ -84,9 +91,10 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
         {cards.map((card) => (
-          <div
+          <Link
             key={card.title}
-            className="rounded-2xl bg-white p-6 shadow"
+            href={card.href}
+            className="rounded-2xl bg-white p-6 shadow hover:shadow-lg transition"
           >
 
             <div className="text-3xl mb-4">
@@ -101,7 +109,7 @@ export default async function DashboardPage() {
               {card.value}
             </div>
 
-          </div>
+          </Link>
         ))}
 
       </div>

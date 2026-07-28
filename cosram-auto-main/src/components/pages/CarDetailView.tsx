@@ -125,7 +125,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
   };
 
   return (
-    <div className={cn("rounded-2xl border border-[rgba(0,0,0,0.08)] bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.06)]", className)}>
+    <div className={cn("rounded-2xl border border-[rgba(0,0,0,0.08)] bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)]", className)}>
       <p className="font-[family-name:var(--font-outfit)] text-xs font-medium uppercase tracking-wide text-[#6B6B6B]">
         Preț
       </p>
@@ -143,7 +143,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
       </p>
 
       {/* Parteneri Creditare */}
-      <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-b border-[rgba(0,0,0,0.06)] py-3">
+      <div className="mt-3 flex flex-wrap items-center gap-3 border-t border-b border-[rgba(0,0,0,0.06)] py-2">
         <span className="text-[10px] font-medium uppercase tracking-wider text-[#6B6B6B]">Parteneri:</span>
         <div className="flex flex-wrap gap-2 text-[11px] font-bold text-[#111111]">
           <span className="rounded bg-[#F2F2F7] px-2 py-0.5 text-[#1a5632]">BT Direct</span>
@@ -152,7 +152,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
         </div>
       </div>
 
-      <div className="mt-6 space-y-4">
+      <div className="mt-5 space-y-3">
   <div>
     <label className="mb-1 block text-sm font-medium text-[#111111]">
       Nume
@@ -161,7 +161,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
       value={name}
       onChange={(e) => setName(e.target.value)}
       placeholder="Numele dvs."
-      className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-[#C8102E]"
+      className="w-full rounded-xl border border-gray-300 px-4 py-2.5 outline-none focus:border-[#C8102E]"
     />
   </div>
 
@@ -173,7 +173,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
       value={phone}
       onChange={(e) => setPhone(e.target.value)}
       placeholder="07xxxxxxxx"
-      className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-[#C8102E]"
+      className="w-full rounded-xl border border-gray-300 px-4 py-2.5 outline-none focus:border-[#C8102E]"
     />
   </div>
 
@@ -186,7 +186,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
       value={email}
       onChange={(e) => setEmail(e.target.value)}
       placeholder="email@exemplu.ro"
-      className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-[#C8102E]"
+      className="w-full rounded-xl border border-gray-300 px-4 py-2.5 outline-none focus:border-[#C8102E]"
     />
   </div>
 
@@ -195,7 +195,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
       Mașină
     </label>
 
-    <div className="rounded-xl bg-[#F5F5F5] px-4 py-3 font-semibold text-[#111111]">
+    <div className="rounded-xl bg-[#F5F5F5] px-4 py-2.5 font-semibold text-[#111111]">
       {displayName}
     </div>
   </div>
@@ -203,7 +203,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
   <button
     type="button"
     onClick={handleSubmit}
-    className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-3.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white transition hover:bg-[#20ba5a]"
+    className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-3 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white transition hover:bg-[#20ba5a]"
   >
     <Phone className="h-4 w-4" strokeWidth={2} />
     Trimite solicitarea pe WhatsApp

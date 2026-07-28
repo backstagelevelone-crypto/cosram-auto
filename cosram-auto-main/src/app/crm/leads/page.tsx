@@ -2,7 +2,15 @@ import { redirect } from "next/navigation";
 import { supabaseServer } from "@/lib/supabase-server";
 import StatusSelect from "@/components/StatusSelect";
 
-export default async function LeadsPage() {
+export default async function LeadsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    status?: string;
+  }>;
+}) {
+  const { status } = await searchParams;
+
   const supabase = await supabaseServer();
 
   const {
@@ -13,10 +21,16 @@ export default async function LeadsPage() {
     redirect("/crm/login");
   }
 
-  const { data: leads, error } = await supabase
+  let query = supabase
     .from("leads")
     .select("*")
     .order("created_at", { ascending: false });
+
+  if (status) {
+    query = query.eq("status", status);
+  }
+
+  const { data: leads, error } = await query;
 
   return (
     <main className="min-h-screen bg-slate-100 p-8">
@@ -30,6 +44,12 @@ export default async function LeadsPage() {
           <p className="text-gray-500">
             Gestionarea clienților interesați
           </p>
+
+          {status && (
+            <p className="mt-2 text-sm text-blue-600">
+              Filtru activ: {status}
+            </p>
+          )}
         </div>
 
         <div className="rounded-2xl bg-white shadow overflow-hidden">

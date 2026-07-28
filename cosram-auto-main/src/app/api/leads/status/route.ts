@@ -11,7 +11,11 @@ const supabase = createClient(
 
 async function sendMetaConversion(
   phone?: string,
-  email?: string
+  email?: string,
+  fbp?: string | null,
+  fbc?: string | null,
+  user_agent?: string | null,
+  event_source_url?: string | null
 ) {
 
   try {
@@ -19,6 +23,8 @@ async function sendMetaConversion(
     console.log("APELEZ META QUALIFIED API", {
       phone,
       email,
+      fbp: !!fbp,
+      fbc: !!fbc,
     });
 
 
@@ -34,6 +40,12 @@ async function sendMetaConversion(
         body: JSON.stringify({
           phone,
           email,
+
+          fbp,
+          fbc,
+
+          user_agent,
+          event_source_url,
         }),
       }
     );
@@ -71,13 +83,19 @@ export async function PATCH(req: Request) {
 
   try {
 
-
     const body = await req.json();
 
 
     const {
       id,
       status,
+
+      fbp,
+      fbc,
+
+      user_agent,
+      event_source_url,
+
     } = body;
 
 
@@ -108,6 +126,7 @@ export async function PATCH(req: Request) {
     const {
       data: lead,
       error: findError,
+
     } = await supabase
 
       .from("leads")
@@ -149,6 +168,7 @@ export async function PATCH(req: Request) {
     const {
       data,
       error,
+
     } = await supabase
 
       .from("leads")
@@ -204,7 +224,13 @@ export async function PATCH(req: Request) {
 
       await sendMetaConversion(
         lead?.phone,
-        lead?.email
+        lead?.email,
+
+        fbp,
+        fbc,
+
+        user_agent,
+        event_source_url
       );
 
 
@@ -244,10 +270,9 @@ export async function PATCH(req: Request) {
         error: "Request invalid.",
       },
       {
-        status: 400,
+        status: 400
       }
     );
-
 
   }
 

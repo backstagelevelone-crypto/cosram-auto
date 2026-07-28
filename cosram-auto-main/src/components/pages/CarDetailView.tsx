@@ -51,7 +51,7 @@ function SpecCell({
   value: string;
 }) {
   return (
-    <div className="flex items-center gap-3.5 border-b border-[rgba(0,0,0,0.06)] py-4">
+    <div className="flex items-center gap-2.5 border-b border-[rgba(0,0,0,0.06)] py-4">
       <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-[#F2F2F7]">
         <Icon {...iconProps} />
       </div>
@@ -125,11 +125,11 @@ Aștept să fiu contactat pentru mai multe detalii.`;
   };
 
   return (
-    <div className={cn("rounded-2xl border border-[rgba(0,0,0,0.08)] bg-white p-4 shadow-[0_8px_30px_rgba(0,0,0,0.06)]", className)}>
+    <div className={cn("rounded-2xl border border-[rgba(0,0,0,0.08)] bg-white p-3.5 shadow-[0_8px_30px_rgba(0,0,0,0.06)]", className)}>
       <p className="font-[family-name:var(--font-outfit)] text-xs font-medium uppercase tracking-wide text-[#6B6B6B]">
         Preț
       </p>
-      <p className="mt-1 font-[family-name:var(--font-syne)] text-4xl font-bold text-[#C8102E]">
+      <p className="mt-1 font-[family-name:var(--font-syne)] text-3xl font-bold text-[#C8102E]">
         {car.price != null ? formatPrice(car.price, { spaced: true }) : (car as any).pret != null ? formatPrice((car as any).pret, { spaced: true }) : "-"}
       </p>
       <p className="mt-3 font-[family-name:var(--font-outfit)] text-sm text-[#6B6B6B]">
@@ -143,7 +143,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
       </p>
 
       {/* Parteneri Creditare */}
-      <div className="mt-3 flex flex-wrap items-center gap-3 border-t border-b border-[rgba(0,0,0,0.06)] py-2">
+      <div className="mt-2 flex flex-wrap items-center gap-2 border-t border-b border-[rgba(0,0,0,0.06)] py-1.5">
         <span className="text-[10px] font-medium uppercase tracking-wider text-[#6B6B6B]">Parteneri:</span>
         <div className="flex flex-wrap gap-2 text-[11px] font-bold text-[#111111]">
           <span className="rounded bg-[#F2F2F7] px-2 py-0.5 text-[#1a5632]">BT Direct</span>
@@ -152,8 +152,8 @@ Aștept să fiu contactat pentru mai multe detalii.`;
         </div>
       </div>
 
-      <div className="mt-4 space-y-2">
-  <div className="grid grid-cols-2 gap-3">
+      <div className="mt-3 space-y-1.5">
+  <div className="grid grid-cols-2 gap-2">
     <div>
       <label className="mb-0.5 block text-sm font-medium text-[#111111]">
         Nume
@@ -162,7 +162,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
         value={name}
         onChange={(e) => setName(e.target.value)}
         placeholder="Numele dvs."
-        className="w-full rounded-xl border border-gray-300 px-3 py-2 outline-none focus:border-[#C8102E]"
+        className="w-full rounded-lg border border-gray-300 px-3 py-1.5 outline-none focus:border-[#C8102E]"
       />
     </div>
 
@@ -174,7 +174,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
         placeholder="07xxxxxxxx"
-        className="w-full rounded-xl border border-gray-300 px-3 py-2 outline-none focus:border-[#C8102E]"
+        className="w-full rounded-lg border border-gray-300 px-3 py-1.5 outline-none focus:border-[#C8102E]"
       />
     </div>
   </div>
@@ -188,7 +188,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
       value={email}
       onChange={(e) => setEmail(e.target.value)}
       placeholder="email@exemplu.ro"
-      className="w-full rounded-xl border border-gray-300 px-3 py-2 outline-none focus:border-[#C8102E]"
+      className="w-full rounded-lg border border-gray-300 px-3 py-1.5 outline-none focus:border-[#C8102E]"
     />
   </div>
 
@@ -197,7 +197,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
       Mașină
     </label>
 
-    <div className="rounded-xl bg-[#F5F5F5] px-3 py-2 font-semibold text-[#111111]">
+    <div className="rounded-lg bg-[#F5F5F5] px-3 py-1.5 font-semibold text-[#111111]">
       {displayName}
     </div>
   </div>
@@ -205,7 +205,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
   <button
     type="button"
     onClick={handleSubmit}
-    className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-2.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white transition hover:bg-[#20ba5a]"
+    className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-2 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white transition hover:bg-[#20ba5a]"
   >
     <Phone className="h-4 w-4" strokeWidth={2} />
     Trimite solicitarea pe WhatsApp
@@ -395,7 +395,7 @@ export default function CarDetailView({ car, similarCars }: { car: Car; similarC
 
       {/* Mobil Footer Bar */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[rgba(0,0,0,0.08)] bg-white/95 px-4 py-3 pb-safe backdrop-blur-md lg:hidden">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <div className="min-w-0 flex-1">
             <p className="truncate font-[family-name:var(--font-syne)] text-lg font-bold text-[#C8102E]">
               {car.price != null ? formatPrice(car.price, { spaced: true }) : c.pret != null ? formatPrice(c.pret, { spaced: true }) : "-"}
@@ -409,7 +409,7 @@ export default function CarDetailView({ car, similarCars }: { car: Car; similarC
             target="_blank"
             rel="noopener noreferrer"
             onClick={trackMobileWhatsapp}
-            className="flex shrink-0 items-center gap-2 rounded-full bg-[#C8102E] px-5 py-2.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white"
+            className="flex shrink-0 items-center gap-2 rounded-full bg-[#C8102E] px-5 py-2 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white"
           >
             <Phone className="h-4 w-4" strokeWidth={2} /> WhatsApp
           </a>

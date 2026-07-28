@@ -76,7 +76,41 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 }
 
 function PricePanel({ car, className }: { car: Car; className?: string }) {
-  const displayName = buildCarName(car);
+  const displayName = buildCarTitle(car);
+  const [name, setName] = useState("");
+const [phone, setPhone] = useState("");
+const [email, setEmail] = useState("");
+  const handleSubmit = () => {
+  if (!name.trim() || !phone.trim() || !email.trim()) {
+    alert("Completează toate câmpurile.");
+    return;
+  }
+
+  trackContactClick("WhatsApp_Form");
+
+  const mesaj = `🚗 Solicitare nouă de pe site
+
+Mașină:
+${displayName}
+
+Nume:
+${name}
+
+Telefon:
+${phone}
+
+Email:
+${email}
+
+Aștept să fiu contactat pentru mai multe detalii.`;
+
+  const phoneNumber = SITE.phoneRaw.replace(/\D/g, "");
+
+  window.open(
+    `https://wa.me/${phoneNumber}?text=${encodeURIComponent(mesaj)}`,
+    "_blank"
+  );
+};
 
   const trackContactClick = (tipContact: string) => {
     if (typeof window !== "undefined" && (window as any).fbq) {
@@ -118,42 +152,63 @@ function PricePanel({ car, className }: { car: Car; className?: string }) {
         </div>
       </div>
 
-      <div className="mt-5 space-y-3">
-        <a
-          href={whatsappCarLink(car)}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => trackContactClick("WhatsApp")}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-[#C8102E] py-3.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white transition-all hover:bg-[#A50E26] hover:shadow-[0_8px_24px_rgba(200,16,46,0.35)]"
-        >
-          <Phone className="h-4 w-4" strokeWidth={2} />
-          Cere detalii pe WhatsApp
-        </a>
-        <a
-          href={`tel:${SITE.phoneRaw}`}
-          onClick={() => trackContactClick("Telefon")}
-          className="flex w-full items-center justify-center gap-2 rounded-full border-2 border-[#111111] py-3.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-[#111111] transition-all hover:bg-[#111111] hover:text-white"
-        >
-          <Phone className="h-4 w-4" strokeWidth={2} />
-          Sună acum
-        </a>
-        <Link
-          href="/#rate"
-          onClick={() => trackContactClick("Rate_Button")}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-[#F2F2F7] py-3.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-[#111111] transition-colors hover:bg-[#E8E8ED]"
-        >
-          Calculează rata
-          <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
-        </Link>
-        <a
-          href={`mailto:${SITE.email}?subject=Interesat de ${encodeURIComponent(displayName)}`}
-          onClick={() => trackContactClick("Email")}
-          className="flex w-full items-center justify-center gap-2 py-2 font-[family-name:var(--font-outfit)] text-sm font-medium text-[#6B6B6B] transition-colors hover:text-[#C8102E]"
-        >
-          <Mail className="h-4 w-4" strokeWidth={1.75} />
-          Trimite email
-        </a>
-      </div>
+      <div className="mt-6 space-y-4">
+  <div>
+    <label className="mb-1 block text-sm font-medium text-[#111111]">
+      Nume
+    </label>
+    <input
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      placeholder="Numele dvs."
+      className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-[#C8102E]"
+    />
+  </div>
+
+  <div>
+    <label className="mb-1 block text-sm font-medium text-[#111111]">
+      Telefon
+    </label>
+    <input
+      value={phone}
+      onChange={(e) => setPhone(e.target.value)}
+      placeholder="07xxxxxxxx"
+      className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-[#C8102E]"
+    />
+  </div>
+
+  <div>
+    <label className="mb-1 block text-sm font-medium text-[#111111]">
+      Email
+    </label>
+    <input
+      type="email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      placeholder="email@exemplu.ro"
+      className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-[#C8102E]"
+    />
+  </div>
+
+  <div>
+    <label className="mb-1 block text-sm font-medium text-[#111111]">
+      Mașină
+    </label>
+
+    <div className="rounded-xl bg-[#F5F5F5] px-4 py-3 font-semibold text-[#111111]">
+      {displayName}
+    </div>
+  </div>
+
+  <button
+    type="button"
+    onClick={handleSubmit}
+    className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-3.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white transition hover:bg-[#20ba5a]"
+  >
+    <Phone className="h-4 w-4" strokeWidth={2} />
+    Trimite solicitarea pe WhatsApp
+  </button>
+</div>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Users,
   CalendarDays,
@@ -17,13 +18,15 @@ function Card({
   value,
   icon,
   color,
+  href,
 }: {
   title: string;
   value: number;
   icon: React.ReactNode;
   color: string;
+  href?: string;
 }) {
-  return (
+  const content = (
     <div
       style={{
         background: "#fff",
@@ -31,6 +34,8 @@ function Card({
         padding: 24,
         boxShadow: "0 10px 30px rgba(15,23,42,.06)",
         border: "1px solid #eef2f7",
+        cursor: href ? "pointer" : "default",
+        transition: "all .2s",
       }}
     >
       <div
@@ -78,6 +83,21 @@ function Card({
       </div>
     </div>
   );
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        style={{
+          textDecoration: "none",
+        }}
+      >
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 }
 
 export default function DashboardCards({
@@ -90,7 +110,8 @@ export default function DashboardCards({
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
+        gridTemplateColumns:
+          "repeat(auto-fit,minmax(220px,1fr))",
         gap: 20,
         marginBottom: 30,
       }}
@@ -99,6 +120,7 @@ export default function DashboardCards({
         title="Lead-uri totale"
         value={total}
         color="#2563eb"
+        href="/crm/leads"
         icon={<Users size={22} />}
       />
 

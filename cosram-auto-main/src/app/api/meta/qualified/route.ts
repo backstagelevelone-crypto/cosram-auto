@@ -10,6 +10,7 @@ export async function POST(req: Request) {
   try {
     const { email, phone } = await req.json();
 
+
     const payload = {
       data: [
         {
@@ -35,14 +36,14 @@ export async function POST(req: Request) {
         },
       ],
 
-      // test Meta Events Manager
       test_event_code: "TEST94947",
     };
 
 
+    // LOG COMPLET PENTRU VERIFICARE
     console.log(
-      "META PAYLOAD:",
-      JSON.stringify(payload)
+      "META FULL PAYLOAD:",
+      JSON.stringify(payload, null, 2)
     );
 
 
@@ -64,8 +65,8 @@ export async function POST(req: Request) {
 
 
     console.log(
-      "META RESPONSE:",
-      result
+      "META FULL RESPONSE:",
+      JSON.stringify(result, null, 2)
     );
 
 

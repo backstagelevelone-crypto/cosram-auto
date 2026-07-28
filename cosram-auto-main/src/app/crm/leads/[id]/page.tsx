@@ -48,6 +48,16 @@ export default async function LeadDetailsPage({
             </div>
 
             <div>
+              <b>🚘 Mașină dorită:</b>
+              <p>{lead.car_interest || "-"}</p>
+            </div>
+
+            <div>
+              <b>📍 Sursă:</b>
+              <p>{lead.source || "-"}</p>
+            </div>
+
+            <div>
               <b>📊 Status:</b>
               <p>{lead.status || "nou"}</p>
             </div>

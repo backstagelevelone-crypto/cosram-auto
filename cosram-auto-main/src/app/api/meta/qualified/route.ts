@@ -8,7 +8,27 @@ const sha256 = (value: string) =>
 
 export async function POST(req: Request) {
   try {
-    const { email, phone } = await req.json();
+    const body = await req.json();
+
+    const email = body.email || "";
+    const phone = body.phone || "";
+
+
+    console.log("DATE PRIMITE META:", {
+      hasEmail: !!email,
+      hasPhone: !!phone,
+    });
+
+
+    const userData: any = {};
+
+    if (email) {
+      userData.em = [sha256(email)];
+    }
+
+    if (phone) {
+      userData.ph = [sha256(phone)];
+    }
 
 
     const payload = {
@@ -20,15 +40,7 @@ export async function POST(req: Request) {
 
           action_source: "system_generated",
 
-          user_data: {
-            em: email
-              ? [sha256(email)]
-              : undefined,
-
-            ph: phone
-              ? [sha256(phone)]
-              : undefined,
-          },
+          user_data: userData,
 
           custom_data: {
             lead_status: "qualified",
@@ -40,7 +52,6 @@ export async function POST(req: Request) {
     };
 
 
-    // LOG COMPLET PENTRU VERIFICARE
     console.log(
       "META FULL PAYLOAD:",
       JSON.stringify(payload, null, 2)

@@ -66,6 +66,7 @@ export default async function LeadsPage() {
             </thead>
 
             <tbody>
+
               {leads?.length === 0 && (
                 <tr>
                   <td
@@ -82,6 +83,7 @@ export default async function LeadsPage() {
                   key={lead.id}
                   className="border-b"
                 >
+
                   <td className="p-4 font-medium">
                     {lead.full_name}
                   </td>
@@ -102,10 +104,39 @@ export default async function LeadsPage() {
                   </td>
 
                   <td className="p-4">
-                    📞 💬 👁️
+                    <div className="flex gap-3">
+
+                      <a
+                        href={`tel:${lead.phone}`}
+                        title="Sună clientul"
+                        className="text-xl"
+                      >
+                        📞
+                      </a>
+
+                      <a
+                        href={`https://wa.me/40${lead.phone?.replace(/^0/, "")}`}
+                        target="_blank"
+                        title="WhatsApp"
+                        className="text-xl"
+                      >
+                        💬
+                      </a>
+
+                      <a
+                        href={`/crm/leads/${lead.id}`}
+                        title="Vezi detalii"
+                        className="text-xl"
+                      >
+                        👁️
+                      </a>
+
+                    </div>
                   </td>
+
                 </tr>
               ))}
+
             </tbody>
 
           </table>

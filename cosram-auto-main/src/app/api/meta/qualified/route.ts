@@ -35,9 +35,15 @@ export async function POST(req: Request) {
         },
       ],
 
-      // codul pentru Meta Events Manager Test
+      // test Meta Events Manager
       test_event_code: "TEST94947",
     };
+
+
+    console.log(
+      "META PAYLOAD:",
+      JSON.stringify(payload)
+    );
 
 
     const response = await fetch(
@@ -57,7 +63,10 @@ export async function POST(req: Request) {
     const result = await response.json();
 
 
-    console.log("META RESPONSE:", result);
+    console.log(
+      "META RESPONSE:",
+      result
+    );
 
 
     return Response.json(result);
@@ -65,7 +74,10 @@ export async function POST(req: Request) {
 
   } catch (error) {
 
-    console.log("META ERROR:", error);
+    console.log(
+      "META ERROR:",
+      error
+    );
 
 
     return Response.json(

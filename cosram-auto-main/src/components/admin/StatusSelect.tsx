@@ -10,10 +10,9 @@ type Props = {
 const statuses = [
   "Nou",
   "Contactat",
-  "Programat",
   "Calificat",
   "Respins",
-  "Vandut",
+  "Vândut",
 ];
 
 export default function StatusSelect({ id, status }: Props) {
@@ -29,7 +28,10 @@ export default function StatusSelect({ id, status }: Props) {
       },
       body: JSON.stringify({
         id,
-        status: newStatus.toLowerCase(),
+        status: newStatus
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, ""),
       }),
     });
   }
@@ -46,9 +48,9 @@ export default function StatusSelect({ id, status }: Props) {
         cursor: "pointer",
       }}
     >
-      {statuses.map((status) => (
-        <option key={status} value={status}>
-          {status}
+      {statuses.map((item) => (
+        <option key={item} value={item}>
+          {item}
         </option>
       ))}
     </select>

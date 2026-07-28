@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Sidebar from "../admin/Sidebar";
 
 export default function CRMLayout({
   children,
@@ -7,7 +8,18 @@ export default function CRMLayout({
 }) {
   return (
     <div className="min-h-screen bg-slate-100">
-      {children}
+
+      <Sidebar />
+
+      <main
+        style={{
+          marginLeft: 260,
+          minHeight: "100vh",
+        }}
+      >
+        {children}
+      </main>
+
     </div>
   );
 }

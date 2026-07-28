@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { supabaseBrowser } from "@/lib/supabase-browser";
 
 const statuses = [
   {
@@ -42,19 +41,25 @@ export default function StatusSelect({
   async function updateStatus(newStatus: string) {
     setValue(newStatus);
 
-    const { error } = await supabaseBrowser
-      .from("leads")
-      .update({
+    const response = await fetch("/api/leads/status", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id,
         status: newStatus,
-      })
-      .eq("id", id);
+      }),
+    });
 
-    if (error) {
-      console.log("EROARE STATUS:", error);
-      return;
+    const result = await response.json();
+
+    console.log("STATUS RESPONSE:", result);
+
+    if (!response.ok) {
+      console.log("EROARE STATUS:", result);
+      setValue(status || "nou");
     }
-
-    console.log("STATUS SALVAT:", newStatus);
   }
 
   return (

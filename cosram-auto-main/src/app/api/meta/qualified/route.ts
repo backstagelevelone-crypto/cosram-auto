@@ -10,7 +10,6 @@ export async function POST(req: Request) {
   try {
     const { email, phone } = await req.json();
 
-
     const payload = {
       data: [
         {
@@ -19,7 +18,6 @@ export async function POST(req: Request) {
           event_time: Math.floor(Date.now() / 1000),
 
           action_source: "system_generated",
-
 
           user_data: {
             em: email
@@ -31,16 +29,14 @@ export async function POST(req: Request) {
               : undefined,
           },
 
-
           custom_data: {
             lead_status: "qualified",
           },
-
-
-          // doar pentru test în Meta Events Manager
-          test_event_code: "TEST94947",
         },
       ],
+
+      // codul pentru Meta Events Manager Test
+      test_event_code: "TEST94947",
     };
 
 

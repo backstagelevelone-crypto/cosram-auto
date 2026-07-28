@@ -6,90 +6,136 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
+
 function parseCSV(text: string) {
-  const lines = text.split("\n");
 
-  const headers = lines[0]
+  const rows = text
+    .split(/\r?\n/)
+    .filter((row) => row.trim() !== "");
+
+
+  const headers = rows[0]
     .split(",")
-    .map((h) => h.replace(/"/g, "").trim());
+    .map((h) =>
+      h.replace(/"/g, "").trim()
+    );
 
-  return lines
+
+  return rows
     .slice(1)
-    .filter(Boolean)
-    .map((line) => {
-      const values =
-        line
-          .match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)
-          ?.map((v) =>
-            v.replace(/^"|"$/g, "").trim()
-          ) || [];
+    .map((row) => {
 
-      const obj: any = {};
+      const values: string[] = [];
 
-      headers.forEach((header, index) => {
-        obj[header] = values[index] || "";
-      });
+      let current = "";
+      let insideQuotes = false;
 
-      return obj;
-    });
-}
 
-export async function GET() {
-  try {
-    const sheetURL = process.env.GOOGLE_SHEET_CSV_URL;
+      for (const char of row) {
 
-    if (!sheetURL) {
-      return NextResponse.json(
-        {
-          error: "Lipsește GOOGLE_SHEET_CSV_URL",
-        },
-        {
-          status: 500,
+        if (char === '"') {
+
+          insideQuotes = !insideQuotes;
+
+        } else if (
+          char === "," &&
+          !insideQuotes
+        ) {
+
+          values.push(current);
+          current = "";
+
+        } else {
+
+          current += char;
+
+        }
+
+      }
+
+
+      values.push(current);
+
+
+      const obj:any = {};
+
+
+      headers.forEach(
+        (header, index) => {
+
+          obj[header] =
+            values[index]
+              ?.trim()
+              .replace(/^"|"$/g,"")
+              || "";
+
         }
       );
+
+
+      return obj;
+
+    });
+
+}
+
+
+
+export async function GET() {
+
+  try {
+
+    const sheetURL =
+      process.env.GOOGLE_SHEET_CSV_URL;
+
+
+    if (!sheetURL) {
+
+      return NextResponse.json(
+        {
+          error:
+            "Lipsește GOOGLE_SHEET_CSV_URL"
+        },
+        {
+          status:500
+        }
+      );
+
     }
 
-    const response = await fetch(
-      sheetURL + "&t=" + Date.now(),
-      {
-        cache: "no-store",
-      }
-    );
 
-    const csv = await response.text();
-
-    const leads = parseCSV(csv);
+    const response =
+      await fetch(
+        sheetURL + "&t=" + Date.now(),
+        {
+          cache:"no-store"
+        }
+      );
 
 
-    // VERIFICARE TEMPORARA
-    console.log(
-      "ULTIMUL LEAD CSV:",
-      leads[leads.length - 1]
-    );
+    const csv =
+      await response.text();
+
+
+    const leads =
+      parseCSV(csv);
 
 
     let imported = 0;
 
 
+
     for (const lead of leads) {
+
 
       const phone =
         lead.phone_number ||
         "";
 
+
       const email =
         lead.email ||
         "";
-
-
-      console.log(
-        "VERIFIC LEAD:",
-        {
-          name: lead.full_name,
-          phone,
-          email,
-        }
-      );
 
 
       if (!phone && !email) {
@@ -97,10 +143,13 @@ export async function GET() {
       }
 
 
+
       let exists = false;
 
 
+
       if (phone) {
+
         const { data } =
           await supabase
             .from("leads")
@@ -111,10 +160,15 @@ export async function GET() {
             )
             .limit(1);
 
-        if (data && data.length > 0) {
+
+        if (data && data.length) {
+
           exists = true;
+
         }
+
       }
+
 
 
       if (!exists && email) {
@@ -129,16 +183,21 @@ export async function GET() {
             )
             .limit(1);
 
-        if (data && data.length > 0) {
+
+        if (data && data.length) {
+
           exists = true;
+
         }
 
       }
 
 
+
       if (exists) {
         continue;
       }
+
 
 
       const { error } =
@@ -163,44 +222,58 @@ export async function GET() {
 
             created_at:
               lead.created_time
-                ? new Date(
-                    lead.created_time
-                  )
-                : new Date(),
+              ? new Date(
+                  lead.created_time
+                )
+              : new Date()
 
           });
 
 
+
       if (!error) {
+
         imported++;
+
       }
+
 
     }
 
 
+
     return NextResponse.json({
-      success: true,
-      total: leads.length,
-      imported,
+
+      success:true,
+
+      total:
+        leads.length,
+
+      imported
+
     });
 
 
-  } catch (error: any) {
+
+  } catch(error:any) {
+
 
     console.log(
-      "SYNC META LEADS ERROR",
+      "SYNC ERROR",
       error
     );
 
 
     return NextResponse.json(
       {
-        error: error.message,
+        error:
+          error.message
       },
       {
-        status: 500,
+        status:500
       }
     );
 
   }
+
 }

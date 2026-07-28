@@ -4,12 +4,30 @@ import { useState } from "react";
 import { supabaseBrowser } from "@/lib/supabase-browser";
 
 const statuses = [
-  "nou",
-  "contactat",
-  "calificat",
-  "oferta",
-  "vandut",
-  "pierdut",
+  {
+    value: "nou",
+    label: "🟡 Nou",
+  },
+  {
+    value: "contactat",
+    label: "🔵 Contactat",
+  },
+  {
+    value: "calificat",
+    label: "🟢 Calificat",
+  },
+  {
+    value: "oferta",
+    label: "🟣 Ofertă",
+  },
+  {
+    value: "vandut",
+    label: "🚗 Vândut",
+  },
+  {
+    value: "pierdut",
+    label: "🔴 Pierdut",
+  },
 ];
 
 export default function StatusSelect({
@@ -36,11 +54,14 @@ export default function StatusSelect({
     <select
       value={value}
       onChange={(e) => updateStatus(e.target.value)}
-      className="rounded-full border px-3 py-1 text-sm"
+      className="rounded-full border px-3 py-2 text-sm font-medium bg-white cursor-pointer"
     >
-      {statuses.map((item) => (
-        <option key={item} value={item}>
-          {item}
+      {statuses.map((status) => (
+        <option
+          key={status.value}
+          value={status.value}
+        >
+          {status.label}
         </option>
       ))}
     </select>

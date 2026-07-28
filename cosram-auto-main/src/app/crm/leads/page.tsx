@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { supabaseServer } from "@/lib/supabase-server";
+import StatusSelect from "@/components/StatusSelect";
 
 export default async function LeadsPage() {
   const supabase = await supabaseServer();
@@ -16,9 +17,6 @@ export default async function LeadsPage() {
     .from("leads")
     .select("*")
     .order("created_at", { ascending: false });
-
-  console.log("LEADS:", leads);
-  console.log("ERROR:", error);
 
   return (
     <main className="min-h-screen bg-slate-100 p-8">
@@ -97,9 +95,10 @@ export default async function LeadsPage() {
                   </td>
 
                   <td className="p-4">
-                    <span className="rounded-full bg-yellow-100 px-3 py-1 text-sm">
-                      {lead.status || "nou"}
-                    </span>
+                    <StatusSelect
+                      id={lead.id}
+                      status={lead.status}
+                    />
                   </td>
 
                   <td className="p-4">

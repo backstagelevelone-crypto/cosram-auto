@@ -6,6 +6,31 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
+
+async function sendMetaConversion(
+  phone?: string,
+  email?: string
+) {
+  try {
+    await fetch(
+      `${process.env.NEXT_PUBLIC_SITE_URL}/api/meta/qualified`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          phone,
+          email,
+        }),
+      }
+    );
+  } catch (error) {
+    console.log("META ERROR:", error);
+  }
+}
+
+
 export async function PATCH(req: Request) {
   try {
     const body = await req.json();
@@ -13,6 +38,7 @@ export async function PATCH(req: Request) {
     const { id, status } = body;
 
     console.log("UPDATE STATUS:", id, status);
+
 
     if (!id || !status) {
       return NextResponse.json(
@@ -25,6 +51,26 @@ export async function PATCH(req: Request) {
       );
     }
 
+
+    const { data: lead, error: findError } = await supabase
+      .from("leads")
+      .select("phone,email")
+      .eq("id", id)
+      .single();
+
+
+    if (findError) {
+      return NextResponse.json(
+        {
+          error: findError.message,
+        },
+        {
+          status: 500,
+        }
+      );
+    }
+
+
     const { data, error } = await supabase
       .from("leads")
       .update({
@@ -32,6 +78,7 @@ export async function PATCH(req: Request) {
       })
       .eq("id", id)
       .select();
+
 
     if (error) {
       console.log("SUPABASE ERROR:", error);
@@ -46,14 +93,27 @@ export async function PATCH(req: Request) {
       );
     }
 
+
     console.log("UPDATED:", data);
+
+
+    // trimitem conversia la Meta doar când devine calificat
+    if (status === "calificat") {
+      await sendMetaConversion(
+        lead?.phone,
+        lead?.email
+      );
+    }
+
 
     return NextResponse.json({
       success: true,
       lead: data,
     });
 
+
   } catch (error) {
+
     console.log("API ERROR:", error);
 
     return NextResponse.json(

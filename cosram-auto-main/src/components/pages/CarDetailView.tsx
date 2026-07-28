@@ -125,7 +125,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
   };
 
   return (
-    <div className={cn("rounded-2xl border border-[rgba(0,0,0,0.08)] bg-white p-5 shadow-[0_8px_30px_rgba(0,0,0,0.06)]", className)}>
+    <div className={cn("rounded-2xl border border-[rgba(0,0,0,0.08)] bg-white p-4 shadow-[0_8px_30px_rgba(0,0,0,0.06)]", className)}>
       <p className="font-[family-name:var(--font-outfit)] text-xs font-medium uppercase tracking-wide text-[#6B6B6B]">
         Preț
       </p>
@@ -152,33 +152,35 @@ Aștept să fiu contactat pentru mai multe detalii.`;
         </div>
       </div>
 
-      <div className="mt-5 space-y-3">
-  <div>
-    <label className="mb-1 block text-sm font-medium text-[#111111]">
-      Nume
-    </label>
-    <input
-      value={name}
-      onChange={(e) => setName(e.target.value)}
-      placeholder="Numele dvs."
-      className="w-full rounded-xl border border-gray-300 px-4 py-2.5 outline-none focus:border-[#C8102E]"
-    />
+      <div className="mt-4 space-y-2">
+  <div className="grid grid-cols-2 gap-3">
+    <div>
+      <label className="mb-0.5 block text-sm font-medium text-[#111111]">
+        Nume
+      </label>
+      <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Numele dvs."
+        className="w-full rounded-xl border border-gray-300 px-3 py-2 outline-none focus:border-[#C8102E]"
+      />
+    </div>
+
+    <div>
+      <label className="mb-0.5 block text-sm font-medium text-[#111111]">
+        Telefon
+      </label>
+      <input
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        placeholder="07xxxxxxxx"
+        className="w-full rounded-xl border border-gray-300 px-3 py-2 outline-none focus:border-[#C8102E]"
+      />
+    </div>
   </div>
 
   <div>
-    <label className="mb-1 block text-sm font-medium text-[#111111]">
-      Telefon
-    </label>
-    <input
-      value={phone}
-      onChange={(e) => setPhone(e.target.value)}
-      placeholder="07xxxxxxxx"
-      className="w-full rounded-xl border border-gray-300 px-4 py-2.5 outline-none focus:border-[#C8102E]"
-    />
-  </div>
-
-  <div>
-    <label className="mb-1 block text-sm font-medium text-[#111111]">
+    <label className="mb-0.5 block text-sm font-medium text-[#111111]">
       Email
     </label>
     <input
@@ -186,16 +188,16 @@ Aștept să fiu contactat pentru mai multe detalii.`;
       value={email}
       onChange={(e) => setEmail(e.target.value)}
       placeholder="email@exemplu.ro"
-      className="w-full rounded-xl border border-gray-300 px-4 py-2.5 outline-none focus:border-[#C8102E]"
+      className="w-full rounded-xl border border-gray-300 px-3 py-2 outline-none focus:border-[#C8102E]"
     />
   </div>
 
   <div>
-    <label className="mb-1 block text-sm font-medium text-[#111111]">
+    <label className="mb-0.5 block text-sm font-medium text-[#111111]">
       Mașină
     </label>
 
-    <div className="rounded-xl bg-[#F5F5F5] px-4 py-2.5 font-semibold text-[#111111]">
+    <div className="rounded-xl bg-[#F5F5F5] px-3 py-2 font-semibold text-[#111111]">
       {displayName}
     </div>
   </div>
@@ -203,7 +205,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
   <button
     type="button"
     onClick={handleSubmit}
-    className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-3 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white transition hover:bg-[#20ba5a]"
+    className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] py-2.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white transition hover:bg-[#20ba5a]"
   >
     <Phone className="h-4 w-4" strokeWidth={2} />
     Trimite solicitarea pe WhatsApp
@@ -407,7 +409,7 @@ export default function CarDetailView({ car, similarCars }: { car: Car; similarC
             target="_blank"
             rel="noopener noreferrer"
             onClick={trackMobileWhatsapp}
-            className="flex shrink-0 items-center gap-2 rounded-full bg-[#C8102E] px-5 py-3 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white"
+            className="flex shrink-0 items-center gap-2 rounded-full bg-[#C8102E] px-5 py-2.5 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white"
           >
             <Phone className="h-4 w-4" strokeWidth={2} /> WhatsApp
           </a>

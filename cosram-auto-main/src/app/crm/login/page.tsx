@@ -30,6 +30,8 @@ export default function LoginPage() {
       return;
     }
 
+    alert("LOGIN OK");
+
     router.push("/crm/leads");
   }
 

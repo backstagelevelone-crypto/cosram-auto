@@ -17,6 +17,9 @@ export default async function LeadsPage() {
     .select("*")
     .order("created_at", { ascending: false });
 
+  console.log("LEADS:", leads);
+  console.log("ERROR:", error);
+
   return (
     <main className="min-h-screen bg-slate-100 p-8">
       <div className="mx-auto max-w-7xl">
@@ -90,7 +93,7 @@ export default async function LeadsPage() {
                   </td>
 
                   <td className="p-4">
-                    {lead.car}
+                    {lead.car || "-"}
                   </td>
 
                   <td className="p-4">

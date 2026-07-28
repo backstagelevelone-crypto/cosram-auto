@@ -116,6 +116,7 @@ export default function DashboardCards({
         marginBottom: 30,
       }}
     >
+
       <Card
         title="Lead-uri totale"
         value={total}
@@ -128,6 +129,7 @@ export default function DashboardCards({
         title="Lead-uri astăzi"
         value={today}
         color="#f59e0b"
+        href="/crm/leads?filter=today"
         icon={<CalendarDays size={22} />}
       />
 
@@ -135,6 +137,7 @@ export default function DashboardCards({
         title="Calificate"
         value={qualified}
         color="#16a34a"
+        href="/crm/leads?status=calificat"
         icon={<BadgeCheck size={22} />}
       />
 
@@ -142,8 +145,10 @@ export default function DashboardCards({
         title="Mașini vândute"
         value={sold}
         color="#dc2626"
+        href="/crm/leads?status=vandut"
         icon={<Car size={22} />}
       />
+
     </div>
   );
 }

@@ -297,6 +297,10 @@ export default function CarDetailView({ car, similarCars }: { car: Car; similarC
               <CarGallery variant="page" images={images} carName={displayName} activeIndex={activeImage} onIndexChange={setActiveImage} priority />
             </div>
 
+            <div className="lg:hidden">
+              <PricePanel car={car} className="mt-6" />
+            </div>
+
             <div className="lg:col-span-5">
               <div className="lg:sticky lg:top-24">
                <div className="mb-5 flex flex-wrap items-center gap-2">
@@ -331,13 +335,9 @@ export default function CarDetailView({ car, similarCars }: { car: Car; similarC
 </div>
                 <h1 className="font-[family-name:var(--font-syne)] text-3xl font-bold leading-tight text-[#111111] lg:text-4xl">{title}</h1>
                 {subtitle !== "-" && <p className="mt-2 font-[family-name:var(--font-outfit)] text-base text-[#6B6B6B]">{subtitle}</p>}
-                <PricePanel car={car} className="mt-6 lg:hidden" />
+                <PricePanel car={car} className="mt-6 hidden lg:block" />
               </div>
             </div>
-          </div>
-
-          <div className="hidden lg:block">
-            <PricePanel car={car} className="mt-8" />
           </div>
 
           <div className="mt-12 space-y-12 lg:mt-16">
@@ -391,6 +391,28 @@ export default function CarDetailView({ car, similarCars }: { car: Car; similarC
         </div>
       </div>
 
+      {/* Mobil Footer Bar */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[rgba(0,0,0,0.08)] bg-white/95 px-4 py-3 pb-safe backdrop-blur-md lg:hidden">
+        <div className="flex items-center gap-3">
+          <div className="min-w-0 flex-1">
+            <p className="truncate font-[family-name:var(--font-syne)] text-lg font-bold text-[#C8102E]">
+              {car.price != null ? formatPrice(car.price, { spaced: true }) : c.pret != null ? formatPrice(c.pret, { spaced: true }) : "-"}
+            </p>
+            <p className="font-[family-name:var(--font-outfit)] text-xs text-[#6B6B6B]">
+              {car.monthlyPrice != null || c.rataLunara != null ? `de la ${car.monthlyPrice || c.rataLunara}€/lună` : "Finanțare disponibilă"}
+            </p>
+          </div>
+          <a
+            href={whatsappCarLink(car)}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={trackMobileWhatsapp}
+            className="flex shrink-0 items-center gap-2 rounded-full bg-[#C8102E] px-5 py-3 font-[family-name:var(--font-outfit)] text-sm font-semibold text-white"
+          >
+            <Phone className="h-4 w-4" strokeWidth={2} /> WhatsApp
+          </a>
+        </div>
+      </div>
     </>
   );
 }

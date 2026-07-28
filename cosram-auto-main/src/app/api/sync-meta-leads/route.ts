@@ -20,7 +20,9 @@ function parseCSV(text: string) {
       const values =
         line
           .match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g)
-          ?.map((v) => v.replace(/^"|"$/g, "").trim()) || [];
+          ?.map((v) =>
+            v.replace(/^"|"$/g, "").trim()
+          ) || [];
 
       const obj: any = {};
 
@@ -38,12 +40,15 @@ export async function GET() {
 
     if (!sheetURL) {
       return NextResponse.json(
-        { error: "Lipsește GOOGLE_SHEET_CSV_URL" },
-        { status: 500 }
+        {
+          error: "Lipsește GOOGLE_SHEET_CSV_URL",
+        },
+        {
+          status: 500,
+        }
       );
     }
 
-    // fortam citirea live din Google Sheet
     const response = await fetch(
       sheetURL + "&t=" + Date.now(),
       {
@@ -55,25 +60,56 @@ export async function GET() {
 
     const leads = parseCSV(csv);
 
+
+    // VERIFICARE TEMPORARA
+    console.log(
+      "ULTIMUL LEAD CSV:",
+      leads[leads.length - 1]
+    );
+
+
     let imported = 0;
+
 
     for (const lead of leads) {
 
-      const phone = lead.phone_number || "";
-      const email = lead.email || "";
+      const phone =
+        lead.phone_number ||
+        "";
 
-      if (!phone && !email) continue;
+      const email =
+        lead.email ||
+        "";
+
+
+      console.log(
+        "VERIFIC LEAD:",
+        {
+          name: lead.full_name,
+          phone,
+          email,
+        }
+      );
+
+
+      if (!phone && !email) {
+        continue;
+      }
 
 
       let exists = false;
 
 
       if (phone) {
-        const { data } = await supabase
-          .from("leads")
-          .select("id")
-          .eq("phone", phone)
-          .limit(1);
+        const { data } =
+          await supabase
+            .from("leads")
+            .select("id")
+            .eq(
+              "phone",
+              phone
+            )
+            .limit(1);
 
         if (data && data.length > 0) {
           exists = true;
@@ -82,46 +118,63 @@ export async function GET() {
 
 
       if (!exists && email) {
-        const { data } = await supabase
-          .from("leads")
-          .select("id")
-          .eq("email", email)
-          .limit(1);
+
+        const { data } =
+          await supabase
+            .from("leads")
+            .select("id")
+            .eq(
+              "email",
+              email
+            )
+            .limit(1);
 
         if (data && data.length > 0) {
           exists = true;
         }
+
       }
 
 
-      if (exists) continue;
+      if (exists) {
+        continue;
+      }
 
 
-      const { error } = await supabase
-        .from("leads")
-        .insert({
-          client_name:
-            lead.full_name || "Lead Facebook",
+      const { error } =
+        await supabase
+          .from("leads")
+          .insert({
 
-          phone,
+            client_name:
+              lead.full_name ||
+              "Lead Facebook",
 
-          email,
+            phone,
 
-          status: "nou",
+            email,
 
-          source:
-            lead.campaign_name || "Facebook Ads",
+            status:
+              "nou",
 
-          created_at:
-            lead.created_time
-              ? new Date(lead.created_time)
-              : new Date(),
-        });
+            source:
+              lead.campaign_name ||
+              "Facebook Ads",
+
+            created_at:
+              lead.created_time
+                ? new Date(
+                    lead.created_time
+                  )
+                : new Date(),
+
+          });
 
 
       if (!error) {
         imported++;
       }
+
     }
 
 
@@ -139,6 +192,7 @@ export async function GET() {
       error
     );
 
+
     return NextResponse.json(
       {
         error: error.message,
@@ -147,5 +201,6 @@ export async function GET() {
         status: 500,
       }
     );
+
   }
 }

@@ -8,25 +8,61 @@ const supabase = createClient(
 
 export async function PATCH(req: Request) {
   try {
-    const { id, status } = await req.json();
+    const body = await req.json();
 
-    const { error } = await supabase
-      .from("leads")
-      .update({ status })
-      .eq("id", id);
+    const { id, status } = body;
 
-    if (error) {
+    console.log("UPDATE STATUS:", id, status);
+
+    if (!id || !status) {
       return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
+        {
+          error: "Lipsesc datele necesare.",
+        },
+        {
+          status: 400,
+        }
       );
     }
 
-    return NextResponse.json({ success: true });
-  } catch {
+    const { data, error } = await supabase
+      .from("leads")
+      .update({
+        status,
+      })
+      .eq("id", id)
+      .select();
+
+    if (error) {
+      console.log("SUPABASE ERROR:", error);
+
+      return NextResponse.json(
+        {
+          error: error.message,
+        },
+        {
+          status: 500,
+        }
+      );
+    }
+
+    console.log("UPDATED:", data);
+
+    return NextResponse.json({
+      success: true,
+      lead: data,
+    });
+
+  } catch (error) {
+    console.log("API ERROR:", error);
+
     return NextResponse.json(
-      { error: "Request invalid." },
-      { status: 400 }
+      {
+        error: "Request invalid.",
+      },
+      {
+        status: 400,
+      }
     );
   }
 }

@@ -232,6 +232,27 @@ export const masini: Masina[] = [
     ]
   },
   {
+    "_id": "aeb998d7-52e9-411b-8472-44cc16d43fb3",
+    "slug": "opel-astra-h-2006",
+    "marca": "Opel",
+    "model": "Astra",
+    "an": 2006,
+    "pret": 2699,
+    "combustibil": "Benzina",
+    "cutieViteze": "Manuala",
+    "motor": "1,6",
+    "putere": 116,
+    "caroserie": "Berlina",
+    "disponibil": "Vandut",
+    "galerie": [
+      "/images/masini/opel-astra-h-2006/01.jpeg",
+      "/images/masini/audia4b7/a42.jpeg",
+      "/images/masini/audia4b7/a43.jpeg",
+      "/images/masini/audia4b7/a44.jpeg",
+      "/images/masini/audia4b7/a46.jpeg"
+    ]
+  },
+  {
     "_id": "4ede9d12-f048-4919-8f46-2923f7abb083",
     "slug": "vw-golf-5-2006",
     "marca": "Volkswagen",

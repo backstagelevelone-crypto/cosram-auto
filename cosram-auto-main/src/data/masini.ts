@@ -24,7 +24,7 @@ export interface Masina {
 
 export const masini: Masina[] = [
   {
-    "_id": "0165820a-0ea1-4442-a4e8-483e6af91e17",
+    "_id": "0165820a-0ea1-4442-a401-483e6af91e17",
     "slug": "Renaultmegane2012",
     "marca": "Renault ",
     "model": "Megane",
@@ -54,7 +54,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "0165820a-0ea1-4442-a4e8-483e6af91e21",
+    "_id": "0165820a-0ea1-4442-a402-483e6af91e21",
     "slug": "passatb72.0tdi2013",
     "marca": "Volkswagen ",
     "model": "Passat",
@@ -83,7 +83,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "0165820a-0ea1-4442-a4e8-483e6af91ee7",
+    "_id": "0165820a-0ea1-4442-a403-483e6af91ee7",
     "slug": "ford-focus-2012",
     "marca": "FORD ",
     "model": "FOCUS",
@@ -113,7 +113,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "fe57e922-c8d8-4657-8f1f-4b4ab98861c6",
+    "_id": "fe57e922-c8d8-4657-8f04-4b4ab98861c6",
     "slug": "bmw-320d-mpacket-2006",
     "marca": "BMW 320D",
     "model": "MPACKET",
@@ -133,7 +133,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "aeb998d7-52e9-411b-8472-44cc16d43fb3",
+    "_id": "aeb998d7-52e9-411b-8404-44cc16d43fb3",
     "slug": "Audi-A4-B7-Avant",
     "marca": "Audi",
     "model": "A4",
@@ -154,7 +154,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "aeb998d7-52e9-411b-8472-44cc16d43fc4",
+    "_id": "aeb998d7-52e9-411b-8405-44cc16d43fc4",
     "slug": "opel-zafira-2009",
     "marca": "Opel",
     "model": "Zafira",
@@ -171,7 +171,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "d33fc642-c609-49b0-9714-7aa7010d0f66",
+    "_id": "d33fc642-c609-49b0-9706-7aa7010d0f66",
     "slug": "skoda-fabia-2009-portocaliu",
     "marca": "SKODA",
     "model": "FABIA",
@@ -202,7 +202,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "99a0dc79-e6ce-4fae-913c-06687b37bf65",
+    "_id": "99a0dc79-e6ce-4fae-9107-06687b37bf65",
     "slug": "bmw-520d-2005",
     "marca": "BMW",
     "model": "520D",
@@ -232,7 +232,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "aeb998d7-52e9-411b-8477-44cc16d43fb3",
+    "_id": "aeb998d7-52e9-411b-8408-44cc16d43fb3",
     "slug": "opel-astra-h-2006",
     "marca": "Opel",
     "model": "Astra",
@@ -253,7 +253,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "aeb998d7-52e9-411b-8477-44cc16d43fb3",
+    "_id": "aeb998d7-52e9-411b-8409-44cc16d43fb3",
     "slug": "opel-astra-2012",
     "marca": "Opel",
     "model": "Astra",
@@ -266,7 +266,7 @@ export const masini: Masina[] = [
     "caroserie": "Combi",
     "disponibil": "Vandut",
     "galerie": [
-      "/images/masini/opel-astra-201201.jpg",
+      "/images/masini/opel-astra-2012/01.jpg",
       "/images/masini/audia4b7/a42.jpeg",
       "/images/masini/audia4b7/a43.jpeg",
       "/images/masini/audia4b7/a44.jpeg",
@@ -274,7 +274,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "aeb998d7-52e9-411b-8475-44cc16d43fb3",
+    "_id": "aeb998d7-52e9-411b-8410-44cc16d43fb3",
     "slug": "vw-passat-highline-2010",
     "marca": "vw",
     "model": "Passat",
@@ -295,7 +295,7 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "4ede9d12-f048-4919-8f46-2923f7abb083",
+    "_id": "4ede9d12-f048-4919-8f11-2923f7abb083",
     "slug": "vw-golf-5-2006",
     "marca": "Volkswagen",
     "model": "Golf 5",

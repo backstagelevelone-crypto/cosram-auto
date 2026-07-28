@@ -42,12 +42,19 @@ export default function StatusSelect({
   async function updateStatus(newStatus: string) {
     setValue(newStatus);
 
-    await supabaseBrowser
+    const { error } = await supabaseBrowser
       .from("leads")
       .update({
         status: newStatus,
       })
       .eq("id", id);
+
+    if (error) {
+      console.log("EROARE STATUS:", error);
+      return;
+    }
+
+    console.log("STATUS SALVAT:", newStatus);
   }
 
   return (

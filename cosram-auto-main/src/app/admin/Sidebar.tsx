@@ -1,13 +1,15 @@
+import Link from "next/link";
+
 export default function Sidebar() {
   const menu = [
-    { icon: "📊", title: "Dashboard" },
-    { icon: "👥", title: "Lead-uri" },
-    { icon: "🚘", title: "Mașini" },
-    { icon: "📢", title: "Reclame" },
-    { icon: "💰", title: "Finanțări" },
-    { icon: "📅", title: "Calendar" },
-    { icon: "💬", title: "WhatsApp" },
-    { icon: "⚙️", title: "Setări" },
+    { icon: "📊", title: "Dashboard", href: "/crm" },
+    { icon: "👥", title: "Lead-uri", href: "/crm/leads" },
+    { icon: "🚘", title: "Mașini", href: "#" },
+    { icon: "📢", title: "Reclame", href: "#" },
+    { icon: "💰", title: "Finanțări", href: "#" },
+    { icon: "📅", title: "Calendar", href: "#" },
+    { icon: "💬", title: "WhatsApp", href: "#" },
+    { icon: "⚙️", title: "Setări", href: "#" },
   ];
 
   return (
@@ -25,11 +27,7 @@ export default function Sidebar() {
         flexDirection: "column",
       }}
     >
-      <div
-        style={{
-          marginBottom: 40,
-        }}
-      >
+      <div style={{ marginBottom: 40 }}>
         <div
           style={{
             fontSize: 30,
@@ -58,24 +56,35 @@ export default function Sidebar() {
         }}
       >
         {menu.map((item, index) => (
-          <div
+          <Link
             key={index}
+            href={item.href}
             style={{
               display: "flex",
               alignItems: "center",
               gap: 12,
               padding: "14px 16px",
               borderRadius: 12,
-              background: item.title === "Lead-uri" ? "#dc2626" : "transparent",
-              color: item.title === "Lead-uri" ? "#ffffff" : "#374151",
+              background:
+                item.title === "Lead-uri"
+                  ? "#dc2626"
+                  : "transparent",
+              color:
+                item.title === "Lead-uri"
+                  ? "#ffffff"
+                  : "#374151",
               cursor: "pointer",
               fontWeight: 600,
+              textDecoration: "none",
               transition: "all .2s",
             }}
           >
-            <span style={{ fontSize: 20 }}>{item.icon}</span>
+            <span style={{ fontSize: 20 }}>
+              {item.icon}
+            </span>
+
             {item.title}
-          </div>
+          </Link>
         ))}
       </div>
 

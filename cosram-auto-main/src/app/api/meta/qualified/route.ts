@@ -20,11 +20,13 @@ export async function POST(req: Request) {
     });
 
 
-    const userData: any = {};
+    const userData: Record<string, string[]> = {};
+
 
     if (email) {
       userData.em = [sha256(email)];
     }
+
 
     if (phone) {
       userData.ph = [sha256(phone)];
@@ -45,10 +47,11 @@ export async function POST(req: Request) {
           custom_data: {
             lead_status: "qualified",
           },
+
+          // TEST META EVENTS MANAGER
+          test_event_code: "TEST94947",
         },
       ],
-
-      test_event_code: "TEST94947",
     };
 
 

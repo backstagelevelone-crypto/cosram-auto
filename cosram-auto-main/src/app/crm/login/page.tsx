@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+import { supabaseBrowser } from "@/lib/supabase-browser";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function LoginPage() {
     setLoading(true);
     setError("");
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabaseBrowser.auth.signInWithPassword({
       email,
       password,
     });
@@ -40,6 +40,10 @@ export default function LoginPage() {
           COSRAM CRM
         </h1>
 
+        <p className="mt-2 text-center text-gray-500">
+          Autentificare
+        </p>
+
         <form onSubmit={handleLogin} className="mt-8 space-y-4">
           <input
             type="email"
@@ -58,15 +62,17 @@ export default function LoginPage() {
           />
 
           {error && (
-            <p className="text-sm text-red-600">{error}</p>
+            <p className="text-sm text-red-600">
+              {error}
+            </p>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-red-600 p-3 text-white font-semibold"
+            className="w-full rounded-lg bg-red-600 p-3 text-white font-semibold disabled:opacity-50"
           >
-            {loading ? "Se conectează..." : "Autentificare"}
+            {loading ? "Se conectează..." : "Intră în CRM"}
           </button>
         </form>
       </div>

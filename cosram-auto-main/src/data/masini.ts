@@ -245,7 +245,7 @@ export const masini: Masina[] = [
     "caroserie": "Hatchback",
     "disponibil": "Vandut",
     "galerie": [
-      "/images/masini/opel-astra-h-2006/01.jpeg",
+      "/images/masini/opel-astra-h-2006/01.jpg",
       "/images/masini/audia4b7/a42.jpeg",
       "/images/masini/audia4b7/a43.jpeg",
       "/images/masini/audia4b7/a44.jpeg",

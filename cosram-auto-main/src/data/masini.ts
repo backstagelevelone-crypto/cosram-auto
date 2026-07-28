@@ -253,6 +253,48 @@ export const masini: Masina[] = [
     ]
   },
   {
+    "_id": "aeb998d7-52e9-411b-8477-44cc16d43fb3",
+    "slug": "opel-astra-2012",
+    "marca": "Opel",
+    "model": "Astra",
+    "an": 2012,
+    "pret": 3699,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "1,7",
+    "putere": 126,
+    "caroserie": "Combi",
+    "disponibil": "Vandut",
+    "galerie": [
+      "/images/masini/opel-astra-201201.jpg",
+      "/images/masini/audia4b7/a42.jpeg",
+      "/images/masini/audia4b7/a43.jpeg",
+      "/images/masini/audia4b7/a44.jpeg",
+      "/images/masini/audia4b7/a46.jpeg"
+    ]
+  },
+  {
+    "_id": "aeb998d7-52e9-411b-8475-44cc16d43fb3",
+    "slug": "vw-passat-highline-2010",
+    "marca": "vw",
+    "model": "Passat",
+    "an": 2010,
+    "pret": 4499,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": ",20",
+    "putere": 140,
+    "caroserie": "Combi",
+    "disponibil": "Vandut",
+    "galerie": [
+      "/images/masini/vw-passat-highline-2010/01.jpg",
+      "/images/masini/audia4b7/a42.jpeg",
+      "/images/masini/audia4b7/a43.jpeg",
+      "/images/masini/audia4b7/a44.jpeg",
+      "/images/masini/audia4b7/a46.jpeg"
+    ]
+  },
+  {
     "_id": "4ede9d12-f048-4919-8f46-2923f7abb083",
     "slug": "vw-golf-5-2006",
     "marca": "Volkswagen",

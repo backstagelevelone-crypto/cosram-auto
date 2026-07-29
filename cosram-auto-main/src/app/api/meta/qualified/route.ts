@@ -4,7 +4,7 @@ const sha256 = (value: string) =>
   createHash("sha256")
     .update(value.trim().toLowerCase())
     .digest("hex");
-
+ 
 
 export async function POST(req: Request) {
   try {

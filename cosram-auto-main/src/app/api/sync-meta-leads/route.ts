@@ -55,9 +55,7 @@ export async function GET() {
           success: false,
           error: "Lipsește GOOGLE_SHEET_CSV_URL",
         },
-        {
-          status: 500,
-        }
+        { status: 500 }
       );
     }
 
@@ -71,9 +69,7 @@ export async function GET() {
           success: false,
           error: "Nu pot descărca Google Sheet",
         },
-        {
-          status: 500,
-        }
+        { status: 500 }
       );
     }
 
@@ -81,9 +77,28 @@ export async function GET() {
     const leads = parseCSV(csv);
 
     let imported = 0;
-    const errors: any[] = [];
+    let skipped = 0;
+    const errors: string[] = [];
 
     for (const lead of leads) {
+      const metaLeadId = lead.id?.trim();
+
+      if (!metaLeadId) {
+        skipped++;
+        continue;
+      }
+
+      const { data: existing } = await supabase
+        .from("leads")
+        .select("id")
+        .eq("meta_lead_id", metaLeadId)
+        .limit(1);
+
+      if (existing && existing.length > 0) {
+        skipped++;
+        continue;
+      }
+
       const phone = (lead.phone_number || "")
         .replace(/^p:/i, "")
         .trim();
@@ -92,11 +107,10 @@ export async function GET() {
         .trim()
         .toLowerCase();
 
-      if (!phone && !email) continue;
-
       const { error } = await supabase
         .from("leads")
         .insert({
+          meta_lead_id: metaLeadId,
           full_name: lead.full_name || "Lead Facebook",
           phone,
           email,
@@ -120,6 +134,7 @@ export async function GET() {
       success: true,
       total: leads.length,
       imported,
+      skipped,
       errors,
     });
   } catch (err: any) {

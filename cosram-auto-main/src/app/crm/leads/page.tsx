@@ -1,110 +1,94 @@
-import TopBar from "@/components/admin/TopBar";
-import DashboardCards from "@/components/admin/DashboardCards";
-import StatusSelect from "@/components/admin/StatusSelect";
-import LeadActions from "@/components/admin/LeadActions";
-import { supabase } from "@/lib/supabase";
+import { redirect } from "next/navigation";
+import { supabaseServer } from "@/lib/supabase-server";
+import StatusSelect from "@/components/StatusSelect";
 
-export default async function LeadsPage() {
-  const { data: leads, error } = await supabase
+export default async function LeadsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    status?: string;
+  }>;
+}) {
+  const { status } = await searchParams;
+
+  const supabase = await supabaseServer();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/crm/login");
+  }
+
+  let query = supabase
     .from("leads")
     .select("*")
     .order("created_at", { ascending: false });
 
+  if (status) {
+    query = query.eq("status", status);
+  }
 
-  const total = leads?.length ?? 0;
-
-
-  const today =
-    leads?.filter((lead) => {
-      const d = new Date(lead.created_at);
-      const now = new Date();
-
-      return (
-        d.getDate() === now.getDate() &&
-        d.getMonth() === now.getMonth() &&
-        d.getFullYear() === now.getFullYear()
-      );
-    }).length ?? 0;
-
-
-  const qualified =
-    leads?.filter(
-      (lead) => lead.status === "calificat"
-    ).length ?? 0;
-
-
-  const sold =
-    leads?.filter(
-      (lead) => lead.status === "vandut"
-    ).length ?? 0;
-
+  const { data: leads, error } = await query;
 
   return (
-    <>
-      <TopBar />
+    <main className="min-h-screen bg-slate-100 p-8">
+      <div className="mx-auto max-w-7xl">
 
-      <DashboardCards
-        total={total}
-        today={today}
-        qualified={qualified}
-        sold={sold}
-      />
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold">
+            👥 Lead-uri
+          </h1>
 
-
-      <div
-        style={{
-          background: "#fff",
-          borderRadius: 16,
-          padding: 24,
-          boxShadow: "0 10px 30px rgba(0,0,0,.05)",
-        }}
-      >
-
-        <h2 style={{ marginBottom: 20 }}>
-          Lead-uri
-        </h2>
-
-
-        {error && (
-          <p style={{ color: "red" }}>
-            {error.message}
+          <p className="text-gray-500">
+            Gestionarea clienților interesați
           </p>
-        )}
+
+          {status && (
+            <p className="mt-2 text-sm text-blue-600">
+              Filtru activ: {status}
+            </p>
+          )}
+        </div>
 
 
+        <div className="rounded-2xl bg-white shadow overflow-hidden">
 
-        {/* DESKTOP */}
+          {error && (
+            <div className="p-4 text-red-600">
+              Eroare: {error.message}
+            </div>
+          )}
 
-        <div className="hidden md:block">
 
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-            }}
-          >
+          <table className="w-full">
 
-            <thead>
-              <tr style={{ borderBottom: "2px solid #e5e7eb" }}>
+            <thead className="border-b bg-gray-50">
+              <tr>
 
-                <th align="left" style={{ padding:12 }}>
-                  Nume
+                <th className="p-4 text-left">
+                  👤 Client
                 </th>
 
-                <th align="left" style={{ padding:12 }}>
-                  Telefon
+                <th className="p-4 text-left">
+                  📱 Telefon
                 </th>
 
-                <th align="left" style={{ padding:12 }}>
-                  Mașină
+                <th className="p-4 text-left">
+                  🚗 Mașină
                 </th>
 
-                <th align="left" style={{ padding:12 }}>
-                  Status
+                <th className="p-4 text-left">
+                  📍 Sursă
                 </th>
 
-                <th align="left" style={{ padding:12 }}>
-                  Acțiuni
+                <th className="p-4 text-left">
+                  📊 Status
+                </th>
+
+                <th className="p-4 text-left">
+                  ⚡ Acțiuni
                 </th>
 
               </tr>
@@ -113,31 +97,46 @@ export default async function LeadsPage() {
 
             <tbody>
 
+              {leads?.length === 0 && (
+                <tr>
+                  <td
+                    colSpan={6}
+                    className="p-6 text-center text-gray-400"
+                  >
+                    Nu există lead-uri.
+                  </td>
+                </tr>
+              )}
+
+
               {leads?.map((lead) => (
 
                 <tr
                   key={lead.id}
-                  style={{
-                    borderBottom:"1px solid #f1f5f9",
-                  }}
+                  className="border-b"
                 >
 
-                  <td style={{padding:12}}>
+                  <td className="p-4 font-medium">
                     {lead.full_name}
                   </td>
 
 
-                  <td style={{padding:12}}>
+                  <td className="p-4">
                     {lead.phone}
                   </td>
 
 
-                  <td style={{padding:12}}>
+                  <td className="p-4">
                     {lead.car || "-"}
                   </td>
 
 
-                  <td style={{padding:12}}>
+                  <td className="p-4">
+                    {lead.source || "-"}
+                  </td>
+
+
+                  <td className="p-4">
                     <StatusSelect
                       id={lead.id}
                       status={lead.status}
@@ -145,12 +144,40 @@ export default async function LeadsPage() {
                   </td>
 
 
-                  <td style={{padding:12}}>
-                    <LeadActions
-                      phone={lead.phone}
-                    />
-                  </td>
+                  <td className="p-4">
 
+                    <div className="flex gap-3">
+
+                      <a
+                        href={`tel:${lead.phone}`}
+                        title="Sună clientul"
+                        className="text-xl"
+                      >
+                        📞
+                      </a>
+
+
+                      <a
+                        href={`https://wa.me/40${lead.phone?.replace(/^0/, "")}`}
+                        target="_blank"
+                        title="WhatsApp"
+                        className="text-xl"
+                      >
+                        💬
+                      </a>
+
+
+                      <a
+                        href={`/crm/leads/${lead.id}`}
+                        title="Vezi detalii"
+                        className="text-xl"
+                      >
+                        👁️
+                      </a>
+
+                    </div>
+
+                  </td>
 
                 </tr>
 
@@ -162,82 +189,7 @@ export default async function LeadsPage() {
 
         </div>
 
-
-
-        {/* MOBIL */}
-
-        <div className="md:hidden">
-
-          {leads?.map((lead) => (
-
-            <div
-              key={lead.id}
-              style={{
-                background:"#f8fafc",
-                border:"1px solid #e5e7eb",
-                borderRadius:16,
-                padding:16,
-                marginBottom:16,
-              }}
-            >
-
-              <h3
-                style={{
-                  fontSize:18,
-                  fontWeight:700,
-                  marginBottom:12,
-                }}
-              >
-                👤 {lead.full_name}
-              </h3>
-
-
-              <p>
-                📞 {lead.phone}
-              </p>
-
-
-              <p style={{marginTop:8}}>
-                🚗 {lead.car || "-"}
-              </p>
-
-
-              <div style={{marginTop:16}}>
-
-                <div
-                  style={{
-                    fontSize:13,
-                    color:"#64748b",
-                    marginBottom:6,
-                  }}
-                >
-                  Status
-                </div>
-
-
-                <StatusSelect
-                  id={lead.id}
-                  status={lead.status}
-                />
-
-              </div>
-
-
-              <div style={{marginTop:16}}>
-                <LeadActions
-                  phone={lead.phone}
-                />
-              </div>
-
-
-            </div>
-
-          ))}
-
-        </div>
-
-
       </div>
-    </>
+    </main>
   );
 }

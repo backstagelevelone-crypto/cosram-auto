@@ -4,12 +4,11 @@ const sha256 = (value: string) =>
   createHash("sha256")
     .update(value.trim().toLowerCase())
     .digest("hex");
- 
+
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-
 
     const email = body.email || "";
     const phone = body.phone || "";
@@ -17,46 +16,62 @@ export async function POST(req: Request) {
     const fbp = body.fbp || undefined;
     const fbc = body.fbc || undefined;
 
-    const userAgent = body.user_agent || "";
-    const eventSourceUrl = body.event_source_url || "";
+    const eventSourceUrl =
+      body.event_source_url ||
+      "https://www.cosram.ro";
 
 
-
-    console.log("DATE PRIMITE META:", {
-      hasEmail: !!email,
-      hasPhone: !!phone,
-      hasFbp: !!fbp,
-      hasFbc: !!fbc,
+    console.log("META QUALIFIED REQUEST V3", {
+      email: !!email,
+      phone: !!phone,
+      fbp: !!fbp,
+      fbc: !!fbc,
     });
 
 
-
-    const userData: Record<string, any> = {};
+    const user_data: Record<string, any> = {};
 
 
     if (email) {
-      userData.em = [
+      user_data.em = [
         sha256(email)
       ];
     }
 
 
     if (phone) {
-      userData.ph = [
+      user_data.ph = [
         sha256(phone)
       ];
     }
 
 
     if (fbp) {
-      userData.fbp = fbp;
+      user_data.fbp = fbp;
     }
 
 
     if (fbc) {
-      userData.fbc = fbc;
+      user_data.fbc = fbc;
     }
 
+
+    const pixelId = process.env.META_CRM_PIXEL_ID;
+    const accessToken = process.env.META_CRM_ACCESS_TOKEN;
+
+
+    if (!pixelId || !accessToken) {
+      console.log("META ENV MISSING");
+
+      return Response.json(
+        {
+          error: "META variables missing",
+        },
+        {
+          status: 500,
+        }
+      );
+    }
 
 
     const payload = {
@@ -70,34 +85,28 @@ export async function POST(req: Request) {
 
           action_source: "website",
 
-
           event_source_url: eventSourceUrl,
 
-
-          user_data: userData,
-
+          user_data,
 
           custom_data: {
             lead_status: "qualified",
           },
 
-          
-          test_event_code: "TEST24894", 
+          test_event_code: "TEST24894",
         },
       ],
     };
 
 
-
     console.log(
-      "META FULL PAYLOAD:",
+      "META PAYLOAD V3",
       JSON.stringify(payload, null, 2)
     );
 
 
-
-    const response = await fetch(
-      `https://graph.facebook.com/v23.0/${process.env.META_CRM_PIXEL_ID}/events?access_token=${process.env.META_CRM_ACCESS_TOKEN}`,
+    const metaResponse = await fetch(
+      `https://graph.facebook.com/v23.0/${pixelId}/events?access_token=${accessToken}`,
       {
         method: "POST",
 
@@ -110,26 +119,28 @@ export async function POST(req: Request) {
     );
 
 
-
-    const result = await response.json();
-
+    const metaResult =
+      await metaResponse.json();
 
 
     console.log(
-      "META FULL RESPONSE:",
-      JSON.stringify(result, null, 2)
+      "META RESPONSE V3",
+      JSON.stringify(metaResult, null, 2)
     );
 
 
-
-    return Response.json(result);
+    return Response.json(
+      metaResult,
+      {
+        status: metaResponse.status,
+      }
+    );
 
 
   } catch (error) {
 
-
     console.log(
-      "META ERROR:",
+      "META QUALIFIED ERROR",
       error
     );
 
@@ -142,6 +153,5 @@ export async function POST(req: Request) {
         status: 500,
       }
     );
-
   }
 }

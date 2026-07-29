@@ -10,7 +10,9 @@ export default async function LeadsPage() {
     .select("*")
     .order("created_at", { ascending: false });
 
+
   const total = leads?.length ?? 0;
+
 
   const today =
     leads?.filter((lead) => {
@@ -24,16 +26,24 @@ export default async function LeadsPage() {
       );
     }).length ?? 0;
 
+
   const qualified =
-    leads?.filter((lead) => lead.status === "calificat").length ?? 0;
+    leads?.filter(
+      (lead) => lead.status === "calificat"
+    ).length ?? 0;
+
 
   const sold =
-    leads?.filter((lead) => lead.status === "vandut").length ?? 0;
+    leads?.filter(
+      (lead) => lead.status === "vandut"
+    ).length ?? 0;
+
 
 
   return (
     <>
       <TopBar />
+
 
       <DashboardCards
         total={total}
@@ -44,16 +54,21 @@ export default async function LeadsPage() {
 
 
       <div
-        className="bg-white rounded-2xl shadow p-4 md:p-6"
+        style={{
+          background: "#fff",
+          borderRadius: 16,
+          padding: 24,
+          boxShadow: "0 10px 30px rgba(0,0,0,.05)",
+        }}
       >
 
-        <h2 className="text-2xl font-bold mb-5">
+        <h2 style={{ marginBottom: 20 }}>
           Lead-uri
         </h2>
 
 
         {error && (
-          <p className="text-red-500">
+          <p style={{ color: "red" }}>
             {error.message}
           </p>
         )}
@@ -61,32 +76,59 @@ export default async function LeadsPage() {
 
 
         {/* DESKTOP TABLE */}
+
         <div className="hidden md:block">
 
           <table
-            className="w-full border-collapse"
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+            }}
           >
 
             <thead>
-              <tr className="border-b-2 border-gray-200">
+              <tr
+                style={{
+                  borderBottom: "2px solid #e5e7eb",
+                }}
+              >
 
-                <th className="text-left p-3">
+                <th
+                  align="left"
+                  style={{ padding: 12 }}
+                >
                   Nume
                 </th>
 
-                <th className="text-left p-3">
+
+                <th
+                  align="left"
+                  style={{ padding: 12 }}
+                >
                   Telefon
                 </th>
 
-                <th className="text-left p-3">
+
+                <th
+                  align="left"
+                  style={{ padding: 12 }}
+                >
                   Mașină
                 </th>
 
-                <th className="text-left p-3">
+
+                <th
+                  align="left"
+                  style={{ padding: 12 }}
+                >
                   Status
                 </th>
 
-                <th className="text-left p-3">
+
+                <th
+                  align="left"
+                  style={{ padding: 12 }}
+                >
                   Acțiuni
                 </th>
 
@@ -100,25 +142,28 @@ export default async function LeadsPage() {
 
                 <tr
                   key={lead.id}
-                  className="border-b border-gray-100"
+                  style={{
+                    borderBottom:
+                      "1px solid #f1f5f9",
+                  }}
                 >
 
-                  <td className="p-3">
+                  <td style={{ padding: 12 }}>
                     {lead.full_name}
                   </td>
 
 
-                  <td className="p-3">
+                  <td style={{ padding: 12 }}>
                     {lead.phone}
                   </td>
 
 
-                  <td className="p-3">
+                  <td style={{ padding: 12 }}>
                     {lead.car || "-"}
                   </td>
 
 
-                  <td className="p-3">
+                  <td style={{ padding: 12 }}>
 
                     <StatusSelect
                       id={lead.id}
@@ -128,7 +173,7 @@ export default async function LeadsPage() {
                   </td>
 
 
-                  <td className="p-3">
+                  <td style={{ padding: 12 }}>
 
                     <LeadActions
                       phone={lead.phone}
@@ -141,7 +186,6 @@ export default async function LeadsPage() {
 
               ))}
 
-
             </tbody>
 
           </table>
@@ -151,38 +195,55 @@ export default async function LeadsPage() {
 
 
 
-        {/* MOBIL CARDURI */}
+        {/* MOBIL CARDS */}
 
-        <div className="md:hidden space-y-4">
-
+        <div className="md:hidden">
 
           {leads?.map((lead) => (
 
             <div
               key={lead.id}
-              className="rounded-2xl bg-slate-50 p-5 shadow-sm border"
+              style={{
+                background: "#f8fafc",
+                borderRadius: 16,
+                padding: 16,
+                marginBottom: 16,
+                border:
+                  "1px solid #e5e7eb",
+              }}
             >
 
-
-              <h3 className="text-xl font-bold mb-4">
+              <h3
+                style={{
+                  fontSize: 18,
+                  fontWeight: 700,
+                  marginBottom: 12,
+                }}
+              >
                 👤 {lead.full_name}
               </h3>
 
 
-              <div className="mb-2 text-gray-700">
-                📱 {lead.phone}
-              </div>
+              <p style={{ marginBottom: 8 }}>
+                📞 {lead.phone}
+              </p>
 
 
-              <div className="mb-4 text-gray-700">
+              <p style={{ marginBottom: 16 }}>
                 🚗 {lead.car || "-"}
-              </div>
+              </p>
 
 
 
-              <div className="mb-4">
+              <div style={{ marginBottom: 16 }}>
 
-                <div className="text-sm text-gray-500 mb-2">
+                <div
+                  style={{
+                    fontSize: 13,
+                    color: "#64748b",
+                    marginBottom: 6,
+                  }}
+                >
                   Status
                 </div>
 
@@ -204,7 +265,6 @@ export default async function LeadsPage() {
             </div>
 
           ))}
-
 
         </div>
 

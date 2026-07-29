@@ -82,7 +82,7 @@ export async function POST(req: Request) {
           },
 
 
-          test_event_code: "TEST94947",
+          test_event_code: "TEST24894",
         },
       ],
     };

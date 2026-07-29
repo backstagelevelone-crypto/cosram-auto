@@ -4,29 +4,11 @@ import StatusSelect from "@/components/admin/StatusSelect";
 import LeadActions from "@/components/admin/LeadActions";
 import { supabase } from "@/lib/supabase";
 
-export default async function LeadsPage({
-  searchParams,
-}: {
-  searchParams: {
-    status?: string;
-  };
-}) {
-
-  let query = supabase
+export default async function LeadsPage() {
+  const { data: leads, error } = await supabase
     .from("leads")
     .select("*")
     .order("created_at", { ascending: false });
-
-
-  if (searchParams.status) {
-    query = query.eq(
-      "status",
-      searchParams.status
-    );
-  }
-
-
-  const { data: leads, error } = await query;
 
 
   const total = leads?.length ?? 0;
@@ -57,11 +39,9 @@ export default async function LeadsPage({
     ).length ?? 0;
 
 
-
   return (
     <>
       <TopBar />
-
 
       <DashboardCards
         total={total}
@@ -93,7 +73,7 @@ export default async function LeadsPage({
 
 
 
-        {/* DESKTOP */}
+        {/* DESKTOP - tabel original */}
 
         <div className="hidden md:block">
 
@@ -105,25 +85,29 @@ export default async function LeadsPage({
           >
 
             <thead>
-              <tr style={{ borderBottom:"2px solid #e5e7eb" }}>
+              <tr
+                style={{
+                  borderBottom: "2px solid #e5e7eb",
+                }}
+              >
 
-                <th style={{padding:12,textAlign:"left"}}>
+                <th align="left" style={{ padding: 12 }}>
                   Nume
                 </th>
 
-                <th style={{padding:12,textAlign:"left"}}>
+                <th align="left" style={{ padding: 12 }}>
                   Telefon
                 </th>
 
-                <th style={{padding:12,textAlign:"left"}}>
+                <th align="left" style={{ padding: 12 }}>
                   Mașină
                 </th>
 
-                <th style={{padding:12,textAlign:"left"}}>
+                <th align="left" style={{ padding: 12 }}>
                   Status
                 </th>
 
-                <th style={{padding:12,textAlign:"left"}}>
+                <th align="left" style={{ padding: 12 }}>
                   Acțiuni
                 </th>
 
@@ -133,31 +117,31 @@ export default async function LeadsPage({
 
             <tbody>
 
-              {leads?.map((lead)=>(
+              {leads?.map((lead) => (
 
                 <tr
                   key={lead.id}
                   style={{
-                    borderBottom:"1px solid #f1f5f9"
+                    borderBottom: "1px solid #f1f5f9",
                   }}
                 >
 
-                  <td style={{padding:12}}>
+                  <td style={{ padding: 12 }}>
                     {lead.full_name}
                   </td>
 
 
-                  <td style={{padding:12}}>
+                  <td style={{ padding: 12 }}>
                     {lead.phone}
                   </td>
 
 
-                  <td style={{padding:12}}>
+                  <td style={{ padding: 12 }}>
                     {lead.car || "-"}
                   </td>
 
 
-                  <td style={{padding:12}}>
+                  <td style={{ padding: 12 }}>
                     <StatusSelect
                       id={lead.id}
                       status={lead.status}
@@ -165,7 +149,7 @@ export default async function LeadsPage({
                   </td>
 
 
-                  <td style={{padding:12}}>
+                  <td style={{ padding: 12 }}>
                     <LeadActions
                       phone={lead.phone}
                     />
@@ -183,30 +167,47 @@ export default async function LeadsPage({
 
 
 
-        {/* MOBIL */}
+
+        {/* MOBIL - carduri */}
 
         <div className="md:hidden space-y-4">
 
-          {leads?.map((lead)=>(
+          {leads?.map((lead) => (
 
             <div
               key={lead.id}
-              className="bg-slate-50 rounded-2xl p-5 border"
+              style={{
+                background: "#f8fafc",
+                borderRadius: 16,
+                padding: 16,
+                border: "1px solid #e5e7eb",
+              }}
             >
 
-              <h3 className="font-bold text-xl mb-3">
+              <div
+                style={{
+                  fontSize: 20,
+                  fontWeight: 700,
+                  marginBottom: 12,
+                }}
+              >
                 👤 {lead.full_name}
-              </h3>
+              </div>
 
 
-              <p className="mb-2">
-                📞 {lead.phone}
-              </p>
+              <div style={{ marginBottom: 8 }}>
+                📱 {lead.phone}
+              </div>
 
 
-              <p className="mb-4">
+              <div style={{ marginBottom: 12 }}>
                 🚗 {lead.car || "-"}
-              </p>
+              </div>
+
+
+              <div style={{ marginBottom: 8 }}>
+                Status:
+              </div>
 
 
               <StatusSelect
@@ -215,7 +216,7 @@ export default async function LeadsPage({
               />
 
 
-              <div className="mt-4">
+              <div style={{ marginTop: 16 }}>
                 <LeadActions
                   phone={lead.phone}
                 />

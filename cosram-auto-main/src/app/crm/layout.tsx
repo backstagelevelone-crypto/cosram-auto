@@ -12,10 +12,11 @@ export default function CRMLayout({
       <Sidebar />
 
       <main
-        style={{
-          marginLeft: 260,
-          minHeight: "100vh",
-        }}
+        className="
+          min-h-screen
+          ml-0
+          md:ml-[260px]
+        "
       >
         {children}
       </main>

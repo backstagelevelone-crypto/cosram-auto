@@ -4,11 +4,29 @@ import StatusSelect from "@/components/admin/StatusSelect";
 import LeadActions from "@/components/admin/LeadActions";
 import { supabase } from "@/lib/supabase";
 
-export default async function LeadsPage() {
-  const { data: leads, error } = await supabase
+export default async function LeadsPage({
+  searchParams,
+}: {
+  searchParams: {
+    status?: string;
+  };
+}) {
+
+  let query = supabase
     .from("leads")
     .select("*")
     .order("created_at", { ascending: false });
+
+
+  if (searchParams.status) {
+    query = query.eq(
+      "status",
+      searchParams.status
+    );
+  }
+
+
+  const { data: leads, error } = await query;
 
 
   const total = leads?.length ?? 0;
@@ -54,16 +72,21 @@ export default async function LeadsPage() {
 
 
       <div
-        className="bg-white rounded-2xl p-4 md:p-6 shadow"
+        style={{
+          background: "#fff",
+          borderRadius: 16,
+          padding: 24,
+          boxShadow: "0 10px 30px rgba(0,0,0,.05)",
+        }}
       >
 
-        <h2 className="text-2xl font-bold mb-5">
+        <h2 style={{ marginBottom: 20 }}>
           Lead-uri
         </h2>
 
 
         {error && (
-          <p className="text-red-500 mb-4">
+          <p style={{ color: "red" }}>
             {error.message}
           </p>
         )}
@@ -72,83 +95,81 @@ export default async function LeadsPage() {
 
         {/* DESKTOP */}
 
-        <div className="hidden md:block overflow-x-auto">
+        <div className="hidden md:block">
 
           <table
-            className="w-full border-collapse"
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+            }}
           >
 
             <thead>
+              <tr style={{ borderBottom:"2px solid #e5e7eb" }}>
 
-              <tr className="border-b-2">
-
-                <th className="text-left p-3">
+                <th style={{padding:12,textAlign:"left"}}>
                   Nume
                 </th>
 
-                <th className="text-left p-3">
+                <th style={{padding:12,textAlign:"left"}}>
                   Telefon
                 </th>
 
-                <th className="text-left p-3">
+                <th style={{padding:12,textAlign:"left"}}>
                   Mașină
                 </th>
 
-                <th className="text-left p-3">
+                <th style={{padding:12,textAlign:"left"}}>
                   Status
                 </th>
 
-                <th className="text-left p-3">
+                <th style={{padding:12,textAlign:"left"}}>
                   Acțiuni
                 </th>
 
               </tr>
-
             </thead>
 
 
             <tbody>
 
-              {leads?.map((lead) => (
+              {leads?.map((lead)=>(
 
                 <tr
                   key={lead.id}
-                  className="border-b"
+                  style={{
+                    borderBottom:"1px solid #f1f5f9"
+                  }}
                 >
 
-                  <td className="p-3">
+                  <td style={{padding:12}}>
                     {lead.full_name}
                   </td>
 
 
-                  <td className="p-3">
+                  <td style={{padding:12}}>
                     {lead.phone}
                   </td>
 
 
-                  <td className="p-3">
+                  <td style={{padding:12}}>
                     {lead.car || "-"}
                   </td>
 
 
-                  <td className="p-3">
-
+                  <td style={{padding:12}}>
                     <StatusSelect
                       id={lead.id}
                       status={lead.status}
                     />
-
                   </td>
 
 
-                  <td className="p-3">
-
+                  <td style={{padding:12}}>
                     <LeadActions
                       phone={lead.phone}
                     />
-
                   </td>
-
 
                 </tr>
 
@@ -162,52 +183,43 @@ export default async function LeadsPage() {
 
 
 
-
         {/* MOBIL */}
 
         <div className="md:hidden space-y-4">
 
-          {leads?.map((lead) => (
+          {leads?.map((lead)=>(
 
             <div
               key={lead.id}
-              className="bg-slate-50 rounded-2xl p-5 border shadow-sm"
+              className="bg-slate-50 rounded-2xl p-5 border"
             >
 
-              <div className="text-xl font-bold mb-4">
+              <h3 className="font-bold text-xl mb-3">
                 👤 {lead.full_name}
-              </div>
+              </h3>
 
 
-              <div className="mb-2 text-gray-700">
+              <p className="mb-2">
                 📞 {lead.phone}
-              </div>
+              </p>
 
 
-              <div className="mb-4 text-gray-700">
+              <p className="mb-4">
                 🚗 {lead.car || "-"}
-              </div>
+              </p>
 
 
-
-              <div className="mb-2 text-sm text-gray-500">
-                Status
-              </div>
-
-
-              <div className="mb-4">
-
-                <StatusSelect
-                  id={lead.id}
-                  status={lead.status}
-                />
-
-              </div>
-
-
-              <LeadActions
-                phone={lead.phone}
+              <StatusSelect
+                id={lead.id}
+                status={lead.status}
               />
+
+
+              <div className="mt-4">
+                <LeadActions
+                  phone={lead.phone}
+                />
+              </div>
 
 
             </div>

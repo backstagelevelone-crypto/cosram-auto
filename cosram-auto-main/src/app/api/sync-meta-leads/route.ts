@@ -61,11 +61,9 @@ export async function GET() {
     });
 
     const csv = await response.text();
-
     const leads = parseCSV(csv);
 
     let imported = 0;
-    let skipped = 0;
     const errors: string[] = [];
 
     for (const lead of leads) {
@@ -78,38 +76,6 @@ export async function GET() {
         .toLowerCase();
 
       if (!phone && !email) {
-        skipped++;
-        continue;
-      }
-
-      let exists = false;
-
-      if (phone) {
-        const { data } = await supabase
-          .from("leads")
-          .select("id")
-          .eq("phone", phone)
-          .limit(1);
-
-        if (data && data.length > 0) {
-          exists = true;
-        }
-      }
-
-      if (!exists && email) {
-        const { data } = await supabase
-          .from("leads")
-          .select("id")
-          .eq("email", email)
-          .limit(1);
-
-        if (data && data.length > 0) {
-          exists = true;
-        }
-      }
-
-      if (exists) {
-        skipped++;
         continue;
       }
 
@@ -127,7 +93,7 @@ export async function GET() {
         });
 
       if (error) {
-        console.error("INSERT ERROR:", error);
+        console.error(error);
         errors.push(error.message);
         continue;
       }
@@ -139,7 +105,6 @@ export async function GET() {
       success: true,
       total: leads.length,
       imported,
-      skipped,
       errors,
     });
   } catch (err: any) {

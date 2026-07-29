@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Sidebar() {
+  const [open, setOpen] = useState(false);
+
   const menu = [
     { icon: "📊", title: "Dashboard", href: "/crm" },
     { icon: "👥", title: "Lead-uri", href: "/crm/leads" },
@@ -13,106 +18,98 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside
-      style={{
-        width: 260,
-        background: "#ffffff",
-        borderRight: "1px solid #e5e7eb",
-        height: "100vh",
-        position: "fixed",
-        left: 0,
-        top: 0,
-        padding: 24,
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <div style={{ marginBottom: 40 }}>
-        <div
-          style={{
-            fontSize: 30,
-            fontWeight: 800,
-            color: "#dc2626",
-          }}
-        >
-          COSRAM
-        </div>
-
-        <div
-          style={{
-            color: "#6b7280",
-            fontSize: 14,
-          }}
-        >
-          AUTO CRM
-        </div>
-      </div>
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 8,
-        }}
+    <>
+      {/* Buton mobil */}
+      <button
+        onClick={() => setOpen(!open)}
+        className="md:hidden fixed top-4 left-4 z-50 bg-white rounded-lg p-3 shadow"
       >
-        {menu.map((item, index) => (
-          <Link
-            key={index}
-            href={item.href}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              padding: "14px 16px",
-              borderRadius: 12,
-              background:
-                item.title === "Lead-uri"
-                  ? "#dc2626"
-                  : "transparent",
-              color:
-                item.title === "Lead-uri"
-                  ? "#ffffff"
-                  : "#374151",
-              cursor: "pointer",
-              fontWeight: 600,
-              textDecoration: "none",
-              transition: "all .2s",
-            }}
-          >
-            <span style={{ fontSize: 20 }}>
-              {item.icon}
-            </span>
+        ☰
+      </button>
 
-            {item.title}
-          </Link>
-        ))}
-      </div>
+      {/* Sidebar */}
+      <aside
+        className={`
+          fixed
+          top-0
+          left-0
+          z-40
+          h-screen
+          w-[260px]
+          bg-white
+          border-r
+          transition-transform
+          duration-300
 
-      <div
-        style={{
-          marginTop: "auto",
-          paddingTop: 24,
-          borderTop: "1px solid #e5e7eb",
-        }}
+          ${open ? "translate-x-0" : "-translate-x-full"}
+
+          md:translate-x-0
+        `}
       >
-        <div
-          style={{
-            fontWeight: 700,
-            color: "#111827",
-          }}
-        >
-          Cosram Auto
+
+        <div className="p-6 flex flex-col h-full">
+
+          <div className="mb-10">
+            <div className="text-3xl font-extrabold text-red-600">
+              COSRAM
+            </div>
+
+            <div className="text-gray-500 text-sm">
+              AUTO CRM
+            </div>
+          </div>
+
+
+          <div className="flex flex-col gap-2">
+
+            {menu.map((item, index) => (
+              <Link
+                key={index}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className={`
+                  flex
+                  items-center
+                  gap-3
+                  px-4
+                  py-3
+                  rounded-xl
+                  font-semibold
+
+                  ${
+                    item.title === "Lead-uri"
+                      ? "bg-red-600 text-white"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }
+                `}
+              >
+                <span className="text-xl">
+                  {item.icon}
+                </span>
+
+                {item.title}
+
+              </Link>
+            ))}
+
+          </div>
+
+
+          <div className="mt-auto pt-6 border-t">
+
+            <div className="font-bold text-gray-900">
+              Cosram Auto
+            </div>
+
+            <div className="text-gray-500 text-sm">
+              CRM v1.0
+            </div>
+
+          </div>
+
         </div>
 
-        <div
-          style={{
-            color: "#6b7280",
-            fontSize: 13,
-          }}
-        >
-          CRM v1.0
-        </div>
-      </div>
-    </aside>
+      </aside>
+    </>
   );
 }

@@ -73,7 +73,7 @@ export default async function LeadsPage() {
 
 
 
-        {/* DESKTOP - tabel original */}
+        {/* DESKTOP */}
 
         <div className="hidden md:block">
 
@@ -85,29 +85,25 @@ export default async function LeadsPage() {
           >
 
             <thead>
-              <tr
-                style={{
-                  borderBottom: "2px solid #e5e7eb",
-                }}
-              >
+              <tr style={{ borderBottom: "2px solid #e5e7eb" }}>
 
-                <th align="left" style={{ padding: 12 }}>
+                <th align="left" style={{ padding:12 }}>
                   Nume
                 </th>
 
-                <th align="left" style={{ padding: 12 }}>
+                <th align="left" style={{ padding:12 }}>
                   Telefon
                 </th>
 
-                <th align="left" style={{ padding: 12 }}>
+                <th align="left" style={{ padding:12 }}>
                   Mașină
                 </th>
 
-                <th align="left" style={{ padding: 12 }}>
+                <th align="left" style={{ padding:12 }}>
                   Status
                 </th>
 
-                <th align="left" style={{ padding: 12 }}>
+                <th align="left" style={{ padding:12 }}>
                   Acțiuni
                 </th>
 
@@ -122,26 +118,26 @@ export default async function LeadsPage() {
                 <tr
                   key={lead.id}
                   style={{
-                    borderBottom: "1px solid #f1f5f9",
+                    borderBottom:"1px solid #f1f5f9",
                   }}
                 >
 
-                  <td style={{ padding: 12 }}>
+                  <td style={{padding:12}}>
                     {lead.full_name}
                   </td>
 
 
-                  <td style={{ padding: 12 }}>
+                  <td style={{padding:12}}>
                     {lead.phone}
                   </td>
 
 
-                  <td style={{ padding: 12 }}>
+                  <td style={{padding:12}}>
                     {lead.car || "-"}
                   </td>
 
 
-                  <td style={{ padding: 12 }}>
+                  <td style={{padding:12}}>
                     <StatusSelect
                       id={lead.id}
                       status={lead.status}
@@ -149,11 +145,12 @@ export default async function LeadsPage() {
                   </td>
 
 
-                  <td style={{ padding: 12 }}>
+                  <td style={{padding:12}}>
                     <LeadActions
                       phone={lead.phone}
                     />
                   </td>
+
 
                 </tr>
 
@@ -167,56 +164,66 @@ export default async function LeadsPage() {
 
 
 
+        {/* MOBIL */}
 
-        {/* MOBIL - carduri */}
-
-        <div className="md:hidden space-y-4">
+        <div className="md:hidden">
 
           {leads?.map((lead) => (
 
             <div
               key={lead.id}
               style={{
-                background: "#f8fafc",
-                borderRadius: 16,
-                padding: 16,
-                border: "1px solid #e5e7eb",
+                background:"#f8fafc",
+                border:"1px solid #e5e7eb",
+                borderRadius:16,
+                padding:16,
+                marginBottom:16,
               }}
             >
 
-              <div
+              <h3
                 style={{
-                  fontSize: 20,
-                  fontWeight: 700,
-                  marginBottom: 12,
+                  fontSize:18,
+                  fontWeight:700,
+                  marginBottom:12,
                 }}
               >
                 👤 {lead.full_name}
-              </div>
+              </h3>
 
 
-              <div style={{ marginBottom: 8 }}>
-                📱 {lead.phone}
-              </div>
+              <p>
+                📞 {lead.phone}
+              </p>
 
 
-              <div style={{ marginBottom: 12 }}>
+              <p style={{marginTop:8}}>
                 🚗 {lead.car || "-"}
+              </p>
+
+
+              <div style={{marginTop:16}}>
+
+                <div
+                  style={{
+                    fontSize:13,
+                    color:"#64748b",
+                    marginBottom:6,
+                  }}
+                >
+                  Status
+                </div>
+
+
+                <StatusSelect
+                  id={lead.id}
+                  status={lead.status}
+                />
+
               </div>
 
 
-              <div style={{ marginBottom: 8 }}>
-                Status:
-              </div>
-
-
-              <StatusSelect
-                id={lead.id}
-                status={lead.status}
-              />
-
-
-              <div style={{ marginTop: 16 }}>
+              <div style={{marginTop:16}}>
                 <LeadActions
                   phone={lead.phone}
                 />
@@ -231,7 +238,6 @@ export default async function LeadsPage() {
 
 
       </div>
-
     </>
   );
 }

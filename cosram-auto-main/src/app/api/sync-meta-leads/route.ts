@@ -51,7 +51,7 @@ export async function GET() {
 
     if (!sheetURL) {
       return NextResponse.json(
-        { error: "Lipsește GOOGLE_SHEET_CSV_URL" },
+        { success: false, error: "GOOGLE_SHEET_CSV_URL lipsește" },
         { status: 500 }
       );
     }
@@ -60,11 +60,18 @@ export async function GET() {
       cache: "no-store",
     });
 
+    if (!response.ok) {
+      return NextResponse.json({
+        success: false,
+        error: "Nu pot descărca Google Sheet",
+      });
+    }
+
     const csv = await response.text();
     const leads = parseCSV(csv);
 
     let imported = 0;
-    const errors: string[] = [];
+    const errors: any[] = [];
 
     for (const lead of leads) {
       const phone = (lead.phone_number || "")
@@ -75,30 +82,26 @@ export async function GET() {
         .trim()
         .toLowerCase();
 
-      if (!phone && !email) {
-        continue;
-      }
-
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from("leads")
         .insert({
-          client_name: lead.full_name || "Lead Facebook",
+          full_name: lead.full_name || "Lead Facebook",
           phone,
           email,
-          status: "nou",
+          status: "calificat",
           source: lead.campaign_name || "Facebook Ads",
           created_at: lead.created_time
             ? new Date(lead.created_time).toISOString()
             : new Date().toISOString(),
-        });
+        })
+        .select();
 
       if (error) {
+        errors.push(error);
         console.error(error);
-        errors.push(error.message);
-        continue;
+      } else {
+        imported++;
       }
-
-      imported++;
     }
 
     return NextResponse.json({
@@ -107,13 +110,11 @@ export async function GET() {
       imported,
       errors,
     });
-  } catch (err: any) {
-    console.error(err);
-
+  } catch (e: any) {
     return NextResponse.json(
       {
         success: false,
-        error: err.message,
+        error: e.message,
       },
       {
         status: 500,

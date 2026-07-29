@@ -51,8 +51,13 @@ export async function GET() {
 
     if (!sheetURL) {
       return NextResponse.json(
-        { success: false, error: "GOOGLE_SHEET_CSV_URL lipsește" },
-        { status: 500 }
+        {
+          success: false,
+          error: "Lipsește GOOGLE_SHEET_CSV_URL",
+        },
+        {
+          status: 500,
+        }
       );
     }
 
@@ -61,10 +66,15 @@ export async function GET() {
     });
 
     if (!response.ok) {
-      return NextResponse.json({
-        success: false,
-        error: "Nu pot descărca Google Sheet",
-      });
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Nu pot descărca Google Sheet",
+        },
+        {
+          status: 500,
+        }
+      );
     }
 
     const csv = await response.text();
@@ -82,26 +92,28 @@ export async function GET() {
         .trim()
         .toLowerCase();
 
-      const { data, error } = await supabase
+      if (!phone && !email) continue;
+
+      const { error } = await supabase
         .from("leads")
         .insert({
           full_name: lead.full_name || "Lead Facebook",
           phone,
           email,
-          status: "calificat",
+          status: "nou",
           source: lead.campaign_name || "Facebook Ads",
           created_at: lead.created_time
             ? new Date(lead.created_time).toISOString()
             : new Date().toISOString(),
-        })
-        .select();
+        });
 
       if (error) {
-        errors.push(error);
         console.error(error);
-      } else {
-        imported++;
+        errors.push(error.message);
+        continue;
       }
+
+      imported++;
     }
 
     return NextResponse.json({
@@ -110,11 +122,13 @@ export async function GET() {
       imported,
       errors,
     });
-  } catch (e: any) {
+  } catch (err: any) {
+    console.error(err);
+
     return NextResponse.json(
       {
         success: false,
-        error: e.message,
+        error: err.message,
       },
       {
         status: 500,

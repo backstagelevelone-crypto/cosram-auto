@@ -56,18 +56,12 @@ export async function GET() {
       );
     }
 
-    const response = await fetch(`${sheetURL}&t=${Date.now()}`, {
+    const response = await fetch(sheetURL + "&t=" + Date.now(), {
       cache: "no-store",
     });
 
-    if (!response.ok) {
-      return NextResponse.json(
-        { error: "Nu pot citi Google Sheet." },
-        { status: 500 }
-      );
-    }
-
     const csv = await response.text();
+
     const leads = parseCSV(csv);
 
     let imported = 0;
@@ -133,7 +127,7 @@ export async function GET() {
         });
 
       if (error) {
-        console.error(error);
+        console.error("INSERT ERROR:", error);
         errors.push(error.message);
         continue;
       }

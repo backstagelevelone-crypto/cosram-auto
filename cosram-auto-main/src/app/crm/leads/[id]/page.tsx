@@ -83,7 +83,7 @@ export default async function LeadDetailsPage({
             </a>
 
             <a
-              href={`https://wa.me/40${lead.phone?.replace(/^0/, "")}`}
+              href={`https://wa.me/${lead.phone?.replace(/^0/, "")}`}
               target="_blank"
               className="rounded-lg bg-green-500 px-5 py-3 text-white"
             >

@@ -203,7 +203,7 @@ export const masini: Masina[] = [
   },
   {
     "_id": "99a0dc79-e6ce-4fae-9107-06687b37bf65",
-    "slug": "bmw-520d-2005",
+    "slug": "bmw520dm47",
     "marca": "BMW",
     "model": "520D",
     "an": 2006,

@@ -1,5 +1,5 @@
 import { createHash } from "crypto"; 
-
+ 
 const sha256 = (value: string) =>
   createHash("sha256")
     .update(value.trim().toLowerCase())

@@ -5,7 +5,9 @@ type Props = {
 };
 
 export default function LeadActions({ phone }: Props) {
-  const cleanPhone = (phone ?? "").replace(/\s+/g, "");
+  const cleanPhone = (phone ?? "")
+    .replace(/\D/g, "")
+    .replace(/^0/, "40");
 
   return (
     <div
@@ -35,7 +37,7 @@ export default function LeadActions({ phone }: Props) {
       <a
         href={`https://wa.me/${cleanPhone}`}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         title="WhatsApp"
         style={{
           width: 38,

@@ -228,7 +228,7 @@ export const masini: Masina[] = [
       "/images/masini/bmw520dm47/2.jpg",
       "/images/masini/bmw520dm47/3.jpg",
       "/images/masini/bmw520dm47/4.jpg",
-      "/images/masini/bmw520dm47/5.jpg"
+      "/images/masini/bmw520dm47/5.jpg",
     ]
   },
   {

@@ -199,7 +199,7 @@ export default async function LeadsPage({
 
 
                         <a
-                          href={`https://wa.me/40${lead.phone?.replace(/^0/, "")}`}
+                          href={`https://wa.me/${lead.phone?.replace(/^0/, "")}`}
                           target="_blank"
                           title="WhatsApp"
                           className="text-xl"

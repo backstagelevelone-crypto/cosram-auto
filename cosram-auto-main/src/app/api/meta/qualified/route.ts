@@ -77,7 +77,7 @@ export async function POST(req: Request) {
     const payload = {
       data: [
         {
-          event_name: "Lead",
+          event_name: "QualifiedLead",
 
           event_time: Math.floor(
             Date.now() / 1000

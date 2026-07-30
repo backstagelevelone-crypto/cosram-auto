@@ -7,9 +7,19 @@ type Props = {
 };
 
 export default function LeadActions({ phone }: Props) {
-  const whatsappPhone = (phone ?? "")
-    .replace(/\D/g, "")
-    .replace(/^0/, "40");
+  const whatsappPhone = (() => {
+    const value = (phone ?? "").replace(/\D/g, "");
+
+    if (value.startsWith("40")) {
+      return value;
+    }
+
+    if (value.startsWith("0")) {
+      return "40" + value.substring(1);
+    }
+
+    return value;
+  })();
 
   const whatsappUrl = `https://wa.me/${whatsappPhone}`;
 

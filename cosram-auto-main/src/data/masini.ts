@@ -138,7 +138,7 @@ export const masini: Masina[] = [
     "marca": "Audi",
     "model": "A4",
     "an": 2006,
-    "pret": 3999,
+    "pret": 3799,
     "combustibil": "Diesel",
     "cutieViteze": "Manuala",
     "motor": "2,0",

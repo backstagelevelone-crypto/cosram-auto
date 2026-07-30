@@ -52,6 +52,7 @@ export default async function LeadsPage({
         </div>
 
         <div className="rounded-2xl bg-white shadow overflow-hidden">
+
           {error && (
             <div className="p-4 text-red-600">
               Eroare: {error.message}
@@ -59,11 +60,22 @@ export default async function LeadsPage({
           )}
 
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[900px]">
+
+            <table className="w-full min-w-[1100px]">
+
               <thead className="border-b bg-gray-50">
                 <tr>
+
                   <th className="p-4 text-left">
                     👤 Client
+                  </th>
+
+                  <th className="p-4 text-center">
+                    ⚡ Acțiuni
+                  </th>
+
+                  <th className="p-4 text-left">
+                    📊 Status
                   </th>
 
                   <th className="p-4 text-left">
@@ -78,17 +90,11 @@ export default async function LeadsPage({
                     📍 Sursă
                   </th>
 
-                  <th className="p-4 text-left">
-                    📊 Status
-                  </th>
-
-                  <th className="p-4 text-left">
-                    ⚡ Acțiuni
-                  </th>
                 </tr>
               </thead>
 
               <tbody>
+
                 {leads?.length === 0 && (
                   <tr>
                     <td
@@ -101,15 +107,53 @@ export default async function LeadsPage({
                 )}
 
                 {leads?.map((lead) => (
+
                   <tr
                     key={lead.id}
-                    className="border-b"
+                    className="border-b hover:bg-gray-50"
                   >
-                    <td className="p-4 font-medium">
+
+                    <td className="p-4 font-medium whitespace-nowrap">
                       {lead.full_name}
                     </td>
 
                     <td className="p-4">
+                      <div className="flex justify-center gap-4 text-xl">
+
+                        <a
+                          href={`tel:${lead.phone}`}
+                          title="Sună clientul"
+                        >
+                          📞
+                        </a>
+
+                        <a
+                          href={`https://wa.me/${lead.phone?.replace(/^0/, "")}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="WhatsApp"
+                        >
+                          💬
+                        </a>
+
+                        <a
+                          href={`/crm/leads/${lead.id}`}
+                          title="Vezi detalii"
+                        >
+                          👁️
+                        </a>
+
+                      </div>
+                    </td>
+
+                    <td className="p-4">
+                      <StatusSelect
+                        id={lead.id}
+                        status={lead.status}
+                      />
+                    </td>
+
+                    <td className="p-4 whitespace-nowrap">
                       {lead.phone}
                     </td>
 
@@ -123,53 +167,24 @@ export default async function LeadsPage({
                       })}
                     </td>
 
-                    <td className="p-4">
+                    <td className="p-4 whitespace-nowrap">
                       {lead.source || "-"}
                     </td>
 
-                    <td className="p-4">
-                      <StatusSelect
-                        id={lead.id}
-                        status={lead.status}
-                      />
-                    </td>
-
-                    <td className="p-4">
-                      <div className="flex gap-3">
-                        <a
-                          href={`tel:${lead.phone}`}
-                          title="Sună clientul"
-                          className="text-xl"
-                        >
-                          📞
-                        </a>
-
-                        <a
-                          href={`https://wa.me/${lead.phone?.replace(/^0/, "")}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          title="WhatsApp"
-                          className="text-xl"
-                        >
-                          💬
-                        </a>
-
-                        <a
-                          href={`/crm/leads/${lead.id}`}
-                          title="Vezi detalii"
-                          className="text-xl"
-                        >
-                          👁️
-                        </a>
-                      </div>
-                    </td>
                   </tr>
+
                 ))}
+
               </tbody>
+
             </table>
+
           </div>
+
         </div>
+
       </div>
+
     </main>
   );
 }

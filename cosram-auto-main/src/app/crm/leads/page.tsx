@@ -33,10 +33,11 @@ export default async function LeadsPage({
   const { data: leads, error } = await query;
 
   return (
-    <main className="min-h-screen bg-slate-100 p-8">
+    <main className="min-h-screen bg-slate-100 p-4 md:p-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold">
+
+        <div className="mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold">
             👥 Lead-uri
           </h1>
 
@@ -51,74 +52,175 @@ export default async function LeadsPage({
           )}
         </div>
 
-        <div className="rounded-2xl bg-white shadow overflow-hidden">
+        {error && (
+          <div className="rounded-xl bg-white p-4 text-red-600 mb-4">
+            Eroare: {error.message}
+          </div>
+        )}
 
-          {error && (
-            <div className="p-4 text-red-600">
-              Eroare: {error.message}
+        {/* ======================= */}
+        {/* MOBIL */}
+        {/* ======================= */}
+
+        <div className="md:hidden space-y-4">
+
+          {leads?.length === 0 && (
+            <div className="rounded-xl bg-white p-6 text-center text-gray-400 shadow">
+              Nu există lead-uri.
             </div>
           )}
 
+          {leads?.map((lead) => (
+
+            <div
+              key={lead.id}
+              className="rounded-2xl bg-white shadow p-4"
+            >
+
+              <div className="text-lg font-semibold">
+                {lead.full_name}
+              </div>
+
+              <div className="mt-3">
+
+                <StatusSelect
+                  id={lead.id}
+                  status={lead.status}
+                />
+
+              </div>
+
+              <div className="mt-4 space-y-2 text-sm">
+
+                <div>
+                  <strong>📞 Telefon:</strong>{" "}
+                  {lead.phone}
+                </div>
+
+                <div>
+                  <strong>📅 Data:</strong>{" "}
+                  {new Date(
+                    lead.created_at
+                  ).toLocaleString("ro-RO", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </div>
+
+                <div>
+                  <strong>📍 Sursă:</strong>{" "}
+                  {lead.source || "-"}
+                </div>
+
+              </div>
+
+              <div className="mt-5 flex justify-center gap-8 text-2xl">
+
+                <a
+                  href={`tel:${lead.phone}`}
+                  title="Sună"
+                >
+                  📞
+                </a>
+
+                <a
+                  href={`https://wa.me/${lead.phone?.replace(/^0/, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="WhatsApp"
+                >
+                  💬
+                </a>
+
+                <a
+                  href={`/crm/leads/${lead.id}`}
+                  title="Detalii"
+                >
+                  👁️
+                </a>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+
+        {/* ======================= */}
+        {/* DESKTOP */}
+        {/* ======================= */}
+
+        <div className="hidden md:block rounded-2xl bg-white shadow overflow-hidden">
+
           <div className="overflow-x-auto">
 
-            <table className="w-full min-w-[1100px]">
+            <table className="w-full">
 
               <thead className="border-b bg-gray-50">
+
                 <tr>
 
-                  <th className="p-4 text-left">
+                  <th className="px-3 py-2 text-left">
                     👤 Client
                   </th>
 
-                  <th className="p-4 text-center">
+                  <th className="px-3 py-2 text-center">
                     ⚡ Acțiuni
                   </th>
 
-                  <th className="p-4 text-left">
+                  <th className="px-3 py-2 text-left">
                     📊 Status
                   </th>
 
-                  <th className="p-4 text-left">
+                  <th className="px-3 py-2 text-left">
                     📱 Telefon
                   </th>
 
-                  <th className="p-4 text-left">
+                  <th className="px-3 py-2 text-left">
                     📅 Data
                   </th>
 
-                  <th className="p-4 text-left">
+                  <th className="px-3 py-2 text-left">
                     📍 Sursă
                   </th>
 
                 </tr>
+
               </thead>
 
               <tbody>
 
                 {leads?.length === 0 && (
+
                   <tr>
+
                     <td
                       colSpan={6}
-                      className="p-6 text-center text-gray-400"
+                      className="py-6 text-center text-gray-400"
                     >
                       Nu există lead-uri.
                     </td>
-                  </tr>
-                )}
 
-                {leads?.map((lead) => (
+                  </tr>
+
+                )}
+                                {leads?.map((lead) => (
 
                   <tr
                     key={lead.id}
                     className="border-b hover:bg-gray-50"
                   >
 
-                    <td className="p-4 font-medium whitespace-nowrap">
+                    <td className="px-3 py-2 font-medium whitespace-nowrap">
                       {lead.full_name}
                     </td>
 
-                    <td className="p-4">
-                      <div className="flex justify-center gap-4 text-xl">
+                    <td className="px-3 py-2">
+                      <div className="flex justify-center gap-3 text-lg">
 
                         <a
                           href={`tel:${lead.phone}`}
@@ -146,18 +248,18 @@ export default async function LeadsPage({
                       </div>
                     </td>
 
-                    <td className="p-4">
+                    <td className="px-3 py-2">
                       <StatusSelect
                         id={lead.id}
                         status={lead.status}
                       />
                     </td>
 
-                    <td className="p-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       {lead.phone}
                     </td>
 
-                    <td className="p-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       {new Date(lead.created_at).toLocaleString("ro-RO", {
                         day: "2-digit",
                         month: "2-digit",
@@ -167,7 +269,7 @@ export default async function LeadsPage({
                       })}
                     </td>
 
-                    <td className="p-4 whitespace-nowrap">
+                    <td className="px-3 py-2 whitespace-nowrap">
                       {lead.source || "-"}
                     </td>
 

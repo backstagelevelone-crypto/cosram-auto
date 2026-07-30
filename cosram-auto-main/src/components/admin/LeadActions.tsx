@@ -16,6 +16,7 @@ export default function LeadActions({ phone }: Props) {
         gap: 8,
       }}
     >
+      {/* Telefon */}
       <a
         href={`tel:${cleanPhone}`}
         title="Sună"
@@ -34,6 +35,7 @@ export default function LeadActions({ phone }: Props) {
         <Phone size={18} />
       </a>
 
+      {/* WhatsApp */}
       <a
         href={`https://wa.me/${cleanPhone}`}
         target="_blank"
@@ -54,6 +56,7 @@ export default function LeadActions({ phone }: Props) {
         <MessageCircle size={18} />
       </a>
 
+      {/* Detalii */}
       <button
         title="Detalii"
         style={{

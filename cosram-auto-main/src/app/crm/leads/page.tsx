@@ -10,7 +10,7 @@ export default async function LeadsPage({
   }>;
 }) {
   const { status } = await searchParams;
-
+ 
   const supabase = await supabaseServer();
 
   const {

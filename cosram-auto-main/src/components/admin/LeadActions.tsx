@@ -1,3 +1,5 @@
+"use client";
+
 import { Phone, MessageCircle, Eye } from "lucide-react";
 
 type Props = {
@@ -5,9 +7,11 @@ type Props = {
 };
 
 export default function LeadActions({ phone }: Props) {
-  const cleanPhone = (phone ?? "")
+  const whatsappPhone = (phone ?? "")
     .replace(/\D/g, "")
     .replace(/^0/, "40");
+
+  const whatsappUrl = `https://wa.me/${whatsappPhone}`;
 
   return (
     <div
@@ -18,7 +22,7 @@ export default function LeadActions({ phone }: Props) {
     >
       {/* Telefon */}
       <a
-        href={`tel:${cleanPhone}`}
+        href={`tel:${whatsappPhone}`}
         title="Sună"
         style={{
           width: 38,
@@ -37,7 +41,7 @@ export default function LeadActions({ phone }: Props) {
 
       {/* WhatsApp */}
       <a
-        href={`https://wa.me/${cleanPhone}`}
+        href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         title="WhatsApp"

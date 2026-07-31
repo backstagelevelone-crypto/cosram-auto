@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { supabaseServer } from "@/lib/supabase-server";
+import LeadNotes from "@/components/LeadNotes";
 
 export default async function LeadDetailsPage({
   params,
@@ -23,7 +24,6 @@ export default async function LeadDetailsPage({
   return (
     <main className="min-h-screen bg-slate-100 p-8">
       <div className="mx-auto max-w-3xl">
-
         <div className="rounded-2xl bg-white p-8 shadow">
 
           <h1 className="text-3xl font-bold mb-6">
@@ -71,6 +71,11 @@ export default async function LeadDetailsPage({
               </p>
             </div>
 
+            <LeadNotes
+              id={lead.id}
+              notes={lead.notes}
+            />
+
           </div>
 
           <div className="flex gap-4 mt-8">
@@ -85,6 +90,7 @@ export default async function LeadDetailsPage({
             <a
               href={`https://wa.me/${lead.phone?.replace(/^0/, "")}`}
               target="_blank"
+              rel="noopener noreferrer"
               className="rounded-lg bg-green-500 px-5 py-3 text-white"
             >
               💬 WhatsApp
@@ -93,7 +99,6 @@ export default async function LeadDetailsPage({
           </div>
 
         </div>
-
       </div>
     </main>
   );

@@ -2,11 +2,14 @@
 
 import { useState } from "react";
 
-
 const statuses = [
   {
     value: "nou",
     label: "🟡 Nou",
+  },
+  {
+    value: "de_sunat",
+    label: "📞 De sunat",
   },
   {
     value: "contactat",
@@ -30,7 +33,6 @@ const statuses = [
   },
 ];
 
-
 export default function StatusSelect({
   id,
   status,
@@ -38,34 +40,21 @@ export default function StatusSelect({
   id: string;
   status: string | null;
 }) {
-
-  const [value, setValue] = useState(
-    status || "nou"
-  );
-
+  const [value, setValue] = useState(status || "nou");
 
   async function updateStatus(newStatus: string) {
-
     setValue(newStatus);
 
-
     const getCookie = (name: string) => {
-
       const match = document.cookie.match(
-        new RegExp(
-          "(^| )" + name + "=([^;]+)"
-        )
+        new RegExp("(^| )" + name + "=([^;]+)")
       );
 
-      return match
-        ? match[2]
-        : null;
+      return match ? match[2] : null;
     };
-
 
     const fbp = getCookie("_fbp");
     const fbc = getCookie("_fbc");
-
 
     console.log("META BROWSER DATA:", {
       fbp,
@@ -74,97 +63,50 @@ export default function StatusSelect({
       url: window.location.href,
     });
 
+    const response = await fetch("/api/leads/status", {
+      method: "PATCH",
 
+      headers: {
+        "Content-Type": "application/json",
+      },
 
-    const response = await fetch(
-      "/api/leads/status",
-      {
-        method: "PATCH",
+      body: JSON.stringify({
+        id,
 
-        headers: {
-          "Content-Type": "application/json",
-        },
+        status: newStatus,
 
-        body: JSON.stringify({
+        fbp,
 
-          id,
+        fbc,
 
-          status: newStatus,
+        user_agent: navigator.userAgent,
 
-          fbp,
-
-          fbc,
-
-          user_agent:
-            navigator.userAgent,
-
-          event_source_url:
-            window.location.href,
-
-        }),
-      }
-    );
-
+        event_source_url: window.location.href,
+      }),
+    });
 
     const result = await response.json();
 
-
-    console.log(
-      "STATUS RESPONSE:",
-      result
-    );
-
+    console.log("STATUS RESPONSE:", result);
 
     if (!response.ok) {
+      console.log("EROARE STATUS:", result);
 
-      console.log(
-        "EROARE STATUS:",
-        result
-      );
-
-
-      setValue(
-        status || "nou"
-      );
+      setValue(status || "nou");
     }
-
   }
 
-
-
   return (
-
     <select
-
       value={value}
-
-      onChange={(e) =>
-        updateStatus(
-          e.target.value
-        )
-      }
-
+      onChange={(e) => updateStatus(e.target.value)}
       className="rounded-full border px-3 py-2 text-sm font-medium bg-white cursor-pointer"
-
     >
-
       {statuses.map((status) => (
-
-        <option
-
-          key={status.value}
-
-          value={status.value}
-
-        >
-
+        <option key={status.value} value={status.value}>
           {status.label}
-
         </option>
-
       ))}
-
     </select>
-
   );
 }

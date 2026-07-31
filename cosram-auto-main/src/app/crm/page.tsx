@@ -15,6 +15,11 @@ export default async function DashboardPage() {
       (lead) => !lead.status || lead.status === "nou"
     ).length || 0;
 
+  const deSunat =
+    leads?.filter(
+      (lead) => lead.status === "de_sunat"
+    ).length || 0;
+
   const contactati =
     leads?.filter(
       (lead) => lead.status === "contactat"
@@ -35,7 +40,6 @@ export default async function DashboardPage() {
       (lead) => lead.status === "pierdut"
     ).length || 0;
 
-
   const cards = [
     {
       title: "Total Lead-uri",
@@ -48,6 +52,12 @@ export default async function DashboardPage() {
       value: noi,
       icon: "🟡",
       href: "/crm/leads?status=nou",
+    },
+    {
+      title: "De sunat",
+      value: deSunat,
+      icon: "📞",
+      href: "/crm/leads?status=de_sunat",
     },
     {
       title: "Contactați",
@@ -75,10 +85,8 @@ export default async function DashboardPage() {
     },
   ];
 
-
   return (
     <main className="min-h-screen bg-slate-100 p-4 md:p-8">
-
       <h1 className="text-2xl md:text-3xl font-bold mb-2">
         📊 Dashboard
       </h1>
@@ -87,9 +95,7 @@ export default async function DashboardPage() {
         Situația lead-urilor Cosram Auto
       </p>
 
-
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-
         {cards.map((card) => (
           <Link
             key={card.title}
@@ -104,7 +110,6 @@ export default async function DashboardPage() {
               active:scale-95
             "
           >
-
             <div className="text-3xl mb-3">
               {card.icon}
             </div>
@@ -116,12 +121,9 @@ export default async function DashboardPage() {
             <div className="text-3xl md:text-4xl font-bold mt-2">
               {card.value}
             </div>
-
           </Link>
         ))}
-
       </div>
-
     </main>
   );
 }

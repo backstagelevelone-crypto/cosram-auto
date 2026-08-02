@@ -102,7 +102,7 @@ export default function Sidebar() {
             </div>
 
             <div className="text-gray-500 text-sm">
-              CRM v1.0
+              CRM v1.5.9
             </div>
 
           </div>

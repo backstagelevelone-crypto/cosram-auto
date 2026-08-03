@@ -104,7 +104,7 @@ const rataRespinsi =
     {
       title: "Aprobați",
       value: aprobati,
-      icon: "🟣",
+      icon: "✅",
       href: "/crm/leads?status=aprobat",
     },
     {

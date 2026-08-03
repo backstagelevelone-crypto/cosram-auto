@@ -101,11 +101,11 @@ export default async function DashboardPage() {
       href: "/crm/leads?status=pierdut",
     },
     {
-      title: "Nu există",
-      value: nuExista,
-      icon: "⚪",
-      href: "/crm/leads?status=nu_exista",
-    },
+  title: "Biroul de Credit Respins",
+  value: biroulCreditRespins,
+  icon: "🏦",
+  href: "/crm/leads?status=biroul_credit_respins",
+},
   ];
 
   return (

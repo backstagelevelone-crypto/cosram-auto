@@ -50,6 +50,25 @@ export default async function DashboardPage() {
   leads?.filter(
     (lead) => lead.status === "biroul_credit_respins"
   ).length || 0;
+  const rataCalificare =
+  total > 0
+    ? Math.round((calificati / total) * 100)
+    : 0;
+
+const dosareAprobate =
+  calificati > 0
+    ? Math.round((aprobati / calificati) * 100)
+    : 0;
+
+const rataVanzare =
+  total > 0
+    ? Math.round((vanduti / total) * 100)
+    : 0;
+
+const rataRespinsi =
+  calificati > 0
+    ? Math.round((biroulCreditRespins / calificati) * 100)
+    : 0;
 
   const cards = [
     {
@@ -120,6 +139,65 @@ export default async function DashboardPage() {
       <p className="text-gray-500 mb-6 md:mb-8 text-sm md:text-base">
         Situația lead-urilor Cosram Auto
       </p>
+      <div className="mb-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+
+  <div className="rounded-2xl bg-white shadow p-5">
+    <p className="text-sm text-gray-500">
+      🟢 Rată Calificare
+    </p>
+
+    <h2 className="mt-2 text-4xl font-bold text-green-600">
+      {rataCalificare}%
+    </h2>
+
+    <p className="mt-2 text-sm text-gray-400">
+      {calificati} / {total} lead-uri
+    </p>
+  </div>
+
+  <div className="rounded-2xl bg-white shadow p-5">
+    <p className="text-sm text-gray-500">
+      ✅ Dosare Aprobate
+    </p>
+
+    <h2 className="mt-2 text-4xl font-bold text-blue-600">
+      {dosareAprobate}%
+    </h2>
+
+    <p className="mt-2 text-sm text-gray-400">
+      {aprobati} / {calificati} calificați
+    </p>
+  </div>
+
+  <div className="rounded-2xl bg-white shadow p-5">
+    <p className="text-sm text-gray-500">
+      🚗 Rată Vânzare
+    </p>
+
+    <h2 className="mt-2 text-4xl font-bold text-purple-600">
+      {rataVanzare}%
+    </h2>
+
+    <p className="mt-2 text-sm text-gray-400">
+      {vanduti} / {total} lead-uri
+    </p>
+  </div>
+
+  <div className="rounded-2xl bg-white shadow p-5">
+    <p className="text-sm text-gray-500">
+      ❌ Biroul de Credit Respins
+    </p>
+
+    <h2 className="mt-2 text-4xl font-bold text-red-600">
+      {rataRespinsi}%
+    </h2>
+
+    <p className="mt-2 text-sm text-gray-400">
+      {biroulCreditRespins} / {calificati} calificați
+    </p>
+  </div>
+
+</div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {cards.map((card) => (

@@ -20,7 +20,7 @@ const statuses = [
     label: "🟢 Calificat",
   },
   {
-    value: "oferta",
+    value: "aprobat",
     label: "🟣 Aprobat",
   },
   {
@@ -30,6 +30,10 @@ const statuses = [
   {
     value: "pierdut",
     label: "🔴 Pierdut",
+  },
+  {
+    value: "nu_exista",
+    label: "⚪ Nu există",
   },
 ];
 
@@ -56,31 +60,17 @@ export default function StatusSelect({
     const fbp = getCookie("_fbp");
     const fbc = getCookie("_fbc");
 
-    console.log("META BROWSER DATA:", {
-      fbp,
-      fbc,
-      user_agent: navigator.userAgent,
-      url: window.location.href,
-    });
-
     const response = await fetch("/api/leads/status", {
       method: "PATCH",
-
       headers: {
         "Content-Type": "application/json",
       },
-
       body: JSON.stringify({
         id,
-
         status: newStatus,
-
         fbp,
-
         fbc,
-
         user_agent: navigator.userAgent,
-
         event_source_url: window.location.href,
       }),
     });
@@ -91,7 +81,6 @@ export default function StatusSelect({
 
     if (!response.ok) {
       console.log("EROARE STATUS:", result);
-
       setValue(status || "nou");
     }
   }

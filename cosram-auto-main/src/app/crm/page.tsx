@@ -139,14 +139,14 @@ const rataRespinsi =
       <p className="text-gray-500 mb-6 md:mb-8 text-sm md:text-base">
         Situația lead-urilor Cosram Auto
       </p>
-      <div className="mb-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="mb-6 grid grid-cols-2 xl:grid-cols-4 gap-3">
 
-  <div className="rounded-2xl bg-white shadow p-3 md:p-4">
-    <p className="text-xs md:text-sm text-gray-500 font-medium">
+  <div className="rounded-xl bg-white shadow p-2.5 md:p-3">
+    <p className="text-[11px] md:text-xs text-gray-500 font-medium">
       🟢 Rată Calificare
     </p>
 
-    <h2 className="mt-1 text-3xl md:text-4xl font-bold text-green-600">
+    <h2 className="mt-1 text-2xl md:text-3xl font-bold text-green-600">
       {rataCalificare}%
     </h2>
 
@@ -155,12 +155,12 @@ const rataRespinsi =
     </p>
   </div>
 
-  <div className="rounded-2xl bg-white shadow p-3 md:p-4">
-    <p className="text-xs md:text-sm text-gray-500 font-medium">
+  <div className="rounded-xl bg-white shadow p-2.5 md:p-3">
+    <p className="text-[11px] md:text-xs text-gray-500 font-medium">
       ✅ Dosare Aprobate
     </p>
 
-    <h2 className="mt-2 text-4xl font-bold text-blue-600">
+    <h2 className="mt-1 text-2xl md:text-3xl font-bold text-blue-600">
       {dosareAprobate}%
     </h2>
 
@@ -169,12 +169,12 @@ const rataRespinsi =
     </p>
   </div>
 
-  <div className="rounded-2xl bg-white shadow p-3 md:p-4">
-    <p className="text-xs md:text-sm text-gray-500 font-medium">
+  <div className="rounded-xl bg-white shadow p-2.5 md:p-3">
+    <p className="text-[11px] md:text-xs text-gray-500 font-medium">
       🚗 Rată Vânzare
     </p>
 
-    <h2 className="mt-2 text-4xl font-bold text-purple-600">
+    <h2 className="mt-1 text-2xl md:text-3xl font-bold text-purple-600">
       {rataVanzare}%
     </h2>
 
@@ -183,12 +183,12 @@ const rataRespinsi =
     </p>
   </div>
 
-  <div className="rounded-2xl bg-white shadow p-3 md:p-4">
+  <div className="rounded-xl bg-white shadow p-2.5 md:p-3">
     <p className="text-xs md:text-sm text-gray-500 font-medium">
       ❌ Biroul de Credit Respins
     </p>
 
-    <h2 className="mt-2 text-4xl font-bold text-red-600">
+    <h2 className="mt-1 text-2xl md:text-3xl font-bold text-red-600">
       {rataRespinsi}%
     </h2>
 

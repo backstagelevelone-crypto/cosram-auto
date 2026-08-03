@@ -30,6 +30,11 @@ export default async function DashboardPage() {
       (lead) => lead.status === "calificat"
     ).length || 0;
 
+  const aprobati =
+    leads?.filter(
+      (lead) => lead.status === "aprobat"
+    ).length || 0;
+
   const vanduti =
     leads?.filter(
       (lead) => lead.status === "vandut"
@@ -38,6 +43,11 @@ export default async function DashboardPage() {
   const pierduti =
     leads?.filter(
       (lead) => lead.status === "pierdut"
+    ).length || 0;
+
+  const nuExista =
+    leads?.filter(
+      (lead) => lead.status === "nu_exista"
     ).length || 0;
 
   const cards = [
@@ -72,6 +82,12 @@ export default async function DashboardPage() {
       href: "/crm/leads?status=calificat",
     },
     {
+      title: "Aprobați",
+      value: aprobati,
+      icon: "🟣",
+      href: "/crm/leads?status=aprobat",
+    },
+    {
       title: "Vânduți",
       value: vanduti,
       icon: "🚗",
@@ -82,6 +98,12 @@ export default async function DashboardPage() {
       value: pierduti,
       icon: "🔴",
       href: "/crm/leads?status=pierdut",
+    },
+    {
+      title: "Nu există",
+      value: nuExista,
+      icon: "⚪",
+      href: "/crm/leads?status=nu_exista",
     },
   ];
 

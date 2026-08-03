@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { supabaseServer } from "@/lib/supabase-server";
+import DashboardRealtime from "@/components/DashboardRealtime";
 
 export default async function DashboardPage() {
   const supabase = await supabaseServer();
@@ -108,6 +109,9 @@ export default async function DashboardPage() {
   ];
 
   return (
+  <>
+    <DashboardRealtime />
+
     <main className="min-h-screen bg-slate-100 p-4 md:p-8">
       <h1 className="text-2xl md:text-3xl font-bold mb-2">
         📊 Dashboard
@@ -147,5 +151,6 @@ export default async function DashboardPage() {
         ))}
       </div>
     </main>
+    </>
   );
 }

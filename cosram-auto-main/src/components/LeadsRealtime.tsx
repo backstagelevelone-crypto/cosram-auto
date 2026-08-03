@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { supabaseBrowser } from "@/lib/supabase-browser";
 
 export default function LeadsRealtime() {
+  const router = useRouter();
+
   useEffect(() => {
     console.log("Realtime pornit");
 
@@ -18,6 +21,8 @@ export default function LeadsRealtime() {
         },
         (payload) => {
           console.log("Realtime:", payload);
+
+          router.refresh();
         }
       )
       .subscribe();
@@ -25,7 +30,7 @@ export default function LeadsRealtime() {
     return () => {
       supabaseBrowser.removeChannel(channel);
     };
-  }, []);
+  }, [router]);
 
   return null;
 }

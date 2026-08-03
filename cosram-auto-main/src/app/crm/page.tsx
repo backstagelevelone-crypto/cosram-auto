@@ -46,10 +46,10 @@ export default async function DashboardPage() {
       (lead) => lead.status === "pierdut"
     ).length || 0;
 
-  const nuExista =
-    leads?.filter(
-      (lead) => lead.status === "nu_exista"
-    ).length || 0;
+  const biroulCreditRespins =
+  leads?.filter(
+    (lead) => lead.status === "biroul_credit_respins"
+  ).length || 0;
 
   const cards = [
     {

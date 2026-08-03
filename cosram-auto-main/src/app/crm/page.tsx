@@ -80,7 +80,7 @@ const rataRespinsi =
     {
       title: "Noi",
       value: noi,
-      icon: "🟡",
+      icon: "🆕",
       href: "/crm/leads?status=nou",
     },
     {
@@ -116,7 +116,7 @@ const rataRespinsi =
     {
       title: "Pierduți",
       value: pierduti,
-      icon: "🔴",
+      icon: "❌",
       href: "/crm/leads?status=pierdut",
     },
     {

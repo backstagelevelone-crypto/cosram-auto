@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { supabaseServer } from "@/lib/supabase-server";
 import StatusSelect from "@/components/StatusSelect";
+import LeadsRealtime from "@/components/LeadsRealtime";
 
 export default async function LeadsPage({
   searchParams,
@@ -33,6 +34,9 @@ export default async function LeadsPage({
   const { data: leads, error } = await query;
 
   return (
+  <>
+    <LeadsRealtime />
+
     <main className="min-h-screen bg-slate-100 p-4 md:p-8">
       <div className="mx-auto max-w-7xl">
 
@@ -288,5 +292,6 @@ export default async function LeadsPage({
       </div>
 
     </main>
+      </>
   );
 }

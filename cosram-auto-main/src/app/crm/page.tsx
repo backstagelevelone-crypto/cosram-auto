@@ -141,22 +141,22 @@ const rataRespinsi =
       </p>
       <div className="mb-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
 
-  <div className="rounded-2xl bg-white shadow p-5">
-    <p className="text-sm text-gray-500">
+  <div className="rounded-2xl bg-white shadow p-3 md:p-4">
+    <p className="text-xs md:text-sm text-gray-500 font-medium">
       🟢 Rată Calificare
     </p>
 
-    <h2 className="mt-2 text-4xl font-bold text-green-600">
+    <h2 className="mt-1 text-3xl md:text-4xl font-bold text-green-600">
       {rataCalificare}%
     </h2>
 
-    <p className="mt-2 text-sm text-gray-400">
+    <p className="mt-1 text-xs md:text-sm text-gray-400">
       {calificati} / {total} lead-uri
     </p>
   </div>
 
-  <div className="rounded-2xl bg-white shadow p-5">
-    <p className="text-sm text-gray-500">
+  <div className="rounded-2xl bg-white shadow p-3 md:p-4">
+    <p className="text-xs md:text-sm text-gray-500 font-medium">
       ✅ Dosare Aprobate
     </p>
 
@@ -164,13 +164,13 @@ const rataRespinsi =
       {dosareAprobate}%
     </h2>
 
-    <p className="mt-2 text-sm text-gray-400">
+    <p className="mt-1 text-xs md:text-sm text-gray-400">
       {aprobati} / {calificati} calificați
     </p>
   </div>
 
-  <div className="rounded-2xl bg-white shadow p-5">
-    <p className="text-sm text-gray-500">
+  <div className="rounded-2xl bg-white shadow p-3 md:p-4">
+    <p className="text-xs md:text-sm text-gray-500 font-medium">
       🚗 Rată Vânzare
     </p>
 
@@ -178,13 +178,13 @@ const rataRespinsi =
       {rataVanzare}%
     </h2>
 
-    <p className="mt-2 text-sm text-gray-400">
+    <p className="mt-1 text-xs md:text-sm text-gray-400">
       {vanduti} / {total} lead-uri
     </p>
   </div>
 
-  <div className="rounded-2xl bg-white shadow p-5">
-    <p className="text-sm text-gray-500">
+  <div className="rounded-2xl bg-white shadow p-3 md:p-4">
+    <p className="text-xs md:text-sm text-gray-500 font-medium">
       ❌ Biroul de Credit Respins
     </p>
 
@@ -192,7 +192,7 @@ const rataRespinsi =
       {rataRespinsi}%
     </h2>
 
-    <p className="mt-2 text-sm text-gray-400">
+    <p className="mt-1 text-xs md:text-sm text-gray-400">
       {biroulCreditRespins} / {calificati} calificați
     </p>
   </div>

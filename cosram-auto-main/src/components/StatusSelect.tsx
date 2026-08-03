@@ -32,9 +32,9 @@ const statuses = [
     label: "🔴 Pierdut",
   },
   {
-    value: "nu_exista",
-    label: "⚪ Nu există",
-  },
+  value: "biroul_credit_respins",
+  label: "🏦 Biroul de Credit Respins",
+},
 ];
 
 export default function StatusSelect({

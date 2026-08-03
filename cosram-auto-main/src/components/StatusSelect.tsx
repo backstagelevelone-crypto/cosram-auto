@@ -21,7 +21,7 @@ const statuses = [
   },
   {
     value: "oferta",
-    label: "🟣 Ofertă",
+    label: "🟣 Aprobat",
   },
   {
     value: "vandut",

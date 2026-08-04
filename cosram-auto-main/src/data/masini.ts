@@ -188,8 +188,8 @@ export const masini: Masina[] = [
     "tractiune": "FWD",
     "inspectieTehnica": "NEINMATRICULAT",
     "dotari": [
-      "MODEL AMBIENTE" Climatizare automată Jante aliaj ușor 15" Cruise control Senzori parcare față și spate Scaune față încălzite Faruri ceata cu funcție cornering Sistem audio și radio Geamuri electrice față și spate ESP, ABS și multiple airbaguri (frontale, laterale, cortină, genunchi)"
-    ],
+  "MODEL AMBIENTE, Climatizare automată, Jante aliaj ușor 15, Cruise control, Senzori parcare față și spate, Scaune față încălzite, Faruri ceață cu funcție cornering, Sistem audio și radio, Geamuri electrice față și spate, ESP, ABS și multiple airbaguri (frontale, laterale, cortină, genunchi)"
+],
     "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
     "disponibil": "Disponibil",
     "galerie": [

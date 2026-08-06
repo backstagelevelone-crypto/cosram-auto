@@ -9,6 +9,7 @@ import SeoContent from "@/components/SeoContent";
 import FacebookScrollPrompt from "@/components/FacebookScrollPrompt";
 
 const Servicii = dynamic(() => import("@/components/sections/Servicii"));
+const BuyBack = dynamic(() => import("@/components/sections/BuyBack"));
 const Livrare = dynamic(() => import("@/components/sections/Livrare"));
 const RateCalculator = dynamic(
   () => import("@/components/sections/RateCalculator")
@@ -22,17 +23,20 @@ export default function Home() {
   return (
     <>
       <Navbar />
+
       <main>
         <Hero />
         <Parteneri />
         <Servicii />
         <StocSection />
+        <BuyBack />
         <MasiniLaComanda />
         <Livrare />
         <RateCalculator />
         <Recenzii />
         <SeoContent />
       </main>
+
       <Footer />
       <FacebookScrollPrompt />
       <WhatsAppFab />

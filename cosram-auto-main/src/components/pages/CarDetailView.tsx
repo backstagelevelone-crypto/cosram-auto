@@ -145,7 +145,10 @@ Aștept să fiu contactat pentru mai multe detalii.`;
             Buy-Back
           </p>
           <p className="mt-1 font-[family-name:var(--font-syne)] text-[28px] font-bold text-[#16A34A]">
-            4.200 €
+            {formatPrice(
+              ((car.price ?? (car as any).pret) ?? 0) + 1000,
+              { spaced: true }
+            )}
           </p>
         </div>
       </div>

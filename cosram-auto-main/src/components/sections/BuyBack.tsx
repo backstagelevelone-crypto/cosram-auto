@@ -18,7 +18,7 @@ export default function BuyBack() {
             BUY-BACK
           </p>
 
-          <h2 className="mt-3 text-4xl font-bold text-[#111111]">
+          <h2 className="mt-3 font-[family-name:var(--font-syne)] text-3xl font-bold text-[#111111] md:text-4xl">
             Ai deja o mașină?
           </h2>
 
@@ -27,14 +27,60 @@ export default function BuyBack() {
             achiziționarea unei mașini din stocul nostru.
           </p>
 
-          <div className="mt-10">
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            <div className="rounded-3xl border border-[#ECECEC] bg-[#FAFAFA] p-6">
+              <div className="mb-3 text-3xl">🚗</div>
+              <h3 className="font-semibold text-[#111111]">
+                Evaluare rapidă
+              </h3>
+              <p className="mt-2 text-sm text-[#6B6B6B]">
+                Primești o ofertă corectă pentru autoturismul tău.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-[#ECECEC] bg-[#FAFAFA] p-6">
+              <div className="mb-3 text-3xl">💶</div>
+              <h3 className="font-semibold text-[#111111]">
+                Folosești mașina ca avans
+              </h3>
+              <p className="mt-2 text-sm text-[#6B6B6B]">
+                Valoarea autoturismului se scade din noua achiziție.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-[#ECECEC] bg-[#FAFAFA] p-6">
+              <div className="mb-3 text-3xl">📄</div>
+              <h3 className="font-semibold text-[#111111]">
+                Ne ocupăm de acte
+              </h3>
+              <p className="mt-2 text-sm text-[#6B6B6B]">
+                Tot procesul este simplu, rapid și fără bătăi de cap.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12">
             <a
-              href="https://wa.me/40773865488?text=Bună%20ziua!%20Doresc%20o%20evaluare%20Buy-Back."
+              href={`https://wa.me/40773865488?text=${encodeURIComponent(
+`Bună ziua!
+
+Sunt interesat de programul Buy-Back și doresc o evaluare pentru autoturismul meu.
+
+Marcă:
+Model:
+An fabricație:
+Kilometri:
+Preț dorit:
+
+Aștept să fiu contactat.
+
+Mulțumesc!`
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-[#C8102E] px-8 py-4 font-semibold text-white transition hover:scale-105"
+              className="inline-flex items-center rounded-full bg-[#C8102E] px-8 py-4 text-sm font-semibold text-white transition hover:scale-105 hover:bg-[#A50E26]"
             >
-              Solicită evaluarea
+              Solicită evaluarea pe WhatsApp
             </a>
           </div>
         </motion.div>

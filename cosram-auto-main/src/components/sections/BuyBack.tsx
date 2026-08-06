@@ -41,7 +41,6 @@ export default function BuyBack() {
           <video
             className="w-full"
             autoPlay
-            muted
             loop
             playsInline
             preload="metadata"

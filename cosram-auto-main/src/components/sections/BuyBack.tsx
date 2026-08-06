@@ -39,15 +39,17 @@ export default function BuyBack() {
           className="mt-12 overflow-hidden rounded-3xl shadow-2xl ring-1 ring-black/10"
         >
           <video
-            className="w-full"
-            autoPlay
-            loop
-            playsInline
-            preload="metadata"
-          >
-            <source src="/video/buyback.mp4" type="video/mp4" />
-            Browserul tău nu suportă redarea videoclipului.
-          </video>
+  className="w-full"
+  autoPlay
+  muted
+  loop
+  playsInline
+  controls
+  preload="metadata"
+>
+  <source src="/videos/buyback.mp4" type="video/mp4" />
+  Browserul tău nu suportă redarea videoclipului.
+</video>
         </motion.div>
 
         {/* BENEFICII */}

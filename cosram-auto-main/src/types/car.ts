@@ -6,6 +6,7 @@ export interface Car {
   model?: string;
   year?: number;
   price?: number;
+  buyBackPrice?: number;
   monthlyPrice?: number;
   fuel?: string;
   transmission?: string;

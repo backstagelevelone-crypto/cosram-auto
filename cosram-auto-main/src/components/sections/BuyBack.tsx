@@ -46,7 +46,7 @@ export default function BuyBack() {
             playsInline
             preload="metadata"
           >
-            <source src="/videos/buyback.mp4" type="video/mp4" />
+            <source src="/video/buyback.mp4" type="video/mp4" />
             Browserul tău nu suportă redarea videoclipului.
           </video>
         </motion.div>

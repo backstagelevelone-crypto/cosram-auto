@@ -32,25 +32,25 @@ export default function BuyBack() {
 
         {/* VIDEO */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="mt-12 overflow-hidden rounded-3xl shadow-2xl ring-1 ring-black/10"
-        >
-          <video
-  className="w-full"
-  autoPlay
-  muted
-  loop
-  playsInline
-  controls
-  preload="metadata"
+  initial={{ opacity: 0, scale: 0.97 }}
+  whileInView={{ opacity: 1, scale: 1 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.4 }}
+  className="mt-12 flex justify-center"
 >
-  <source src="/video/buyback.mp4" type="video/mp4" />
-  Browserul tău nu suportă redarea videoclipului.
-</video>
-        </motion.div>
+  <video
+    className="w-full max-w-4xl rounded-3xl shadow-2xl ring-1 ring-black/10 max-h-[550px] object-cover"
+    autoPlay
+    muted
+    loop
+    playsInline
+    controls
+    preload="metadata"
+  >
+    <source src="/video/buyback.mp4" type="video/mp4" />
+    Browserul tău nu suportă redarea videoclipului.
+  </video>
+</motion.div>
 
         {/* BENEFICII */}
         <div className="mt-12 grid gap-6 md:grid-cols-3">

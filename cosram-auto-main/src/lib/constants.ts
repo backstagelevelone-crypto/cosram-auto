@@ -7,7 +7,6 @@ export const SITE = {
   phoneRaw: "40773865488",
   email: "vanzari@cosram.ro",
   whatsapp: "https://wa.me/40773865488",
-  /** Pagina Facebook — actualizează cu URL-ul real al paginii */
   facebook: "https://www.facebook.com/share/18TNFQUTJx/?mibextid=wwXIfr",
   mapsEmbed:
     "https://maps.google.com/maps?q=Str.+Toamnei+36,+Bragareasa,+Buz%C4%83u&output=embed",
@@ -27,6 +26,7 @@ export const FB_PROMPT_MIN_TIME_MS = 15_000;
 export const NAV_LINKS = [
   { href: "#servicii", label: "Servicii" },
   { href: "#stoc", label: "Stoc" },
+  { href: "#masini-la-comanda", label: "Comandă" },
   { href: "#livrare", label: "Livrare" },
   { href: "#rate", label: "Rate" },
   { href: "#recenzii", label: "Recenzii" },
@@ -64,7 +64,9 @@ export type WhatsAppCarInquiry = {
   price?: number;
 };
 
-export function getWhatsAppCarMessage(car: WhatsAppCarInquiry | string): string {
+export function getWhatsAppCarMessage(
+  car: WhatsAppCarInquiry | string
+): string {
   const label =
     typeof car === "string"
       ? car
@@ -73,6 +75,10 @@ export function getWhatsAppCarMessage(car: WhatsAppCarInquiry | string): string 
   return `Bună ziua! Mă interesează acest model: ${label}. Aș dori mai multe detalii despre achiziție.`;
 }
 
-export function whatsappCarLink(car: WhatsAppCarInquiry | string): string {
-  return `${SITE.whatsapp}?text=${encodeURIComponent(getWhatsAppCarMessage(car))}`;
+export function whatsappCarLink(
+  car: WhatsAppCarInquiry | string
+): string {
+  return `${SITE.whatsapp}?text=${encodeURIComponent(
+    getWhatsAppCarMessage(car)
+  )}`;
 }

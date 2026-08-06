@@ -7,6 +7,7 @@ export const SITE = {
   phoneRaw: "40773865488",
   email: "vanzari@cosram.ro",
   whatsapp: "https://wa.me/40773865488",
+  /** Pagina Facebook — actualizează cu URL-ul real al paginii */
   facebook: "https://www.facebook.com/share/18TNFQUTJx/?mibextid=wwXIfr",
   mapsEmbed:
     "https://maps.google.com/maps?q=Str.+Toamnei+36,+Bragareasa,+Buz%C4%83u&output=embed",
@@ -26,6 +27,7 @@ export const FB_PROMPT_MIN_TIME_MS = 15_000;
 export const NAV_LINKS = [
   { href: "#servicii", label: "Servicii" },
   { href: "#stoc", label: "Stoc" },
+  { href: "#buy-back", label: "Buy-Back" },
   { href: "#masini-la-comanda", label: "Comandă" },
   { href: "#livrare", label: "Livrare" },
   { href: "#rate", label: "Rate" },

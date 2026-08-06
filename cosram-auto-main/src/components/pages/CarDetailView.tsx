@@ -126,12 +126,29 @@ Aștept să fiu contactat pentru mai multe detalii.`;
 
   return (
     <div className={cn("rounded-2xl border border-[rgba(0,0,0,0.08)] bg-white p-3 shadow-[0_8px_30px_rgba(0,0,0,0.06)]", className)}>
-      <p className="font-[family-name:var(--font-outfit)] text-xs font-medium uppercase tracking-wide text-[#6B6B6B]">
-        Preț
-      </p>
-      <p className="mt-1 font-[family-name:var(--font-syne)] text-[28px] font-bold text-[#C8102E]">
-        {car.price != null ? formatPrice(car.price, { spaced: true }) : (car as any).pret != null ? formatPrice((car as any).pret, { spaced: true }) : "-"}
-      </p>
+      <div className="grid grid-cols-2 gap-4 border-b border-[rgba(0,0,0,0.06)] pb-3">
+        <div>
+          <p className="font-[family-name:var(--font-outfit)] text-xs font-medium uppercase tracking-wide text-[#6B6B6B]">
+            Preț
+          </p>
+          <p className="mt-1 font-[family-name:var(--font-syne)] text-[28px] font-bold text-[#C8102E]">
+            {car.price != null
+              ? formatPrice(car.price, { spaced: true })
+              : (car as any).pret != null
+              ? formatPrice((car as any).pret, { spaced: true })
+              : "-"}
+          </p>
+        </div>
+
+        <div className="border-l border-[rgba(0,0,0,0.08)] pl-4">
+          <p className="font-[family-name:var(--font-outfit)] text-xs font-medium uppercase tracking-wide text-[#6B6B6B]">
+            Buy-Back
+          </p>
+          <p className="mt-1 font-[family-name:var(--font-syne)] text-[28px] font-bold text-[#16A34A]">
+            4.200 €
+          </p>
+        </div>
+      </div>
       <p className="mt-3 font-[family-name:var(--font-outfit)] text-sm text-[#6B6B6B]">
         {car.monthlyPrice != null || (car as any).rataLunara != null ? (
           <>

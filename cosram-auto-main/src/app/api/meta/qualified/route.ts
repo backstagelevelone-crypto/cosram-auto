@@ -1,10 +1,9 @@
-import { createHash } from "crypto"; 
- 
+import { createHash } from "crypto";
+
 const sha256 = (value: string) =>
   createHash("sha256")
     .update(value.trim().toLowerCase())
     .digest("hex");
-
 
 export async function POST(req: Request) {
   try {
@@ -17,71 +16,51 @@ export async function POST(req: Request) {
     const fbc = body.fbc || undefined;
 
     const eventSourceUrl =
-      body.event_source_url ||
-      "https://www.cosram.ro";
+      body.event_source_url || "https://www.cosram.ro";
 
-
-    console.log("META QUALIFIED REQUEST V3", {
+    console.log("META QUALIFIED REQUEST", {
       email: !!email,
       phone: !!phone,
       fbp: !!fbp,
       fbc: !!fbc,
     });
 
-
     const user_data: Record<string, any> = {};
 
-
     if (email) {
-      user_data.em = [
-        sha256(email)
-      ];
+      user_data.em = [sha256(email)];
     }
-
 
     if (phone) {
-      user_data.ph = [
-        sha256(phone)
-      ];
+      user_data.ph = [sha256(phone)];
     }
-
 
     if (fbp) {
       user_data.fbp = fbp;
     }
 
-
     if (fbc) {
       user_data.fbc = fbc;
     }
 
-
     const pixelId = process.env.META_CRM_PIXEL_ID;
     const accessToken = process.env.META_CRM_ACCESS_TOKEN;
-
 
     if (!pixelId || !accessToken) {
       console.log("META ENV MISSING");
 
       return Response.json(
-        {
-          error: "META variables missing",
-        },
-        {
-          status: 500,
-        }
+        { error: "META variables missing" },
+        { status: 500 }
       );
     }
-
 
     const payload = {
       data: [
         {
           event_name: "QualifiedLead",
 
-          event_time: Math.floor(
-            Date.now() / 1000
-          ),
+          event_time: Math.floor(Date.now() / 1000),
 
           action_source: "website",
 
@@ -92,18 +71,14 @@ export async function POST(req: Request) {
           custom_data: {
             lead_status: "qualified",
           },
-
-          test_event_code: "TEST24894",
         },
       ],
     };
 
-
     console.log(
-      "META PAYLOAD V3",
+      "META PAYLOAD",
       JSON.stringify(payload, null, 2)
     );
-
 
     const metaResponse = await fetch(
       `https://graph.facebook.com/v23.0/${pixelId}/events?access_token=${accessToken}`,
@@ -118,32 +93,19 @@ export async function POST(req: Request) {
       }
     );
 
-
-    const metaResult =
-      await metaResponse.json();
-
+    const metaResult = await metaResponse.json();
 
     console.log(
-      "META RESPONSE V3",
+      "META RESPONSE",
       JSON.stringify(metaResult, null, 2)
     );
 
-
-    return Response.json(
-      metaResult,
-      {
-        status: metaResponse.status,
-      }
-    );
-
+    return Response.json(metaResult, {
+      status: metaResponse.status,
+    });
 
   } catch (error) {
-
-    console.log(
-      "META QUALIFIED ERROR",
-      error
-    );
-
+    console.log("META QUALIFIED ERROR", error);
 
     return Response.json(
       {

@@ -20,7 +20,7 @@ export function getPlaceholderGradient(_src: string): string {
 
 export function normalizeCarImages(
   images?: string[] | null,
-  minCount = 5
+  minCount = 10
 ): string[] {
   const list = images ?? [];
   if (list.length >= minCount) return list.slice(0, minCount);

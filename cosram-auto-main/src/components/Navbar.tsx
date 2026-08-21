@@ -102,7 +102,7 @@ export default function Navbar() {
                   <img src="/partners/tbi-bank.svg" alt="TBI Bank" className="h-3.5 w-auto object-contain" />
                 </a>
 
-                <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="block">
+                <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block">
                   <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-4.5 w-auto object-contain" />
                 </a>
               </div>
@@ -173,8 +173,8 @@ export default function Navbar() {
               <img src="/partners/tbi-bank.svg" alt="Partener TBI Bank" className="h-8 w-auto object-contain" />
             </a>
 
-            <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="relative h-8 w-16 block opacity-95 transition-opacity hover:opacity-100">
-              <img src="/partners/mogo.svg" alt="Partener Mogo" className="h-8 w-auto object-contain" />
+            <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="relative h-8 w-16 block opacity-95 transition-opacity hover:opacity-100">
+              <img src="/partners/bt-direct.svg" alt="Partener BT Direct" className="h-9 w-auto object-contain" />
             </a>
           </div>
         </div>

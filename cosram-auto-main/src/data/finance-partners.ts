@@ -105,41 +105,6 @@ export const financePartners: FinancePartner[] = [
       rateNote: "Dobândă fixă de la 4,9% pe an (estimativ)",
     },
   },
-  {
-    id: "mogo",
-    name: "Mogo",
-    logo: "/partners/mogo.svg",
-    logoWidth: 130,
-    logoHeight: 48,
-    href: "https://www.mogo.ro",
-    tagline:
-      "DAE 36,18% · Dobândă lunară 2,61%. Credit auto 100% online, avans 0%, fără CASCO obligatoriu.",
-    badge: "DAE 36,18%",
-    benefits: [
-      "Dobândă lunară 2,61%",
-      "DAE reprezentativă 36,18%",
-      "Avans 0%",
-      "Perioadă de creditare de la 6 luni la 5 ani",
-      "Ești proprietarul mașinii din prima zi",
-      "Polița CASCO nu este obligatorie",
-    ],
-    minPrice: 2000,
-    maxPrice: 50000,
-    downPayments: [0, 10, 20, 30],
-    durations: [6, 12, 24, 36, 48, 60],
-    defaultDownPayment: 0,
-    defaultDuration: 60,
-    defaultPrice: 3000,
-    rateLabel: "DAE 36,18% · 2,61% / lună",
-    disclaimer:
-      "Calcul estimativ cu dobândă lunară de 3,39% și DAE reprezentativă de 49,05%, conform informațiilor publice Mogo. Oferta finală depinde de evaluarea dosarului.",
-    calculation: {
-      type: "monthly",
-      ratePercent: 2.61,
-      daePercent: 36.18,
-      rateNote: "DAE 36,18% · Dobândă lunară 2,61%",
-    },
-  },
 ];
 
 export function getFinancePartner(id: FinancePartnerId): FinancePartner {

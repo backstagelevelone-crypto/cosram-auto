@@ -168,7 +168,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
         <div className="flex flex-wrap gap-2 text-[11px] font-bold text-[#111111]">
           <span className="rounded bg-[#F2F2F7] px-2 py-0.5 text-[#1a5632]">BT Direct</span>
           <span className="rounded bg-[#F2F2F7] px-2 py-0.5 text-[#FF5A00]">tbi bank</span>
-          <span className="rounded bg-[#F2F2F7] px-2 py-0.5 text-[#4A90E2]">mogo</span>
+          <span className="rounded bg-[#F2F2F7] px-2 py-0.5 text-[#4A90E2]">cosram</span>
         </div>
       </div>
 

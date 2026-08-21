@@ -103,7 +103,7 @@ export default function Navbar() {
                 </a>
 
                 <a href="https://mogo.ro" target="_blank" rel="noopener noreferrer" className="block">
-                  <img src="/partners/mogo.svg" alt="Mogo" className="h-3.5 w-auto object-contain" />
+                  <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-4.5 w-auto object-contain" />
                 </a>
               </div>
             </div>

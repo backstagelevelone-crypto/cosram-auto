@@ -114,7 +114,7 @@ Aștept să fiu contactat pentru mai multe detalii.`;
 
   const trackContactClick = (tipContact: string) => {
     if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("track", "Contact", {
+      (window as any).fbq("track", "Lead", {
         content_name: displayName,
         content_category: (car as any).category || (car as any).caroserie || "Auto",
         value: car.price ?? (car as any).pret ?? 0,
@@ -291,7 +291,7 @@ export default function CarDetailView({ car, similarCars }: { car: Car; similarC
 
   const trackMobileWhatsapp = () => {
     if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("track", "Contact", {
+      (window as any).fbq("track", "Lead", {
         content_name: displayName,
         contact_type: "WhatsApp_Mobile_Bottom"
       });

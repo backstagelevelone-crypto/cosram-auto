@@ -82,6 +82,7 @@ export default function RootLayout({
           src="https://googletagmanager.com"
           strategy="afterInteractive"
         />
+
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -91,7 +92,7 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Meta Pixel Tradus Corect pentru Next.js (ID: 1582059960261179) */}
+        {/* Meta Pixel - NOUL PIXEL: 1303394386182780 */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -103,23 +104,25 @@ export default function RootLayout({
               t.src=v;s=b.getElementsByTagName(e)[0];
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '1582059960261179');
+
+              fbq('init', '1303394386182780');
               fbq('track', 'PageView');
             `,
           }}
         />
+
         <noscript>
           <img
             height="1"
             width="1"
             style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1582059960261179&ev=PageView&noscript=1"
+            src="https://www.facebook.com/tr?id=1303394386182780&ev=PageView&noscript=1"
             alt="fb-pixel"
           />
         </noscript>
 
         {children}
-        
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -138,6 +141,7 @@ export default function RootLayout({
             }),
           }}
         />
+
         <LegalProviders />
       </body>
     </html>

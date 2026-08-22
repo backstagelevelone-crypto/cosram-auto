@@ -8,7 +8,7 @@ export default function WhatsAppFab() {
 
   const trackContactClick = (tipContact: string) => {
     if (typeof window !== "undefined" && (window as any).fbq) {
-      (window as any).fbq("track", "Lead", {
+      (window as any).fbq("track", "Contact", {
         contact_type: tipContact,
       });
     }

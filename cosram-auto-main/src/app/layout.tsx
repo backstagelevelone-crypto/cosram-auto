@@ -92,6 +92,22 @@ export default function RootLayout({
           `}
         </Script>
 
+        {/* Google Analytics 4 */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-68KEG963MK"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics-4" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-68KEG963MK');
+          `}
+        </Script>
+
         {/* Meta Pixel - NOUL PIXEL: 1303394386182780 */}
         <script
           dangerouslySetInnerHTML={{

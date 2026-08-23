@@ -225,7 +225,7 @@ export const masini: Masina[] = [
     "evaluareTehnica": "BMW 520d în stare foarte bună, un sedan premium care oferă confort, siguranță și un consum redus de combustibil. Motorul diesel de 2.0 litri M47 (distributi in fata) este recunoscut pentru fiabilitate și eficiență, fiind ideal atât pentru deplasările zilnice, cât și pentru drumurile lungi.Mașina se prezintă foarte bine atât estetic, cât și tehnic, este întreținută corespunzător și nu necesită investiții. Oferă un nivel gradat de confort, stabilitate și siguranță, fiind alegerea ideală pentru cei care caută un BMW Seria 5 bine echipat și economic.",
     "disponibil": "Disponibil",
     "galerie": [
-      "/images/masini/bmw520m47/1.jpg",
+      "/images/masini/bmw520m47/BMWE61.png",
       "/images/masini/bmw520m47/2.jpg",
       "/images/masini/bmw520m47/3.jpg",
       "/images/masini/bmw520m47/4.jpg",

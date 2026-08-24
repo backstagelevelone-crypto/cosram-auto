@@ -147,7 +147,7 @@ export const masini: Masina[] = [
     "caroserie": "Combi",
     "disponibil": "Disponibil",
     "galerie": [
-      "/images/masini/audia4b7/a43999e.png",
+      "/images/masini/audia4b7/89.png",
       "/images/masini/audia4b7/a42.jpeg",
       "/images/masini/audia4b7/a43.jpeg",
       "/images/masini/audia4b7/a44.jpeg",

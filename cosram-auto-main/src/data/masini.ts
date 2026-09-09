@@ -89,7 +89,7 @@ export const masini: Masina[] = [
     "model": "FOCUS",
     "an": 2012,
     "kilometraj": 224000,
-    "pret": 3999,
+    "pret": 4799,
     "combustibil": "Benzina",
     "cutieViteze": "Manuala",
     "motor": "1.6 PRETABIL GPL",
@@ -98,7 +98,7 @@ export const masini: Masina[] = [
     "culoare": "GRI",
     "nrUsi": 5,
     "tractiune": "FWD",
-    "inspectieTehnica": "NEINMATRICULAT",
+    "inspectieTehnica": "RAR EFECTUAT",
     "dotari": [
       "MODEL TREND"
     ],
@@ -178,7 +178,7 @@ export const masini: Masina[] = [
     "model": "FABIA",
     "an": 2009,
     "kilometraj": 216000,
-    "pret": 2699,
+    "pret": 3499,
     "combustibil": "Benzina",
     "cutieViteze": "Manuala",
     "motor": "1.2HTP",
@@ -187,7 +187,7 @@ export const masini: Masina[] = [
     "culoare": "PORTOCALIU",
     "nrUsi": 5,
     "tractiune": "FWD",
-    "inspectieTehnica": "NEINMATRICULAT",
+    "inspectieTehnica": "RAR EFECTUAT",
     "dotari": [
   "MODEL AMBIENTE, Climatizare automată, Jante aliaj ușor 15, Cruise control, Senzori parcare față și spate, Scaune față încălzite, Faruri ceață cu funcție cornering, Sistem audio și radio, Geamuri electrice față și spate, ESP, ABS și multiple airbaguri (frontale, laterale, cortină, genunchi)"
 ],
@@ -209,7 +209,7 @@ export const masini: Masina[] = [
     "model": "520D",
     "an": 2006,
     "kilometraj": 309000,
-    "pret": 4999,
+    "pret": 5999,
     "combustibil": "Diesel",
     "cutieViteze": "Manuala",
     "motor": "M47",
@@ -218,7 +218,7 @@ export const masini: Masina[] = [
     "culoare": "ALBASTRU",
     "nrUsi": 5,
     "tractiune": "RWD",
-    "inspectieTehnica": "NEINMATRICULAT",
+    "inspectieTehnica": "RAR EFECTUAT",
     "dotari": [
       "Dotări: navigație, interior din piele, faruri Xenon, senzori de parcare PDC, climatizare automată pe două zone (dublu climatronic), cruise control, volan multifuncțional, computer de bord, geamuri electrice față/spate, oglinzi electrice și încălzite, închidere centralizată, cotieră față/spate, sistem audio, jante aliaj, ABS, ESP și airbag-uri."
     ],

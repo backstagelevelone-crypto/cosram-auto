@@ -329,7 +329,8 @@ export const masini: Masina[] = [
       "/images/masini/passatbmp2008/4.jpg",
       "/images/masini/passatbmp2008/5.jpg",
       "/images/masini/passatbmp2008/6.jpg",
-      "/images/masini/passatbmp2008/7.jpg"
+      "/images/masini/passatbmp2008/7.jpg",
+      "/images/masini/passatbmp2008/8.jpg"
     ]
   },
   {

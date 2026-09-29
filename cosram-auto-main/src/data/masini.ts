@@ -301,6 +301,36 @@ export const masini: Masina[] = [
     ]
   },
   {
+    "_id": "0165820a-0ea1-4442-a4883-483e6af91ee7",
+    "slug": "passatbmp2008",
+    "marca": "VW ",
+    "model": "Passat",
+    "an": 2008,
+    "kilometraj": 361000,
+    "pret": 4499,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "2.0 TDI",
+    "putere": 140,
+    "caroserie": "Combi",
+    "culoare": "GRI",
+    "nrUsi": 5,
+    "tractiune": "FWD",
+    "inspectieTehnica": "RAR EFECTUAT",
+    "dotari": [
+      "MODEL Confortline"
+    ],
+    "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
+    "disponibil": "Disponibil",
+    "galerie": [
+      "/images/masini/ford-focus-2012/01.jpg",
+      "/images/masini/ford-focus-2012/02.jpg",
+      "/images/masini/ford-focus-2012/03.jpg",
+      "/images/masini/ford-focus-2012/04.jpg",
+      "/images/masini/ford-focus-2012/05.jpg"
+    ]
+  },
+  {
     "_id": "4ede9d12-f048-4919-8f11-2923f7abb083",
     "slug": "vw-golf-5-2006",
     "marca": "Volkswagen",

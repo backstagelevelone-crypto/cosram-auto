@@ -323,11 +323,13 @@ export const masini: Masina[] = [
     "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
     "disponibil": "Disponibil",
     "galerie": [
-      "/images/masini/ford-focus-2012/01.jpg",
-      "/images/masini/ford-focus-2012/02.jpg",
-      "/images/masini/ford-focus-2012/03.jpg",
-      "/images/masini/ford-focus-2012/04.jpg",
-      "/images/masini/ford-focus-2012/05.jpg"
+      "/images/masini/passatbmp2008/1.jpg",
+      "/images/masini/passatbmp2008/2.jpg",
+      "/images/masini/passatbmp2008/3.jpg",
+      "/images/masini/passatbmp2008/4.jpg",
+      "/images/masini/passatbmp2008/5.jpg",
+      "/images/masini/passatbmp2008/6.jpg",
+      "/images/masini/passatbmp2008/7.jpg"
     ]
   },
   {

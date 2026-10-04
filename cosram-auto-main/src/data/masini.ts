@@ -321,7 +321,7 @@ export const masini: Masina[] = [
       "MODEL Confortline"
     ],
     "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
-    "disponibil": "Disponibil",
+    "disponibil": "Vandut",
     "galerie": [
       "/images/masini/passatbmp2008/1.jpg",
       "/images/masini/passatbmp2008/2.jpg",

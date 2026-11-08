@@ -26,7 +26,7 @@ export const masini: Masina[] = [
   {
     "_id": "0165820a-0ea1-4442-a401-483e6af91e17",
     "slug": "Renaultmegane2012",
-    "marca": "Renault",
+    "marca": "Renault ",
     "model": "Megane",
     "an": 2012,
     "kilometraj": 268000,
@@ -54,47 +54,16 @@ export const masini: Masina[] = [
     ]
   },
   {
-    "_id": "0165820a-0ea1-4442-a402-48786af91e21",
-    "slug": "bmw318dblack",
-    "marca": "BMW",
-    "model": "318D",
-    "an": 2007,
-    "kilometraj": 357000,
-    "pret": 6499,
-    "combustibil": "Diesel",
-    "cutieViteze": "Manuala",
-    "motor": "2.0",
-    "putere": 122,
-    "caroserie": "Combi",
-    "culoare": "NEGRU",
-    "nrUsi": 5,
-    "tractiune": "FWD",
-    "inspectieTehnica": "NEINMATRICULAT",
-    "dotari": [
-      "MODEL M"
-    ],
-    "evaluareTehnica": "TUV 2 ANIAceastă mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
-    "disponibil": "Disponibil",
-    "galerie": [
-      "/images/masini/bmw318dblacknavi/1.jpg",
-      "/images/masini/bmw318dblacknavi/2.jpg",
-      "/images/masini/bmw318dblacknavi/3.jpg",
-      "/images/masini/bmw318dblacknavi/4.jpg",
-      "/images/masini/bmw318dblacknavi/5.jpg",
-      "/images/masini/bmw318dblacknavi/6.jpg"
-    ]
-  },
-  {
     "_id": "0165820a-0ea1-4442-a402-483e6af91e21",
     "slug": "passatb72.0tdi2013",
-    "marca": "Volkswagen",
+    "marca": "Volkswagen ",
     "model": "Passat",
     "an": 2013,
     "kilometraj": 227000,
     "pret": 6999,
     "combustibil": "Diesel",
     "cutieViteze": "Manuala",
-    "motor": "2.0",
+    "motor": "2.0 ",
     "putere": 140,
     "caroserie": "Combi",
     "culoare": "GRI",
@@ -116,7 +85,7 @@ export const masini: Masina[] = [
   {
     "_id": "0165820a-0ea1-4442-a403-483e6af91ee7",
     "slug": "ford-focus-2012",
-    "marca": "FORD",
+    "marca": "FORD ",
     "model": "FOCUS",
     "an": 2012,
     "kilometraj": 224000,
@@ -146,8 +115,8 @@ export const masini: Masina[] = [
   {
     "_id": "fe57e922-c8d8-4657-8f04-4b4ab98861c6",
     "slug": "bmw-320d-mpacket-2006",
-    "marca": "BMW",
-    "model": "320D MPACKET",
+    "marca": "BMW 320D",
+    "model": "MPACKET",
     "an": 2006,
     "pret": 4999,
     "combustibil": "Diesel",
@@ -173,7 +142,7 @@ export const masini: Masina[] = [
     "pret": 2999,
     "combustibil": "Diesel",
     "cutieViteze": "Manuala",
-    "motor": "2.0",
+    "motor": "2,0",
     "putere": 140,
     "caroserie": "Combi",
     "disponibil": "Vandut",
@@ -194,7 +163,7 @@ export const masini: Masina[] = [
     "pret": 4199,
     "combustibil": "Benzina",
     "cutieViteze": "Manuala",
-    "motor": "1.8",
+    "motor": "1,8",
     "putere": 140,
     "caroserie": "Combi",
     "disponibil": "Vandut",
@@ -220,10 +189,10 @@ export const masini: Masina[] = [
     "tractiune": "FWD",
     "inspectieTehnica": "RAR EFECTUAT",
     "dotari": [
-      "MODEL AMBIENTE", "Climatizare automată", "Jante aliaj ușor 15", "Cruise control", "Senzori parcare față și spate", "Scaune față încălzite", "Faruri ceață cu funcție cornering", "Sistem audio și radio", "Geamuri electrice față și spate", "ESP", "ABS și multiple airbaguri (frontale, laterale, cortină, genunchi)"
-    ],
+  "MODEL AMBIENTE, Climatizare automată, Jante aliaj ușor 15, Cruise control, Senzori parcare față și spate, Scaune față încălzite, Faruri ceață cu funcție cornering, Sistem audio și radio, Geamuri electrice față și spate, ESP, ABS și multiple airbaguri (frontale, laterale, cortină, genunchi)"
+],
     "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
-    "disponibil": "Vandut",
+    "disponibil": "Disponibil",
     "galerie": [
       "/images/masini/skoda-fabia-2009-portocaliu/01.jpg",
       "/images/masini/skoda-fabia-2009-portocaliu/02.jpg",
@@ -250,7 +219,139 @@ export const masini: Masina[] = [
     "nrUsi": 5,
     "tractiune": "RWD",
     "inspectieTehnica": "RAR EFECTUAT",
+    "dotari": [
+      "Dotări: navigație, interior din piele, faruri Xenon, senzori de parcare PDC, climatizare automată pe două zone (dublu climatronic), cruise control, volan multifuncțional, computer de bord, geamuri electrice față/spate, oglinzi electrice și încălzite, închidere centralizată, cotieră față/spate, sistem audio, jante aliaj, ABS, ESP și airbag-uri."
+    ],
+    "evaluareTehnica": "BMW 520d în stare foarte bună, un sedan premium care oferă confort, siguranță și un consum redus de combustibil. Motorul diesel de 2.0 litri M47 (distributi in fata) este recunoscut pentru fiabilitate și eficiență, fiind ideal atât pentru deplasările zilnice, cât și pentru drumurile lungi.Mașina se prezintă foarte bine atât estetic, cât și tehnic, este întreținută corespunzător și nu necesită investiții. Oferă un nivel gradat de confort, stabilitate și siguranță, fiind alegerea ideală pentru cei care caută un BMW Seria 5 bine echipat și economic.",
     "disponibil": "Disponibil",
-    "galerie": []
+    "galerie": [
+      "/images/masini/bmw520m47/1.jpg",
+      "/images/masini/bmw520m47/2.jpg",
+      "/images/masini/bmw520m47/3.jpg",
+      "/images/masini/bmw520m47/4.jpg",
+      "/images/masini/bmw520m47/5.jpg",
+      "/images/masini/bmw520m47/6.jpg",
+      "/images/masini/bmw520m47/7.jpg",
+      "/images/masini/bmw520m47/8.jpg",
+      "/images/masini/bmw520m47/9.jpg",
+      "/images/masini/bmw520m47/10.jpg",
+    ]
+  },
+  {
+    "_id": "aeb998d7-52e9-411b-8408-44cc16d43fb3",
+    "slug": "opel-astra-h-2006",
+    "marca": "Opel",
+    "model": "Astra",
+    "an": 2006,
+    "pret": 2699,
+    "combustibil": "Benzina",
+    "cutieViteze": "Manuala",
+    "motor": "1,6",
+    "putere": 116,
+    "caroserie": "Hatchback",
+    "disponibil": "Vandut",
+    "galerie": [
+      "/images/masini/opel-astra-h-2006/01.jpg",
+      "/images/masini/audia4b7/a42.jpeg",
+      "/images/masini/audia4b7/a43.jpeg",
+      "/images/masini/audia4b7/a44.jpeg",
+      "/images/masini/audia4b7/a46.jpeg"
+    ]
+  },
+  {
+    "_id": "aeb998d7-52e9-411b-8409-44cc16d43fb3",
+    "slug": "opel-astra-2012",
+    "marca": "Opel",
+    "model": "Astra",
+    "an": 2012,
+    "pret": 3699,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "1,7",
+    "putere": 126,
+    "caroserie": "Combi",
+    "disponibil": "Vandut",
+    "galerie": [
+      "/images/masini/opel-astra-2012/01.jpg",
+      "/images/masini/audia4b7/a42.jpeg",
+      "/images/masini/audia4b7/a43.jpeg",
+      "/images/masini/audia4b7/a44.jpeg",
+      "/images/masini/audia4b7/a46.jpeg"
+    ]
+  },
+  {
+    "_id": "aeb998d7-52e9-411b-8410-44cc16d43fb3",
+    "slug": "vw-passat-highline-2010",
+    "marca": "vw",
+    "model": "Passat",
+    "an": 2010,
+    "pret": 4499,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": ",20",
+    "putere": 140,
+    "caroserie": "Combi",
+    "disponibil": "Vandut",
+    "galerie": [
+      "/images/masini/vw-passat-highline-2010/01.jpg",
+      "/images/masini/audia4b7/a42.jpeg",
+      "/images/masini/audia4b7/a43.jpeg",
+      "/images/masini/audia4b7/a44.jpeg",
+      "/images/masini/audia4b7/a46.jpeg"
+    ]
+  },
+  {
+    "_id": "0165820a-0ea1-4442-a4883-483e6af91ee7",
+    "slug": "passatbmp2008",
+    "marca": "VW ",
+    "model": "Passat",
+    "an": 2008,
+    "kilometraj": 361000,
+    "pret": 4499,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "2.0 TDI",
+    "putere": 140,
+    "caroserie": "Combi",
+    "culoare": "GRI",
+    "nrUsi": 5,
+    "tractiune": "FWD",
+    "inspectieTehnica": "RAR EFECTUAT",
+    "dotari": [
+      "MODEL Confortline"
+    ],
+    "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
+    "disponibil": "Vandut",
+    "galerie": [
+      "/images/masini/passatbmp2008/1.jpg",
+      "/images/masini/passatbmp2008/2.jpg",
+      "/images/masini/passatbmp2008/3.jpg",
+      "/images/masini/passatbmp2008/4.jpg",
+      "/images/masini/passatbmp2008/5.jpg",
+      "/images/masini/passatbmp2008/6.jpg",
+      "/images/masini/passatbmp2008/7.jpg",
+      "/images/masini/passatbmp2008/8.jpg"
+    ]
+  },
+  {
+    "_id": "4ede9d12-f048-4919-8f11-2923f7abb083",
+    "slug": "vw-golf-5-2006",
+    "marca": "Volkswagen",
+    "model": "Golf 5",
+    "an": 2006,
+    "kilometraj": 198000,
+    "pret": 2999,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "1.9",
+    "caroserie": "Hatchback",
+    "disponibil": "Vandut",
+    "galerie": [
+      "/images/masini/vw-golf-5-2006/1.png",
+      "/images/masini/vw-golf-5-2006/02.jpg",
+      "/images/masini/vw-golf-5-2006/03.jpg",
+      "/images/masini/vw-golf-5-2006/04.jpg",
+      "/images/masini/vw-golf-5-2006/05.jpg"
+    ]
   }
 ];

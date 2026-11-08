@@ -192,7 +192,7 @@ export const masini: Masina[] = [
   "MODEL AMBIENTE, Climatizare automată, Jante aliaj ușor 15, Cruise control, Senzori parcare față și spate, Scaune față încălzite, Faruri ceață cu funcție cornering, Sistem audio și radio, Geamuri electrice față și spate, ESP, ABS și multiple airbaguri (frontale, laterale, cortină, genunchi)"
 ],
     "evaluareTehnica": "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
-    "disponibil": "Disponibil",
+    "disponibil": "Vandut",
     "galerie": [
       "/images/masini/skoda-fabia-2009-portocaliu/01.jpg",
       "/images/masini/skoda-fabia-2009-portocaliu/02.jpg",

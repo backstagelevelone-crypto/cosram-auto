@@ -73,7 +73,7 @@ export const masini: Masina[] = [
     "dotari": [
       "MODEL M"
     ],
-    "evaluareTehnica":TUV 2 ANI "Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
+    "evaluareTehnica": "TUV 2 ANIAceastă mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
     "disponibil": "Disponibil",
     "galerie": [
       "/images/masini/bmw318dblacknavi/1.jpg",

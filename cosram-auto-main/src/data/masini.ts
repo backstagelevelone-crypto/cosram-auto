@@ -54,6 +54,37 @@ export const masini: Masina[] = [
     ]
   },
   {
+    "_id": "0165820a-0ea1-4455-a402-483e6af91e29",
+    "slug": "bmw318dblacknavi",
+    "marca": "BMW ",
+    "model": "318d",
+    "an": 2007,
+    "kilometraj": 370000,
+    "pret": 6499,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "2.0 ",
+    "putere": 122,
+    "caroserie": "Combi",
+    "culoare": "Negru",
+    "nrUsi": 5,
+    "tractiune": "FWD",
+    "inspectieTehnica": "NEINMATRICULAT",
+    "dotari": [
+      "MODEL M"
+    ],
+    "evaluareTehnica": "TUV 2 ANI Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
+    "disponibil": "Disponibil",
+    "galerie": [
+      "/images/masini/bmw318dblacknavi/1.jpg",
+      "/images/masini/bmw318dblacknavi/2.jpg",
+      "/images/masini/bmw318dblacknavi/3.jpg",
+      "/images/masini/bmw318dblacknavi/4.jpg",
+      "/images/masini/bmw318dblacknavi/5.jpg",
+      "/images/masini/bmw318dblacknavi/6.jpg"
+    ]
+  },
+  {
     "_id": "0165820a-0ea1-4442-a402-483e6af91e21",
     "slug": "passatb72.0tdi2013",
     "marca": "Volkswagen ",

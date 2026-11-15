@@ -54,6 +54,37 @@ export const masini: Masina[] = [
     ]
   },
   {
+    "_id": "0165820a-0ea1-4455-7402-483e6af91e29",
+    "slug": "passathighline2",
+    "marca": "VW ",
+    "model": "Passat",
+    "an": 2008,
+    "kilometraj": 320000,
+    "pret": 4399,
+    "combustibil": "Diesel",
+    "cutieViteze": "Manuala",
+    "motor": "2.0 ",
+    "putere": 140,
+    "caroserie": "Combi",
+    "culoare": "Negru",
+    "nrUsi": 5,
+    "tractiune": "FWD",
+    "inspectieTehnica": "NEINMATRICULAT",
+    "dotari": [
+      "MODEL Highline"
+    ],
+    "evaluareTehnica": "TUV 2 ANI Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
+    "disponibil": "Disponibil",
+    "galerie": [
+      "/images/masini/passathighline2/IMG_20261022_143814.jpg",
+      "/images/masini/passathighline2/IMG_20261022_143820.jpg",
+      "/images/masini/passathighline2/IMG_20261022_143827 - Copy.jpg",
+      "/images/masini/passathighline2/IMG_20261022_143931.jpg",
+      "/images/masini/passathighline2/IMG_20261022_143958.jpg",
+      "/images/masini/passathighline2/IMG_20261022_144030.jpg"
+    ]
+  },
+  {
     "_id": "0165820a-0ea1-4455-a402-483e6af91e29",
     "slug": "bmw318dblacknavi",
     "marca": "BMW ",

@@ -74,7 +74,7 @@ export const masini: Masina[] = [
       "MODEL Highline"
     ],
     "evaluareTehnica": "TUV 2 ANI Această mașină a trecut prin verificarea noastră tehnică și este complet pregătită de drum. Te poți urca la volan cu încredere — fără reparații ascunse, fără surprize. Doar formalitățile de înmatriculare te mai despart de prima ta cursă",
-    "disponibil": "Disponibil",
+    "disponibil": "Vandut",
     "galerie": [
       "/images/masini/passathighline2/IMG_20261022_143814.jpg",
       "/images/masini/passathighline2/IMG_20261022_143820.jpg",

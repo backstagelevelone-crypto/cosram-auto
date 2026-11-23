@@ -9,11 +9,7 @@ import { cn } from "@/lib/utils";
 import { NAV_LINKS, SITE } from "@/lib/constants";
 import { BrandWordmark } from "@/components/BrandWordmark";
 
-function LogoBadge({
-  className,
-}: {
-  className?: string;
-}) {
+function LogoBadge({ className }: { className?: string }) {
   return (
     <div
       className={cn(
@@ -38,16 +34,17 @@ function PartnerLogos({ mobile = false }: { mobile?: boolean }) {
   return (
     <div
       className={cn(
-        "flex items-center justify-end",
-        mobile ? "gap-4 md:hidden mt-2 px-1" : "hidden md:flex gap-6"
+        "flex items-center justify-end gap-5",
+        mobile ? "md:hidden mt-2 px-1" : "hidden md:flex"
       )}
     >
+      {/* BT Direct */}
       <a
         href="https://btdirect.ro"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="BT Direct"
-        className="block opacity-95 transition-opacity hover:opacity-100"
+        className="flex items-center opacity-95 transition-opacity hover:opacity-100"
       >
         <img
           src="/partners/bt-direct.svg"
@@ -56,26 +53,33 @@ function PartnerLogos({ mobile = false }: { mobile?: boolean }) {
         />
       </a>
 
+      {/* Gustulegeei */}
       <a
         href="https://gustulegeei.ro"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Vizitează gustulegeei.ro"
-        className="block opacity-95 transition-opacity hover:opacity-100"
+        title="Vizitează gustulegeei.ro"
+        className="flex items-center opacity-95 transition-opacity hover:opacity-100"
       >
         <img
-          src="/partners/gustulegeei.ro.png"
+          src="/partners/logogustulegeei.ro.png"
           alt="gustulegeei.ro"
-          className={mobile ? "h-5 w-auto object-contain" : "h-9 w-auto object-contain"}
+          className={
+            mobile
+              ? "h-7 w-auto max-w-[120px] object-contain"
+              : "h-9 w-auto max-w-[160px] object-contain"
+          }
         />
       </a>
 
+      {/* TBI Bank */}
       <a
         href="https://tbibank.ro"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="TBI Bank"
-        className="block opacity-95 transition-opacity hover:opacity-100"
+        className="flex items-center opacity-95 transition-opacity hover:opacity-100"
       >
         <img
           src="/partners/tbi-bank.svg"
@@ -130,8 +134,10 @@ export default function Navbar() {
       >
         <div className="relative mx-auto flex max-w-7xl flex-col px-6 py-3 md:px-12 lg:px-16">
 
+          {/* Bara principală */}
           <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center">
 
+            {/* Logo COSRAM */}
             <div className="flex flex-col gap-1 justify-self-start">
               <Link
                 href="/"
@@ -146,9 +152,11 @@ export default function Navbar() {
                 />
               </Link>
 
+              {/* Parteneri pe mobil */}
               <PartnerLogos mobile />
             </div>
 
+            {/* Meniu navigare */}
             <nav className="hidden items-center gap-8 justify-self-center lg:flex">
               {NAV_LINKS.map((link) => (
                 <a
@@ -170,6 +178,7 @@ export default function Navbar() {
               ))}
             </nav>
 
+            {/* Telefon, contact și meniu mobil */}
             <div className="flex items-center gap-3 justify-self-end">
               <a
                 href={`tel:${SITE.phoneRaw}`}
@@ -206,14 +215,14 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Logo-uri parteneri: BT - Gustulegeei - TBI */}
+          {/* BT Direct - Gustulegeei - TBI Bank */}
           <div className="mt-3 hidden w-full justify-end pr-2 md:flex">
             <PartnerLogos />
           </div>
-
         </div>
       </motion.header>
 
+      {/* Meniu mobil */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div

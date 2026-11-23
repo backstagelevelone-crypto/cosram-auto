@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -10,10 +11,8 @@ import { BrandWordmark } from "@/components/BrandWordmark";
 
 function LogoBadge({
   className,
-  priority = false,
 }: {
   className?: string;
-  priority?: boolean;
 }) {
   return (
     <div
@@ -25,8 +24,7 @@ function LogoBadge({
       <div className="relative h-8 w-9 overflow-hidden md:h-9 md:w-10">
         <img
           src="/logo.png"
-          alt=""
-          aria-hidden
+          alt="COSRAM Auto"
           width={160}
           height={64}
           className="h-full w-auto max-w-none object-contain object-left"
@@ -36,9 +34,63 @@ function LogoBadge({
   );
 }
 
+function PartnerLogos({ mobile = false }: { mobile?: boolean }) {
+  return (
+    <div
+      className={cn(
+        "flex items-center justify-end",
+        mobile ? "gap-4 md:hidden mt-2 px-1" : "hidden md:flex gap-6"
+      )}
+    >
+      <a
+        href="https://btdirect.ro"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="BT Direct"
+        className="block opacity-95 transition-opacity hover:opacity-100"
+      >
+        <img
+          src="/partners/bt-direct.svg"
+          alt="BT Direct"
+          className={mobile ? "h-5 w-auto object-contain" : "h-9 w-auto object-contain"}
+        />
+      </a>
+
+      <a
+        href="https://gustulegeei.ro"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Vizitează gustulegeei.ro"
+        className="block opacity-95 transition-opacity hover:opacity-100"
+      >
+        <img
+          src="/partners/gustulegeei.ro.png"
+          alt="gustulegeei.ro"
+          className={mobile ? "h-5 w-auto object-contain" : "h-9 w-auto object-contain"}
+        />
+      </a>
+
+      <a
+        href="https://tbibank.ro"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="TBI Bank"
+        className="block opacity-95 transition-opacity hover:opacity-100"
+      >
+        <img
+          src="/partners/tbi-bank.svg"
+          alt="TBI Bank"
+          className={mobile ? "h-4 w-auto object-contain" : "h-8 w-auto object-contain"}
+        />
+      </a>
+    </div>
+  );
+}
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
   const navTone = scrolled ? "dark" : "light";
 
   useEffect(() => {
@@ -77,6 +129,7 @@ export default function Navbar() {
         )}
       >
         <div className="relative mx-auto flex max-w-7xl flex-col px-6 py-3 md:px-12 lg:px-16">
+
           <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center">
 
             <div className="flex flex-col gap-1 justify-self-start">
@@ -85,7 +138,7 @@ export default function Navbar() {
                 className="flex items-center gap-2.5 sm:gap-3"
                 aria-label="Cosram Auto — Acasă"
               >
-                <LogoBadge priority />
+                <LogoBadge />
 
                 <BrandWordmark
                   variant={navTone === "dark" ? "on-light" : "on-dark"}
@@ -93,20 +146,7 @@ export default function Navbar() {
                 />
               </Link>
 
-              <div className="flex items-center gap-2.5 md:hidden mt-1 px-1">
-                <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block">
-                  <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-4.5 w-auto object-contain" />
-                </a>
-                
-              <div className="flex items-center gap-2.5 md:hidden mt-1 px-1">
-                <a href="https://gustulegeei.ro" target="_blank" rel="noopener noreferrer" className="block">
-                  <img src="/partners/gustulegeei.ro.png" alt="gustulegeei.ro" className="h-4.5 w-auto object-contain" />
-                </a>
-                
-                <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="block">
-                  <img src="/partners/tbi-bank.svg" alt="TBI Bank" className="h-3.5 w-auto object-contain" />
-                </a>
-              </div>
+              <PartnerLogos mobile />
             </div>
 
             <nav className="hidden items-center gap-8 justify-self-center lg:flex">
@@ -129,7 +169,8 @@ export default function Navbar() {
                 </a>
               ))}
             </nav>
-                        <div className="flex items-center gap-3 justify-self-end">
+
+            <div className="flex items-center gap-3 justify-self-end">
               <a
                 href={`tel:${SITE.phoneRaw}`}
                 className={cn(
@@ -165,23 +206,13 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="mt-3 hidden w-full justify-end items-center gap-6 pr-2 md:flex">
-            <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="relative h-9 w-40 block opacity-95 transition-opacity hover:opacity-100">
-              <img src="/partners/bt-direct.svg" alt="Partener BT Direct" className="h-9 w-auto object-contain" />
-            </a>
-            
-              <div className="flex items-center gap-2.5 md:hidden mt-1 px-1">
-                <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block">
-                  <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-4.5 w-auto object-contain" />
-                </a>
-          
-            <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="relative h-8 w-20 block opacity-95 transition-opacity hover:opacity-100">
-              <img src="/partners/tbi-bank.svg" alt="Partener TBI Bank" className="h-8 w-auto object-contain" />
-            </a>
+          {/* Logo-uri parteneri: BT - Gustulegeei - TBI */}
+          <div className="mt-3 hidden w-full justify-end pr-2 md:flex">
+            <PartnerLogos />
           </div>
+
         </div>
       </motion.header>
-
 
       <AnimatePresence>
         {mobileOpen && (
@@ -214,7 +245,6 @@ export default function Navbar() {
                 </button>
               </div>
 
-
               <nav className="mt-16 flex flex-col gap-6">
                 {NAV_LINKS.map((link, i) => (
                   <motion.a
@@ -236,7 +266,6 @@ export default function Navbar() {
                   </motion.a>
                 ))}
               </nav>
-
 
               <div className="mt-auto space-y-6">
                 <div className="space-y-4">
@@ -260,7 +289,6 @@ export default function Navbar() {
                   </a>
                 </div>
               </div>
-
             </motion.div>
           </motion.div>
         )}

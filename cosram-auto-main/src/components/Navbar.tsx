@@ -97,7 +97,11 @@ export default function Navbar() {
                 <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block">
                   <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-4.5 w-auto object-contain" />
                 </a>
-
+    <div className="flex items-center gap-2.5 md:hidden mt-1 px-1">
+                <a href="https://gustulegeei.ro" target="_blank" rel="noopener noreferrer" className="block">
+                  <img src="/partners/gustulegeei.ro.png" alt="gustulegeei.ro" className="h-4.5 w-auto object-contain" />
+                </a>
+                
                 <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="block">
                   <img src="/partners/tbi-bank.svg" alt="TBI Bank" className="h-3.5 w-auto object-contain" />
                 </a>

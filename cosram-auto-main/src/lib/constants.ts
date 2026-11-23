@@ -43,11 +43,11 @@ export const DISPLAY_PARTNERS = [
     href: "https://tbibank.ro",
   },
   {
-    name: "Mogo",
-    logo: "/partners/mogo.svg",
-    width: 130,
-    height: 48,
-    href: "https://www.mogo.ro",
+    name: "Gustulegeei.ro",
+    logo: "/partners/logogustulegeei.ro.png",
+    width: 160,
+    height: 60,
+    href: "https://gustulegeei.ro",
   },
   {
     name: "BT Direct",

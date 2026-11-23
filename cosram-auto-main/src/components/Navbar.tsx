@@ -97,7 +97,8 @@ export default function Navbar() {
                 <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block">
                   <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-4.5 w-auto object-contain" />
                 </a>
-    <div className="flex items-center gap-2.5 md:hidden mt-1 px-1">
+                
+              <div className="flex items-center gap-2.5 md:hidden mt-1 px-1">
                 <a href="https://gustulegeei.ro" target="_blank" rel="noopener noreferrer" className="block">
                   <img src="/partners/gustulegeei.ro.png" alt="gustulegeei.ro" className="h-4.5 w-auto object-contain" />
                 </a>
@@ -168,7 +169,12 @@ export default function Navbar() {
             <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="relative h-9 w-40 block opacity-95 transition-opacity hover:opacity-100">
               <img src="/partners/bt-direct.svg" alt="Partener BT Direct" className="h-9 w-auto object-contain" />
             </a>
-
+            
+              <div className="flex items-center gap-2.5 md:hidden mt-1 px-1">
+                <a href="https://btdirect.ro" target="_blank" rel="noopener noreferrer" className="block">
+                  <img src="/partners/bt-direct.svg" alt="BT Direct" className="h-4.5 w-auto object-contain" />
+                </a>
+          
             <a href="https://tbibank.ro" target="_blank" rel="noopener noreferrer" className="relative h-8 w-20 block opacity-95 transition-opacity hover:opacity-100">
               <img src="/partners/tbi-bank.svg" alt="Partener TBI Bank" className="h-8 w-auto object-contain" />
             </a>

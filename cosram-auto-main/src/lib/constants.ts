@@ -43,6 +43,13 @@ export const DISPLAY_PARTNERS = [
     href: "https://tbibank.ro",
   },
   {
+    name: "cosramrecovery.ro",
+    logo: "/partners/LogoCOSRAMRecovery.png",
+    width: 160,
+    height: 60,
+    href: "https://cosramrecovery.ro",
+  },
+  {
     name: "Gustulegeei.ro",
     logo: "/partners/logogustulegeei.ro.png",
     width: 160,
